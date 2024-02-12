@@ -1,11 +1,9 @@
-.ant-layout
-.site_layout {
-    position:  relative;
+.ant-layout .site_layout {
+    position: relative;
 }
 
-.ant-layout
-.ant-layout-header  {
-    background: #F0F5FF;
+.ant-layout .ant-layout-header {
+    background: #f0f5ff;
     height: auto;
     padding-left: 24px;
     padding-right: 24px;
@@ -14,7 +12,7 @@
 }
 
 span.anticon.anticon-menu-fold.sider-switch,
-span.anticon.anticon-menu-unfold.sider-switch{
+span.anticon.anticon-menu-unfold.sider-switch {
     position: absolute;
     top: 0;
     left: 0;
@@ -29,7 +27,7 @@ span.anticon.anticon-menu-unfold.sider-switch{
 }
 
 span.anticon.anticon-menu-fold.sider-switch-mobile,
-span.anticon.anticon-menu-unfold.sider-switch-mobile{
+span.anticon.anticon-menu-unfold.sider-switch-mobile {
     position: absolute;
     top: 24px;
     left: 0;
@@ -48,27 +46,24 @@ span.anticon.anticon-menu-unfold.sider-switch-mobile{
 .title_wrapper {
     display: flex;
     justify-content: space-between;
-
 }
-.title_wrapper
-button.ant-btn {
+
+.title_wrapper button.ant-btn {
     background-color: transparent;
     border: none;
 }
 
-.title_wrapper
-button.ant-btn:hover {
+.title_wrapper button.ant-btn:hover {
     color: black;
     background-color: #fff;
     border: none;
 }
-.title_wrapper
-button.ant-btn:focus {
+
+.title_wrapper button.ant-btn:focus {
     color: black;
 }
 
-.title_wrapper
-h1.ant-typography {
+.title_wrapper h1.ant-typography {
     margin: 0;
     font-weight: 700;
     letter-spacing: 0.7px;
@@ -79,91 +74,90 @@ h1.ant-typography {
 }
 
 @media (max-width: 1303px) {
-    .title_wrapper
-    h1.ant-typography {
-    font-weight: 500;
-    font-size: 24px;
-    letter-spacing: 0.7px;
+    .title_wrapper h1.ant-typography {
+        font-weight: 500;
+        font-size: 24px;
+        letter-spacing: 0.7px;
+    }
+
+    .title_wrapper span.anticon svg {
+        display: none;
+    }
+
+    .title_wrapper button.ant-btn > .anticon + span {
+        margin-left: 0;
+    }
+
+    @keyframes slide-right {
+        from {
+            left: 106px;
+        }
+        to {
+            left: 0;
+        }
+    }
 }
 
-.title_wrapper
-span.anticon svg {
-    display: none;
-}
-
-.title_wrapper
-button.ant-btn > .anticon + span {
-    margin-left: 0;
-}
-
-@keyframes slide-right {
-    from { left:  106px; }
-    to { left: 0; }
-}
-
-}
-@media screen and (max-width: 600px) {
+@media (max-width: 600px) {
     .ant-layout .ant-layout-header {
         line-height: 40px;
         padding-bottom: 22px;
     }
-    .title_wrapper
-    h1.ant-typography {
-    font-size: 20px;
-    line-height: 26px;
-}
 
-    .header
-    span.anticon-menu-unfold.sider-switch,
-    .header
-    span.anticon-menu-fold.sider-switch {
+    .title_wrapper h1.ant-typography {
+        font-size: 20px;
+        line-height: 26px;
+    }
+
+    .header span.anticon-menu-unfold.sider-switch,
+    .header span.anticon-menu-fold.sider-switch {
         display: none;
     }
 
+    .ant-layout
     span.anticon.anticon-menu-fold.sider-switch-mobile,
-    span.anticon.anticon-menu-unfold.sider-switch-mobile{
+    .ant-layout
+    span.anticon.anticon-menu-unfold.sider-switch-mobile {
         display: flex;
-
     }
 
     span.anticon.anticon-menu-fold.sider-switch-mobile.trigger,
-    span.anticon.anticon-menu-unfold.sider-switch-mobile.trigger{
-    display: flex;
-    animation: slide-left 1s;
-    left: 106px;
-}
+    span.anticon.anticon-menu-unfold.sider-switch-mobile.trigger {
+        display: flex;
+        animation: slide-left 1s;
+        left: 106px;
+    }
 
     @keyframes slide-left {
-        from { left: 0; }
-        to { left: 106px; }
+        from {
+            left: 0;
+        }
+        to {
+            left: 106px;
+        }
     }
 
-    .title_wrapper
-span.anticon svg {
-    display: flex;
-}
-
-.title_wrapper
-button.btn_settings span:last-of-type {
-    display: none;
-  }
-
-.title_wrapper
-button.ant-btn {
-    background-color: #fff;
-
-    border: 2px solid #D9D9D9;
-    border-radius: 100px;
-    display: flex;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    margin-top: -5px;
+    .title_wrapper span.anticon svg {
+        display: flex;
     }
 
-.title_wrapper
-button.ant-btn:hover {
-    border: 2px solid #D9D9D9;
-}
+    .title_wrapper button.btn_settings span:last-of-type {
+        display: none;
+    }
 
+    .title_wrapper button.ant-btn {
+        background-color: #fff;
+
+        border: 2px solid #d9d9d9;
+        border-radius: 100px;
+        display: flex;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        margin-top: -5px;
+    }
+
+    .title_wrapper button.ant-btn:hover {
+        border: 2px solid #d9d9d9;
+    }
 }

@@ -37,8 +37,8 @@
 .block_cards {
     margin-top: 16px;
     max-width: 752px;
-
 }
+
 .cards_wrapper {
     display: flex;
     gap: 16px;
@@ -60,11 +60,9 @@
     gap: 8px;
     justify-content: left;
     padding: 12px 24px;
-
 }
 
-.block_download
-.divider {
+.block_download .divider {
     margin: 0;
 }
 
@@ -74,21 +72,21 @@
     padding-bottom: 8px;
 }
 
-.block_download__title  {
-    color: #2F54EB;
+.block_download__title {
+    color: #2f54eb;
     font-size: 16px;
     line-height: 21px;
     letter-spacing: 0.7px;
 }
 
-.block_download__sub_title  {
-    color: #8C8C8C;
+.block_download__sub_title {
+    color: #8c8c8c;
     font-size: 14px;
     line-height: 18px;
     letter-spacing: 0.5px;
 }
 
-.btn_download  {
+.btn_download {
     border: none;
     font-size: 14px;
     letter-spacing: 0.2px;
@@ -108,20 +106,52 @@
     font-size: 16px;
     line-height: 130%;
     text-align: center;
-    color: #2F54EB;
+    color: #2f54eb;
     text-align: center;
     letter-spacing: 0.8px;
-
+    cursor: default;
 }
+
 @media (max-width: 900px) {
     .sub_title {
         padding-right: 24px;
-
     }
-
 }
+
+span.anticon.anticon-menu-fold.sider-switch,
+span.anticon.anticon-menu-unfold.sider-switch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 1;
+    background: #fff;
+    height: 70px;
+    width: 20px;
+    padding-left: 2px;
+    clip-path: polygon(0 0, 100% 15%, 100% 85%, 0 100%);
+}
+
+span.anticon.anticon-menu-fold.sider-switch-mobile,
+span.anticon.anticon-menu-unfold.sider-switch-mobile {
+    position: absolute;
+    top: 24px;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    background: #fff;
+    width: 32px;
+    height: 48px;
+    padding-left: 8px;
+    clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
+    display: none;
+    transition: left 1s;
+    animation: slide-right 1s;
+}
+
 @media (max-width: 735px) {
-    .cards_wrapper{
+    .cards_wrapper {
         flex-direction: column;
     }
 
@@ -135,8 +165,8 @@
 
 @media screen and (max-width: 600px) {
     .main {
-        padding-left: 16px ;
-        padding-right: 16px ;
+        padding-left: 16px;
+        padding-right: 16px;
     }
 
     .sub_title {
@@ -145,7 +175,7 @@
 
     .block_skills {
         padding: 16px;
-        padding-right: 23px ;
+        padding-right: 23px;
         line-height: 132%;
     }
 
