@@ -27,8 +27,8 @@ export const MainPage: React.FC = () => {
   return (
     <Layout style={{backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center'}} className='wrapper'>
         <Sider collapsed={collapsed} />
-        {!collapsedMobile? <MenuUnfoldOutlined className='sider-switch-mobile' data-test-id='sider-switch' onClick={toggleCollapsedMobile} />:
-         <MenuFoldOutlined className='sider-switch-mobile trigger' data-test-id='sider-switch' onClick={toggleCollapsedMobile}/>} 
+        {!collapsedMobile? <MenuUnfoldOutlined className='sider-switch-mobile' data-test-id='sider-switch-mobile' onClick={toggleCollapsedMobile} />:
+         <MenuFoldOutlined className='sider-switch-mobile trigger' data-test-id='sider-switch-mobile' onClick={toggleCollapsedMobile}/>}
          <SiderMobile collapsedMobile={collapsedMobile}/>
 
 
