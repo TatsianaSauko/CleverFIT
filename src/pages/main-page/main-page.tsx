@@ -1,6 +1,5 @@
 import { Layout, Button, Divider } from 'antd';
 import React, { useState } from 'react';
-import './main-page.css';
 import { Sider } from '@components/Sider';
 import { Header } from '@components/Header';
 import { SiderMobile } from '@components/SiderMobile';
@@ -14,6 +13,8 @@ import {
     AppleIcon,
     AndroidIcon,
 } from '../../icons';
+
+import './main-page.css';
 
 const { Content, Footer } = Layout;
 

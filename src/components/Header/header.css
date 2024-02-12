@@ -114,10 +114,8 @@ span.anticon.anticon-menu-unfold.sider-switch-mobile {
         display: none;
     }
 
-    .ant-layout
-    span.anticon.anticon-menu-fold.sider-switch-mobile,
-    .ant-layout
-    span.anticon.anticon-menu-unfold.sider-switch-mobile {
+    .ant-layout span.anticon.anticon-menu-fold.sider-switch-mobile,
+    .ant-layout span.anticon.anticon-menu-unfold.sider-switch-mobile {
         display: flex;
     }
 

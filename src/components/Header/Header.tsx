@@ -13,32 +13,30 @@ interface HeaderProps {
 
 const { Title, Text } = Typography;
 
-export const Header = ({ collapsed, toggleCollapsed }: HeaderProps) => {
-    return (
-        <AntHeader className='header'>
-            <Text>Главная </Text>
-            <div className='title_wrapper'>
-                <Title className='title'>
-                    Приветствуем тебя в CleverFit — приложении,
-                    <br /> которое поможет тебе добиться своей мечты!
-                </Title>
-                <Button icon={<SettingsIcon />} size='large' className='btn_settings'>
-                    Настройки
-                </Button>
-            </div>
-            {collapsed ? (
-                <MenuUnfoldOutlined
-                    className='sider-switch trigger'
-                    data-test-id='sider-switch'
-                    onClick={toggleCollapsed}
-                />
-            ) : (
-                <MenuFoldOutlined
-                    className='sider-switch trigger'
-                    data-test-id='sider-switch'
-                    onClick={toggleCollapsed}
-                />
-            )}
-        </AntHeader>
-    );
-};
+export const Header = ({ collapsed, toggleCollapsed }: HeaderProps) => (
+    <AntHeader className='header'>
+        <Text>Главная </Text>
+        <div className='title_wrapper'>
+            <Title className='title'>
+                Приветствуем тебя в CleverFit — приложении,
+                <br /> которое поможет тебе добиться своей мечты!
+            </Title>
+            <Button icon={<SettingsIcon />} size='large' className='btn_settings'>
+                Настройки
+            </Button>
+        </div>
+        {collapsed ? (
+            <MenuUnfoldOutlined
+                className='sider-switch trigger'
+                data-test-id='sider-switch'
+                onClick={toggleCollapsed}
+            />
+        ) : (
+            <MenuFoldOutlined
+                className='sider-switch trigger'
+                data-test-id='sider-switch'
+                onClick={toggleCollapsed}
+            />
+        )}
+    </AntHeader>
+);
