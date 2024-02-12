@@ -2,3 +2,162 @@
     max-width: 1440px;
     margin: 0 auto;
 }
+
+.main {
+    padding: 24px;
+}
+
+.block_skills {
+    background-color: #fff;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.04);
+    border-radius: 2px;
+    color: #061178;
+    max-width: 752px;
+    padding: 24px;
+    font-size: 16px;
+    line-height: 20.7px;
+    letter-spacing: 0.6px;
+    font-weight: 400;
+}
+
+.sub_title {
+    margin-top: 24px;
+    background-color: #fff;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.04);
+    border-radius: 2px;
+    max-width: 752px;
+    padding: 24px;
+    padding-right: 58px;
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.block_cards {
+    margin-top: 16px;
+    max-width: 752px;
+
+}
+.cards_wrapper {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+}
+
+.block_download {
+    border-radius: 2px;
+    width: 240px;
+    background: #fff;
+    position: absolute;
+    bottom: 42px;
+    right: 24px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: left;
+    padding: 12px 24px;
+
+}
+
+.block_download
+.divider {
+    margin: 0;
+}
+
+.block_download__buttons {
+    display: flex;
+    padding-top: 7px;
+    padding-bottom: 8px;
+}
+
+.block_download__title  {
+    color: #2F54EB;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: 0.7px;
+}
+
+.block_download__sub_title  {
+    color: #8C8C8C;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.5px;
+}
+
+.btn_download  {
+    border: none;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+}
+
+.footer {
+    background-color: transparent;
+    height: auto;
+    padding-left: 24px;
+    padding-bottom: 42px;
+}
+
+.footer_btn {
+    border-radius: 2px;
+    padding: 9.5px 15px;
+    width: 171px;
+    font-size: 16px;
+    line-height: 130%;
+    text-align: center;
+    color: #2F54EB;
+    text-align: center;
+    letter-spacing: 0.8px;
+
+}
+@media (max-width: 900px) {
+    .sub_title {
+        padding-right: 24px;
+
+    }
+
+}
+@media (max-width: 735px) {
+    .cards_wrapper{
+        flex-direction: column;
+    }
+
+    .block_download {
+        position: inherit;
+        margin-top: 24px;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .main {
+        padding-left: 16px ;
+        padding-right: 16px ;
+    }
+
+    .sub_title {
+        padding: 16px;
+    }
+
+    .block_skills {
+        padding: 16px;
+        padding-right: 23px ;
+        line-height: 132%;
+    }
+
+    .cards_wrapper {
+        gap: 8px;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: center;
+        padding: 0%;
+        padding-bottom: 40px;
+        padding-top: 4px;
+    }
+}
