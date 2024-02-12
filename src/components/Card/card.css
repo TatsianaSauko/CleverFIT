@@ -1,0 +1,56 @@
+.card {
+    background: #fff;
+    flex: 1;
+    letter-spacing: 1px;
+}
+
+.card
+.divider {
+    margin: 0;
+}
+.card_title {
+    padding: 12px 24px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: 1px;
+
+}
+
+.card_link {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+}
+
+.card
+button.ant-btn {
+    background-color: transparent;
+    border: none;
+    color: #2F54EB;
+    font-size: 14px;
+}
+
+.card_link
+button.ant-btn
+.anticon {
+    width: 10px;
+    height: 10px;
+}
+
+.card
+button.ant-btn:hover {
+    background-color: #fff;
+    border: none;
+}
+@media (max-width: 900px) {
+    .card_title {
+        text-align: left;
+    }
+
+}
+@media (max-width: 735px) {
+    .card_title {
+        text-align: center;
+    }
+}
