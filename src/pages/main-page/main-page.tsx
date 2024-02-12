@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { Sider } from '@components/Sider';
 import { Header } from '@components/Header';
 import { SiderMobile } from '@components/SiderMobile';
+import { ButtonSiderToggle } from '@components/ButtonSiderToggle';
 import { Card } from '@components/Card';
 import backgroundImage from '/png/mainPageLight.png';
-import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import {
     HeartIconSmall,
     CalendarIconSmall,
@@ -17,6 +17,24 @@ import {
 import './main-page.css';
 
 const { Content, Footer } = Layout;
+
+export const CARDS_DATA = [
+    {
+        title: 'Расписать тренировки',
+        link: 'Тренировки',
+        icon: <HeartIconSmall />,
+    },
+    {
+        title: 'Назначить календарь',
+        link: 'Календарь',
+        icon: <CalendarIconSmall />,
+    },
+    {
+        title: 'Заполнить профиль',
+        link: 'Профиль',
+        icon: <IdCardIconSmall />,
+    },
+];
 
 export const MainPage: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -40,24 +58,17 @@ export const MainPage: React.FC = () => {
             className='wrapper'
         >
             <Sider collapsed={collapsed} />
-            {!collapsedMobile ? (
-                <MenuUnfoldOutlined
-                    className='sider-switch-mobile'
-                    data-test-id='sider-switch-mobile'
-                    onClick={toggleCollapsedMobile}
-                />
-            ) : (
-                <MenuFoldOutlined
-                    className='sider-switch-mobile trigger'
-                    data-test-id='sider-switch-mobile'
-                    onClick={toggleCollapsedMobile}
-                />
-            )}
             <SiderMobile collapsedMobile={collapsedMobile} />
             <Layout style={{ backgroundColor: 'transparent' }} className='site_layout'>
-                <Header collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
+                <ButtonSiderToggle
+                    collapsed={collapsed}
+                    collapsedMobile={collapsedMobile}
+                    toggleCollapsed={toggleCollapsed}
+                    toggleCollapsedMobile={toggleCollapsedMobile}
+                />
+                <Header />
                 <Content className='main'>
-                    <div className='block_skills'>
+                    <div className='main__skills'>
                         C CleverFit ты сможешь: <br />— планировать свои тренировки на календаре,
                         выбирая тип и уровень нагрузки;
                         <br /> — отслеживать свои достижения в разделе статистики, сравнивая свои
@@ -66,47 +77,35 @@ export const MainPage: React.FC = () => {
                         расписанные тренировки для разных частей тела, следуя подробным инструкциям
                         и советам профессиональных тренеров.
                     </div>
-                    <div className='sub_title'>
+                    <div className='main__subtitle'>
                         CleverFit — это не просто приложение, a твой личный помощник в мире фитнеса.
                         He откладывай на завтра — начни тренироваться уже сегодня!
                     </div>
-                    <div className='block_cards'>
-                        <div className='cards_wrapper'>
-                            <Card
-                                title='Расписать тренировки'
-                                link='Тренировки'
-                                icon={<HeartIconSmall />}
-                            />
-                            <Card
-                                title='Назначить календарь'
-                                link='Календарь'
-                                icon={<CalendarIconSmall />}
-                            />
-                            <Card
-                                title='Заполнить профиль'
-                                link='Профиль'
-                                icon={<IdCardIconSmall />}
-                            />
+                    <div className='main__cards'>
+                        <div className='cards__wrapper'>
+                            {CARDS_DATA.map((card) => (
+                                <Card title={card.title} link={card.link} icon={card.icon} />
+                            ))}
                         </div>
                     </div>
-                    <div className='block_download'>
-                        <div className='info'>
-                            <div className='block_download__title'>Скачать на телефон</div>
-                            <div className='block_download__sub_title'>Доступно в PRO-тарифе</div>
+                    <div className='block-download'>
+                        <div className='block-download__info info'>
+                            <div className='info__title'>Скачать на телефон</div>
+                            <div className='info__subtitle'>Доступно в PRO-тарифе</div>
                         </div>
                         <Divider className='divider' />
-                        <div className='block_download__buttons'>
-                            <Button icon={<AndroidIcon />} block className='btn_download'>
+                        <div className='block-download__buttons'>
+                            <Button icon={<AndroidIcon />} block className='btn-download'>
                                 Android OS
                             </Button>
-                            <Button icon={<AppleIcon />} block className='btn_download'>
+                            <Button icon={<AppleIcon />} block className='btn-download'>
                                 Apple iOS
                             </Button>
                         </div>
                     </div>
                 </Content>
                 <Footer className='footer'>
-                    <div className='footer_btn'>Смотреть отзывы</div>
+                    <div className='footer__btn'>Смотреть отзывы</div>
                 </Footer>
             </Layout>
         </Layout>
