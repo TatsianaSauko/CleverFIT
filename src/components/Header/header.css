@@ -61,6 +61,7 @@
     .ant-layout .ant-layout-header {
         line-height: 40px;
         padding-bottom: 22px;
+        margin-top: -48px;
     }
 
     .header__wrapper h1.ant-typography {

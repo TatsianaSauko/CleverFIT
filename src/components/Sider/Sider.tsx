@@ -41,7 +41,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
                     icon={<CalendarIcon />}
                     style={{
                         ...(collapsed && width === 208 ? {} : { paddingLeft: '16px' }),
-                        ...(width === 208 ? {} : { paddingLeft: '0' }),
+                        ...(width === 208 ? {} : { paddingLeft: '0', paddingRight: '0' }),
                     }}
                 >
                     <Link to='/calendar'>Календарь</Link>
@@ -51,7 +51,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
                     icon={<HeartIcon />}
                     style={{
                         ...(collapsed && width === 208 ? {} : { paddingLeft: '16px' }),
-                        ...(width === 208 ? {} : { paddingLeft: '0' }),
+                        ...(width === 208 ? {} : { paddingLeft: '0', paddingRight: '0' }),
                     }}
                 >
                     <Link to='/training'>Тренировки</Link>
@@ -61,7 +61,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
                     icon={<TrophyIcon />}
                     style={{
                         ...(collapsed && width === 208 ? {} : { paddingLeft: '16px' }),
-                        ...(width === 208 ? {} : { paddingLeft: '0' }),
+                        ...(width === 208 ? {} : { paddingLeft: '0', paddingRight: '0' }),
                     }}
                 >
                     <Link to='/achievements'>Достижения</Link>
@@ -71,7 +71,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
                     icon={<IdCardIcon />}
                     style={{
                         ...(collapsed && width === 208 ? {} : { paddingLeft: '16px' }),
-                        ...(width === 208 ? {} : { paddingLeft: '0' }),
+                        ...(width === 208 ? {} : { paddingLeft: '0', paddingRight: '0' }),
                     }}
                 >
                     <Link to='/profile'>Профиль</Link>
