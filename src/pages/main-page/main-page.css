@@ -178,4 +178,8 @@
     .ant-layout footer.ant-layout-footer {
         padding-left: 0;
     }
+
+    .main__cards {
+        margin-bottom: 0px;
+    }
 }
