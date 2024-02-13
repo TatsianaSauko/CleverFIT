@@ -1,42 +1,185 @@
 #root {
-    max-width: 1280px;
+    max-width: 1440px;
     margin: 0 auto;
-    padding: 2rem;
+}
+
+.main {
+    padding: 24px;
+}
+
+.main__skills {
+    background-color: #fff;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.04);
+    border-radius: 2px;
+    color: #061178;
+    max-width: 752px;
+    padding: 24px;
+    font-size: 16px;
+    line-height: 20.7px;
+    letter-spacing: 0.6px;
+    font-weight: 400;
+}
+
+.main__subtitle {
+    margin-top: 24px;
+    background-color: #fff;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.04);
+    border-radius: 2px;
+    max-width: 752px;
+    padding: 24px;
+    padding-right: 58px;
+    font-size: 20px;
+    line-height: 26px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.main__cards {
+    margin-top: 16px;
+    max-width: 752px;
+    margin-bottom: 83px;
+}
+
+.cards__wrapper {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+}
+
+.block-download {
+    border-radius: 2px;
+    width: 240px;
+    background: #fff;
+    position: absolute;
+    bottom: 44px;
+    right: 24px;
+}
+
+.block-download__info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: left;
+    padding: 12px 24px;
+}
+
+.block-download .divider {
+    margin: 0;
+}
+
+.block-download__buttons {
+    display: flex;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.block-download__buttons .ant-btn {
+    border: none;
+}
+
+.info__title {
+    color: #2f54eb;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: 0.7px;
+}
+
+.info__subtitle {
+    color: #8c8c8c;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.5px;
+}
+
+.btn-download {
+    border: none;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+}
+
+.footer {
+    height: auto;
+    padding-left: 24px;
+    padding-bottom: 42px;
+}
+
+.ant-layout footer.ant-layout-footer {
+    background: transparent;
+    padding: 0;
+    padding-bottom: 45px;
+    padding-left: 24px;
+}
+
+.footer__btn {
+    border-radius: 2px;
+    padding-top: 9.5px;
+    padding-bottom: 9.5px;
+    padding-left: 15px;
+    font-size: 16px;
+    line-height: 130%;
     text-align: center;
+    color: #2f54eb;
+    text-align: center;
+    letter-spacing: 0.8px;
+    cursor: default;
+    text-align: left;
 }
 
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-}
-.logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-    from {
-        transform: rotate(0deg);
+@media (max-width: 900px) {
+    .main__subtitle {
+        padding-right: 24px;
     }
-    to {
-        transform: rotate(360deg);
+    .footer__btn {
+        padding-left: 0;
     }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-        animation: logo-spin infinite 20s linear;
+@media (max-width: 735px) {
+    .cards__wrapper {
+        flex-direction: column;
+    }
+
+    .block-download {
+        position: inherit;
+        margin-top: 24px;
+        width: 100%;
+        text-align: center;
     }
 }
 
-.card {
-    padding: 2em;
-}
+@media screen and (max-width: 576px) {
+    .main {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
 
-.read-the-docs {
-    color: #888;
+    .main__subtitle {
+        padding: 16px;
+    }
+
+    .main__skills {
+        padding: 16px;
+        padding-right: 23px;
+        line-height: 132%;
+    }
+
+    .cards__wrapper {
+        gap: 8px;
+    }
+
+    .footer {
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        padding-bottom: 42px;
+        padding-top: 4px;
+    }
+
+    .ant-layout footer.ant-layout-footer {
+        padding-left: 0;
+    }
+
+    .main__cards {
+        margin-bottom: 0px;
+    }
 }

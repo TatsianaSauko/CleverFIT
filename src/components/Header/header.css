@@ -1,0 +1,94 @@
+.ant-layout .site_layout {
+    position: relative;
+}
+
+.ant-layout .ant-layout-header {
+    background: #f0f5ff;
+    height: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+    line-height: 47px;
+    padding-bottom: 30px;
+}
+
+.header__wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__wrapper button.ant-btn {
+    background-color: transparent;
+    border: none;
+}
+
+.header__wrapper button.ant-btn:hover {
+    color: black;
+    background-color: #fff;
+    border: none;
+}
+
+.header__wrapper button.ant-btn:focus {
+    color: black;
+}
+
+.header__wrapper h1.ant-typography {
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+}
+
+.btn-settings {
+    margin-top: -10px;
+}
+
+@media (max-width: 1303px) {
+    .header__wrapper h1.ant-typography {
+        font-weight: 500;
+        font-size: 24px;
+        letter-spacing: 0.7px;
+    }
+
+    .header__wrapper span.anticon svg {
+        display: none;
+    }
+
+    .header__wrapper button.ant-btn > .anticon + span {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .ant-layout .ant-layout-header {
+        line-height: 40px;
+        padding-bottom: 22px;
+        margin-top: -48px;
+    }
+
+    .header__wrapper h1.ant-typography {
+        font-size: 20px;
+        line-height: 26px;
+    }
+
+    .header__wrapper span.anticon svg {
+        display: flex;
+    }
+
+    .header__wrapper button.btn-settings span:last-of-type {
+        display: none;
+    }
+
+    .header__wrapper button.ant-btn {
+        background-color: #fff;
+        border: 2px solid #d9d9d9;
+        border-radius: 100px;
+        display: flex;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        margin-top: -5px;
+    }
+
+    .header__wrapper button.ant-btn:hover {
+        border: 2px solid #d9d9d9;
+    }
+}
