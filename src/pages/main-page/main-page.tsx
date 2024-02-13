@@ -2,7 +2,6 @@ import { Layout, Button, Divider } from 'antd';
 import React, { useState } from 'react';
 import { Sider } from '@components/Sider';
 import { Header } from '@components/Header';
-import { SiderMobile } from '@components/SiderMobile';
 import { ButtonSiderToggle } from '@components/ButtonSiderToggle';
 import { Card } from '@components/Card';
 import backgroundImage from '/png/mainPageLight.png';
@@ -38,11 +37,6 @@ export const CARDS_DATA = [
 
 export const MainPage: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
-    const [collapsedMobile, setCollapsedMobile] = useState(false);
-
-    const toggleCollapsedMobile = () => {
-        setCollapsedMobile(!collapsedMobile);
-    };
 
     const toggleCollapsed = () => {
         setCollapsed(!collapsed);
@@ -58,14 +52,8 @@ export const MainPage: React.FC = () => {
             className='wrapper'
         >
             <Sider collapsed={collapsed} />
-            <SiderMobile collapsedMobile={collapsedMobile} />
             <Layout style={{ backgroundColor: 'transparent' }} className='site_layout'>
-                <ButtonSiderToggle
-                    collapsed={collapsed}
-                    collapsedMobile={collapsedMobile}
-                    toggleCollapsed={toggleCollapsed}
-                    toggleCollapsedMobile={toggleCollapsedMobile}
-                />
+                <ButtonSiderToggle collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
                 <Header />
                 <Content className='main'>
                     <div className='main__skills'>

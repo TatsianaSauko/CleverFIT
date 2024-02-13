@@ -3,12 +3,7 @@ import { ButtonSiderToggleProps } from '../../types/ButtonSiderToggleProps.inter
 
 import './buttonSiderToggle.css';
 
-export const ButtonSiderToggle = ({
-    collapsed,
-    toggleCollapsed,
-    collapsedMobile,
-    toggleCollapsedMobile,
-}: ButtonSiderToggleProps) => (
+export const ButtonSiderToggle = ({ collapsed, toggleCollapsed }: ButtonSiderToggleProps) => (
     <>
         {collapsed ? (
             <MenuUnfoldOutlined
@@ -23,17 +18,17 @@ export const ButtonSiderToggle = ({
                 onClick={toggleCollapsed}
             />
         )}
-        {!collapsedMobile ? (
+        {!collapsed ? (
             <MenuUnfoldOutlined
-                className='sider-switch-mobile'
+                className='sider-switch-mobile trigger'
                 data-test-id='sider-switch-mobile'
-                onClick={toggleCollapsedMobile}
+                onClick={toggleCollapsed}
             />
         ) : (
             <MenuFoldOutlined
-                className='sider-switch-mobile trigger'
+                className='sider-switch-mobile'
                 data-test-id='sider-switch-mobile'
-                onClick={toggleCollapsedMobile}
+                onClick={toggleCollapsed}
             />
         )}
     </>

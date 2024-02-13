@@ -57,7 +57,7 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 576px) {
     .ant-layout .ant-layout-header {
         line-height: 40px;
         padding-bottom: 22px;

@@ -42,8 +42,14 @@ ul.ant-menu-vertical .ant-menu-item:not(:last-child) {
     margin-bottom: 14px;
 }
 
-.paddingLeftIcon {
-    padding-left: 16px;
+ul.ant-menu-inline .ant-menu-item:last-child {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+li.ant-menu-item:last-child {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .icon_exit {
@@ -69,8 +75,56 @@ ul.ant-menu-vertical .ant-menu-item:not(:last-child) {
     border-right: none;
 }
 
-@media (max-width: 600px) {
-    .aside {
+.logo_mobile {
+    padding-bottom: 23px;
+    text-align: center;
+    display: none;
+}
+
+span.ant-layout-sider-zero-width-trigger {
+    background: #fff;
+    width: 32px;
+    height: 48px;
+    right: -30px;
+    top: 24px;
+    padding-left: 8px;
+    clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
+}
+
+@media (max-width: 576px) {
+    .logo_large {
         display: none;
+    }
+
+    .logo_small {
+        display: none;
+    }
+
+    .logo_mobile {
+        display: flex;
+    }
+
+    .aside {
+        padding-top: 16px;
+    }
+
+    .logo {
+        display: flex;
+        justify-content: center;
+    }
+
+    span.ant-menu-item-icon {
+        display: none;
+    }
+
+    .menu {
+        height: calc(100vh - 63px);
+    }
+    ul.ant-menu-inline .ant-menu-item:not(:last-child) {
+        margin-bottom: 6px;
+    }
+
+    ul.ant-menu-vertical .ant-menu-item:not(:last-child) {
+        margin-bottom: 6px;
     }
 }

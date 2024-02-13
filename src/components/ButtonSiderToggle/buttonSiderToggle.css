@@ -13,6 +13,11 @@
     clip-path: polygon(0 0, 100% 15%, 100% 85%, 0 100%);
 }
 
+.ant-layout span.anticon.anticon-menu-fold.sider-switch svg,
+.ant-layout span.anticon.anticon-menu-unfold.sider-switch svg {
+    fill: #8c8c8c;
+}
+
 .ant-layout span.anticon.anticon-menu-fold.sider-switch-mobile,
 .ant-layout span.anticon.anticon-menu-unfold.sider-switch-mobile {
     position: absolute;
@@ -26,8 +31,14 @@
     padding-left: 8px;
     clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
     display: none;
-    transition: left 1s;
-    animation: slide-right 1s;
+    transition: left 0.2s;
+    animation: slide-right 0.2s;
+    fill: #8c8c8c;
+}
+
+.ant-layout span.anticon.anticon-menu-fold.sider-switch-mobile svg,
+.ant-layout span.anticon.anticon-menu-unfold.sider-switch-mobile svg {
+    fill: #8c8c8c;
 }
 
 @keyframes slide-right {
@@ -39,7 +50,7 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 576px) {
     .ant-layout span.anticon-menu-unfold.sider-switch,
     .ant-layout span.anticon-menu-fold.sider-switch {
         display: none;
@@ -53,7 +64,7 @@
     span.anticon.anticon-menu-fold.sider-switch-mobile.trigger,
     span.anticon.anticon-menu-unfold.sider-switch-mobile.trigger {
         display: flex;
-        animation: slide-left 1s;
+        animation: slide-left 0.2s;
         left: 106px;
     }
 

@@ -50,7 +50,7 @@
     width: 240px;
     background: #fff;
     position: absolute;
-    bottom: 42px;
+    bottom: 44px;
     right: 24px;
 }
 
@@ -68,8 +68,12 @@
 
 .block-download__buttons {
     display: flex;
-    padding-top: 7px;
-    padding-bottom: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.block-download__buttons .ant-btn {
+    border: none;
 }
 
 .info__title {
@@ -93,10 +97,16 @@
 }
 
 .footer {
-    background-color: transparent;
     height: auto;
     padding-left: 24px;
     padding-bottom: 42px;
+}
+
+.ant-layout footer.ant-layout-footer {
+    background: transparent;
+    padding: 0;
+    padding-bottom: 45px;
+    padding-left: 24px;
 }
 
 .footer__btn {
@@ -131,7 +141,7 @@
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 576px) {
     .main {
         padding-left: 16px;
         padding-right: 16px;
