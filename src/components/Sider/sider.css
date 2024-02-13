@@ -124,4 +124,8 @@ span.ant-layout-sider-zero-width-trigger {
     ul.ant-menu-vertical .ant-menu-item:not(:last-child) {
         margin-bottom: 6px;
     }
+    
+    .menu {
+        height: calc(100vh - 62px);
+    }
 }
