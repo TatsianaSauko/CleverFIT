@@ -15,8 +15,7 @@
     max-width: 752px;
     padding: 24px;
     font-size: 16px;
-    line-height: 20.7px;
-    letter-spacing: 0.6px;
+    line-height: 21px;
     font-weight: 400;
 }
 
@@ -30,7 +29,6 @@
     padding-right: 58px;
     font-size: 20px;
     line-height: 26px;
-    letter-spacing: 0.5px;
     font-weight: 500;
 }
 
@@ -71,24 +69,31 @@
     display: flex;
     padding-top: 12px;
     padding-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+.block-download__buttons span {
+    letter-spacing: 0.01px;
 }
 
 .block-download__buttons .ant-btn {
     border: none;
 }
 
+.main .ant-btn {
+    height: 31px;
+}
+
 .info__title {
     color: #2f54eb;
     font-size: 16px;
     line-height: 21px;
-    letter-spacing: 0.7px;
 }
 
 .info__subtitle {
     color: #8c8c8c;
     font-size: 14px;
     line-height: 18px;
-    letter-spacing: 0.5px;
 }
 
 .btn-download {
@@ -120,7 +125,6 @@
     text-align: center;
     color: #2f54eb;
     text-align: center;
-    letter-spacing: 0.8px;
     cursor: default;
     text-align: left;
 }
@@ -130,7 +134,7 @@
         padding-right: 24px;
     }
     .footer__btn {
-        padding-left: 0;
+        padding-left: 15px;
     }
 }
 
@@ -144,6 +148,10 @@
         margin-top: 24px;
         width: 100%;
         text-align: center;
+    }
+
+    .footer__btn {
+        padding-left: 0;
     }
 }
 

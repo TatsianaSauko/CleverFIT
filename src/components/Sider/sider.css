@@ -31,7 +31,7 @@
 .menu {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: calc(100vh - 139px);
 }
 
 ul.ant-menu-inline .ant-menu-item:not(:last-child) {
@@ -124,7 +124,7 @@ span.ant-layout-sider-zero-width-trigger {
     ul.ant-menu-vertical .ant-menu-item:not(:last-child) {
         margin-bottom: 6px;
     }
-    
+
     .menu {
         height: calc(100vh - 62px);
     }
