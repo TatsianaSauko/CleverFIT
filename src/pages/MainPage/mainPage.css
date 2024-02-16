@@ -3,8 +3,18 @@
     margin: 0 auto;
 }
 
+section.main-page {
+    background-image: url('/png/mainPageLight.png');
+    background-size: cover;
+    background-position: center;
+}
+
 .main {
     padding: 24px;
+}
+
+section.site_layout {
+    background-color: transparent;
 }
 
 .main__skills {

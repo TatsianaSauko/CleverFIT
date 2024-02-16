@@ -1,0 +1,120 @@
+.register-page {
+    width: 368px;
+}
+
+.register-form .ant-form-item-label {
+    border: 1px solid #d9d9d9;
+    padding-left: 12px;
+    padding-top: 3px;
+    background: #fafafa;
+    height: 40px;
+}
+
+.register-form .ant-form-item {
+    padding-bottom: 9px;
+}
+
+.register-form .ant-input,
+.register-form .ant-input-affix-wrapper {
+    padding: 8px 12px;
+}
+
+.register-form .ant-form-item:nth-child(1) {
+    margin-top: 8px;
+}
+
+.register-form .ant-form-item:nth-child(2) {
+    margin-bottom: 37px;
+}
+
+.register-form .ant-form-item:nth-child(3) {
+    margin-bottom: 51px;
+}
+
+.register-form .ant-form-item:nth-child(4) {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.register-form .ant-form-item:nth-child(5) {
+    margin-bottom: 4px;
+}
+
+.register-form .ant-form-item:nth-child(3) .ant-form-item-control-input-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.register-form-button {
+    font-size: 16px;
+    height: 40px;
+    background: #2f54eb;
+}
+
+.register-form .ant-form-item-explain-error {
+    color: #8c8c8c;
+    font-size: 12px;
+}
+.register-form .ant-form-item-feedback-icon {
+    display: none;
+}
+.register-form .ant-input-suffix > *:not(:last-child) {
+    margin-right: 0;
+}
+
+.register-form .btn_register-for-google {
+    height: 40px;
+    font-size: 16px;
+}
+
+@media screen and (max-width: 576px) {
+    .register-page {
+        width: 296px;
+        font-size: 14px;
+    }
+
+    .register-form .ant-form-item:nth-child(1) .ant-form-item-control {
+        flex: 0 0 76%;
+    }
+
+    .register-form .ant-form-item-label {
+        border: 1px solid #d9d9d9;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 3px;
+        background: #fafafa;
+        height: 40px;
+    }
+
+    .register-form .ant-form-item:nth-child(3) .login-form_forgot {
+        font-size: 14px;
+        padding-right: 9px;
+    }
+
+    .register-form .ant-form-item:nth-child(4) {
+        font-size: 14px;
+        margin-bottom: 16px;
+        padding-bottom: 0;
+    }
+
+    .register-form .btn_register-for-google {
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .register-form .ant-form-item:nth-child(3) {
+        padding-bottom: 30px;
+        margin-bottom: 24px;
+    }
+
+    .register-form .ant-form-item:nth-child(1) {
+        margin-top: 0;
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+    }
+
+    .register-form .ant-form-item:nth-child(2) {
+        padding-bottom: 30px;
+        margin-bottom: 16px;
+    }
+}

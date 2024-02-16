@@ -4,7 +4,7 @@ import { Sider } from '@components/Sider';
 import { Header } from '@components/Header';
 import { ButtonSiderToggle } from '@components/ButtonSiderToggle';
 import { Card } from '@components/Card';
-import backgroundImage from '/png/mainPageLight.png';
+// import backgroundImage from '/png/mainPageLight.png';
 import {
     HeartIconSmall,
     CalendarIconSmall,
@@ -13,7 +13,7 @@ import {
     AndroidIcon,
 } from '../../icons';
 
-import './main-page.css';
+import './mainPage.css';
 
 const { Content, Footer } = Layout;
 
@@ -43,16 +43,9 @@ export const MainPage: React.FC = () => {
     };
 
     return (
-        <Layout
-            style={{
-                backgroundImage: `url(${backgroundImage})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-            }}
-            className='wrapper'
-        >
+        <Layout className='main-page'>
             <Sider collapsed={collapsed} />
-            <Layout style={{ backgroundColor: 'transparent' }} className='site_layout'>
+            <Layout className='site_layout'>
                 <ButtonSiderToggle collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
                 <Header />
                 <Content className='main'>
