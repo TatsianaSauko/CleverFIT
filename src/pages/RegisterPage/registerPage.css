@@ -49,12 +49,14 @@
     font-size: 16px;
     height: 40px;
     background: #2f54eb;
+    border: 2px solid #2f54eb;
 }
 
 .register-form .ant-form-item-explain-error {
-    color: #8c8c8c;
+    /* color: #8c8c8c; */
     font-size: 12px;
 }
+
 .register-form .ant-form-item-feedback-icon {
     display: none;
 }
@@ -66,6 +68,16 @@
     height: 40px;
     font-size: 16px;
 }
+
+.register-form .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #2f54eb;
+    border-color: #2f54eb;
+}
+
+/* .register-form
+.ant-form-item-extra {
+    font-size: 12px;
+} */
 
 @media screen and (max-width: 576px) {
     .register-page {

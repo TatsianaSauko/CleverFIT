@@ -22,11 +22,11 @@ export const RegisterPage = () => {
                     rules={[
                         {
                             type: 'email',
-                            message: 'Введите корректный адрес электронной почты!',
+                            message: '',
                         },
                         {
                             required: true,
-                            message: 'Обязательное поле!',
+                            message: '',
                         },
                     ]}
                 >
@@ -37,7 +37,7 @@ export const RegisterPage = () => {
                     rules={[
                         {
                             required: true,
-                            message: 'Пароль не менее 8 символов, c заглавной буквой и цифрой',
+                            message: '',
                             min: 8,
                         },
                         () => ({
@@ -47,7 +47,11 @@ export const RegisterPage = () => {
                                 if (hasUppercase && hasDigit) {
                                     return Promise.resolve();
                                 }
-                                return Promise.reject(new Error(''));
+                                return Promise.reject(
+                                    new Error(
+                                        'Пароль не менее 8 символов, c заглавной буквой и цифрой',
+                                    ),
+                                );
                             },
                         }),
                     ]}
@@ -62,16 +66,14 @@ export const RegisterPage = () => {
                     rules={[
                         {
                             required: true,
-                            message: 'Обязательное поле!',
+                            message: '',
                         },
                         ({ getFieldValue }) => ({
                             validator(_, value) {
                                 if (!value || getFieldValue('password') === value) {
                                     return Promise.resolve();
                                 }
-                                return Promise.reject(
-                                    new Error('Два введенных вами пароля не совпадают!'),
-                                );
+                                return Promise.reject(new Error('Пароли не совпадают'));
                             },
                         }),
                     ]}

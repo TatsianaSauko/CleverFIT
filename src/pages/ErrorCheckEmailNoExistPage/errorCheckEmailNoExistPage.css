@@ -1,0 +1,51 @@
+.error-email-no-exist {
+    background-image: url('/png/blure.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.error-email-no-exist__content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background: #ffffff;
+    padding: 64px 32px 56px;
+    align-items: center;
+    justify-content: center;
+    width: 539px;
+}
+
+.error-email-no-exist .btn-repeat {
+    background: #2f54eb;
+    border: 2px solid #2f54eb;
+    margin-top: 24px;
+    height: 40px;
+}
+
+.error-email-no-exist .ant-btn.ant-btn-block {
+    width: 368px;
+}
+
+.error-email-no-exist__content .title {
+    margin-top: 24px;
+    margin-bottom: 0;
+    font-weight: 500;
+    line-height: 130%;
+}
+
+.error-email-no-exist .ant-typography.ant-typography-secondary {
+    max-width: 370px;
+}
+
+@media screen and (max-width: 576px) {
+    .error-email-no-exist .ant-btn.ant-btn-block {
+        width: 296px;
+    }
+}

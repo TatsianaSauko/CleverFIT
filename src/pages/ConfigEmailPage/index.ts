@@ -1,0 +1,1 @@
+export { ConfigEmailPage } from './ConfigEmailPage';

@@ -35,10 +35,20 @@
 
 .login-form .ant-form-item:nth-child(3) .login-form_forgot {
     font-size: 16px;
+    color: #2f54eb;
 }
 
 .login-form .ant-form-item:nth-child(4) {
     margin-bottom: 4px;
+}
+
+.login-form .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #2f54eb;
+    border-color: #2f54eb;
+}
+
+.login-form .register-form {
+    border-radius: 2px;
 }
 
 .login-form .ant-form-item:nth-child(3) .ant-form-item-control-input-content {
@@ -50,10 +60,10 @@
     font-size: 16px;
     height: 40px;
     background: #2f54eb;
+    border: 2px solid #2f54eb;
 }
 
 .login-form .ant-form-item-explain-error {
-    color: #8c8c8c;
     font-size: 12px;
 }
 .login-form .ant-form-item-feedback-icon {
@@ -71,6 +81,11 @@
 .icon-G {
     padding-right: 10px;
 }
+
+/* .login-form
+.ant-form-item-extra {
+    font-size: 12px;
+} */
 
 @media screen and (max-width: 576px) {
     .login-page {

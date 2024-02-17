@@ -1,5 +1,4 @@
 import { Button, Checkbox, Form, Input } from 'antd';
-
 import './loginPage.css';
 import { NavLink } from 'react-router-dom';
 import IconG from '/png/Icon-G+.png';
@@ -23,23 +22,39 @@ export const LoginPage = () => {
                     rules={[
                         {
                             type: 'email',
-                            message: 'Введите корректный адрес электронной почты!',
+                            message: '',
                         },
                         {
                             required: true,
-                            message: 'Обязательное поле!',
+                            message: '',
                         },
                     ]}
                 >
                     <Input />
                 </Form.Item>
+
                 <Form.Item
                     name='password'
                     rules={[
                         {
                             required: true,
-                            message: 'Пароль не менее 8 символов, c заглавной буквой и цифрой',
+                            message: '',
+                            min: 8,
                         },
+                        () => ({
+                            validator(_, value) {
+                                const hasUppercase = /[A-Z]/.test(value);
+                                const hasDigit = /\d/.test(value);
+                                if (hasUppercase && hasDigit) {
+                                    return Promise.resolve();
+                                }
+                                return Promise.reject(
+                                    new Error(
+                                        'Пароль не менее 8 символов, c заглавной буквой и цифрой',
+                                    ),
+                                );
+                            },
+                        }),
                     ]}
                     hasFeedback
                 >

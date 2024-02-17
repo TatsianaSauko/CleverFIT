@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import formLogo from '/png/formLogo.png';
-import formLogoMobile from '/png/logo203.png';
+import formLogoMobile from '/png/formLogoMobile.png';
 
 import './authenticationLayout.css';
 
