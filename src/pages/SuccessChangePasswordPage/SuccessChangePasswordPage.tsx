@@ -2,13 +2,14 @@ import { Typography, Button } from 'antd';
 import success from '/png/success.png';
 
 import './successChangePasswordPage.css';
+import { history } from '@redux/configure-store';
 
 const { Title, Text } = Typography;
 
 export const SuccessChangePasswordPage = () => (
     <div className='success-change-password'>
-        <div className='success-change-password__content'>
-            <img src={success} alt='Error' className='icon-success' />
+        <img src={success} alt='Error' className='icon-success' />
+        <div>
             <Title level={3} className='title'>
                 Пароль успешно изменен
             </Title>
@@ -17,9 +18,16 @@ export const SuccessChangePasswordPage = () => (
                 <br />
                 свой логин и новый пароль
             </Text>
-            <Button block type='primary' className='btn-login'>
-                Вход
-            </Button>
         </div>
+        <Button
+            block
+            type='primary'
+            size={'large'}
+            className='button'
+            onClick={() => history.push('/auth')}
+            data-test-id='change-entry-button'
+        >
+            Вход
+        </Button>
     </div>
 );

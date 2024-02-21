@@ -1,5 +1,5 @@
 import { Layout, Button, Divider } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Sider } from '@components/Sider';
 import { Header } from '@components/Header';
 import { ButtonSiderToggle } from '@components/ButtonSiderToggle';
@@ -14,21 +14,26 @@ import {
 } from '../../icons';
 
 import './mainPage.css';
+import { useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { history } from '@redux/configure-store';
 
 const { Content, Footer } = Layout;
 
 export const CARDS_DATA = [
     {
+        key: '1',
         title: 'Расписать тренировки',
         link: 'Тренировки',
         icon: <HeartIconSmall />,
     },
     {
+        key: '2',
         title: 'Назначить календарь',
         link: 'Календарь',
         icon: <CalendarIconSmall />,
     },
     {
+        key: '3',
         title: 'Заполнить профиль',
         link: 'Профиль',
         icon: <IdCardIconSmall />,
@@ -36,11 +41,18 @@ export const CARDS_DATA = [
 ];
 
 export const MainPage: React.FC = () => {
+    const { token } = useAppSelector((state) => state.auth);
     const [collapsed, setCollapsed] = useState(false);
 
     const toggleCollapsed = () => {
         setCollapsed(!collapsed);
     };
+
+    useEffect(() => {
+        if (!token) {
+            history.push('/auth');
+        }
+    }, [token]);
 
     return (
         <Layout className='main-page'>
@@ -65,7 +77,12 @@ export const MainPage: React.FC = () => {
                     <div className='main__cards'>
                         <div className='cards__wrapper'>
                             {CARDS_DATA.map((card) => (
-                                <Card title={card.title} link={card.link} icon={card.icon} />
+                                <Card
+                                    title={card.title}
+                                    link={card.link}
+                                    icon={card.icon}
+                                    key={card.key}
+                                />
                             ))}
                         </div>
                     </div>

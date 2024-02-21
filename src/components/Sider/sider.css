@@ -34,17 +34,16 @@
     height: calc(100vh - 139px);
 }
 
+.ant-menu-item a {
+    font-size: 14px;
+}
+
 ul.ant-menu-inline .ant-menu-item:not(:last-child) {
     margin-bottom: 14px;
 }
 
 ul.ant-menu-vertical .ant-menu-item:not(:last-child) {
     margin-bottom: 14px;
-}
-
-ul.ant-menu-inline .ant-menu-item:last-child {
-    margin-top: 0;
-    margin-bottom: 0;
 }
 
 li.ant-menu-item:last-child {
@@ -62,11 +61,7 @@ li.ant-menu-item:last-child {
     padding-right: 16px;
 }
 
-.menu .divider {
-    margin: 0;
-}
-
-.menu :last-child {
+.menu .ant-menu-item:last-of-type {
     margin-top: auto;
 }
 

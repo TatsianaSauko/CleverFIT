@@ -3,17 +3,10 @@
     padding-bottom: 111px;
 }
 
-.login-form .ant-form-item-label {
-    border: 1px solid #d9d9d9;
-    padding-left: 12px;
-    padding-top: 3px;
-    background: #fafafa;
-    height: 40px;
-}
-.ant-form-item-label
+/* .ant-form-item-label
     > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
     display: none;
-}
+} */
 
 .login-form .ant-form-item {
     padding-bottom: 9px;
@@ -33,11 +26,6 @@
     margin-bottom: 13px;
 }
 
-.login-form .ant-form-item:nth-child(3) .login-form_forgot {
-    font-size: 16px;
-    color: #2f54eb;
-}
-
 .login-form .ant-form-item:nth-child(4) {
     margin-bottom: 4px;
 }
@@ -47,18 +35,13 @@
     border-color: #2f54eb;
 }
 
-.login-form .register-form {
-    border-radius: 2px;
-}
-
 .login-form .ant-form-item:nth-child(3) .ant-form-item-control-input-content {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .login-form-button {
-    font-size: 16px;
-    height: 40px;
     background: #2f54eb;
     border: 2px solid #2f54eb;
 }
@@ -73,19 +56,26 @@
     margin-right: 0;
 }
 
-.login-form .btn_register-for-google {
-    height: 40px;
+.login-form .ant-btn-link {
     font-size: 16px;
+    color: #2f54eb;
 }
 
 .icon-G {
     padding-right: 10px;
 }
 
-/* .login-form
-.ant-form-item-extra {
-    font-size: 12px;
-} */
+.login-form .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
+    border-left-color: #d9d9d9;
+}
+.login-form
+    .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input:focus {
+    box-shadow: none;
+}
+
+.login-form .ant-input-group-wrapper-status-error .ant-input-group-addon {
+    color: black;
+}
 
 @media screen and (max-width: 576px) {
     .login-page {

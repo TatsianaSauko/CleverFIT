@@ -1,5 +1,6 @@
 import { Typography, Button } from 'antd';
 import success from '/png/success.png';
+import { history } from '@redux/configure-store';
 
 import './successPage.css';
 
@@ -7,8 +8,8 @@ const { Title, Text } = Typography;
 
 export const SuccessPage = () => (
     <div className='success-page'>
-        <div className='success-page__content'>
-            <img src={success} alt='Error' className='icon-success' />
+        <img src={success} alt='Error' className='icon-success' />
+        <div>
             <Title level={3} className='title'>
                 Регистрация успешна
             </Title>
@@ -16,9 +17,16 @@ export const SuccessPage = () => (
                 Регистрация прошла успешно. Зайдите <br /> в приложение, используя свои e-mail и
                 пароль.
             </Text>
-            <Button block type='primary' className='btn-login'>
-                Войти
-            </Button>
         </div>
+        <Button
+            block
+            type='primary'
+            size={'large'}
+            className='button'
+            onClick={() => history.push('/auth')}
+            data-test-id='registration-enter-button'
+        >
+            Войти
+        </Button>
     </div>
 );

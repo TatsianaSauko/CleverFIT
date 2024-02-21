@@ -1,33 +1,54 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Typography } from 'antd';
 import VerificationInput from 'react-verification-input';
 import suggested from '/png/suggested.png';
 
-import './configEmailPage.css';
+import './confirmEmailPage.css';
+import { confirmEmail } from '@redux/ActionCreators';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { history } from '@redux/configure-store';
+import { Loader } from '@components/Loader';
+import { useLocation } from 'react-router-dom';
 
 const { Title, Text } = Typography;
 
-export const ConfigEmailPage = () => {
+export const ConfirmEmailPage = () => {
+    const location = useLocation();
+    const { loading } = useAppSelector((state) => state.auth);
+    const [inputKey, setInputKey] = useState(Math.random());
     const [isCodeCorrect, setIsCodeCorrect] = useState(true);
-    const handleVerificationComplete = (code: string) => {
-        console.log(code);
-        const correctCode = '123456';
-        setIsCodeCorrect(code === correctCode);
+    const dispatch = useAppDispatch();
+    const { email } = useAppSelector((state) => state.auth);
+    const handleVerificationComplete = async (code: string) => {
+        console.log(email, code);
+        await dispatch(confirmEmail({ email: email, code: code })).catch(() => {
+            setIsCodeCorrect(false);
+            setInputKey(Math.random());
+        });
     };
+
+    useEffect(() => {
+        if (location.key === 'default') {
+            history.push('/auth');
+        }
+    }, []);
 
     return (
         <div className='config-email'>
+            {loading && <Loader />}
             <div className='config-email__content'>
                 <img src={suggested} alt='Error' className='icon-suggested' />
                 <Title level={3} className='title'>
                     Введите код <br /> для восстановления аккауанта
                 </Title>
                 <Text type='secondary'>
-                    Мы отправили вам на e-mail<b> victorbyden@gmail.com</b>
-                    <br /> шестизначный код. Введите eгo в поле ниже.
+                    `Мы отправили вам на e-mail <b>{email}</b>
+                    <br /> шестизначный код. Введите его в поле ниже.`
                 </Text>
                 <div>
                     <VerificationInput
+                        key={String(inputKey)}
+                        inputProps={{ 'data-test-id': 'verification-input' }}
                         onComplete={handleVerificationComplete}
                         placeholder=''
                         length={6}

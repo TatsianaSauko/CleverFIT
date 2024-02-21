@@ -1,24 +1,40 @@
 import { Button, Form, Input } from 'antd';
 import IconG from '/png/Icon-G+.png';
-
 import './registerPage.css';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
+import { register } from '@redux/ActionCreators';
+import { setEmail, setPassword } from '@redux/slices/AuthSlice';
+import { useForm } from 'antd/lib/form/Form';
+import { useState } from 'react';
 
 export const RegisterPage = () => {
-    const onFinish = (values: any) => {
-        console.log('Received values of form: ', values);
+    const dispatch = useAppDispatch();
+    const [form] = useForm();
+    const [isDisabled, setIsDisabled] = useState(true);
+    const onFinish = async (values: any) => {
+        console.log(values);
+        dispatch(setEmail({ email: values.email }));
+        dispatch(setPassword({ password: values.password }));
+        await dispatch(register({ email: values.email, password: values.password }));
     };
 
+    const handleFormChange = () => {
+        const hasErrors = form.getFieldsError().some(({ errors }) => errors.length);
+        setIsDisabled(hasErrors);
+    };
     return (
         <div className='register-page'>
             <Form
-                name='normal_login'
+                name='register'
                 className='register-form'
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
+                onFieldsChange={handleFormChange}
+                form={form}
             >
                 <Form.Item
-                    name={['user', 'email']}
-                    label='e-mail:'
+                    name={['email']}
+                    data-test-id='registration-email'
                     rules={[
                         {
                             type: 'email',
@@ -26,14 +42,16 @@ export const RegisterPage = () => {
                         },
                         {
                             required: true,
-                            message: '',
+                            message: 'Введите валидный E-mail',
                         },
                     ]}
                 >
-                    <Input />
+                    <Input addonBefore='e-mail:' />
                 </Form.Item>
                 <Form.Item
                     name='password'
+                    data-test-id='registration-password'
+                    help='Пароль не менее 8 символов, c заглавной буквой и цифрой'
                     rules={[
                         {
                             required: true,
@@ -44,7 +62,9 @@ export const RegisterPage = () => {
                             validator(_, value) {
                                 const hasUppercase = /[A-Z]/.test(value);
                                 const hasDigit = /\d/.test(value);
-                                if (hasUppercase && hasDigit) {
+                                const hasSpecialCharacter =
+                                    /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(value);
+                                if (hasUppercase && hasDigit && !hasSpecialCharacter) {
                                     return Promise.resolve();
                                 }
                                 return Promise.reject(
@@ -61,8 +81,10 @@ export const RegisterPage = () => {
                 </Form.Item>
                 <Form.Item
                     name='confirm'
+                    key='confirm'
                     dependencies={['password']}
                     hasFeedback
+                    data-test-id='registration-confirm-password'
                     rules={[
                         {
                             required: true,
@@ -82,11 +104,19 @@ export const RegisterPage = () => {
                 </Form.Item>
 
                 <Form.Item>
-                    <Button type='primary' block htmlType='submit' className='register-form-button'>
+                    <Button
+                        type='primary'
+                        size={'large'}
+                        block
+                        htmlType='submit'
+                        disabled={isDisabled}
+                        className='register-form-button'
+                        data-test-id='registration-submit-button'
+                    >
                         Войти
                     </Button>
                 </Form.Item>
-                <Button block className='btn_register-for-google'>
+                <Button block size={'large'} className='btn_register-for-google'>
                     <img src={IconG} alt='G+' className='icon-G icon-hidden' />
                     Регистрация через Google
                 </Button>

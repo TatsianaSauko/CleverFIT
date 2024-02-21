@@ -1,19 +1,27 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, Divider } from 'antd';
+import { Menu, Button } from 'antd';
 import { Layout as AntLayout } from 'antd';
 import { HeartIcon, TrophyIcon, CalendarIcon, IdCardIcon, LogoutIcon } from '../../icons';
+import { Link, NavLink } from 'react-router-dom';
 import cleverFit from '/png/cleverFit.png';
 import fit from '/png/fit.png';
 import logoMobile from '/png/logoMobile.png';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
+import { logout } from '@redux/slices/AuthSlice';
+import { history } from '@redux/configure-store';
 
 import './sider.css';
 
 const { Sider: AntSider } = AntLayout;
 
 export const Sider = ({ collapsed }: { collapsed: boolean }) => {
+    const dispatch = useAppDispatch();
     const [collapsedWidth, setCollapsedWidth] = useState(64);
     const [width, setWidth] = useState(208);
+    const handleButtonExit = () => {
+        dispatch(logout());
+        history.push('/auth');
+    };
 
     return (
         <AntSider
@@ -37,7 +45,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
             </div>
             <Menu className='menu' mode='inline'>
                 <Menu.Item
-                    key='1'
+                    key='4'
                     icon={<CalendarIcon />}
                     style={{
                         ...(collapsed && width === 208 ? {} : { paddingLeft: '16px' }),
@@ -47,7 +55,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
                     <Link to='/calendar'>Календарь</Link>
                 </Menu.Item>
                 <Menu.Item
-                    key='2'
+                    key='5'
                     icon={<HeartIcon />}
                     style={{
                         ...(collapsed && width === 208 ? {} : { paddingLeft: '16px' }),
@@ -57,7 +65,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
                     <Link to='/training'>Тренировки</Link>
                 </Menu.Item>
                 <Menu.Item
-                    key='3'
+                    key='7'
                     icon={<TrophyIcon />}
                     style={{
                         ...(collapsed && width === 208 ? {} : { paddingLeft: '16px' }),
@@ -67,7 +75,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
                     <Link to='/achievements'>Достижения</Link>
                 </Menu.Item>
                 <Menu.Item
-                    key='4'
+                    key='8'
                     icon={<IdCardIcon />}
                     style={{
                         ...(collapsed && width === 208 ? {} : { paddingLeft: '16px' }),
@@ -76,20 +84,19 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
                 >
                     <Link to='/profile'>Профиль</Link>
                 </Menu.Item>
-                <div>
-                    <Divider className='divider' />
-                    <Menu.Item
-                        key='5'
-                        icon={
-                            <LogoutIcon
-                                className={collapsed ? 'icon_exit' : 'icon_exit__padding'}
-                            />
-                        }
-                        {...(width === 208 ? {} : { style: { textAlign: 'center' } })}
-                    >
-                        <Link to='/logout'>Выход</Link>
-                    </Menu.Item>
-                </div>
+
+                <Menu.Item
+                    key='9'
+                    icon={<LogoutIcon className={collapsed ? 'icon_exit__padding' : 'icon_exit'} />}
+                    style={{
+                        ...(collapsed && width === 208 ? {} : { paddingLeft: '16px' }),
+                        ...(width === 208 ? {} : { paddingLeft: '0', paddingRight: '0' }),
+                    }}
+                >
+                    <NavLink to='' onClick={handleButtonExit}>
+                        Выход
+                    </NavLink>
+                </Menu.Item>
             </Menu>
         </AntSider>
     );

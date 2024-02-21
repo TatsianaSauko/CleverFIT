@@ -1,10 +1,40 @@
-export interface FormLogin {
+// export interface FormLogin {
+//     email: string;
+//     password: string;
+// }
+
+// export interface FormRegister {
+//     email: string;
+//     password: string;
+//     confirmPassword: string;
+// }
+
+export interface IRegister {
     email: string;
     password: string;
 }
-
-export interface FormRegister {
+export interface ILogin {
     email: string;
     password: string;
+    remember: boolean;
+}
+export interface ICheckEmail {
+    email: string;
+}
+export interface IConfirmEmail {
+    email: string;
+    code: string;
+}
+export interface IChangePassword {
+    password: string;
     confirmPassword: string;
+}
+
+export interface AxiosError {
+    response?: {
+        status?: number;
+        data?: {
+            message?: string;
+        };
+    };
 }

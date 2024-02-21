@@ -1,1 +1,0 @@
-export { ConfigEmailPage } from './ConfigEmailPage';

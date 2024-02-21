@@ -1,17 +1,4 @@
 .success-page {
-    background-image: url('/png/blure.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    padding-left: 16px;
-    padding-right: 16px;
-}
-
-.success-page__content {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -20,14 +7,8 @@
     align-items: center;
     justify-content: center;
     width: 539px;
-}
-
-.success-page .btn-login {
-    background: #2f54eb;
-    border: 2px solid #2f54eb;
-    margin-top: 24px;
-
-    height: 40px;
+    text-align: center;
+    gap: 24px;
 }
 
 .success-page .ant-btn.ant-btn-block {
@@ -41,19 +22,12 @@
     margin: 5px;
 }
 
-.success-page__content .title {
-    margin-top: 24px;
-    margin-bottom: 0;
-    font-weight: 500;
-    line-height: 130%;
-}
-
 @media screen and (max-width: 576px) {
     .success-page .ant-btn.ant-btn-block {
         width: 296px;
     }
 
-    .success-page__content {
+    .success-page {
         padding: 32px 16px;
     }
 }

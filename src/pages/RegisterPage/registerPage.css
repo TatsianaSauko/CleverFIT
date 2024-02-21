@@ -2,13 +2,13 @@
     width: 368px;
 }
 
-.register-form .ant-form-item-label {
+/* .register-form .ant-form-item-label {
     border: 1px solid #d9d9d9;
     padding-left: 12px;
     padding-top: 3px;
     background: #fafafa;
     height: 40px;
-}
+} */
 
 .register-form .ant-form-item {
     padding-bottom: 9px;
@@ -53,15 +53,24 @@
 }
 
 .register-form .ant-form-item-explain-error {
-    /* color: #8c8c8c; */
     font-size: 12px;
 }
 
 .register-form .ant-form-item-feedback-icon {
     display: none;
 }
-.register-form .ant-input-suffix > *:not(:last-child) {
-    margin-right: 0;
+
+.register-form
+    .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
+    border-left-color: #d9d9d9;
+}
+.register-form
+    .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input:focus {
+    box-shadow: none;
+}
+
+.register-form .ant-input-group-wrapper-status-error .ant-input-group-addon {
+    color: black;
 }
 
 .register-form .btn_register-for-google {
@@ -74,10 +83,9 @@
     border-color: #2f54eb;
 }
 
-/* .register-form
-.ant-form-item-extra {
+.register-form .ant-form-item-with-help .ant-form-item-explain {
     font-size: 12px;
-} */
+}
 
 @media screen and (max-width: 576px) {
     .register-page {

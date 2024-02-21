@@ -19,10 +19,12 @@ import { ErrorUserExistPage } from '@pages/ErrorUserExistPage/ErrorUserExistPage
 import { ErrorPage } from '@pages/ErrorPage';
 import { ErrorCheckEmailNoExistPage } from '@pages/ErrorCheckEmailNoExistPage';
 import { ErrorCheckEmailPage } from '@pages/ErrorCheckEmailPage';
-import { ConfigEmailPage } from '@pages/ConfigEmailPage';
+
 import { ChangePasswordPage } from '@pages/ChangePasswordPage';
 import { ErrorChangePasswordPage } from '@pages/ErrorChangePasswordPage';
 import { SuccessChangePasswordPage } from '@pages/SuccessChangePasswordPage';
+import { ConfirmEmailPage } from '@pages/ConfirmEmailPage';
+import { ErrorLayout } from './layouts/ErrorLayout';
 
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
@@ -33,29 +35,29 @@ root.render(
             <HistoryRouter history={history}>
                 <Routes>
                     <Route path='/' element={<MainPage />} />
+                    <Route path='/main' element={<MainPage />} />
                     <Route path='/auth' element={<AuthenticationLayout />}>
                         <Route index element={<LoginPage />} />
                         <Route path='registration' element={<RegisterPage />} />
                     </Route>
-                    <Route path='/result/error-login' element={<ErrorLoginPage />} />
-                    <Route path='/result/success' element={<SuccessPage />} />
-                    <Route path='/result/error-user-exist' element={<ErrorUserExistPage />} />
-                    <Route path='/result/error' element={<ErrorPage />} />
-                    <Route
-                        path='/result/error-check-email-no-exist'
-                        element={<ErrorCheckEmailNoExistPage />}
-                    />
-                    <Route path='/result/error-check-email' element={<ErrorCheckEmailPage />} />
-                    <Route path='/auth/confirm-email' element={<ConfigEmailPage />} />
+                    <Route path='/result' element={<ErrorLayout />}>
+                        <Route path='error-login' element={<ErrorLoginPage />} />
+                        <Route path='success' element={<SuccessPage />} />
+                        <Route path='error-user-exist' element={<ErrorUserExistPage />} />
+                        <Route path='error' element={<ErrorPage />} />
+                        <Route
+                            path='error-check-email-no-exist'
+                            element={<ErrorCheckEmailNoExistPage />}
+                        />
+                        <Route path='error-check-email' element={<ErrorCheckEmailPage />} />
+                        <Route path='error-change-password' element={<ErrorChangePasswordPage />} />
+                        <Route
+                            path='success-change-password'
+                            element={<SuccessChangePasswordPage />}
+                        />
+                    </Route>
+                    <Route path='/auth/confirm-email' element={<ConfirmEmailPage />} />
                     <Route path='/auth/change-password' element={<ChangePasswordPage />} />
-                    <Route
-                        path='/result/error-change-password'
-                        element={<ErrorChangePasswordPage />}
-                    />
-                    <Route
-                        path='/result/success-change-password'
-                        element={<SuccessChangePasswordPage />}
-                    />
                 </Routes>
             </HistoryRouter>
         </Provider>
