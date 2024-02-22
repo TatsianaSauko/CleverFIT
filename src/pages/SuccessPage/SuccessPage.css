@@ -11,15 +11,15 @@
     gap: 24px;
 }
 
-.success-page .ant-btn.ant-btn-block {
-    width: 368px;
-}
-
 .icon-success {
     display: block;
     width: 71px;
     height: 70px;
     margin: 5px;
+}
+
+.success-page .ant-btn.ant-btn-block {
+    width: 368px;
 }
 
 @media screen and (max-width: 576px) {
