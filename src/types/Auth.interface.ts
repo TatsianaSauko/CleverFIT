@@ -33,3 +33,27 @@ export interface AxiosError {
         };
     };
 }
+export interface InitialState {
+    email: string;
+    password: string;
+    token: string;
+    remember: boolean;
+    loading: boolean;
+}
+
+export interface EmailPayload {
+    email: string;
+}
+
+export interface PasswordPayload {
+    password: string;
+}
+
+export interface LoadingPayload {
+    loading: boolean;
+}
+
+export interface LoginSuccessPayload {
+    token: string;
+    remember: boolean;
+}

@@ -16,6 +16,7 @@ import {
 } from '../../icons';
 
 import './mainPage.css';
+import { Loader } from '@components/Loader';
 
 const { Content, Footer } = Layout;
 
@@ -41,7 +42,7 @@ export const CARDS_DATA = [
 ];
 
 export const MainPage: React.FC = () => {
-    const { token } = useAppSelector((state) => state.auth);
+    const { token, loading } = useAppSelector((state) => state.auth);
     const location = useLocation();
     const [collapsed, setCollapsed] = useState(false);
 
@@ -60,6 +61,7 @@ export const MainPage: React.FC = () => {
 
     return (
         <Layout className='main-page'>
+            {loading && <Loader />}
             <Sider collapsed={collapsed} />
             <Layout className='site_layout'>
                 <ButtonSiderToggle collapsed={collapsed} toggleCollapsed={toggleCollapsed} />

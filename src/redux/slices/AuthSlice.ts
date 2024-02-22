@@ -1,43 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { EmailPayload, InitialState, LoadingPayload, LoginSuccessPayload, PasswordPayload } from '../../types/Auth.interface';
 
 const TOKEN = 'token';
-const EMAIL = 'email';
-
-interface InitialState {
-    isAuthenticated: boolean;
-    email: string;
-    password: string;
-    token: string;
-    remember: boolean;
-    loading: boolean;
-}
 
 const initialState: InitialState = {
-    isAuthenticated: Boolean(localStorage.getItem(TOKEN) ?? ''),
-    email: localStorage.getItem(EMAIL) ?? '',
+    email: '',
     password: '',
     token: localStorage.getItem(TOKEN) ?? '',
     remember: false,
     loading: false,
 };
-
-interface EmailPayload {
-    email: string;
-}
-
-interface PasswordPayload {
-    password: string;
-}
-
-interface LoadingPayload {
-    loading: boolean;
-}
-
-interface LoginSuccessPayload {
-    email: string;
-    token: string;
-    remember: boolean;
-}
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -47,21 +19,14 @@ export const authSlice = createSlice({
             state.loading = action.payload.loading;
         },
         logout(state) {
-            state.isAuthenticated = false;
-            state.email = '';
             state.token = '';
             localStorage.removeItem(TOKEN);
-            localStorage.removeItem(EMAIL);
         },
         loginSuccess(state, action: PayloadAction<LoginSuccessPayload>) {
-            state.loading = false;
-            state.isAuthenticated = true;
-            state.email = action.payload.email;
             state.token = action.payload.token;
             state.remember = action.payload.remember;
             if (state.remember) {
                 localStorage.setItem(TOKEN, action.payload.token);
-                localStorage.setItem(EMAIL, action.payload.email);
             }
         },
 

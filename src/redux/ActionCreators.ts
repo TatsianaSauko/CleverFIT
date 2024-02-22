@@ -43,13 +43,13 @@ export const login = (data: ILogin) => {
             );
             dispatch(
                 loginSuccess({
-                    email: data.email,
                     remember: data.remember,
                     token: response.data.accessToken,
                 }),
             );
-            await dispatch(authFetching({ loading: false }));
             history.push('/main');
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            dispatch(authFetching({ loading: false }));
         } catch {
             dispatch(authFetching({ loading: false }));
             history.push('/result/error-login');
