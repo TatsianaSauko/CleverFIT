@@ -36,7 +36,7 @@
     align-items: center;
 }
 
-.login-form-button {
+.login-form .login-form-button {
     background: #2f54eb;
     border: 2px solid #2f54eb;
 }
@@ -86,7 +86,7 @@
         padding-bottom: 93px;
     }
 
-    .ant-row {
+    .login-form .ant-row {
         display: block;
     }
 

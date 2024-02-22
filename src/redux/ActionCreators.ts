@@ -41,7 +41,6 @@ export const login = (data: ILogin) => {
                 { email: data.email, password: data.password },
                 { withCredentials: true },
             );
-            dispatch(authFetching({ loading: false }));
             dispatch(
                 loginSuccess({
                     email: data.email,
@@ -49,6 +48,7 @@ export const login = (data: ILogin) => {
                     token: response.data.accessToken,
                 }),
             );
+            dispatch(authFetching({ loading: false }));
             history.push('/main');
         } catch {
             dispatch(authFetching({ loading: false }));

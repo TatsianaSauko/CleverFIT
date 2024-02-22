@@ -37,9 +37,7 @@
     justify-content: space-between;
 }
 
-.register-form-button {
-    font-size: 16px;
-    height: 40px;
+.register-form .register-form-button {
     background: #2f54eb;
     border: 2px solid #2f54eb;
 }
@@ -83,6 +81,10 @@
     .register-page {
         width: 296px;
         font-size: 14px;
+    }
+
+    .register-form .ant-row {
+        display: block;
     }
 
     .register-form .ant-form-item:nth-child(1) .ant-form-item-control {

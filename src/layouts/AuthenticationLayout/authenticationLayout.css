@@ -44,6 +44,9 @@
 .auth-wrapper__content .ant-menu-horizontal {
     line-height: 43px;
 }
+.auth-wrapper__content .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected {
+    color: #2f54eb;
+}
 
 @media screen and (max-width: 576px) {
     .auth-wrapper__content {
