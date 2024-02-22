@@ -1,5 +1,4 @@
 import { AppDispatch, history } from './configure-store';
-
 import {
     AxiosError,
     IChangePassword,
