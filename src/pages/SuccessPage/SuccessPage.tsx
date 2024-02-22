@@ -2,7 +2,7 @@ import { Typography, Button } from 'antd';
 import success from '/png/success.png';
 import { history } from '@redux/configure-store';
 
-import './successPage.css';
+import './SuccessPage.css';
 
 const { Title, Text } = Typography;
 
