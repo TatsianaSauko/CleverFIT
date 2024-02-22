@@ -26,9 +26,9 @@ export const LoginPage = () => {
         await dispatch(login(values));
     };
 
-    const handleForgotPassword = () => {
+    const handleForgotPassword = async () => {
         if (isEmailValid) {
-            dispatch(checkEmail({ email: emailValue }));
+            await dispatch(checkEmail({ email: emailValue }));
         }
     };
 

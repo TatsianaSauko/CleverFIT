@@ -10,9 +10,9 @@ const { Title, Text } = Typography;
 export const ErrorChangePasswordPage = () => {
     const dispatch = useAppDispatch();
     const { password } = useAppSelector((state) => state.auth);
-    const onClick = () => {
-        dispatch(changePassword({ password: password, confirmPassword: password }));
+    const onClick = async () => {
         history.back();
+        await dispatch(changePassword({ password: password, confirmPassword: password }));
     };
     return (
         <div className='error-change-password'>

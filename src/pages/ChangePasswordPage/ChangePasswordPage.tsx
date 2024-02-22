@@ -17,11 +17,11 @@ export const ChangePasswordPage = () => {
     const location = useLocation();
     const { loading } = useAppSelector((state) => state.auth);
 
-    const onFinish = (values: IChangePassword) => {
-        dispatch(
+    const onFinish = async (values: IChangePassword) => {
+        dispatch(setPassword({ password: values.password }));
+        await dispatch(
             changePassword({ password: values.password, confirmPassword: values.confirmPassword }),
         );
-        dispatch(setPassword({ password: values.password }));
     };
 
     useEffect(() => {

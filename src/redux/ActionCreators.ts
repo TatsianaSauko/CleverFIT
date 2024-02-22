@@ -48,7 +48,7 @@ export const login = (data: ILogin) => {
                     token: response.data.accessToken,
                 }),
             );
-            dispatch(authFetching({ loading: false }));
+            await dispatch(authFetching({ loading: false }));
             history.push('/main');
         } catch {
             dispatch(authFetching({ loading: false }));

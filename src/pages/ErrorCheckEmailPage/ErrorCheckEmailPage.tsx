@@ -12,9 +12,9 @@ export const ErrorCheckEmailPage = () => {
     const dispatch = useAppDispatch();
     const { email } = useAppSelector((state) => state.auth);
 
-    const onClick = () => {
-        dispatch(checkEmail({ email }));
+    const onClick = async () => {
         history.back();
+        await dispatch(checkEmail({ email }));
     };
     return (
         <div className='error-check-email'>

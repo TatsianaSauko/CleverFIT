@@ -12,8 +12,8 @@ export const ErrorPage = () => {
     const dispatch = useAppDispatch();
 
     const onClick = async () => {
-        await dispatch(register({ email: email, password: password }));
         history.back();
+        await dispatch(register({ email: email, password: password }));
     };
 
     return (
