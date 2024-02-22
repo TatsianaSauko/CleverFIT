@@ -1,10 +1,9 @@
 import { Typography, Button } from 'antd';
-
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { register } from '@redux/ActionCreators';
 import error from '/png/error.png';
 
 import './errorPage.css';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
-import { register } from '@redux/ActionCreators';
 
 const { Title, Text } = Typography;
 
@@ -20,7 +19,7 @@ export const ErrorPage = () => {
     return (
         <div className='error-page'>
             <img src={error} alt='Error' className='icon-error' />
-            <div>
+            <div className='block-title'>
                 <Title level={3} className='title'>
                     Данные не сохранились
                 </Title>

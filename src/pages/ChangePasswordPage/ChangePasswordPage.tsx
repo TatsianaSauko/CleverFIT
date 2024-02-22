@@ -1,12 +1,14 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Typography, Button, Form, Input } from 'antd';
-import './changePasswordPage.css';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { changePassword } from '@redux/ActionCreators';
 import { setPassword } from '@redux/slices/AuthSlice';
-import { useEffect } from 'react';
 import { history } from '@redux/configure-store';
 import { Loader } from '@components/Loader';
-import { useLocation } from 'react-router-dom';
+import { IChangePassword } from '../../types/Auth.interface';
+
+import './changePasswordPage.css';
 
 const { Title } = Typography;
 
@@ -15,8 +17,8 @@ export const ChangePasswordPage = () => {
     const location = useLocation();
     const { loading } = useAppSelector((state) => state.auth);
 
-    const onFinish = async (values: any) => {
-        await dispatch(
+    const onFinish = (values: IChangePassword) => {
+        dispatch(
             changePassword({ password: values.password, confirmPassword: values.confirmPassword }),
         );
         dispatch(setPassword({ password: values.password }));
@@ -38,7 +40,6 @@ export const ChangePasswordPage = () => {
                 <Form name='change-password' className='change-password-form' onFinish={onFinish}>
                     <Form.Item
                         name='password'
-                        data-test-id='change-password'
                         help='Пароль не менее 8 символов, c заглавной буквой и цифрой'
                         rules={[
                             {
@@ -61,11 +62,10 @@ export const ChangePasswordPage = () => {
                         ]}
                         hasFeedback
                     >
-                        <Input.Password placeholder='Новый пароль' />
+                        <Input.Password placeholder='Новый пароль' data-test-id='change-password' />
                     </Form.Item>
                     <Form.Item
                         name='confirmPassword'
-                        data-test-id='change-confirm-password'
                         dependencies={['password']}
                         hasFeedback
                         rules={[
@@ -83,7 +83,10 @@ export const ChangePasswordPage = () => {
                             }),
                         ]}
                     >
-                        <Input.Password placeholder='Повторить пароль' />
+                        <Input.Password
+                            placeholder='Повторить пароль'
+                            data-test-id='change-confirm-password'
+                        />
                     </Form.Item>
                     <Form.Item>
                         <Button

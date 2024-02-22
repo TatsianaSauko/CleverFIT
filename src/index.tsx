@@ -3,28 +3,28 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HistoryRouter } from 'redux-first-history/rr6';
 import { Route, Routes } from 'react-router-dom';
-
 import { store, history } from '@redux/configure-store';
-import { MainPage } from './pages';
+import {
+    MainPage,
+    LoginPage,
+    RegisterPage,
+    ErrorLoginPage,
+    SuccessPage,
+    ErrorPage,
+    ErrorCheckEmailNoExistPage,
+    ErrorCheckEmailPage,
+    ErrorChangePasswordPage,
+    SuccessChangePasswordPage,
+    ConfirmEmailPage,
+    ChangePasswordPage,
+    ErrorUserExistPage,
+} from './pages';
+import { AuthenticationLayout } from './layouts/AuthenticationLayout';
+import { ErrorLayout } from './layouts/ErrorLayout';
 
 import 'antd/dist/antd.css';
 import 'normalize.css';
 import './index.css';
-import { LoginPage } from '@pages/LoginPage';
-import { AuthenticationLayout } from './layouts/AuthenticationLayout';
-import { RegisterPage } from '@pages/RegisterPage';
-import { ErrorLoginPage } from '@pages/ErrorLoginPage';
-import { SuccessPage } from '@pages/SuccessPage';
-import { ErrorUserExistPage } from '@pages/ErrorUserExistPage/ErrorUserExistPage';
-import { ErrorPage } from '@pages/ErrorPage';
-import { ErrorCheckEmailNoExistPage } from '@pages/ErrorCheckEmailNoExistPage';
-import { ErrorCheckEmailPage } from '@pages/ErrorCheckEmailPage';
-
-import { ChangePasswordPage } from '@pages/ChangePasswordPage';
-import { ErrorChangePasswordPage } from '@pages/ErrorChangePasswordPage';
-import { SuccessChangePasswordPage } from '@pages/SuccessChangePasswordPage';
-import { ConfirmEmailPage } from '@pages/ConfirmEmailPage';
-import { ErrorLayout } from './layouts/ErrorLayout';
 
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);

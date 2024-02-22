@@ -41,6 +41,7 @@ export const login = (data: ILogin) => {
                 { email: data.email, password: data.password },
                 { withCredentials: true },
             );
+            dispatch(authFetching({ loading: false }));
             dispatch(
                 loginSuccess({
                     email: data.email,
@@ -48,7 +49,6 @@ export const login = (data: ILogin) => {
                     token: response.data.accessToken,
                 }),
             );
-            dispatch(authFetching({ loading: false }));
             history.push('/main');
         } catch {
             dispatch(authFetching({ loading: false }));
@@ -61,7 +61,7 @@ export const checkEmail = (data: ICheckEmail) => {
     return async (dispatch: AppDispatch) => {
         try {
             dispatch(authFetching({ loading: true }));
-            axios.post(
+            await axios.post(
                 `https://marathon-api.clevertec.ru/auth/check-email`,
                 { email: data.email },
                 { withCredentials: true },
@@ -69,9 +69,9 @@ export const checkEmail = (data: ICheckEmail) => {
             dispatch(authFetching({ loading: false }));
             history.push('/auth/confirm-email');
         } catch (error) {
+            dispatch(authFetching({ loading: false }));
             const axiosError = error as AxiosError;
             if (axiosError.response) {
-                dispatch(authFetching({ loading: false }));
                 const { status, data } = axiosError.response;
                 if (status === 404 && data && data.message === 'Email не найден') {
                     history.push('/result/error-check-email-no-exist');

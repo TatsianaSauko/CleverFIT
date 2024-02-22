@@ -1,14 +1,13 @@
 import { useState } from 'react';
-import { Menu, Button } from 'antd';
-import { Layout as AntLayout } from 'antd';
-import { HeartIcon, TrophyIcon, CalendarIcon, IdCardIcon, LogoutIcon } from '../../icons';
 import { Link, NavLink } from 'react-router-dom';
-import cleverFit from '/png/cleverFit.png';
-import fit from '/png/fit.png';
-import logoMobile from '/png/logoMobile.png';
+import { Layout as AntLayout, Menu } from 'antd';
+import { HeartIcon, TrophyIcon, CalendarIcon, IdCardIcon, LogoutIcon } from '../../icons';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { logout } from '@redux/slices/AuthSlice';
 import { history } from '@redux/configure-store';
+import cleverFit from '/png/cleverFit.png';
+import fit from '/png/fit.png';
+import logoMobile from '/png/logoMobile.png';
 
 import './sider.css';
 

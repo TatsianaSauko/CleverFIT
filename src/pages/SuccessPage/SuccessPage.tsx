@@ -9,7 +9,7 @@ const { Title, Text } = Typography;
 export const SuccessPage = () => (
     <div className='success-page'>
         <img src={success} alt='Error' className='icon-success' />
-        <div>
+        <div className='block-title'>
             <Title level={3} className='title'>
                 Регистрация успешна
             </Title>

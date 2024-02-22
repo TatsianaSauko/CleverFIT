@@ -33,9 +33,3 @@
     background: #2f54eb;
     border: 2px solid #2f54eb;
 }
-
-@media screen and (max-width: 576px) {
-    /* .error-layout .ant-btn.ant-btn-block {
-        width: 296px;
-    } */
-}

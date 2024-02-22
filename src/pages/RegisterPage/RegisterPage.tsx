@@ -1,21 +1,22 @@
+import { useState } from 'react';
 import { Button, Form, Input } from 'antd';
-import IconG from '/png/Icon-G+.png';
-import './registerPage.css';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { register } from '@redux/ActionCreators';
 import { setEmail, setPassword } from '@redux/slices/AuthSlice';
 import { useForm } from 'antd/lib/form/Form';
-import { useState } from 'react';
+import { FormRegister } from '../../types/Auth.interface';
+import IconG from '/png/Icon-G+.png';
+
+import './registerPage.css';
 
 export const RegisterPage = () => {
     const dispatch = useAppDispatch();
     const [form] = useForm();
     const [isDisabled, setIsDisabled] = useState(true);
-    const onFinish = async (values: any) => {
-        console.log(values);
+    const onFinish = (values: FormRegister) => {
         dispatch(setEmail({ email: values.email }));
         dispatch(setPassword({ password: values.password }));
-        await dispatch(register({ email: values.email, password: values.password }));
+        dispatch(register({ email: values.email, password: values.password }));
     };
 
     const handleFormChange = () => {
@@ -34,7 +35,6 @@ export const RegisterPage = () => {
             >
                 <Form.Item
                     name={['email']}
-                    data-test-id='registration-email'
                     rules={[
                         {
                             type: 'email',
@@ -46,11 +46,10 @@ export const RegisterPage = () => {
                         },
                     ]}
                 >
-                    <Input addonBefore='e-mail:' />
+                    <Input addonBefore='e-mail:' data-test-id='registration-email' />
                 </Form.Item>
                 <Form.Item
                     name='password'
-                    data-test-id='registration-password'
                     help='Пароль не менее 8 символов, c заглавной буквой и цифрой'
                     rules={[
                         {
@@ -77,7 +76,7 @@ export const RegisterPage = () => {
                     ]}
                     hasFeedback
                 >
-                    <Input.Password placeholder='Пароль' />
+                    <Input.Password placeholder='Пароль' data-test-id='registration-password' />
                 </Form.Item>
                 <Form.Item
                     name='confirm'
@@ -102,7 +101,6 @@ export const RegisterPage = () => {
                 >
                     <Input.Password />
                 </Form.Item>
-
                 <Form.Item>
                     <Button
                         type='primary'

@@ -19,9 +19,10 @@
     display: inline-block;
     width: 70%;
 }
-/* .error-email-no-exist .subtitle {
-    max-width: 370px;
-} */
+
+.error-email-no-exist .button {
+    font-size: 14px;
+}
 
 @media screen and (max-width: 576px) {
     .error-email-no-exist span.ant-typography-secondary {

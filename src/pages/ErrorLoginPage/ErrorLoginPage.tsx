@@ -9,7 +9,7 @@ const { Title, Text } = Typography;
 export const ErrorLoginPage = () => (
     <div className='error-login'>
         <img src={triangleError} alt='Error' className='icon-error-login' />
-        <div>
+        <div className='block-title'>
             <Title level={3} className='title'>
                 Вход не выполнен
             </Title>

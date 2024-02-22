@@ -1,24 +1,23 @@
 import { Typography, Button } from 'antd';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { changePassword } from '@redux/ActionCreators';
 import error from '/png/error.png';
 
 import './errorChangePasswordPage.css';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
-import { changePassword } from '@redux/ActionCreators';
 
 const { Title, Text } = Typography;
 
 export const ErrorChangePasswordPage = () => {
     const dispatch = useAppDispatch();
     const { password } = useAppSelector((state) => state.auth);
-    const onClick = async () => {
-        console.log('password: errorChangePassword', password);
-        await dispatch(changePassword({ password: password, confirmPassword: password }));
+    const onClick = () => {
+        dispatch(changePassword({ password: password, confirmPassword: password }));
         history.back();
     };
     return (
         <div className='error-change-password'>
             <img src={error} alt='Error' className='icon-error' />
-            <div>
+            <div className='block-title'>
                 <Title level={3} className='title'>
                     Данные не сохранились
                 </Title>

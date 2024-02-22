@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import formLogo from '/png/formLogo.png';
-import formLogoMobile from '/png/formLogoMobile.png';
 import { Menu } from 'antd';
 import { history } from '@redux/configure-store';
-
-import './authenticationLayout.css';
 import { useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { Loader } from '@components/Loader';
+import formLogoMobile from '/png/formLogoMobile.png';
+
+import './authenticationLayout.css';
 
 export const AuthenticationLayout: React.FC = () => {
     const { loading, token } = useAppSelector((state) => state.auth);

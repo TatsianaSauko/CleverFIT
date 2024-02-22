@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Typography } from 'antd';
 import VerificationInput from 'react-verification-input';
-import suggested from '/png/suggested.png';
-
-import './confirmEmailPage.css';
 import { confirmEmail } from '@redux/ActionCreators';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { history } from '@redux/configure-store';
 import { Loader } from '@components/Loader';
-import { useLocation } from 'react-router-dom';
+import suggested from '/png/suggested.png';
+
+import './confirmEmailPage.css';
 
 const { Title, Text } = Typography;
 
@@ -20,7 +20,6 @@ export const ConfirmEmailPage = () => {
     const dispatch = useAppDispatch();
     const { email } = useAppSelector((state) => state.auth);
     const handleVerificationComplete = async (code: string) => {
-        console.log(email, code);
         await dispatch(confirmEmail({ email: email, code: code })).catch(() => {
             setIsCodeCorrect(false);
             setInputKey(Math.random());

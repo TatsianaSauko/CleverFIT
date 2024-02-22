@@ -4,7 +4,9 @@ import { Sider } from '@components/Sider';
 import { Header } from '@components/Header';
 import { ButtonSiderToggle } from '@components/ButtonSiderToggle';
 import { Card } from '@components/Card';
-// import backgroundImage from '/png/mainPageLight.png';
+import { useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { history } from '@redux/configure-store';
+import { useLocation } from 'react-router-dom';
 import {
     HeartIconSmall,
     CalendarIconSmall,
@@ -14,8 +16,6 @@ import {
 } from '../../icons';
 
 import './mainPage.css';
-import { useAppSelector } from '@hooks/typed-react-redux-hooks';
-import { history } from '@redux/configure-store';
 
 const { Content, Footer } = Layout;
 
@@ -42,6 +42,7 @@ export const CARDS_DATA = [
 
 export const MainPage: React.FC = () => {
     const { token } = useAppSelector((state) => state.auth);
+    const location = useLocation();
     const [collapsed, setCollapsed] = useState(false);
 
     const toggleCollapsed = () => {
@@ -49,6 +50,9 @@ export const MainPage: React.FC = () => {
     };
 
     useEffect(() => {
+        if (location.pathname === '/') {
+            history.push('/main');
+        }
         if (!token) {
             history.push('/auth');
         }

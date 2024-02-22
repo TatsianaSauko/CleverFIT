@@ -21,6 +21,10 @@
     width: 368px;
 }
 
+.error-check-email .button {
+    font-size: 14px;
+}
+
 @media screen and (max-width: 576px) {
     .error-check-email .ant-btn.ant-btn-block {
         width: 296px;

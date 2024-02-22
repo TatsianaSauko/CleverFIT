@@ -3,11 +3,6 @@
     padding-bottom: 111px;
 }
 
-/* .ant-form-item-label
-    > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
-    display: none;
-} */
-
 .login-form .ant-form-item {
     padding-bottom: 9px;
 }
@@ -49,9 +44,11 @@
 .login-form .ant-form-item-explain-error {
     font-size: 12px;
 }
+
 .login-form .ant-form-item-feedback-icon {
     display: none;
 }
+
 .login-form .ant-input-suffix > *:not(:last-child) {
     margin-right: 0;
 }
@@ -68,6 +65,7 @@
 .login-form .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
     border-left-color: #d9d9d9;
 }
+
 .login-form
     .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input:focus {
     box-shadow: none;
@@ -75,6 +73,10 @@
 
 .login-form .ant-input-group-wrapper-status-error .ant-input-group-addon {
     color: black;
+}
+
+.login-form_forgot {
+    padding-right: 0;
 }
 
 @media screen and (max-width: 576px) {
@@ -85,7 +87,7 @@
     }
 
     .ant-row {
-        flex-flow: nowrap;
+        display: block;
     }
 
     .ant-form .ant-form-item .ant-form-item-label {

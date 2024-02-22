@@ -1,18 +1,18 @@
-import { Button, Checkbox, Form, Input } from 'antd';
-import './loginPage.css';
-import IconG from '/png/Icon-G+.png';
-import { checkEmail, login } from '@redux/ActionCreators';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { useEffect, useState } from 'react';
+import { checkEmail, login } from '@redux/ActionCreators';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { setEmail } from '@redux/slices/AuthSlice';
+import { Button, Checkbox, Form, Input } from 'antd';
 import { FieldData } from 'rc-field-form/lib/interface';
-import { useForm } from 'antd/lib/form/Form';
+import { useForm } from 'antd/es/form/Form';
+import { ILogin } from '../../types/Auth.interface';
+import IconG from '/png/Icon-G+.png';
+
+import './loginPage.css';
 
 export const LoginPage = () => {
     const dispatch = useAppDispatch();
     const [form] = useForm();
-    const { email } = useAppSelector((state) => state.auth);
-    const [isDisabled, setIsDisabled] = useState(true);
     const [emailValue, setEmailValue] = useState('');
     const [isEmailValid, setIsEmailValid] = useState(false);
 
@@ -22,17 +22,17 @@ export const LoginPage = () => {
         }
     }, [isEmailValid]);
 
-    const onFinish = async (values: any) => {
+    const onFinish = async (values: ILogin) => {
         await dispatch(login(values));
     };
 
-    const handleForgotPassword = async () => {
-        await dispatch(checkEmail({ email: email }));
+    const handleForgotPassword = () => {
+        if (isEmailValid) {
+            dispatch(checkEmail({ email: emailValue }));
+        }
     };
 
     const handleFieldsChange = (changedFields: FieldData[]) => {
-        const hasErrors = form.getFieldsError().some(({ errors }) => errors.length);
-        setIsDisabled(hasErrors);
         if (changedFields[0]?.name[0] === 'email') {
             setEmailValue(changedFields[0]?.value);
             const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -54,7 +54,6 @@ export const LoginPage = () => {
             >
                 <Form.Item
                     name={['email']}
-                    data-test-id='login-email'
                     rules={[
                         {
                             type: 'email',
@@ -66,12 +65,11 @@ export const LoginPage = () => {
                         },
                     ]}
                 >
-                    <Input addonBefore='e-mail:' />
+                    <Input addonBefore='e-mail:' data-test-id='login-email' />
                 </Form.Item>
 
                 <Form.Item
                     name='password'
-                    data-test-id='login-password'
                     rules={[
                         {
                             required: true,
@@ -95,7 +93,7 @@ export const LoginPage = () => {
                     ]}
                     hasFeedback
                 >
-                    <Input.Password placeholder='Пароль' />
+                    <Input.Password placeholder='Пароль' data-test-id='login-password' />
                 </Form.Item>
                 <Form.Item>
                     <Form.Item
@@ -103,15 +101,13 @@ export const LoginPage = () => {
                         valuePropName='checked'
                         noStyle
                         className='login-form_login-form'
-                        data-test-id='login-remember'
                     >
-                        <Checkbox>Запомнить меня</Checkbox>
+                        <Checkbox data-test-id='login-remember'>Запомнить меня</Checkbox>
                     </Form.Item>
 
                     <Button
                         type='link'
                         className='login-form_forgot'
-                        disabled={!isEmailValid}
                         data-test-id='login-forgot-button'
                         onClick={handleForgotPassword}
                     >
@@ -124,7 +120,6 @@ export const LoginPage = () => {
                         type='primary'
                         size={'large'}
                         block
-                        disabled={isDisabled}
                         htmlType='submit'
                         className='login-form-button'
                         data-test-id='login-submit-button'

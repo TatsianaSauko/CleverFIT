@@ -30,4 +30,9 @@
     .error-page {
         padding: 32px 16px;
     }
+
+    /* .error-page
+    .ant-typography.ant-typography-secondary{
+width: 270px
+    } */
 }
