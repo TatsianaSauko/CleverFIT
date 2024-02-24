@@ -25,6 +25,7 @@ import { ErrorLayout } from './layouts/ErrorLayout';
 import 'antd/dist/antd.css';
 import 'normalize.css';
 import './index.css';
+import { Path } from '@constants/paths';
 
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
@@ -34,30 +35,33 @@ root.render(
         <Provider store={store}>
             <HistoryRouter history={history}>
                 <Routes>
-                    <Route path='/' element={<MainPage />} />
-                    <Route path='/main' element={<MainPage />} />
-                    <Route path='/auth' element={<AuthenticationLayout />}>
+                    <Route path={Path.Root} element={<MainPage />} />
+                    <Route path={Path.Main} element={<MainPage />} />
+                    <Route path={Path.Auth} element={<AuthenticationLayout />}>
                         <Route index element={<LoginPage />} />
-                        <Route path='registration' element={<RegisterPage />} />
+                        <Route path={Path.Registration} element={<RegisterPage />} />
                     </Route>
-                    <Route path='/result' element={<ErrorLayout />}>
-                        <Route path='error-login' element={<ErrorLoginPage />} />
-                        <Route path='success' element={<SuccessPage />} />
-                        <Route path='error-user-exist' element={<ErrorUserExistPage />} />
-                        <Route path='error' element={<ErrorPage />} />
+                    <Route path={Path.Result} element={<ErrorLayout />}>
+                        <Route path={Path.ErrorLogin} element={<ErrorLoginPage />} />
+                        <Route path={Path.Success} element={<SuccessPage />} />
+                        <Route path={Path.ErrorUserExist} element={<ErrorUserExistPage />} />
+                        <Route path={Path.Error} element={<ErrorPage />} />
                         <Route
-                            path='error-check-email-no-exist'
+                            path={Path.ErrorCheckEmailNoExist}
                             element={<ErrorCheckEmailNoExistPage />}
                         />
-                        <Route path='error-check-email' element={<ErrorCheckEmailPage />} />
-                        <Route path='error-change-password' element={<ErrorChangePasswordPage />} />
+                        <Route path={Path.ErrorCheckEmail} element={<ErrorCheckEmailPage />} />
                         <Route
-                            path='success-change-password'
+                            path={Path.ErrorChangePassword}
+                            element={<ErrorChangePasswordPage />}
+                        />
+                        <Route
+                            path={Path.SuccessChangePassword}
                             element={<SuccessChangePasswordPage />}
                         />
                     </Route>
-                    <Route path='/auth/confirm-email' element={<ConfirmEmailPage />} />
-                    <Route path='/auth/change-password' element={<ChangePasswordPage />} />
+                    <Route path={Path.ConfirmEmail} element={<ConfirmEmailPage />} />
+                    <Route path={Path.ChangePassword} element={<ChangePasswordPage />} />
                 </Routes>
             </HistoryRouter>
         </Provider>

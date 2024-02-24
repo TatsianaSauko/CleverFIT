@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Typography, Button, Form, Input } from 'antd';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { changePassword } from '@redux/ActionCreators';
-import { setPassword } from '@redux/slices/AuthSlice';
+import { authSelector, setPassword } from '@redux/slices/AuthSlice';
 import { history } from '@redux/configure-store';
 import { Loader } from '@components/Loader';
-import { IChangePassword } from '../../types/Auth.interface';
+import { Path } from '@constants/paths';
+import { IChangePassword } from '../../interfaces/Auth.interface';
 
 import './changePasswordPage.css';
 
@@ -15,7 +17,7 @@ const { Title } = Typography;
 export const ChangePasswordPage = () => {
     const dispatch = useAppDispatch();
     const location = useLocation();
-    const { loading } = useAppSelector((state) => state.auth);
+    const { loading } = useSelector(authSelector);
 
     const onFinish = async (values: IChangePassword) => {
         dispatch(setPassword({ password: values.password }));
@@ -26,7 +28,7 @@ export const ChangePasswordPage = () => {
 
     useEffect(() => {
         if (location.key === 'default') {
-            history.push('/auth');
+            history.push(Path.Auth);
         }
     }, []);
 

@@ -3,7 +3,8 @@
 }
 
 .ant-layout .ant-layout-header {
-    background: #f0f5ff;
+    background: var(--primary-light-1);
+    color: var(--character-light-title-85);
     height: auto;
     padding-left: 24px;
     padding-right: 24px;
@@ -22,13 +23,13 @@
 }
 
 .header__wrapper button.ant-btn:hover {
-    color: black;
-    background-color: #fff;
+    color: var(--character-light-title-85);
+    background-color: var(--neutral-gray-1);
     border: none;
 }
 
 .header__wrapper button.ant-btn:focus {
-    color: black;
+    color: var(--character-light-title-85);
 }
 
 .header__wrapper h1.ant-typography {
@@ -36,6 +37,7 @@
     font-weight: 700;
     padding-top: 6px;
     padding-bottom: 6px;
+    color: var(--character-light-title-85);
 }
 
 .btn-settings {
@@ -43,7 +45,7 @@
 }
 
 .header__wrapper .ant-btn-lg {
-    font-size: 14px;
+    font-size: var(--smallFontSize);
 }
 
 .btn-settings .ant-btn > .anticon + span {
@@ -89,17 +91,17 @@
     }
 
     .header__wrapper button.ant-btn {
-        background-color: #fff;
-        border: 2px solid #d9d9d9;
+        box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.04);
+        background: var(--character-light-primary-inverse);
+        border: 1px solid var(--character-light-border);
         border-radius: 100px;
-        display: flex;
-        justify-content: center;
+        padding: 4px 8.5px;
         width: 32px;
         height: 32px;
         margin-top: -5px;
     }
 
     .header__wrapper button.ant-btn:hover {
-        border: 2px solid #d9d9d9;
+        border: 1px solid var(--character-light-border);
     }
 }

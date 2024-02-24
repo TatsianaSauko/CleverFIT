@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Layout as AntLayout, Menu } from 'antd';
 import { HeartIcon, TrophyIcon, CalendarIcon, IdCardIcon, LogoutIcon } from '../../icons';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
@@ -22,6 +22,20 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
         history.push('/auth');
     };
 
+    const menuItems = [
+        { key: '4', icon: <CalendarIcon />, link: '/calendar', text: 'Календарь' },
+        { key: '5', icon: <HeartIcon />, link: '/training', text: 'Тренировки' },
+        { key: '7', icon: <TrophyIcon />, link: '/achievements', text: 'Достижения' },
+        { key: '8', icon: <IdCardIcon />, link: '/profile', text: 'Профиль' },
+        {
+            key: '9',
+            icon: <LogoutIcon className={!collapsed ? 'icon_exit__padding' : 'icon_exit'} />,
+            link: '',
+            text: 'Выход',
+            onClick: handleButtonExit,
+        },
+    ];
+
     return (
         <AntSider
             breakpoint='sm'
@@ -43,59 +57,19 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
                 <img src={logoMobile} alt='CleverFit' className='logo_mobile' />
             </div>
             <Menu className='menu' mode='inline'>
-                <Menu.Item
-                    key='4'
-                    icon={<CalendarIcon />}
-                    style={{
-                        ...(collapsed && width === 208 ? {} : { paddingLeft: '16px' }),
-                        ...(width === 208 ? {} : { paddingLeft: '0', paddingRight: '0' }),
-                    }}
-                >
-                    <Link to='/calendar'>Календарь</Link>
-                </Menu.Item>
-                <Menu.Item
-                    key='5'
-                    icon={<HeartIcon />}
-                    style={{
-                        ...(collapsed && width === 208 ? {} : { paddingLeft: '16px' }),
-                        ...(width === 208 ? {} : { paddingLeft: '0', paddingRight: '0' }),
-                    }}
-                >
-                    <Link to='/training'>Тренировки</Link>
-                </Menu.Item>
-                <Menu.Item
-                    key='7'
-                    icon={<TrophyIcon />}
-                    style={{
-                        ...(collapsed && width === 208 ? {} : { paddingLeft: '16px' }),
-                        ...(width === 208 ? {} : { paddingLeft: '0', paddingRight: '0' }),
-                    }}
-                >
-                    <Link to='/achievements'>Достижения</Link>
-                </Menu.Item>
-                <Menu.Item
-                    key='8'
-                    icon={<IdCardIcon />}
-                    style={{
-                        ...(collapsed && width === 208 ? {} : { paddingLeft: '16px' }),
-                        ...(width === 208 ? {} : { paddingLeft: '0', paddingRight: '0' }),
-                    }}
-                >
-                    <Link to='/profile'>Профиль</Link>
-                </Menu.Item>
-
-                <Menu.Item
-                    key='9'
-                    icon={<LogoutIcon className={collapsed ? 'icon_exit__padding' : 'icon_exit'} />}
-                    style={{
-                        ...(collapsed && width === 208 ? {} : { paddingLeft: '16px' }),
-                        ...(width === 208 ? {} : { paddingLeft: '0', paddingRight: '0' }),
-                    }}
-                >
-                    <NavLink to='' onClick={handleButtonExit}>
-                        Выход
-                    </NavLink>
-                </Menu.Item>
+                {menuItems.map((item) => (
+                    <Menu.Item
+                        key={item.key}
+                        icon={item.icon}
+                        style={{
+                            ...(collapsed && width === 208 ? {} : { paddingLeft: '16px' }),
+                            ...(width === 208 ? {} : { paddingLeft: '0', paddingRight: '0' }),
+                        }}
+                        onClick={item.onClick}
+                    >
+                        <Link to={item.link}>{item.text}</Link>
+                    </Menu.Item>
+                ))}
             </Menu>
         </AntSider>
     );

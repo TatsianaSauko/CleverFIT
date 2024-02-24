@@ -15,7 +15,8 @@
     height: auto;
     padding: 64px 85.5px;
     border-radius: 2px;
-    background: #ffffff;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    background: var(--character-light-primary-inverse);
     margin: auto;
 }
 
@@ -33,7 +34,7 @@
 }
 
 .ant-menu-title-content {
-    font-size: 16px;
+    font-size: var(--defaultFontSize);
 }
 
 .auth-wrapper__content .ant-menu-horizontal > .ant-menu-item::after {
@@ -45,7 +46,7 @@
     line-height: 43px;
 }
 .auth-wrapper__content .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected {
-    color: #2f54eb;
+    color: var(--primary-light-6);
 }
 
 @media screen and (max-width: 576px) {
@@ -67,9 +68,10 @@
         margin: auto;
     }
     .auth-btn {
-        font-size: 14px;
+        font-size: var(--smallFontSize);
     }
+
     .auth-wrapper__content .ant-menu-title-content {
-        font-size: 14px;
+        font-size: var(--smallFontSize);
     }
 }

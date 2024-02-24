@@ -1,5 +1,7 @@
+import { useSelector } from 'react-redux';
+import { authSelector } from '@redux/slices/AuthSlice';
 import { Typography, Button } from 'antd';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { changePassword } from '@redux/ActionCreators';
 import error from '/png/error.png';
 
@@ -9,7 +11,7 @@ const { Title, Text } = Typography;
 
 export const ErrorChangePasswordPage = () => {
     const dispatch = useAppDispatch();
-    const { password } = useAppSelector((state) => state.auth);
+    const { password } = useSelector(authSelector);
     const onClick = async () => {
         history.back();
         await dispatch(changePassword({ password: password, confirmPassword: password }));

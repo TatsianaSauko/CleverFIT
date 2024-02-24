@@ -3,6 +3,7 @@ import success from '/png/success.png';
 import { history } from '@redux/configure-store';
 
 import './SuccessPage.css';
+import { Path } from '@constants/paths';
 
 const { Title, Text } = Typography;
 
@@ -23,7 +24,7 @@ export const SuccessPage = () => (
             type='primary'
             size={'large'}
             className='button'
-            onClick={() => history.push('/auth')}
+            onClick={() => history.push(Path.Auth)}
             data-test-id='registration-enter-button'
         >
             Войти

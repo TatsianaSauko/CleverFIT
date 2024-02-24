@@ -5,6 +5,7 @@ import { Loader } from '@components/Loader';
 import { history } from '@redux/configure-store';
 
 import './errorLayout.css';
+import { Path } from '@constants/paths';
 
 export const ErrorLayout: React.FC = () => {
     const { loading } = useAppSelector((state) => state.auth);
@@ -12,7 +13,7 @@ export const ErrorLayout: React.FC = () => {
 
     useEffect(() => {
         if (location.key === 'default') {
-            history.push('/auth');
+            history.push(Path.Auth);
         }
     }, []);
 

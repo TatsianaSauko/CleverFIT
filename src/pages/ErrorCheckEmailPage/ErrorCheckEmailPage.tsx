@@ -1,5 +1,7 @@
+import { useSelector } from 'react-redux';
+import { authSelector } from '@redux/slices/AuthSlice';
 import { Typography, Button } from 'antd';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { checkEmail } from '@redux/ActionCreators';
 import { history } from '@redux/configure-store';
 import errorCheckEmail from '/png/errorCheckEmail.png';
@@ -10,7 +12,7 @@ const { Title, Text } = Typography;
 
 export const ErrorCheckEmailPage = () => {
     const dispatch = useAppDispatch();
-    const { email } = useAppSelector((state) => state.auth);
+    const { email } = useSelector(authSelector);
 
     const onClick = async () => {
         history.back();

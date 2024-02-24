@@ -3,6 +3,7 @@ import { history } from '@redux/configure-store';
 import success from '/png/success.png';
 
 import './successChangePasswordPage.css';
+import { Path } from '@constants/paths';
 
 const { Title, Text } = Typography;
 
@@ -24,7 +25,7 @@ export const SuccessChangePasswordPage = () => (
             type='primary'
             size={'large'}
             className='button'
-            onClick={() => history.push('/auth')}
+            onClick={() => history.push(Path.Auth)}
             data-test-id='change-entry-button'
         >
             Вход

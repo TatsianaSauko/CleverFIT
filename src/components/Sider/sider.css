@@ -4,14 +4,14 @@
 }
 
 .ant-layout .ant-layout-sider {
-    background: #fff;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    background: var(--character-light-primary-inverse);
     border: none;
 }
 
 .logo {
     padding-bottom: 5px;
     text-align: center;
-    background: #fff;
 }
 
 .logo_large {
@@ -35,7 +35,7 @@
 }
 
 .ant-menu-item a {
-    font-size: 14px;
+    font-size: var(--smallFontSize);
 }
 
 ul.ant-menu-inline .ant-menu-item:not(:last-child) {
@@ -77,7 +77,7 @@ li.ant-menu-item:last-child {
 }
 
 span.ant-layout-sider-zero-width-trigger {
-    background: #fff;
+    background: var(--character-light-primary-inverse);
     width: 32px;
     height: 48px;
     right: -30px;

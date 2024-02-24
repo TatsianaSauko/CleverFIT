@@ -1,5 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { EmailPayload, InitialState, LoadingPayload, LoginSuccessPayload, PasswordPayload } from '../../types/Auth.interface';
+import {
+    EmailPayload,
+    InitialState,
+    LoadingPayload,
+    LoginSuccessPayload,
+    PasswordPayload,
+} from '../../interfaces/Auth.interface';
+import { RootState } from '@redux/configure-store';
 
 const TOKEN = 'token';
 
@@ -29,7 +36,6 @@ export const authSlice = createSlice({
                 localStorage.setItem(TOKEN, action.payload.token);
             }
         },
-
         setEmail(state, action: PayloadAction<EmailPayload>) {
             state.email = action.payload.email;
         },
@@ -40,5 +46,7 @@ export const authSlice = createSlice({
 });
 
 export const { logout, loginSuccess, setEmail, setPassword, authFetching } = authSlice.actions;
+
+export const authSelector = (state: RootState) => state.auth;
 
 export default authSlice.reducer;

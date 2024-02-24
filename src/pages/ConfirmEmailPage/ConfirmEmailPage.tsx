@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { authSelector } from '@redux/slices/AuthSlice';
 import { Typography } from 'antd';
 import VerificationInput from 'react-verification-input';
 import { confirmEmail } from '@redux/ActionCreators';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { history } from '@redux/configure-store';
 import { Loader } from '@components/Loader';
+import { Path } from '@constants/paths';
 import suggested from '/png/suggested.png';
 
 import './confirmEmailPage.css';
@@ -14,12 +17,13 @@ const { Title, Text } = Typography;
 
 export const ConfirmEmailPage = () => {
     const location = useLocation();
-    const { loading } = useAppSelector((state) => state.auth);
+    const { loading } = useSelector(authSelector);
     const [inputKey, setInputKey] = useState(Math.random());
     const [isCodeCorrect, setIsCodeCorrect] = useState(true);
     const dispatch = useAppDispatch();
     const { email } = useAppSelector((state) => state.auth);
     const handleVerificationComplete = async (code: string) => {
+        console.log(code, email);
         await dispatch(confirmEmail({ email: email, code: code })).catch(() => {
             setIsCodeCorrect(false);
             setInputKey(Math.random());
@@ -28,7 +32,7 @@ export const ConfirmEmailPage = () => {
 
     useEffect(() => {
         if (location.key === 'default') {
-            history.push('/auth');
+            history.push(Path.Auth);
         }
     }, []);
 

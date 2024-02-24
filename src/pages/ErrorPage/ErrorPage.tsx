@@ -1,5 +1,7 @@
+import { useSelector } from 'react-redux';
+import { authSelector } from '@redux/slices/AuthSlice';
 import { Typography, Button } from 'antd';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { register } from '@redux/ActionCreators';
 import error from '/png/error.png';
 
@@ -8,7 +10,7 @@ import './errorPage.css';
 const { Title, Text } = Typography;
 
 export const ErrorPage = () => {
-    const { email, password } = useAppSelector((state) => state.auth);
+    const { email, password } = useSelector(authSelector);
     const dispatch = useAppDispatch();
 
     const onClick = async () => {

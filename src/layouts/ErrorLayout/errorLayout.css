@@ -14,7 +14,9 @@
 .error-layout__content {
     display: flex;
     flex-direction: column;
-    background: #ffffff;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    background: var(--character-light-primary-inverse);
+    border-radius: 2px;
     padding: 64px 32px 56px;
     align-items: center;
     justify-content: center;
@@ -30,6 +32,7 @@
 }
 
 .error-layout .button {
-    background: #2f54eb;
-    border: 2px solid #2f54eb;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.04);
+    background: var(--primary-light-6);
+    border: 1px solid var(--primary-light-6);
 }

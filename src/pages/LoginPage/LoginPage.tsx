@@ -5,7 +5,7 @@ import { setEmail } from '@redux/slices/AuthSlice';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { FieldData } from 'rc-field-form/lib/interface';
 import { useForm } from 'antd/es/form/Form';
-import { ILogin } from '../../types/Auth.interface';
+import { ILogin } from '../../interfaces/Auth.interface';
 import IconG from '/png/Icon-G+.png';
 
 import './loginPage.css';

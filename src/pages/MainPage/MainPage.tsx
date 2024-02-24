@@ -1,12 +1,15 @@
 import { Layout, Button, Divider } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { authSelector } from '@redux/slices/AuthSlice';
 import { Sider } from '@components/Sider';
 import { Header } from '@components/Header';
 import { ButtonSiderToggle } from '@components/ButtonSiderToggle';
 import { Card } from '@components/Card';
-import { useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { history } from '@redux/configure-store';
 import { useLocation } from 'react-router-dom';
+import { Loader } from '@components/Loader';
+import { Path } from '@constants/paths';
 import {
     HeartIconSmall,
     CalendarIconSmall,
@@ -16,7 +19,6 @@ import {
 } from '../../icons';
 
 import './mainPage.css';
-import { Loader } from '@components/Loader';
 
 const { Content, Footer } = Layout;
 
@@ -42,7 +44,7 @@ export const CARDS_DATA = [
 ];
 
 export const MainPage: React.FC = () => {
-    const { token, loading } = useAppSelector((state) => state.auth);
+    const { token, loading } = useSelector(authSelector);
     const location = useLocation();
     const [collapsed, setCollapsed] = useState(false);
 
@@ -52,10 +54,10 @@ export const MainPage: React.FC = () => {
 
     useEffect(() => {
         if (location.pathname === '/') {
-            history.push('/main');
+            history.push(Path.Main);
         }
         if (!token) {
-            history.push('/auth');
+            history.push(Path.Auth);
         }
     }, [token]);
 

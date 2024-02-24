@@ -1,20 +1,22 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { authSelector } from '@redux/slices/AuthSlice';
 import { Outlet } from 'react-router-dom';
 import formLogo from '/png/formLogo.png';
 import { Menu } from 'antd';
 import { history } from '@redux/configure-store';
-import { useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { Loader } from '@components/Loader';
+import { Path } from '@constants/paths';
 import formLogoMobile from '/png/formLogoMobile.png';
 
 import './authenticationLayout.css';
 
 export const AuthenticationLayout: React.FC = () => {
-    const { loading, token } = useAppSelector((state) => state.auth);
+    const { loading, token } = useSelector(authSelector);
 
     useEffect(() => {
         if (token) {
-            history.push('/main');
+            history.push(Path.Auth);
         }
     }, []);
 

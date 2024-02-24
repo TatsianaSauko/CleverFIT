@@ -1,5 +1,5 @@
 import { Button, Divider } from 'antd';
-import { CardProps } from '../../types/CardProps.interface';
+import { CardProps } from '../../interfaces/CardProps.interface';
 
 import './card.css';
 

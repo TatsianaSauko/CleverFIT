@@ -26,8 +26,8 @@
 }
 
 .login-form .ant-checkbox-checked .ant-checkbox-inner {
-    background-color: #2f54eb;
-    border-color: #2f54eb;
+    background-color: var(--primary-light-6);
+    border-color: var(--primary-light-6);
 }
 
 .login-form .ant-form-item:nth-child(3) .ant-form-item-control-input-content {
@@ -37,8 +37,9 @@
 }
 
 .login-form .login-form-button {
-    background: #2f54eb;
-    border: 2px solid #2f54eb;
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.04);
+    background: var(--primary-light-6);
+    border: 1px solid var(--primary-light-6);
 }
 
 .login-form .ant-form-item-explain-error {
@@ -54,8 +55,8 @@
 }
 
 .login-form .ant-btn-link {
-    font-size: 16px;
-    color: #2f54eb;
+    font-size: var(--defaultFontSize);
+    color: var(--primary-light-6);
 }
 
 .icon-G {
@@ -63,16 +64,17 @@
 }
 
 .login-form .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input {
-    border-left-color: #d9d9d9;
+    border-left-color: var(--character-light-border);
 }
 
 .login-form
     .ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input:focus {
     box-shadow: none;
+    border-left-color: var(--character-light-border);
 }
 
 .login-form .ant-input-group-wrapper-status-error .ant-input-group-addon {
-    color: black;
+    color: var(--character-light-title-85);
 }
 
 .login-form_forgot {
@@ -82,7 +84,7 @@
 @media screen and (max-width: 576px) {
     .login-page {
         width: 296px;
-        font-size: 14px;
+        font-size: var(--smallFontSize);
         padding-bottom: 93px;
     }
 
@@ -98,28 +100,19 @@
         flex: 0 0 76%;
     }
 
-    .login-form .ant-form-item-label {
-        border: 1px solid #d9d9d9;
-        padding-left: 12px;
-        padding-right: 12px;
-        padding-top: 3px;
-        background: #fafafa;
-        height: 40px;
-    }
-
     .login-form .ant-form-item:nth-child(3) .login-form_forgot {
-        font-size: 14px;
+        font-size: var(--smallFontSize);
         padding-right: 9px;
     }
 
     .login-form .ant-form-item:nth-child(4) {
-        font-size: 14px;
+        font-size: var(--smallFontSize);
         margin-bottom: 7px;
     }
 
     .login-form .btn_register-for-google {
         height: 40px;
-        font-size: 14px;
+        font-size: var(--smallFontSize);
     }
 
     .icon-hidden {

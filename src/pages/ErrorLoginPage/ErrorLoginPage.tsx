@@ -3,6 +3,7 @@ import triangleError from '/png/triangleError.png';
 import { history } from '@redux/configure-store';
 
 import './errorLoginPage.css';
+import { Path } from '@constants/paths';
 
 const { Title, Text } = Typography;
 
@@ -20,7 +21,7 @@ export const ErrorLoginPage = () => (
             type='primary'
             size={'large'}
             className='button'
-            onClick={() => history.push('/auth')}
+            onClick={() => history.push(`${Path.Auth}`)}
             data-test-id='login-retry-button'
         >
             Повторить
