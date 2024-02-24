@@ -3,34 +3,43 @@
     margin: 0 auto;
 }
 
+section.main-page {
+    background-image: url('/png/mainPageLight.png');
+    background-size: cover;
+    background-position: center;
+}
+
 .main {
     padding: 24px;
 }
 
+section.site_layout {
+    background-color: transparent;
+}
+
 .main__skills {
-    background-color: #fff;
     box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.04);
+    background: var(--character-light-primary-inverse);
     border-radius: 2px;
-    color: #061178;
+    color: var(--primary-light-9);
     max-width: 752px;
     padding: 24px;
-    font-size: 16px;
-    line-height: 20.7px;
-    letter-spacing: 0.6px;
+    font-size: var(--defaultFontSize);
+    line-height: 21px;
     font-weight: 400;
 }
 
 .main__subtitle {
     margin-top: 24px;
-    background-color: #fff;
     box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.04);
+    background: var(--character-light-primary-inverse);
+    color: var(--character-light-title-85);
     border-radius: 2px;
     max-width: 752px;
     padding: 24px;
     padding-right: 58px;
     font-size: 20px;
     line-height: 26px;
-    letter-spacing: 0.5px;
     font-weight: 500;
 }
 
@@ -71,29 +80,36 @@
     display: flex;
     padding-top: 12px;
     padding-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+.block-download__buttons span {
+    letter-spacing: 0.01px;
 }
 
 .block-download__buttons .ant-btn {
     border: none;
 }
 
+.main .ant-btn {
+    height: 31px;
+}
+
 .info__title {
-    color: #2f54eb;
-    font-size: 16px;
+    color: var(--primary-light-6);
+    font-size: var(--defaultFontSize);
     line-height: 21px;
-    letter-spacing: 0.7px;
 }
 
 .info__subtitle {
-    color: #8c8c8c;
-    font-size: 14px;
+    color: var(--character-light-secondary-45);
+    font-size: var(--smallFontSize);
     line-height: 18px;
-    letter-spacing: 0.5px;
 }
 
 .btn-download {
     border: none;
-    font-size: 14px;
+    font-size: var(--defaultFontSize);
     letter-spacing: 0.2px;
 }
 
@@ -115,12 +131,11 @@
     padding-top: 9.5px;
     padding-bottom: 9.5px;
     padding-left: 15px;
-    font-size: 16px;
+    font-size: var(--defaultFontSize);
     line-height: 130%;
     text-align: center;
-    color: #2f54eb;
+    color: var(--primary-light-6);
     text-align: center;
-    letter-spacing: 0.8px;
     cursor: default;
     text-align: left;
 }
@@ -128,9 +143,6 @@
 @media (max-width: 900px) {
     .main__subtitle {
         padding-right: 24px;
-    }
-    .footer__btn {
-        padding-left: 0;
     }
 }
 
@@ -144,6 +156,10 @@
         margin-top: 24px;
         width: 100%;
         text-align: center;
+    }
+
+    .footer__btn {
+        padding-left: 0;
     }
 }
 

@@ -1,0 +1,35 @@
+.error-page {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    background: var(--character-light-primary-inverse);
+    border-radius: 2px;
+    padding: 64px 85.5px;
+    align-items: center;
+    justify-content: center;
+    width: 539px;
+    text-align: center;
+    gap: 24px;
+}
+
+.error-page .ant-btn.ant-btn-block {
+    width: 368px;
+}
+
+.icon-error {
+    display: block;
+    width: 71px;
+    height: 70px;
+    margin: 5px;
+}
+
+@media screen and (max-width: 576px) {
+    .error-page .ant-btn.ant-btn-block {
+        width: 296px;
+    }
+
+    .error-page {
+        padding: 32px 16px;
+    }
+}

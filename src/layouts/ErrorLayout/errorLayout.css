@@ -1,0 +1,38 @@
+.error-layout {
+    background-image: url('/png/blure.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.error-layout__content {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    background: var(--character-light-primary-inverse);
+    border-radius: 2px;
+    padding: 64px 32px 56px;
+    align-items: center;
+    justify-content: center;
+    width: 539px;
+    text-align: center;
+    gap: 24px;
+}
+
+.error-layout .title {
+    margin-bottom: 0;
+    font-weight: 500;
+    line-height: 130%;
+}
+
+.error-layout .button {
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.04);
+    background: var(--primary-light-6);
+    border: 1px solid var(--primary-light-6);
+}

@@ -1,5 +1,5 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import { ButtonSiderToggleProps } from '../../types/ButtonSiderToggleProps.interface';
+import { ButtonSiderToggleProps } from '../../interfaces/ButtonSiderToggleProps.interface';
 
 import './buttonSiderToggle.css';
 

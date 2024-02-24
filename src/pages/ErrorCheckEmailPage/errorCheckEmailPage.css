@@ -1,0 +1,34 @@
+.error-check-email {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    background: var(--character-light-primary-inverse);
+    border-radius: 2px;
+    padding: 64px 32px 56px;
+    align-items: center;
+    justify-content: center;
+    width: 539px;
+    text-align: center;
+    gap: 24px;
+}
+
+.error-check-email .icon-error {
+    width: 255px;
+    height: 294px;
+    margin: 0;
+}
+
+.error-check-email .ant-btn.ant-btn-block {
+    width: 368px;
+}
+
+.error-check-email .button {
+    font-size: var(--smallFontSize);
+}
+
+@media screen and (max-width: 576px) {
+    .error-check-email .ant-btn.ant-btn-block {
+        width: 296px;
+    }
+}

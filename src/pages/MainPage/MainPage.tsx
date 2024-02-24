@@ -1,10 +1,15 @@
 import { Layout, Button, Divider } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { authSelector } from '@redux/slices/AuthSlice';
 import { Sider } from '@components/Sider';
 import { Header } from '@components/Header';
 import { ButtonSiderToggle } from '@components/ButtonSiderToggle';
 import { Card } from '@components/Card';
-import backgroundImage from '/png/mainPageLight.png';
+import { history } from '@redux/configure-store';
+import { useLocation } from 'react-router-dom';
+import { Loader } from '@components/Loader';
+import { Path } from '@constants/paths';
 import {
     HeartIconSmall,
     CalendarIconSmall,
@@ -13,22 +18,25 @@ import {
     AndroidIcon,
 } from '../../icons';
 
-import './main-page.css';
+import './mainPage.css';
 
 const { Content, Footer } = Layout;
 
 export const CARDS_DATA = [
     {
+        key: '1',
         title: 'Расписать тренировки',
         link: 'Тренировки',
         icon: <HeartIconSmall />,
     },
     {
+        key: '2',
         title: 'Назначить календарь',
         link: 'Календарь',
         icon: <CalendarIconSmall />,
     },
     {
+        key: '3',
         title: 'Заполнить профиль',
         link: 'Профиль',
         icon: <IdCardIconSmall />,
@@ -36,23 +44,28 @@ export const CARDS_DATA = [
 ];
 
 export const MainPage: React.FC = () => {
+    const { token, loading } = useSelector(authSelector);
+    const location = useLocation();
     const [collapsed, setCollapsed] = useState(false);
 
     const toggleCollapsed = () => {
         setCollapsed(!collapsed);
     };
 
+    useEffect(() => {
+        if (location.pathname === '/') {
+            history.push(Path.Main);
+        }
+        if (!token) {
+            history.push(Path.Auth);
+        }
+    }, [token]);
+
     return (
-        <Layout
-            style={{
-                backgroundImage: `url(${backgroundImage})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-            }}
-            className='wrapper'
-        >
+        <Layout className='main-page'>
+            {loading && <Loader />}
             <Sider collapsed={collapsed} />
-            <Layout style={{ backgroundColor: 'transparent' }} className='site_layout'>
+            <Layout className='site_layout'>
                 <ButtonSiderToggle collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
                 <Header />
                 <Content className='main'>
@@ -72,7 +85,12 @@ export const MainPage: React.FC = () => {
                     <div className='main__cards'>
                         <div className='cards__wrapper'>
                             {CARDS_DATA.map((card) => (
-                                <Card title={card.title} link={card.link} icon={card.icon} />
+                                <Card
+                                    title={card.title}
+                                    link={card.link}
+                                    icon={card.icon}
+                                    key={card.key}
+                                />
                             ))}
                         </div>
                     </div>
