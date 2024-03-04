@@ -1,9 +1,9 @@
 import { Typography, Button } from 'antd';
 import { history } from '@redux/configure-store';
 import success from '/png/success.png';
+import { Path } from '@constants/paths';
 
 import './successChangePasswordPage.css';
-import { Path } from '@constants/paths';
 
 const { Title, Text } = Typography;
 

@@ -1,17 +1,21 @@
 import { AppDispatch, history } from './configure-store';
-import { authFetching, loginSuccess } from './slices/AuthSlice';
+import { authFetching, loginSuccess, logout } from './slices/AuthSlice';
 import { Path } from '@constants/paths';
 import { StatusCodes } from '@constants/statusCodes';
 import { BaseUrl, Endpoints } from '@constants/api';
 import axios from 'axios';
 import {
     AxiosError,
+    Feedback,
+    FormFeedback,
     IChangePassword,
     ICheckEmail,
     IConfirmEmail,
+    IGetFeedback,
     ILogin,
     IRegister,
-} from '../interfaces/Auth.interface';
+} from '../types/Types';
+import { setFeedback } from './slices/FeedbackSlice';
 
 export const register = (data: IRegister) => {
     return async (dispatch: AppDispatch) => {
@@ -121,6 +125,59 @@ export const changePassword = (data: IChangePassword) => {
         } catch (error) {
             dispatch(authFetching({ loading: false }));
             history.push(Path.ErrorChangePassword);
+        }
+    };
+};
+
+export const getFeedback = (data: IGetFeedback) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            dispatch(authFetching({ loading: true }));
+            const headers = {
+                Authorization: `Bearer ${data.token}`,
+                'Content-Type': 'application/json',
+            };
+            const response = await axios.get(`${BaseUrl}${Endpoints.Feedback}`, { headers });
+            const feedbackSort = response.data.sort(
+                (a: Feedback, b: Feedback) =>
+                    new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+            );
+            dispatch(setFeedback({ feedbacks: feedbackSort }));
+            dispatch(authFetching({ loading: false }));
+            history.push(Path.Feedbacks);
+        } catch (error) {
+            dispatch(authFetching({ loading: false }));
+            const axiosError = error as AxiosError;
+            if (axiosError.response) {
+                const { status } = axiosError.response;
+                if (status === StatusCodes.FORBIDDEN) {
+                    dispatch(logout());
+                    history.push(Path.Auth);
+                } else {
+                    throw Error();
+                }
+            }
+        }
+    };
+};
+
+export const feedback = (data: FormFeedback, token: string) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            dispatch(authFetching({ loading: true }));
+            const headers = {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            };
+            await axios.post(
+                `${BaseUrl}${Endpoints.Feedback}`,
+                { message: data.message, rating: data.rating },
+                { headers },
+            );
+            dispatch(authFetching({ loading: false }));
+        } catch {
+            dispatch(authFetching({ loading: false }));
+            throw Error();
         }
     };
 };

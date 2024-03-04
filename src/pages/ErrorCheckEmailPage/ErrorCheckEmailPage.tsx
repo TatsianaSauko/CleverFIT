@@ -18,6 +18,7 @@ export const ErrorCheckEmailPage = () => {
         history.back();
         await dispatch(checkEmail({ email }));
     };
+    
     return (
         <div className='error-check-email'>
             <img src={errorCheckEmail} alt='Error' className='icon-error' />

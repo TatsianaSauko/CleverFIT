@@ -5,6 +5,7 @@ import { HeartIcon, TrophyIcon, CalendarIcon, IdCardIcon, LogoutIcon } from '../
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { logout } from '@redux/slices/AuthSlice';
 import { history } from '@redux/configure-store';
+import { Path } from '@constants/paths';
 import cleverFit from '/png/cleverFit.png';
 import fit from '/png/fit.png';
 import logoMobile from '/png/logoMobile.png';
@@ -19,7 +20,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
     const [width, setWidth] = useState(208);
     const handleButtonExit = () => {
         dispatch(logout());
-        history.push('/auth');
+        history.push(Path.Auth);
     };
 
     const menuItems = [

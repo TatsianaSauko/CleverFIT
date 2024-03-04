@@ -10,3 +10,5 @@ export { HeartIconSmall } from './HeartIconSmall';
 export { IdCardIconSmall } from './IdCardIconSmall';
 export { TrophyIconSmall } from './TrophyIconSmall';
 export { LogoutIcon } from './LogoutIcon';
+export { StarIcon } from './StarIcon';
+export { StarFillIcon } from './StarFillIcon';

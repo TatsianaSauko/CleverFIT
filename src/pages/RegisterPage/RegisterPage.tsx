@@ -4,7 +4,7 @@ import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { register } from '@redux/ActionCreators';
 import { setEmail, setPassword } from '@redux/slices/AuthSlice';
 import { useForm } from 'antd/lib/form/Form';
-import { FormRegister } from '../../interfaces/Auth.interface';
+import { FormRegister } from '../../types/Types';
 import IconG from '/png/Icon-G+.png';
 
 import './registerPage.css';
@@ -23,6 +23,7 @@ export const RegisterPage = () => {
         const hasErrors = form.getFieldsError().some(({ errors }) => errors.length);
         setIsDisabled(hasErrors);
     };
+    
     return (
         <div className='register-page'>
             <Form

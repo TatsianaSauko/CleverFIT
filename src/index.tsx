@@ -2,7 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { HistoryRouter } from 'redux-first-history/rr6';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { store, history } from '@redux/configure-store';
 import {
     MainPage,
@@ -21,11 +21,12 @@ import {
 } from './pages';
 import { AuthenticationLayout } from './layouts/AuthenticationLayout';
 import { ErrorLayout } from './layouts/ErrorLayout';
-
+import { Path } from '@constants/paths';
+import { RootLayout } from './layouts/RootLayout';
+import { FeedbacksPage } from '@pages/FeedbacksPage';
 import 'antd/dist/antd.css';
 import 'normalize.css';
 import './index.css';
-import { Path } from '@constants/paths';
 
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
@@ -35,8 +36,12 @@ root.render(
         <Provider store={store}>
             <HistoryRouter history={history}>
                 <Routes>
-                    <Route path={Path.Root} element={<MainPage />} />
-                    <Route path={Path.Main} element={<MainPage />} />
+                    <Route path={Path.Root} element={<RootLayout />}>
+                        <Route path={Path.Root} element={<Navigate to={Path.Main} replace />} />
+                        <Route path={Path.Main} element={<MainPage />} />
+                        <Route path={Path.Feedbacks} element={<FeedbacksPage />} />
+                    </Route>
+
                     <Route path={Path.Auth} element={<AuthenticationLayout />}>
                         <Route index element={<LoginPage />} />
                         <Route path={Path.Registration} element={<RegisterPage />} />

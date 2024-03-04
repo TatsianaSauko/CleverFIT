@@ -1,9 +1,9 @@
 import { Typography, Button } from 'antd';
 import success from '/png/success.png';
 import { history } from '@redux/configure-store';
+import { Path } from '@constants/paths';
 
 import './SuccessPage.css';
-import { Path } from '@constants/paths';
 
 const { Title, Text } = Typography;
 

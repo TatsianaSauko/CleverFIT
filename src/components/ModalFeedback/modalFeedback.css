@@ -1,0 +1,85 @@
+.form-feedback {
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.modal-feedback .ant-modal-footer .ant-btn-default {
+    display: none;
+}
+
+.modal-feedback .ant-modal-footer .ant-btn-lg:hover {
+    border: 1px solid var(--primary-light-5);
+    border-radius: 2px;
+    background: var(--primary-light-4);
+}
+.modal-feedback .ant-rate {
+    font-size: 20px;
+}
+
+.form-feedback .ant-input {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+    color: var(--character-light-title-85);
+    margin-bottom: 0;
+}
+.form-feedback .ant-btn-primary {
+    font-size: var(--smallFontSize);
+    letter-spacing: 0.5px;
+}
+
+.form-feedback .ant-divider-horizontal {
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+
+.form-feedback .ant-form-item {
+    margin-bottom: 0;
+}
+
+.form-feedback .ant-form-item:last-child {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 24px;
+    border: 1px solid var(--character-light-border);
+}
+
+.form-feedback .ant-form-item:nth-child(1) {
+    padding-right: 24px;
+    padding-left: 24px;
+    padding-top: 13px;
+}
+
+.form-feedback .ant-form-item:nth-child(2) {
+    padding-right: 24px;
+    padding-left: 24px;
+    margin-bottom: 8px;
+}
+
+.modal-feedback .ant-modal-close-x .anticon {
+    font-size: 14px;
+}
+
+@media screen and (max-width: 576px) {
+    .form-feedback .ant-form-item:last-child {
+        padding: 10px 16px;
+        display: block;
+    }
+
+    .form-feedback .ant-form-item:nth-child(1) {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .form-feedback .ant-form-item:nth-child(2) {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+    .modal-feedback .ant-modal-header {
+        padding: 16px 10px 16px 16px;
+    }
+}

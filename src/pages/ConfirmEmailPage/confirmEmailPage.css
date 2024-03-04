@@ -89,7 +89,8 @@
         width: 280px;
         gap: 8px;
     }
-    .subtitle {
+
+    .config-email__content .subtitle {
         width: 250px;
     }
 }
