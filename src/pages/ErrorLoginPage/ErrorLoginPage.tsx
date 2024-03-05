@@ -1,9 +1,9 @@
 import { Typography, Button } from 'antd';
 import triangleError from '/png/triangleError.png';
 import { history } from '@redux/configure-store';
+import { Path } from '@constants/paths';
 
 import './errorLoginPage.css';
-import { Path } from '@constants/paths';
 
 const { Title, Text } = Typography;
 

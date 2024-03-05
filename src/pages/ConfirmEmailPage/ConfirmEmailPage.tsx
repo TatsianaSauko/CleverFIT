@@ -23,7 +23,6 @@ export const ConfirmEmailPage = () => {
     const dispatch = useAppDispatch();
     const { email } = useAppSelector((state) => state.auth);
     const handleVerificationComplete = async (code: string) => {
-        console.log(code, email);
         await dispatch(confirmEmail({ email: email, code: code })).catch(() => {
             setIsCodeCorrect(false);
             setInputKey(Math.random());

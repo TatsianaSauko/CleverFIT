@@ -6,10 +6,8 @@
     background: var(--primary-light-1);
     color: var(--character-light-title-85);
     height: auto;
-    padding-left: 24px;
+    padding-left: 0;
     padding-right: 24px;
-    line-height: 45px;
-    padding-bottom: 18px;
 }
 
 .header__wrapper {
@@ -35,13 +33,15 @@
 .header__wrapper h1.ant-typography {
     margin: 0;
     font-weight: 700;
-    padding-top: 6px;
+    line-height: 130%;
     padding-bottom: 6px;
     color: var(--character-light-title-85);
+    padding-left: 24px;
+    margin-bottom: 14px;
 }
 
 .btn-settings {
-    margin-top: -6px;
+    margin-top: -12px;
 }
 
 .header__wrapper .ant-btn-lg {
@@ -52,6 +52,13 @@
     margin-left: 10px;
 }
 
+.header__wrapper_hidden {
+    display: none;
+}
+
+.ant-breadcrumb-link {
+    cursor: pointer;
+}
 @media (max-width: 1303px) {
     .header__wrapper h1.ant-typography {
         font-weight: 500;
@@ -70,16 +77,14 @@
 
 @media (max-width: 576px) {
     .ant-layout .ant-layout-header {
-        line-height: 43px;
-        padding-bottom: 22px;
         margin-top: -48px;
     }
 
     .header__wrapper h1.ant-typography {
         font-size: 20px;
-        line-height: 25px;
         padding-top: 0;
         padding-bottom: 0;
+        margin-bottom: 20px;
     }
 
     .header__wrapper span.anticon svg {
@@ -98,7 +103,7 @@
         padding: 4px 8.5px;
         width: 32px;
         height: 32px;
-        margin-top: -5px;
+        margin-top: -8px;
     }
 
     .header__wrapper button.ant-btn:hover {

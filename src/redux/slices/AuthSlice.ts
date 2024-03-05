@@ -5,7 +5,7 @@ import {
     LoadingPayload,
     LoginSuccessPayload,
     PasswordPayload,
-} from '../../interfaces/Auth.interface';
+} from '../../types/Types';
 import { RootState } from '@redux/configure-store';
 
 const TOKEN = 'token';

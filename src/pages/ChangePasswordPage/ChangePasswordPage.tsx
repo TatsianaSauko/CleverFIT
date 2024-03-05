@@ -8,7 +8,7 @@ import { authSelector, setPassword } from '@redux/slices/AuthSlice';
 import { history } from '@redux/configure-store';
 import { Loader } from '@components/Loader';
 import { Path } from '@constants/paths';
-import { IChangePassword } from '../../interfaces/Auth.interface';
+import { IChangePassword } from '../../types/Types';
 
 import './changePasswordPage.css';
 

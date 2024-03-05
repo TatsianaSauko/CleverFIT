@@ -16,7 +16,7 @@ export const AuthenticationLayout: React.FC = () => {
 
     useEffect(() => {
         if (token) {
-            history.push(Path.Auth);
+            history.push(Path.Main);
         }
     }, []);
 
