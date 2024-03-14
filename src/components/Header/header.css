@@ -42,6 +42,7 @@
 
 .btn-settings {
     margin-top: -12px;
+    margin-left: auto;
 }
 
 .header__wrapper .ant-btn-lg {
@@ -58,6 +59,10 @@
 
 .ant-breadcrumb-link {
     cursor: pointer;
+}
+
+.header__wrapper .hidden {
+    display: none;
 }
 @media (max-width: 1303px) {
     .header__wrapper h1.ant-typography {

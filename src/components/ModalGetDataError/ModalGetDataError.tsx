@@ -3,14 +3,11 @@ import { ModalErrorProps } from '../../types/Props';
 import errorCheckEmail from '/png/errorCheckEmail.png';
 import { useEffect, useState } from 'react';
 
-import './modalGetFeedbackError.css';
+import './modalGetDataError.css';
 
 const { Title, Text } = Typography;
 
-export const ModalGetFeedbackError = ({
-    isModalGetFeedback,
-    handleModalToggle,
-}: ModalErrorProps) => {
+export const ModalGetDataError = ({ isModalGetData, handleModalToggle }: ModalErrorProps) => {
     const [modalWidth, setModalWidth] = useState(window.innerWidth < 576 ? 328 : 539);
 
     useEffect(() => {
@@ -26,7 +23,7 @@ export const ModalGetFeedbackError = ({
     }, []);
 
     return (
-        <Modal className='modal-error' centered open={isModalGetFeedback} width={modalWidth}>
+        <Modal className='modal-error' centered open={isModalGetData} width={modalWidth}>
             <div className='result-error'>
                 <img src={errorCheckEmail} alt='Error' className='icon-result' />
                 <div className='block-title'>

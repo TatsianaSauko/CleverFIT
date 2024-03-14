@@ -15,4 +15,5 @@ export const Path = {
     ErrorChangePassword: '/result/error-change-password',
     ConfirmEmail: '/auth/confirm-email',
     ChangePassword: '/auth/change-password',
+    Calendar: '/calendar',
 };

@@ -50,7 +50,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
                 setCollapsedWidth(broken ? 0 : 64);
                 setWidth(broken ? 106 : 208);
             }}
-            {...(width === 208 ? {} : { style: { position: 'fixed', zIndex: '1' } })}
+            {...(width === 208 ? {} : { style: { position: 'fixed', zIndex: '3' } })}
         >
             <div className='logo'>
                 {!collapsed ? <img src={cleverFit} alt='CleverFit' className='logo_large' /> : null}

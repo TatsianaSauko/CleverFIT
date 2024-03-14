@@ -8,4 +8,6 @@ export const Endpoints = {
     ChangePassword: '/auth/change-password',
     Feedback: '/feedback',
     AuthGoogle: '/auth/google',
+    Training: '/training',
+    CatalogsTrainingList: '/catalogs/training-list',
 };

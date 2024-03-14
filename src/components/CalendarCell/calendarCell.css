@@ -1,0 +1,17 @@
+.events {
+    list-style: none;
+    padding-left: 0;
+}
+
+.events li {
+    font-size: 12px;
+    line-height: 15.6px;
+}
+.marker {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 100px;
+    margin-right: 6px;
+    margin-bottom:2px;
+}

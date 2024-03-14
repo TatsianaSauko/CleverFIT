@@ -1,10 +1,12 @@
 import { ReactNode } from 'react';
-import { Feedback, FormFeedback } from './Types';
+import { ActivityData, Exercise, Feedback, FormFeedback } from './Types';
+import { Moment } from 'moment';
 
 export type CardProps = {
     title: string;
     link: string;
     icon: ReactNode;
+    onClick: () => void;
 };
 
 export type ModalProps = {
@@ -19,8 +21,27 @@ export type ButtonSiderToggleProps = {
 };
 
 export type ModalErrorProps = {
-    isModalGetFeedback: boolean;
+    isModalGetData: boolean;
     handleModalToggle: () => void;
+};
+export type ModalTrainingProps = {
+    onCancel: () => void;
+    modalAddTraining: () => void;
+    position: { top: number; left: number };
+    dayOfWeek: number;
+    dateMoment: Moment;
+};
+export type ModalEditTrainingProps = {
+    backClick: () => void;
+    position: { top: number; left: number };
+    dayOfWeek: number;
+    modalAddTraining: () => void;
+};
+
+export type ModalTrainingListErrorProps = {
+    isModalTrainingList: boolean;
+    handleModalToggle: () => void;
+    update: () => void;
 };
 
 export type ModalFeedbackErrorProps = {
@@ -37,3 +58,16 @@ export type ModalFeedbackSuccessProps = {
 export type CommentItemProps = {
     data: Feedback;
 };
+
+export interface CalendarCellProps {
+    value: moment.Moment | string;
+}
+
+export interface TrainingContentProps {
+    value: ActivityData[];
+    onClick: (value: string)=> void;
+}
+export interface FormAddTrainingProps {
+    item: Exercise;
+    index: number;
+}

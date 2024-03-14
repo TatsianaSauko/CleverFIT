@@ -1,0 +1,26 @@
+.training-content {
+    list-style: none;
+    padding: 16px 12px;
+}
+
+.training-content li {
+    font-size: 12px;
+    line-height: 15.6px;
+}
+
+.training-content li:not(:last-child) {
+    margin-bottom: 8px;
+}
+.training-content .marker {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 100px;
+    margin-right: 6px;
+    margin-bottom:2px;
+}
+
+.icon-edit {
+    float: right;
+    cursor: pointer;
+}

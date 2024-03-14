@@ -1,0 +1,1 @@
+export { ModalTrainingContent } from './ModalTrainingContent';

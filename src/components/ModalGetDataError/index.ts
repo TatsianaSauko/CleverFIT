@@ -1,0 +1,1 @@
+export { ModalGetDataError } from './ModalGetDataError';

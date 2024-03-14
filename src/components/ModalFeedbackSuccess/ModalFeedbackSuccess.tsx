@@ -24,7 +24,7 @@ export const ModalFeedbackSuccess = ({
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-    
+
     return (
         <Modal
             className='modal-feedback-success'

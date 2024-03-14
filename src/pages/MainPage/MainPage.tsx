@@ -21,18 +21,21 @@ export const CARDS_DATA = [
         title: 'Расписать тренировки',
         link: 'Тренировки',
         icon: <HeartIconSmall />,
+        onClick: () => null,
     },
     {
         key: '2',
         title: 'Назначить календарь',
         link: 'Календарь',
         icon: <CalendarIconSmall />,
+        onClick: () => history.push(Path.Calendar),
     },
     {
         key: '3',
         title: 'Заполнить профиль',
         link: 'Профиль',
         icon: <IdCardIconSmall />,
+        onClick: () => null,
     },
 ];
 
@@ -53,7 +56,13 @@ export const MainPage: React.FC = () => (
         <div className='main__cards'>
             <div className='cards__wrapper'>
                 {CARDS_DATA.map((card) => (
-                    <Card title={card.title} link={card.link} icon={card.icon} key={card.key} />
+                    <Card
+                        title={card.title}
+                        link={card.link}
+                        icon={card.icon}
+                        key={card.key}
+                        onClick={card.onClick}
+                    />
                 ))}
             </div>
         </div>

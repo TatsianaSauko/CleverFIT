@@ -10,7 +10,7 @@ import { feedback, getFeedback } from '@redux/ActionCreators';
 import { ModalFeedbackError } from '@components/ModalFeedbackError';
 import { ModalFeedbackSuccess } from '@components/ModalFeedbackSuccess';
 import { authSelector } from '@redux/slices/AuthSlice';
-import { ModalGetFeedbackError } from '@components/ModalGetFeedbackError';
+import { ModalGetDataError } from '@components/ModalGetDataError';
 import { history } from '@redux/configure-store';
 
 import './feedbacksPage.css';
@@ -24,14 +24,14 @@ export const FeedbacksPage = () => {
     const [visibleCount, setVisibleCount] = useState(4);
     const [expanded, setExpanded] = useState(false);
     const [isModal, setIsModal] = useState(false);
-    const [isModalGetFeedback, setIsModalGetFeedback] = useState(false);
+    const [isModalGetData, setIsModalGetData] = useState(false);
     const [isModalSuccess, setIsModalSuccess] = useState(false);
     const [isModalError, setIsModalError] = useState(false);
     const { token } = useSelector(authSelector);
 
     useEffect(() => {
         dispatch(getFeedback({ token: token })).catch(() => {
-            setIsModalGetFeedback(true);
+            setIsModalGetData(true);
         });
     }, []);
 
@@ -47,8 +47,8 @@ export const FeedbacksPage = () => {
     const handleModalToggle = () => {
         setIsModal(false);
         setIsModalError(false);
-        if (isModalGetFeedback) {
-            setIsModalGetFeedback(false);
+        if (isModalGetData) {
+            setIsModalGetData(false);
             history.back();
         }
         if (isModalSuccess) {
@@ -72,9 +72,9 @@ export const FeedbacksPage = () => {
 
     return (
         <Content className={feedbacks.length ? 'feedbacks' : 'feedbacks add-flex'}>
-            {isModalGetFeedback && (
-                <ModalGetFeedbackError
-                    isModalGetFeedback={isModalGetFeedback}
+            {isModalGetData && (
+                <ModalGetDataError
+                    isModalGetData={isModalGetData}
                     handleModalToggle={handleModalToggle}
                 />
             )}

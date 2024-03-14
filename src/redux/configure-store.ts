@@ -4,6 +4,7 @@ import { createReduxHistoryContext } from 'redux-first-history';
 import { createBrowserHistory } from 'history';
 import authReducer from './slices/AuthSlice';
 import feedbackReducer from './slices/FeedbackSlice';
+import trainingReducer from './slices/TrainingSlice';
 
 const { createReduxHistory, routerMiddleware, routerReducer } = createReduxHistoryContext({
     history: createBrowserHistory(),
@@ -12,6 +13,7 @@ const { createReduxHistory, routerMiddleware, routerReducer } = createReduxHisto
 const rootReducer = combineReducers({
     auth: authReducer,
     feedback: feedbackReducer,
+    training: trainingReducer,
     router: routerReducer,
 });
 
