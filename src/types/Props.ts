@@ -24,17 +24,18 @@ export type ModalErrorProps = {
     isModalGetData: boolean;
     handleModalToggle: () => void;
 };
+export type ModalErrorSaveTrainingProps = {
+    IsModalErrorSaveTraining: boolean;
+    handleModalToggle: () => void;
+};
 export type ModalTrainingProps = {
     onCancel: () => void;
-    modalAddTraining: () => void;
     position: { top: number; left: number };
-    dayOfWeek: number;
-    dateMoment: Moment;
+    click: () => void;
 };
 export type ModalEditTrainingProps = {
     backClick: () => void;
     position: { top: number; left: number };
-    dayOfWeek: number;
     modalAddTraining: () => void;
 };
 
@@ -60,14 +61,23 @@ export type CommentItemProps = {
 };
 
 export interface CalendarCellProps {
-    value: moment.Moment | string;
+    value: Moment;
 }
 
 export interface TrainingContentProps {
     value: ActivityData[];
-    onClick: (value: string)=> void;
+    onClick: (value: string) => void;
 }
 export interface FormAddTrainingProps {
     item: Exercise;
     index: number;
 }
+
+export interface TrainingEditProps {
+    onClick: () => void;
+}
+
+export type DrawerProps = {
+    onClose: () => void;
+    isDrawer: boolean;
+};

@@ -6,26 +6,31 @@ type InitialState = {
     trainingList: TrainingList;
     activitiesData: ActivityData[];
     training: ActivityData;
+    flag: Boolean;
+    loadingTraining: Boolean;
 };
 
 const initialState: InitialState = {
     trainingList: [],
     activitiesData: [],
     training: {
+        _id: crypto.randomUUID(),
         name: '',
         date: '',
         exercises: [
             {
+                _id: crypto.randomUUID(),
                 name: '',
                 replays: undefined,
                 weight: undefined,
                 approaches: undefined,
                 isImplementation: false,
-                checked: false
+                checked: false,
             },
-        ]
+        ],
     },
-
+    flag: false,
+    loadingTraining: false,
 };
 
 export const trainingSlice = createSlice({
@@ -34,6 +39,10 @@ export const trainingSlice = createSlice({
     reducers: {
         setTrainingList(state, action: PayloadAction<{ trainingList: TrainingList }>) {
             state.trainingList = action.payload.trainingList;
+        },
+
+        setLoading(state, action: PayloadAction<{ loadingTraining: Boolean }>) {
+            state.loadingTraining = action.payload.loadingTraining;
         },
 
         setActivitiesData(state, action: PayloadAction<{ activitiesData: ActivityData[] }>) {
@@ -50,69 +59,76 @@ export const trainingSlice = createSlice({
 
         setTraining(state, action: PayloadAction<{ training: ActivityData }>) {
             state.training = action.payload.training;
-          },
+        },
+        setFlag(state, action: PayloadAction<{ flag: Boolean }>) {
+            state.flag = action.payload.flag;
+        },
 
-        // setExercises(state, action: PayloadAction<{ exercise: Exercise }>) {
-        //     state.training.exercises.push(action.payload.exercise);
-        // },
-
-        // setExercises(state, action: PayloadAction<{ exercise: Exercise, id: number }>) {
-        //     if (id) {
-        //         state.training.exercises[id] =  action.payload.exercise;
-        //     }
-
-        // },
-
-        // setExercises(state, action) {
-        //     const { exercise, id } = action.payload;
-
-        //     const updatedExercises = [...state.training.exercises];
-        //     updatedExercises[id] = { ...exercise };
-
-        //     return {
-        //         ...state,
-        //         training: {
-        //             ...state.training,
-        //             exercises: updatedExercises,
-        //         },
-        //     };
-        // },
-
-        // setExercise(state, action: PayloadAction<{ exercise: Exercise }>) {
-        //     state.exercise.name = action.payload.exercise.name;
-        //     state.exercise.replays = action.payload.exercise.replays;
-        //     state.exercise.weight = action.payload.exercise.weight;
-        //     state.exercise.approaches = action.payload.exercise.approaches;
-        //     state.exercise.isImplementation = action.payload.exercise.isImplementation;
-        // },
-
-        cleanTraining(state) {
-            state.training.name='';
-            state.training.date='';
-            state.training.exercises= [
+        setTrainingFull(state) {
+            state.training.exercises = [
                 {
+                    _id: crypto.randomUUID(),
                     name: '',
                     replays: undefined,
                     weight: undefined,
                     approaches: undefined,
-                    isImplementation: false
+                    isImplementation: false,
                 },
             ];
-
         },
+
+        setExercises(state, action: PayloadAction<{ exercise: Exercise; index: number }>) {
+            const { exercise, index } = action.payload;
+            const updatedExercises = [...state.training.exercises];
+            updatedExercises[index] = exercise;
+            state.training.exercises = updatedExercises;
+        },
+
+        cleanTraining(state) {
+            state.training = {
+                _id: crypto.randomUUID(),
+                name: '',
+                date: state.training.date,
+                exercises: [
+                    {
+                        _id: crypto.randomUUID(),
+                        name: '',
+                        replays: undefined,
+                        weight: undefined,
+                        approaches: undefined,
+                        isImplementation: false,
+                        checked: false,
+                    },
+                ],
+            };
+        },
+
         createExercise(state) {
             state.training.exercises.push({
+                _id: crypto.randomUUID(),
                 name: '',
                 replays: undefined,
                 weight: undefined,
                 approaches: undefined,
-                isImplementation: false
+                isImplementation: false,
             });
         },
     },
 });
 
-export const { setTrainingList, setActivitiesData, setNameTraining,setTraining, cleanTraining, createExercise, setDateTraining } = trainingSlice.actions;
+export const {
+    setTrainingList,
+    setActivitiesData,
+    setTrainingFull,
+    setLoading,
+    setFlag,
+    setNameTraining,
+    setExercises,
+    setTraining,
+    cleanTraining,
+    createExercise,
+    setDateTraining,
+} = trainingSlice.actions;
 
 export const trainingSelector = (state: RootState) => state.training;
 

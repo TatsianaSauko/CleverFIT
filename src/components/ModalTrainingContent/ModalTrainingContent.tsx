@@ -1,37 +1,40 @@
 import { getColorForName } from '@utils/getColorForName';
-
+import { Button } from 'antd';
 import { TrainingContentProps } from '../../types/Props';
-import edit from '/png/buttonEdit.png';
+import { EditIcon } from '../../icons';
+import { EditFilled } from '@ant-design/icons';
 
 import './modalTrainingContent.css';
-import { useState } from 'react';
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 
 export const ModalTrainingContent = ({ value, onClick }: TrainingContentProps) => {
-
-
-    const [selectedActivity, setSelectedActivity] = useState('');
-
-    const handleEditClick = (activityName: string) => {
-        setSelectedActivity(activityName);
-
-    };
-
     return (
         <ul className='training-content'>
-            {value.map((activity) => (
-                <li key={activity.name}>
+            {value.map((activity, index) => (
+                <li
+                    key={activity._id}
+                    data-test-id={`modal-update-training-edit-button${index}`}
+                    className={activity.isImplementation ? 'disabled' : ''}
+                >
                     <div
                         className='marker'
                         style={{ backgroundColor: getColorForName(activity.name) }}
                     />
                     {activity.name}
-                    <img
-                        src={edit}
-                        alt='Edit'
-                        className='icon-edit'
-                        onClick={()  => onClick(activity.name)}
-                    />
+                    {activity.isImplementation ? (
+                        <Button
+                            className='icon-edit'
+                            data-test-id={`modal-update-training-edit-button${index}`}
+                            disabled
+                            icon={<EditFilled />}
+                        ></Button>
+                    ) : (
+                        <Button
+                            className='icon-edit'
+                            data-test-id={`modal-update-training-edit-button${index}`}
+                            onClick={() => onClick(activity.name)}
+                            icon={<EditIcon />}
+                        ></Button>
+                    )}
                 </li>
             ))}
         </ul>

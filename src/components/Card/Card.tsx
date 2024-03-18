@@ -8,7 +8,12 @@ export const Card = ({ title, link, icon, onClick }: CardProps) => (
         <div className='card__title'>{title}</div>
         <Divider className='divider' />
         <div className='card__link'>
-            <Button icon={icon} block onClick={onClick}>
+            <Button
+                icon={icon}
+                block
+                onClick={onClick}
+                data-test-id={link === 'Календарь' ? 'menu-button-calendar' : undefined}
+            >
                 {link}
             </Button>
         </div>

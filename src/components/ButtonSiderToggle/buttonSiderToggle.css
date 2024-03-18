@@ -32,8 +32,9 @@
     clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
     display: none;
     transition: left 0.2s;
-    animation: slide-right 0.2s;
+    animation: slide-left 0.2s;
     fill: var(--neutral-gray-7);
+    left: 106px;
 }
 
 .ant-layout span.anticon.anticon-menu-fold.sider-switch-mobile svg,
@@ -65,8 +66,8 @@
     span.anticon.anticon-menu-fold.sider-switch-mobile.trigger,
     span.anticon.anticon-menu-unfold.sider-switch-mobile.trigger {
         display: flex;
-        animation: slide-left 0.2s;
-        left: 106px;
+        animation: slide-right 0.2s;
+        left: 0;
         position: sticky;
     }
 
@@ -79,3 +80,4 @@
         }
     }
 }
+

@@ -1,8 +1,9 @@
 import { ActivityData } from '../types/Types';
 import moment from 'moment';
-export function getDataForDate(activitiesData: ActivityData[], value: moment.Moment | string) {
-    const formattedValue = typeof value === 'string' ? value : moment(value).format('DD.MM.YYYY');
+
+export function getDataForDate(activitiesData: ActivityData[], value: string | number) {
     return activitiesData.filter(
-        (activity) => moment(activity.date).format('DD.MM.YYYY') === formattedValue,
+        (activity) =>
+            moment(activity.date).format('DD.MM.YYYY') === moment(value).format('DD.MM.YYYY'),
     );
 }

@@ -1,7 +1,7 @@
+import { useEffect, useState } from 'react';
 import { Button, Modal, Typography } from 'antd';
 import { ModalTrainingListErrorProps } from '../../types/Props';
-import icon from '/png/icon-blue.png';
-import { useEffect, useState } from 'react';
+import { CloseCircleOutlined, CloseOutlined } from '@ant-design/icons';
 
 import './modalTrainingListError.css';
 
@@ -34,21 +34,39 @@ export const ModalTrainingListError = ({
             open={isModalTrainingList}
             onCancel={handleModalToggle}
             width={modalWidth}
+            closeIcon={<CloseOutlined data-test-id='modal-error-user-training-button-close' />}
         >
             <div className='result-training-list-error'>
                 <div className='block-title__wrapper'>
-                    <img src={icon} alt='Error' className='icon-result' />
+                    <CloseCircleOutlined
+                        className='icon-result'
+                        style={{ color: 'var(--primary-light-6)', fontSize: '24px' }}
+                        data-test-id='modal-error-user-training-button-close'
+                    />
                     <div className='block-title'>
-                        <Title level={5} className='title'>
+                        <Title
+                            level={5}
+                            className='title'
+                            data-test-id='modal-error-user-training-title'
+                        >
                             При открытии данных <br /> произошла ошибка
                         </Title>
-                        <Text type='secondary' className='subtitle'>
+                        <Text
+                            type='secondary'
+                            className='subtitle'
+                            data-test-id='modal-error-user-training-subtitle'
+                        >
                             Попробуйте ещё раз.
                         </Text>
                     </div>
                 </div>
 
-                <Button type='primary' className='btn-update' onClick={update}>
+                <Button
+                    type='primary'
+                    className='btn-update'
+                    onClick={update}
+                    data-test-id='modal-error-user-training-button'
+                >
                     Обновить
                 </Button>
             </div>

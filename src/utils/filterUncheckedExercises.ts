@@ -1,7 +1,6 @@
-import { ActivityData } from "../types/Types";
+import { ActivityData } from '../types/Types';
 
-export function filterUncheckedExercises(res: ActivityData) {
-    const filteredExercises = res.exercises.filter(exercise => !exercise.checked);
-    res.exercises = filteredExercises;
-    return res;
+export function filterUncheckedExercises(training: ActivityData) {
+    const filteredExercises = training.exercises.filter((exercise) => !exercise.checked);
+    return { ...training, exercises: filteredExercises };
 }

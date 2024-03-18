@@ -23,7 +23,13 @@ export const ModalGetDataError = ({ isModalGetData, handleModalToggle }: ModalEr
     }, []);
 
     return (
-        <Modal className='modal-error' centered open={isModalGetData} width={modalWidth}>
+        <Modal
+            className='modal-error'
+            data-test-id='modal-no-review'
+            centered
+            open={isModalGetData}
+            width={modalWidth}
+        >
             <div className='result-error'>
                 <img src={errorCheckEmail} alt='Error' className='icon-result' />
                 <div className='block-title'>
@@ -35,6 +41,7 @@ export const ModalGetDataError = ({ isModalGetData, handleModalToggle }: ModalEr
                     </Text>
                 </div>
                 <Button
+                    data-test-id='modal-no-review'
                     type='primary'
                     size={'large'}
                     className='btn-back'

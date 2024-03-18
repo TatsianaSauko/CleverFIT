@@ -5,6 +5,7 @@ import { StatusCodes } from '@constants/statusCodes';
 import { BaseUrl, Endpoints } from '@constants/api';
 import axios from 'axios';
 import {
+    ActivityData,
     AxiosError,
     Feedback,
     FormFeedback,
@@ -16,7 +17,7 @@ import {
     IRegister,
 } from '../types/Types';
 import { setFeedback } from './slices/FeedbackSlice';
-import { setActivitiesData, setTrainingList } from './slices/TrainingSlice';
+import { setActivitiesData, setLoading, setTrainingList } from './slices/TrainingSlice';
 import { transformedData } from '@utils/transformedData';
 
 export const register = (data: IRegister) => {
@@ -193,8 +194,7 @@ export const getTrainingUser = (data: string) => {
                 'Content-Type': 'application/json',
             };
             const response = await axios.get(`${BaseUrl}${Endpoints.Training}`, { headers });
-            console.log('response',response)
-            const transform = transformedData(response.data)
+            const transform = transformedData(response.data);
             dispatch(setActivitiesData({ activitiesData: transform }));
             dispatch(authFetching({ loading: false }));
         } catch {
@@ -224,80 +224,43 @@ export const getTrainingList = (data: string) => {
     };
 };
 
-export const createTraining = (data: string) => {
+export const createTraining = (data: string, training: ActivityData) => {
     return async (dispatch: AppDispatch) => {
         try {
-            dispatch(authFetching({ loading: true }));
+            dispatch(setLoading({ loadingTraining: true }));
             const headers = {
                 Authorization: `Bearer ${data}`,
                 'Content-Type': 'application/json',
             };
-            const post = {
-                name: 'Спина',
-                date: '2024-03-16T00:00:00.000Z',
 
-                exercises: [
-                    {
-                        name: 'Скручивание',
-                        replays: 1,
-                        weight: 3,
-                        approaches: 3,
-                    },
-                    {
-                        name: 'Тяга',
-                        replays: 2,
-                        weight: 2,
-                        approaches: 3,
-                    },
-                ],
-            };
-
-            const response = await axios.post(`${BaseUrl}${Endpoints.Training}`, post, {
+            await axios.post(`${BaseUrl}${Endpoints.Training}`, training, {
                 headers,
             });
-            console.log(response);
-            // dispatch(setTrainingList({ trainingList: response.data }));
-            dispatch(authFetching({ loading: false }));
+
+            dispatch(setLoading({ loadingTraining: false }));
         } catch (error) {
-            dispatch(authFetching({ loading: false }));
-            console.log(error);
-            // throw Error();
+            dispatch(setLoading({ loadingTraining: false }));
+            throw Error();
         }
     };
 };
 
-export const putTraining = (data: string) => {
+export const putTraining = (data: string, training: ActivityData, id: string) => {
     return async (dispatch: AppDispatch) => {
         try {
-            dispatch(authFetching({ loading: true }));
+            dispatch(setLoading({ loadingTraining: true }));
             const headers = {
                 Authorization: `Bearer ${data}`,
                 'Content-Type': 'application/json',
             };
-            const post = {
-                name: 'Руки',
-                date: '2024-03-20T00:00:00.000Z',
 
-                exercises: [
-                    {
-                        name: 'Скручивание',
-                        replays: 10,
-                        weight: 10,
-                        approaches: 10,
-                    },
-                ],
-            };
-            const id = '65f2b9a275077c710a3ef94f'
-            const response = await axios.put(`${BaseUrl}${Endpoints.Training}/${id}`, post, {
+            await axios.put(`${BaseUrl}${Endpoints.Training}/${id}`, training, {
                 headers,
             });
-            console.log(response);
-            // dispatch(setTrainingList({ trainingList: response.data }));
-            dispatch(authFetching({ loading: false }));
+            dispatch(setLoading({ loadingTraining: false }));
         } catch (error) {
-            dispatch(authFetching({ loading: false }));
-            console.log(error);
-            // throw Error();
+            dispatch(setLoading({ loadingTraining: false }));
+            throw Error();
         }
     };
 };
@@ -310,8 +273,10 @@ export const deleteTraining = (data: string) => {
                 Authorization: `Bearer ${data}`,
                 'Content-Type': 'application/json',
             };
-            const id = '65eea9baea1c7766036922c3'
-            const response = await axios.delete(`${BaseUrl}${Endpoints.Training}/${id}`, {headers});
+            const id = '65f542c175077c710a43b307';
+            const response = await axios.delete(`${BaseUrl}${Endpoints.Training}/${id}`, {
+                headers,
+            });
             console.log(response);
             // dispatch(setTrainingList({ trainingList: response.data }));
             dispatch(authFetching({ loading: false }));
@@ -322,4 +287,3 @@ export const deleteTraining = (data: string) => {
         }
     };
 };
-

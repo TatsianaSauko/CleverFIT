@@ -1,0 +1,1 @@
+export { ModalErrorSaveTraining } from './ModalErrorSaveTraining';

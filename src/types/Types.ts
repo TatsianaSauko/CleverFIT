@@ -94,19 +94,18 @@ export type Training = {
 };
 export type Exercise = {
     _id?: string;
-        name: string;
-        replays: number | undefined;
-        weight: number | undefined;
-        approaches: number | undefined;
-        isImplementation?: boolean;
-        checked?: boolean;
-
+    name: string;
+    replays: number | undefined;
+    weight: number | undefined;
+    approaches: number | undefined;
+    isImplementation?: boolean;
+    checked?: boolean;
 };
 
 export type ActivityData = {
     _id?: string;
     name: string;
-    date: string;
+    date: string | number;
     isImplementation?: boolean;
     userId?: string;
     parameters?: {
@@ -117,4 +116,3 @@ export type ActivityData = {
     };
     exercises: Exercise[];
 };
-

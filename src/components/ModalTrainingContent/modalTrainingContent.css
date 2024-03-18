@@ -1,15 +1,20 @@
 .training-content {
     list-style: none;
     padding: 16px 12px;
+    margin-bottom: 0;
 }
 
 .training-content li {
-    font-size: 12px;
+    font-size: var(--smallFontSize);
     line-height: 15.6px;
 }
 
 .training-content li:not(:last-child) {
     margin-bottom: 8px;
+}
+
+.training-content .disabled {
+    color: var(--character-light-disable-25);
 }
 .training-content .marker {
     display: inline-block;
@@ -17,10 +22,15 @@
     height: 6px;
     border-radius: 100px;
     margin-right: 6px;
-    margin-bottom:2px;
+    margin-bottom: 2px;
 }
 
-.icon-edit {
+.training-content .icon-edit {
     float: right;
-    cursor: pointer;
+    border: none;
+    height: 16px;
+}
+
+.training-content .icon-edit:disabled {
+    background: var(--character-light-primary-inverse);
 }

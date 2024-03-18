@@ -5,10 +5,11 @@ import { CalendarCellProps } from '../../types/Props';
 import { getDataForDate } from '@utils/getDataForDate';
 
 import './calendarCell.css';
+import moment from 'moment';
 
 export const CalendarCell = ({ value }: CalendarCellProps) => {
     const { activitiesData } = useSelector(trainingSelector);
-    const dataForDate = getDataForDate(activitiesData, value);
+    const dataForDate = getDataForDate(activitiesData, moment(value).toISOString());
 
     return (
         <ul className='events'>

@@ -39,7 +39,7 @@ export const AuthenticationLayout: React.FC = () => {
                     >
                         <Menu.Item
                             key='login'
-                            style={{ flex: '1', textAlign: 'center' }}
+                            style={{ flex: '0.7', textAlign: 'center' }}
                             onClick={() => history.push('/auth')}
                         >
                             Вход
