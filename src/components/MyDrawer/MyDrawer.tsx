@@ -20,8 +20,6 @@ export const MyDrawer = ({ onClose, isDrawer }: DrawerProps) => {
     const itemWithName = dataForDate.find((item) => item.name === training.name);
     const [modalWidth, setModalWidth] = useState(window.innerWidth < 576 ? 360 : 408);
 
-    useEffect(() => {}, [training]);
-
     useEffect(() => {
         const handleResize = () => {
             setModalWidth(window.innerWidth < 576 ? 360 : 408);
@@ -96,7 +94,7 @@ export const MyDrawer = ({ onClose, isDrawer }: DrawerProps) => {
                         onClick={addForm}
                         block
                     >
-                        Добавить еще
+                        Добавить ещё
                     </Button>
                     <Button
                         block

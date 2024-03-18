@@ -23,6 +23,7 @@
     box-shadow: inset 0 2px 0 0 var(--character-light-dividers);
     background: var(--character-light-primary-inverse);
 }
+
 .cell {
     width: 100%;
     height: 100%;
@@ -79,6 +80,7 @@
         padding-top: 19px;
     }
 }
+
 .has-items {
     background: var(--primary-light-2);
 }

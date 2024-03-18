@@ -14,9 +14,10 @@ import { Path } from '@constants/paths';
 import './mainPage.css';
 import { ModalGetDataError } from '@components/ModalGetDataError';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import { getTrainingUser } from '@redux/ActionCreators';
+import { getTrainingList, getTrainingUser } from '@redux/ActionCreators';
 import { useSelector } from 'react-redux';
 import { authSelector } from '@redux/slices/AuthSlice';
+import { setIisModal } from '@redux/slices/TrainingSlice';
 
 const { Content } = Layout;
 
@@ -48,10 +49,16 @@ export const MainPage: React.FC = () => {
         },
     ];
 
-    const handleCalendar = () => {
+    const handleCalendar = async () => {
         try {
-            dispatch(getTrainingUser(token));
-            history.push(Path.Calendar);
+            await dispatch(getTrainingUser(token));
+            try {
+                await dispatch(getTrainingList(token));
+            } catch {
+                dispatch(setIisModal({ isModal: true }));
+            } finally {
+                history.push(Path.Calendar);
+            }
         } catch {
             setIsModalGetData(true);
         }

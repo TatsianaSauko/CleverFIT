@@ -8,6 +8,7 @@ type InitialState = {
     training: ActivityData;
     flag: Boolean;
     loadingTraining: Boolean;
+    isModal: boolean;
 };
 
 const initialState: InitialState = {
@@ -31,6 +32,7 @@ const initialState: InitialState = {
     },
     flag: false,
     loadingTraining: false,
+    isModal: false,
 };
 
 export const trainingSlice = createSlice({
@@ -60,8 +62,13 @@ export const trainingSlice = createSlice({
         setTraining(state, action: PayloadAction<{ training: ActivityData }>) {
             state.training = action.payload.training;
         },
+
         setFlag(state, action: PayloadAction<{ flag: Boolean }>) {
             state.flag = action.payload.flag;
+        },
+
+        setIisModal(state, action: PayloadAction<{ isModal: boolean }>) {
+            state.isModal = action.payload.isModal;
         },
 
         setTrainingFull(state) {
@@ -128,6 +135,7 @@ export const {
     cleanTraining,
     createExercise,
     setDateTraining,
+    setIisModal,
 } = trainingSlice.actions;
 
 export const trainingSelector = (state: RootState) => state.training;

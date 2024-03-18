@@ -16,6 +16,7 @@
 .training-content .disabled {
     color: var(--character-light-disable-25);
 }
+
 .training-content .marker {
     display: inline-block;
     width: 6px;

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Button, Modal, Typography } from 'antd';
 import { ModalTrainingListErrorProps } from '../../types/Props';
 import { CloseCircleOutlined, CloseOutlined } from '@ant-design/icons';
+import { useSelector } from 'react-redux';
+import { trainingSelector } from '@redux/slices/TrainingSlice';
 
 import './modalTrainingListError.css';
 
@@ -12,6 +14,7 @@ export const ModalTrainingListError = ({
     handleModalToggle,
     update,
 }: ModalTrainingListErrorProps) => {
+    const { isModal } = useSelector(trainingSelector);
     const [modalWidth, setModalWidth] = useState(window.innerWidth < 576 ? 328 : 384);
 
     useEffect(() => {
@@ -32,16 +35,24 @@ export const ModalTrainingListError = ({
             footer={false}
             centered
             open={isModalTrainingList}
-            onCancel={handleModalToggle}
+            onCancel={isModal ? handleModalToggle : undefined}
+            closable={isModal}
             width={modalWidth}
-            closeIcon={<CloseOutlined data-test-id='modal-error-user-training-button-close' />}
+            closeIcon={
+                isModal ? (
+                    <CloseOutlined data-test-id='modal-error-user-training-button-close' />
+                ) : null
+            }
         >
             <div className='result-training-list-error'>
                 <div className='block-title__wrapper'>
                     <CloseCircleOutlined
                         className='icon-result'
-                        style={{ color: 'var(--primary-light-6)', fontSize: '24px' }}
-                        data-test-id='modal-error-user-training-button-close'
+                        style={
+                            isModal
+                                ? { color: 'var(--primary-light-6)', fontSize: '24px' }
+                                : { color: 'var(--character-dark-error)', fontSize: '24px' }
+                        }
                     />
                     <div className='block-title'>
                         <Title
@@ -49,25 +60,24 @@ export const ModalTrainingListError = ({
                             className='title'
                             data-test-id='modal-error-user-training-title'
                         >
-                            При открытии данных <br /> произошла ошибка
+                            При {isModal ? 'открытии' : 'сохранении'} данных <br /> произошла ошибка
                         </Title>
                         <Text
                             type='secondary'
                             className='subtitle'
                             data-test-id='modal-error-user-training-subtitle'
                         >
-                            Попробуйте ещё раз.
+                            {isModal ? 'Попробуйте ещё раз.' : 'Придётся попробовать ещё раз'}
                         </Text>
                     </div>
                 </div>
-
                 <Button
                     type='primary'
                     className='btn-update'
-                    onClick={update}
+                    onClick={isModal ? update : handleModalToggle}
                     data-test-id='modal-error-user-training-button'
                 >
-                    Обновить
+                    {isModal ? 'Обновить' : 'Закрыть'}
                 </Button>
             </div>
         </Modal>

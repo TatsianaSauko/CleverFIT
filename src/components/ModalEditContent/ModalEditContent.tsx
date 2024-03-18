@@ -1,12 +1,11 @@
 import { Button, Empty } from 'antd';
 import empty from '/png/empty-image.png';
 import { TrainingEditProps } from '../../types/Props';
-
-import './modalEditContent.css';
-
 import { useSelector } from 'react-redux';
 import { trainingSelector } from '@redux/slices/TrainingSlice';
 import { EditIcon } from '../../icons';
+
+import './modalEditContent.css';
 
 export const ModalEditContent = ({ onClick }: TrainingEditProps) => {
     const { training } = useSelector(trainingSelector);

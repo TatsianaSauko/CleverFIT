@@ -16,6 +16,7 @@ import {
     setActivitiesData,
     setDateTraining,
     setFlag,
+    setIisModal,
     setTraining,
     setTrainingFull,
     trainingSelector,
@@ -26,12 +27,11 @@ import { ModalEdit } from '@components/ModalEdit';
 
 import './calendarPage.css';
 
-
 export const CalendarPage = () => {
     const dispatch = useAppDispatch();
     const { token } = useSelector(authSelector);
-    const { activitiesData, training } = useSelector(trainingSelector);
-    const [isModalTrainingList, setIsModalTrainingList] = useState(false);
+    const { training, isModal } = useSelector(trainingSelector);
+    const [isModalTrainingList, setIsModalTrainingList] = useState<boolean>(isModal);
     const [modalWidth, setModalWidth] = useState(window.innerWidth < 576 ? false : true);
     const [isDrawer, setIsDrawer] = useState(false);
     const [modalTraining, setModalTraining] = useState(false);
@@ -48,22 +48,16 @@ export const CalendarPage = () => {
         return () => {
             window.removeEventListener('resize', handleResize);
         };
-    }, [activitiesData]);
+    }, []);
 
-    const getDataTrainingList = async () => {
+    const update = async () => {
+        dispatch(setIisModal({ isModal: false }));
         try {
             await dispatch(getTrainingList(token));
         } catch {
             setIsModalTrainingList(true);
+            dispatch(setIisModal({ isModal: true }));
         }
-    };
-    useEffect(() => {
-        getDataTrainingList();
-    }, []);
-
-    const update = async () => {
-        setIsModalTrainingList(false);
-        await getDataTrainingList();
     };
 
     const isPastDate = (date: Moment): boolean => {
@@ -95,10 +89,14 @@ export const CalendarPage = () => {
     };
 
     const handleModalToggle = () => {
-        if (isModalTrainingList) {
-            setIsModalTrainingList(false);
-            dispatch(setActivitiesData({ activitiesData: [] }));
-        }
+        setIsModalTrainingList(false);
+        dispatch(setIisModal({ isModal: false }));
+        dispatch(setActivitiesData({ activitiesData: [] }));
+    };
+
+    const closeModals = () => {
+        setModalTrainingEdit(false);
+        setModalTraining(false);
     };
 
     const closeDrawer = () => {
@@ -111,6 +109,11 @@ export const CalendarPage = () => {
                 dispatch(setTraining({ training: resFilter }));
             }
         }
+    };
+
+    const handleButtonBack = () => {
+        setModalTrainingEdit(false);
+        setModalTraining(true);
     };
 
     return (
@@ -142,9 +145,10 @@ export const CalendarPage = () => {
             ) : null}
             {modalTrainingEdit ? (
                 <ModalEdit
-                    backClick={() => setModalTrainingEdit(false)}
+                    backClick={handleButtonBack}
                     position={modalPosition}
                     modalAddTraining={() => setIsDrawer(true)}
+                    closeModals={closeModals}
                 />
             ) : null}
         </Content>

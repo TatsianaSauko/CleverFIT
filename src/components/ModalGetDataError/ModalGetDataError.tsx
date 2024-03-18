@@ -41,7 +41,6 @@ export const ModalGetDataError = ({ isModalGetData, handleModalToggle }: ModalEr
                     </Text>
                 </div>
                 <Button
-                    data-test-id='modal-no-review'
                     type='primary'
                     size={'large'}
                     className='btn-back'

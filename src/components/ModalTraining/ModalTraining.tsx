@@ -27,11 +27,13 @@ export const ModalTraining = ({ onCancel, position, click }: ModalTrainingProps)
         dispatch(setNameTraining({ value }));
         const filteredActivities = dataForDate.filter((item) => item.name === value);
         dispatch(setTraining({ training: filteredActivities[0] }));
+        onCancel();
         click();
     };
 
     const handleCreateTraining = () => {
         click();
+        onCancel();
         dispatch(cleanTraining());
     };
 
@@ -76,7 +78,6 @@ export const ModalTraining = ({ onCancel, position, click }: ModalTrainingProps)
                     description={false}
                 ></Empty>
             )}
-
             <Divider />
             <div className='btn-wrapper'>
                 <Button

@@ -38,9 +38,11 @@
     display: flex;
     justify-content: center;
 }
+
 .modal-training-edit .ant-divider-horizontal {
     margin: 0;
 }
+
 .modal-training-edit .block-title {
     padding: 16px 12px;
 }
@@ -52,6 +54,7 @@
     margin-bottom: 4px;
     letter-spacing: 0.2px;
 }
+
 .modal-training-edit .subtitle {
     line-height: 18.2px;
     letter-spacing: 0.5px;
@@ -60,7 +63,9 @@
 .modal-training-edit .select-training {
     padding-top: 12.5px;
     padding-bottom: 12.5px;
+    width: 225px;
 }
+
 .modal-training-edit .btn-back {
     padding-left: 12px;
     cursor: pointer;
@@ -92,8 +97,13 @@
 .spin {
     padding-right: 8px;
 }
+
 @media screen and (max-width: 576px) {
     .modal-training-edit {
         width: 312px;
+    }
+
+    .modal-training-edit .select-training {
+        width: 275px;
     }
 }

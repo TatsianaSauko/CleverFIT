@@ -11,6 +11,7 @@
 .result-training-list-error .icon-result {
     height: 25px;
 }
+
 .result-training-list-error .title {
     font-weight: 400;
     line-height: 20.8px;
@@ -31,9 +32,11 @@
     border: 1px solid var(--primary-light-5);
     background: var(--primary-light-4);
 }
+
 .result-training-list-error .subtitle {
     letter-spacing: 0.5px;
 }
+
 .result-training-list-error .ant-modal-close-x {
     width: 69px;
     font-size: 14px;

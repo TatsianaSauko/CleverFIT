@@ -1,11 +1,13 @@
 .ant-drawer-content-wrapper {
     width: 408px;
 }
+
 .drawer__wrapper .buttons__wrapper {
     background-color: var(--neutral-gray-4);
     display: flex;
     gap: 9;
 }
+
 .drawer__wrapper .btn__add-more {
     font-size: var(--smallFontSize);
 }
@@ -29,9 +31,11 @@
     padding-left: 32px;
     padding-right: 32px;
 }
+
 .drawer__wrapper .ant-btn-link {
     color: var(--primary-light-6);
 }
+
 .ant-drawer-mask {
     background: rgba(255, 255, 255, 0.05);
 }
@@ -41,6 +45,7 @@
     line-height: 26px;
     font-weight: 500;
 }
+
 .ant-drawer-header {
     padding: 24px 32px 16px 32px;
     border-bottom: none;
@@ -71,13 +76,14 @@
     .ant-drawer-header {
         padding: 16px;
     }
+
     .ant-drawer-body {
         padding-left: 16px;
         padding-right: 16px;
     }
+
     .ant-drawer-content-wrapper {
         width: 360px;
-
         border-top-right-radius: 24px;
         border-top-left-radius: 24px;
         overflow-y: auto;

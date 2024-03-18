@@ -1,9 +1,10 @@
-import './formAddTraining.css';
 import { Form, Input, Checkbox } from 'antd';
 import { setExercises } from '@redux/slices/TrainingSlice';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { FieldData } from 'rc-field-form/lib/interface';
 import { FormAddTrainingProps } from '../../types/Props';
+
+import './formAddTraining.css';
 
 export const FormAddTraining = ({ item, index }: FormAddTrainingProps) => {
     const dispatch = useAppDispatch();
@@ -73,20 +74,18 @@ export const FormAddTraining = ({ item, index }: FormAddTrainingProps) => {
                     />
                 </Form.Item>
                 <div className='form__block'>
-                    <Form.Item
-                        label='Вес, кг'
-                        name='weight'
-                        data-test-id={`modal-drawer-right-input-weight${index}`}
-                    >
-                        <Input placeholder={'0'} />
+                    <Form.Item label='Вес, кг' name='weight'>
+                        <Input
+                            placeholder={'0'}
+                            data-test-id={`modal-drawer-right-input-weight${index}`}
+                        />
                     </Form.Item>
                     <div className='icon'>x</div>
-                    <Form.Item
-                        label='Количество'
-                        name='replays'
-                        data-test-id={`modal-drawer-right-input-quantity${index}`}
-                    >
-                        <Input placeholder={'1'} />
+                    <Form.Item label='Количество' name='replays'>
+                        <Input
+                            placeholder={'1'}
+                            data-test-id={`modal-drawer-right-input-quantity${index}`}
+                        />
                     </Form.Item>
                 </div>
             </div>

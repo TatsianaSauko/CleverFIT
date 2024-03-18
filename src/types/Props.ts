@@ -24,25 +24,29 @@ export type ModalErrorProps = {
     isModalGetData: boolean;
     handleModalToggle: () => void;
 };
+
 export type ModalErrorSaveTrainingProps = {
     IsModalErrorSaveTraining: boolean;
     handleModalToggle: () => void;
 };
+
 export type ModalTrainingProps = {
     onCancel: () => void;
     position: { top: number; left: number };
     click: () => void;
 };
+
 export type ModalEditTrainingProps = {
     backClick: () => void;
     position: { top: number; left: number };
     modalAddTraining: () => void;
+    closeModals: () => void;
 };
 
 export type ModalTrainingListErrorProps = {
     isModalTrainingList: boolean;
     handleModalToggle: () => void;
-    update: () => void;
+    update?: () => void;
 };
 
 export type ModalFeedbackErrorProps = {

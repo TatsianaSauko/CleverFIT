@@ -12,9 +12,11 @@
     width: 100%;
     border-radius: 2px;
 }
+
 .drawer__wrapper .ant-form-item {
     margin-bottom: 8px;
 }
+
 .drawer__wrapper .form__wrapper {
     display: flex;
     gap: 32px;
@@ -46,6 +48,7 @@
 .name__wrapper {
     display: flex;
 }
+
 .name__wrapper .name {
     flex: 1;
 }
