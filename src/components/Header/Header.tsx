@@ -23,40 +23,52 @@ export const Header = () => {
     const [breadcrumbRoutes, setBreadcrumbRoutes] = useState<BreadcrumbRoute[]>([]);
 
     useEffect(() => {
-        if (location.pathname === Path.Main) {
-            setIsTitleHeader(true);
-            setWrapperIsTitleHeader(true);
-            setBreadcrumbRoutes([
-                {
-                    path: Path.Main,
-                    breadcrumbName: 'Главная',
-                },
-            ]);
-        } else if (location.pathname === Path.Feedbacks) {
-            setWrapperIsTitleHeader(false);
-            setBreadcrumbRoutes([
-                {
-                    path: Path.Main,
-                    breadcrumbName: 'Главная',
-                },
-                {
-                    path: Path.Feedbacks,
-                    breadcrumbName: 'Отзывы пользователей',
-                },
-            ]);
-        } else if (location.pathname === Path.Calendar) {
-            setWrapperIsTitleHeader(true);
-            setIsTitleHeader(false);
-            setBreadcrumbRoutes([
-                {
-                    path: Path.Main,
-                    breadcrumbName: 'Главная',
-                },
-                {
-                    path: Path.Calendar,
-                    breadcrumbName: 'Календарь',
-                },
-            ]);
+        switch (location.pathname) {
+            case Path.Main:
+                setIsTitleHeader(true);
+                setWrapperIsTitleHeader(true);
+                setBreadcrumbRoutes([
+                    {
+                        path: Path.Main,
+                        breadcrumbName: 'Главная',
+                    },
+                ]);
+                break;
+            case Path.Feedbacks:
+                setWrapperIsTitleHeader(false);
+                setBreadcrumbRoutes([
+                    {
+                        path: Path.Main,
+                        breadcrumbName: 'Главная',
+                    },
+                    {
+                        path: Path.Feedbacks,
+                        breadcrumbName: 'Отзывы пользователей',
+                    },
+                ]);
+                break;
+            case Path.Calendar:
+                setWrapperIsTitleHeader(true);
+                setIsTitleHeader(false);
+                setBreadcrumbRoutes([
+                    {
+                        path: Path.Main,
+                        breadcrumbName: 'Главная',
+                    },
+                    {
+                        path: Path.Calendar,
+                        breadcrumbName: 'Календарь',
+                    },
+                ]);
+                break;
+            default:
+                setBreadcrumbRoutes([
+                    {
+                        path: Path.Main,
+                        breadcrumbName: 'Главная',
+                    },
+                ]);
+                break;
         }
     }, [location.pathname]);
 

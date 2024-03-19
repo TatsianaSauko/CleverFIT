@@ -1,7 +1,7 @@
 .training-content {
     list-style: none;
     padding: 16px 12px;
-    margin-bottom: 0;
+    margin-bottom: var(--no-bottom-margin);
 }
 
 .training-content li {
@@ -10,7 +10,7 @@
 }
 
 .training-content li:not(:last-child) {
-    margin-bottom: 8px;
+    margin-bottom: var(--small-bottom-margin);
 }
 
 .training-content .disabled {
@@ -21,14 +21,14 @@
     display: inline-block;
     width: 6px;
     height: 6px;
-    border-radius: 100px;
-    margin-right: 6px;
+    border-radius: var(--border-radius-large);
+    margin-right: var(--subtle-right-margin);
     margin-bottom: 2px;
 }
 
 .training-content .icon-edit {
     float: right;
-    border: none;
+    border: var(--no-border);
     height: 16px;
 }
 

@@ -1,26 +1,14 @@
 import { Button, Modal, Typography } from 'antd';
 import { ModalErrorProps } from '../../types/Props';
 import errorCheckEmail from '/png/errorCheckEmail.png';
-import { useEffect, useState } from 'react';
+import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
 
 import './modalGetDataError.css';
 
 const { Title, Text } = Typography;
 
 export const ModalGetDataError = ({ isModalGetData, handleModalToggle }: ModalErrorProps) => {
-    const [modalWidth, setModalWidth] = useState(window.innerWidth < 576 ? 328 : 539);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setModalWidth(window.innerWidth < 576 ? 328 : 539);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+    const modalWidth = useResponsiveWidth(328, 539);
 
     return (
         <Modal

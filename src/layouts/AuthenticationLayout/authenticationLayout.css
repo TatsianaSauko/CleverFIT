@@ -7,15 +7,15 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: var(--default-padding-left);
+    padding-right: var(--default-padding-right);
 }
 
 .auth-wrapper__content {
     height: auto;
-    padding: 64px 85.5px;
-    border-radius: 2px;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    padding: var(--result-page-padding);
+    border-radius: var(--border-radius-subtle);
+    box-shadow: var(--box-shadow-subtle);
     background: var(--character-light-primary-inverse);
     margin: auto;
 }
@@ -53,7 +53,7 @@
 @media screen and (max-width: 576px) {
     .auth-wrapper__content {
         height: auto;
-        padding: 32px 16px;
+        padding: var(--result-page-padding-mobile);
     }
 
     .auth-wrapper__logo {

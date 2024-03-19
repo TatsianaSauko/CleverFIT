@@ -1,6 +1,6 @@
 .modal-training-edit {
     z-index: 2;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: var(--box-shadow-subtle);
     background: var(--character-light-primary-inverse);
     width: 264px;
     position: fixed;
@@ -74,19 +74,19 @@
 .modal-training-edit .btn-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--list-item-gap);
     padding: 12px;
 }
 
 .modal-training-edit .ant-select:not(.ant-select-customize-input) .ant-select-selector {
-    border: none;
+    border: var(--no-border);
 }
 
 .modal-training-edit .training-list {
     padding: 16px 12px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--list-item-gap);
     min-height: 91px;
 }
 

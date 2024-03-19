@@ -42,12 +42,3 @@ export const locale: PickerLocale = {
         ...TimePickerLocale,
     },
 };
-
-// export const locale = {
-//     lang: {
-//       locale: 'ru',
-//       dayFormat: moment.updateLocale('ru', {
-//         weekdaysMin: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
-//       }),
-//     },
-//   };

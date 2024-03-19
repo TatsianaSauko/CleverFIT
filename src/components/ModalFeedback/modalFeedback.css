@@ -2,7 +2,7 @@
     padding-top: 16px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--spacing-content-gap);
 }
 
 .modal-feedback .ant-modal-footer .ant-btn-default {
@@ -11,7 +11,7 @@
 
 .modal-feedback .ant-modal-footer .ant-btn-lg:hover {
     border: 1px solid var(--primary-light-5);
-    border-radius: 2px;
+    border-radius: var(--border-radius-subtle);
     background: var(--primary-light-4);
 }
 .modal-feedback .ant-rate {
@@ -19,11 +19,11 @@
 }
 
 .form-feedback .ant-input {
-    font-weight: 400;
+    font-weight: var(--default-font-weight);
     font-size: 14px;
-    line-height: 130%;
+    line-height: var(--title-line-height);
     color: var(--character-light-title-85);
-    margin-bottom: 0;
+    margin-bottom: var(--no-bottom-margin);
 }
 .form-feedback .ant-btn-primary {
     font-size: var(--smallFontSize);
@@ -31,12 +31,12 @@
 }
 
 .form-feedback .ant-divider-horizontal {
-    margin-top: 8px;
+    margin-top: var(--small-top-margin);
     margin-bottom: 10px;
 }
 
 .form-feedback .ant-form-item {
-    margin-bottom: 0;
+    margin-bottom: var(--no-bottom-margin);
 }
 
 .form-feedback .ant-form-item:last-child {
@@ -57,7 +57,7 @@
 .form-feedback .ant-form-item:nth-child(2) {
     padding-right: 24px;
     padding-left: 24px;
-    margin-bottom: 8px;
+    margin-bottom: var(--small-bottom-margin);
 }
 
 .modal-feedback .ant-modal-close-x .anticon {
@@ -71,13 +71,13 @@
     }
 
     .form-feedback .ant-form-item:nth-child(1) {
-        padding-right: 16px;
-        padding-left: 16px;
+        padding-right: var(--default-padding-right);
+        padding-left: var(--default-padding-left);
     }
 
     .form-feedback .ant-form-item:nth-child(2) {
-        padding-right: 16px;
-        padding-left: 16px;
+        padding-right: var(--default-padding-right);
+        padding-left: var(--default-padding-left);
     }
     .modal-feedback .ant-modal-header {
         padding: 16px 10px 16px 16px;

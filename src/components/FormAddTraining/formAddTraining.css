@@ -8,13 +8,13 @@
 .drawer__wrapper .ant-form-vertical .ant-form-item-label > label {
     padding: 3.5px 8px;
     background-color: var(--neutral-gray-4);
-    font-size: 12px;
+    font-size: var(--extraSmallFontSize);
     width: 100%;
-    border-radius: 2px;
+    border-radius: var(--border-radius-subtle);
 }
 
 .drawer__wrapper .ant-form-item {
-    margin-bottom: 8px;
+    margin-bottom: var(--small-bottom-margin);
 }
 
 .drawer__wrapper .form__wrapper {

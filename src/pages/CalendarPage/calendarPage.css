@@ -33,7 +33,7 @@
 
 .name-training {
     font-size: var(--smallFontSize);
-    font-weight: 500;
+    font-weight: var(--title-font-weight);
     line-height: 18.2px;
     color: var(--character-light-secondary-45);
 }
@@ -61,7 +61,7 @@
     }
 
     .ant-picker-calendar-header .ant-picker-calendar-mode-switch {
-        margin-top: 0;
+        margin-top: var(--no-top-margin);
         width: 102px;
     }
 

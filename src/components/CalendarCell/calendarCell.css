@@ -4,14 +4,14 @@
 }
 
 .events li {
-    font-size: 12px;
+    font-size: var(--extraSmallFontSize);
     line-height: 15.6px;
 }
 .marker {
     display: inline-block;
     width: 6px;
     height: 6px;
-    border-radius: 100px;
-    margin-right: 6px;
+    border-radius: var(--border-radius-large);
+    margin-right: var(--subtle-right-margin);
     margin-bottom: 2px;
 }

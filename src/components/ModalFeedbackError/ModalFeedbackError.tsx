@@ -1,6 +1,6 @@
 import { Button, Modal, Typography } from 'antd';
 import { ModalFeedbackErrorProps } from '../../types/Props';
-import { useEffect, useState } from 'react';
+import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
 import error from '/png/error.png';
 
 import './modalFeedbackError.css';
@@ -12,19 +12,8 @@ export const ModalFeedbackError = ({
     handleModalToggle,
     handleCreateFeedback,
 }: ModalFeedbackErrorProps) => {
-    const [modalWidth, setModalWidth] = useState(window.innerWidth < 576 ? 328 : 539);
+    const modalWidth = useResponsiveWidth(328, 539);
 
-    useEffect(() => {
-        const handleResize = () => {
-            setModalWidth(window.innerWidth < 576 ? 328 : 539);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
     const onClick = () => {
         handleModalToggle();
         handleCreateFeedback();

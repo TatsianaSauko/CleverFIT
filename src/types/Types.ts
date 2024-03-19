@@ -92,27 +92,30 @@ export type Training = {
     name: string;
     key: string;
 };
+
 export type Exercise = {
-    _id?: string;
     name: string;
     replays: number | undefined;
     weight: number | undefined;
     approaches: number | undefined;
     isImplementation?: boolean;
     checked?: boolean;
+    _id?: string;
+};
+
+type Parameters = {
+    repeat: boolean;
+    period: number;
+    jointTraining: boolean;
+    participants: [string];
 };
 
 export type ActivityData = {
-    _id?: string;
     name: string;
     date: string | number;
-    isImplementation?: boolean;
-    userId?: string;
-    parameters?: {
-        repeat: boolean;
-        period: number;
-        jointTraining: boolean;
-        participants: [string];
-    };
     exercises: Exercise[];
+    _id?: string;
+    userId?: string;
+    isImplementation?: boolean;
+    parameters?: Parameters;
 };

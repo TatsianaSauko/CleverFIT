@@ -2,7 +2,7 @@
     list-style: none;
     padding: 16px 12px;
     min-height: 91px;
-    margin-bottom: 0;
+    margin-bottom: var(--no-bottom-margin);
 }
 
 .training-edit-content li {
@@ -12,11 +12,11 @@
 }
 
 .training-edit-content li:not(:last-child) {
-    margin-bottom: 8px;
+    margin-bottom: var(--small-bottom-margin);
 }
 
 .training-edit-content .icon-edit {
     float: right;
-    border: none;
+    border: var(--no-border);
     height: 16px;
 }

@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Button, Drawer, Space } from 'antd';
 import { getColorForName } from '@utils/getColorForName';
@@ -10,6 +9,7 @@ import { DrawerProps } from '../../types/Props';
 import moment from 'moment';
 import { CloseOutlined } from '@ant-design/icons';
 import { getDataForDate } from '@utils/getDataForDate';
+import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
 
 import './myDrawer.css';
 
@@ -18,19 +18,7 @@ export const MyDrawer = ({ onClose, isDrawer }: DrawerProps) => {
     const { training, activitiesData } = useSelector(trainingSelector);
     const dataForDate = getDataForDate(activitiesData, training.date);
     const itemWithName = dataForDate.find((item) => item.name === training.name);
-    const [modalWidth, setModalWidth] = useState(window.innerWidth < 576 ? 360 : 408);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setModalWidth(window.innerWidth < 576 ? 360 : 408);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+    const modalWidth = useResponsiveWidth(360, 408);
 
     const addForm = () => {
         dispatch(createExercise());

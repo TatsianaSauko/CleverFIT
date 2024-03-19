@@ -2,15 +2,15 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: var(--box-shadow-subtle);
     background: var(--character-light-primary-inverse);
-    border-radius: 2px;
+    border-radius: var(--border-radius-subtle);
     padding: 64px 32px 56px;
     align-items: center;
     justify-content: center;
     width: 539px;
     text-align: center;
-    gap: 24px;
+    gap: var(--spacing-global-gap);
 }
 
 .error-email-no-exist .ant-btn.ant-btn-block {

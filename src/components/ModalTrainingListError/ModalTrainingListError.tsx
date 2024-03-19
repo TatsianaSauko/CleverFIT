@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
 import { Button, Modal, Typography } from 'antd';
 import { ModalTrainingListErrorProps } from '../../types/Props';
 import { CloseCircleOutlined, CloseOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { trainingSelector } from '@redux/slices/TrainingSlice';
+import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
 
 import './modalTrainingListError.css';
 
@@ -15,19 +15,7 @@ export const ModalTrainingListError = ({
     update,
 }: ModalTrainingListErrorProps) => {
     const { isModal } = useSelector(trainingSelector);
-    const [modalWidth, setModalWidth] = useState(window.innerWidth < 576 ? 328 : 384);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setModalWidth(window.innerWidth < 576 ? 328 : 384);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+    const modalWidth = useResponsiveWidth(328, 384);
 
     return (
         <Modal

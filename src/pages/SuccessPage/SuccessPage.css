@@ -2,22 +2,22 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: var(--box-shadow-subtle);
     background: var(--character-light-primary-inverse);
-    border-radius: 2px;
-    padding: 64px 85.5px;
+    border-radius: var(--border-radius-subtle);
+    padding: var(--result-page-padding);
     align-items: center;
     justify-content: center;
     width: 539px;
     text-align: center;
-    gap: 24px;
+    gap: var(--spacing-global-gap);
 }
 
 .icon-success {
     display: block;
     width: 71px;
     height: 70px;
-    margin: 5px;
+    margin: var(--results-icon-margin);
 }
 
 .success-page .ant-btn.ant-btn-block {
@@ -30,6 +30,6 @@
     }
 
     .success-page {
-        padding: 32px 16px;
+        padding: var(--result-page-padding-mobile);
     }
 }

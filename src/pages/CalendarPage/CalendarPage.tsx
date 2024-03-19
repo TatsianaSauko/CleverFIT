@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getTrainingList } from '@redux/ActionCreators';
 import { authSelector } from '@redux/slices/AuthSlice';
@@ -24,6 +24,7 @@ import {
 import { filterEmptyExercises } from '@utils/filterEprtyExercises';
 import { MyDrawer } from '@components/MyDrawer';
 import { ModalEdit } from '@components/ModalEdit';
+import { useResponsiveVisibility } from '@hooks/useResponsiveVisibility';
 
 import './calendarPage.css';
 
@@ -32,23 +33,12 @@ export const CalendarPage = () => {
     const { token } = useSelector(authSelector);
     const { training, isModal } = useSelector(trainingSelector);
     const [isModalTrainingList, setIsModalTrainingList] = useState<boolean>(isModal);
-    const [modalWidth, setModalWidth] = useState(window.innerWidth < 576 ? false : true);
     const [isDrawer, setIsDrawer] = useState(false);
     const [modalTraining, setModalTraining] = useState(false);
     const [modalTrainingEdit, setModalTrainingEdit] = useState(false);
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
-
-    useEffect(() => {
-        const handleResize = () => {
-            setModalWidth(window.innerWidth < 576 ? false : true);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+    const defaultVisibility = window.innerWidth < 576 ? false : true;
+    const modalVisible = useResponsiveVisibility(defaultVisibility);
 
     const update = async () => {
         dispatch(setIisModal({ isModal: false }));
@@ -79,7 +69,7 @@ export const CalendarPage = () => {
         dispatch(cleanTraining());
         const isCurrentMonth = moment(data).isSame(moment(), 'month');
         dispatch(setFlag({ flag: isPastDate(data) }));
-        if (!modalWidth && isCurrentMonth) {
+        if (!modalVisible && isCurrentMonth) {
             setModalPosition({
                 top: 265,
                 left: 24 + 8,
@@ -126,7 +116,7 @@ export const CalendarPage = () => {
             />
 
             <Calendar
-                fullscreen={modalWidth}
+                fullscreen={modalVisible}
                 locale={locale}
                 onSelect={handleSelectClick}
                 dateCellRender={(value) => (
