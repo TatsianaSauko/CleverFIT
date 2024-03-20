@@ -14,7 +14,7 @@
     padding-bottom: 12px;
     text-align: center;
     font-size: var(--defaultFontSize);
-    line-height: 130%;
+    line-height: var(--title-line-height);
     letter-spacing: 0.2px;
     text-align: center;
 }
@@ -27,7 +27,7 @@
 
 .card button.ant-btn {
     background-color: transparent;
-    border: none;
+    border: var(--no-border);
     color: var(--primary-light-6);
     font-size: var(--smallFontSize);
 }

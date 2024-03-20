@@ -18,6 +18,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
     const dispatch = useAppDispatch();
     const [collapsedWidth, setCollapsedWidth] = useState(64);
     const [width, setWidth] = useState(208);
+
     const handleButtonExit = () => {
         dispatch(logout());
         history.push(Path.Auth);
@@ -48,9 +49,9 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
             className='aside'
             onBreakpoint={(broken) => {
                 setCollapsedWidth(broken ? 0 : 64);
-                setWidth(broken ? 106 : 208);
+                setWidth(broken ? 0 : 208);
             }}
-            {...(width === 208 ? {} : { style: { position: 'fixed', zIndex: '1' } })}
+            {...(width === 208 ? {} : { style: { position: 'fixed', zIndex: '3' } })}
         >
             <div className='logo'>
                 {!collapsed ? <img src={cleverFit} alt='CleverFit' className='logo_large' /> : null}

@@ -36,11 +36,11 @@
 }
 
 .feedbacks__empty .info .title {
-    font-weight: 500;
+    font-weight: var(--title-font-weight);
     color: var(--primary-light-9);
-    margin-bottom: 0;
+    margin-bottom: var(--no-bottom-margin);
     text-align: center;
-    line-height: 130%;
+    line-height: var(--title-line-height);
 }
 
 .feedbacks__empty .info .subtitle {
@@ -76,7 +76,7 @@
 .feedbacks__full__buttons {
     margin-top: 132px;
     display: flex;
-    gap: 8px;
+    gap: var(--list-item-gap);
 }
 
 .feedbacks__full__buttons .btn-feedback {
@@ -88,7 +88,7 @@
 
 .feedbacks__full__buttons .btn-feedback:hover {
     border: 1px solid var(--primary-light-5);
-    border-radius: 2px;
+    border-radius: var(--border-radius-subtle);
     background: var(--primary-light-4);
 }
 
@@ -104,9 +104,9 @@
     .feedbacks__empty .info {
         padding: 48px 31px;
     }
-    
+
     .feedbacks__empty .info .title {
-        font-weight: 500;
+        font-weight: var(--title-font-weight);
     }
 
     .btn-feedback {
@@ -118,7 +118,7 @@
     }
 
     .feedbacks__empty {
-        margin-top: 0;
+        margin-top: var(--no-top-margin);
     }
 
     .feedbacks {
@@ -131,14 +131,14 @@
     }
 
     .feedbacks__full {
-        gap: 16px;
+        gap: var(--spacing-content-gap);
         max-height: calc(100vh - 260px);
     }
 
     .feedbacks__full__buttons {
         margin-top: 48px;
         flex-direction: column;
-        gap: 16px;
+        gap: var(--spacing-content-gap);
     }
 
     .add-flex {

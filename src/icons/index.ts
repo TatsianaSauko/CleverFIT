@@ -12,3 +12,4 @@ export { TrophyIconSmall } from './TrophyIconSmall';
 export { LogoutIcon } from './LogoutIcon';
 export { StarIcon } from './StarIcon';
 export { StarFillIcon } from './StarFillIcon';
+export { EditIcon } from './EditIcon';

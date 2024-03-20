@@ -8,7 +8,7 @@ div.ant-modal-body {
 
 div.ant-modal-mask {
     backdrop-filter: blur(5px);
-    background-color: rgba(121, 156, 212, 0.5);
+    background: rgba(121, 156, 212, 0.1);
 }
 
 .modal-error .ant-modal-footer {
@@ -16,7 +16,7 @@ div.ant-modal-mask {
 }
 
 .modal-error .title {
-    margin-bottom: 0;
+    margin-bottom: var(--no-bottom-margin);
     letter-spacing: 0.5px;
 }
 
@@ -28,14 +28,14 @@ div.ant-modal-mask {
     display: flex;
     flex-direction: column;
     text-align: center;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: var(--box-shadow-subtle);
     background: var(--character-light-primary-inverse);
-    border-radius: 2px;
+    border-radius: var(--border-radius-subtle);
     padding: 64px 32px 56px;
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 24px;
+    gap: var(--spacing-global-gap);
     width: 539px;
 }
 
@@ -65,7 +65,7 @@ div.ant-modal-mask {
     .ant-modal-content {
         width: 328px;
     }
-    
+
     .result-error .ant-modal {
         max-width: auto;
         margin: auto;

@@ -1,1 +1,0 @@
-export { ModalGetFeedbackError } from './ModalGetFeedbackError';

@@ -12,13 +12,13 @@ section.site_layout {
 .main__skills {
     box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.04);
     background: var(--character-light-primary-inverse);
-    border-radius: 2px;
+    border-radius: var(--border-radius-subtle);
     color: var(--primary-light-9);
     max-width: 752px;
     padding: 24px;
     font-size: var(--defaultFontSize);
     line-height: 21px;
-    font-weight: 400;
+    font-weight: var(--default-font-weight);
 }
 
 .main__subtitle {
@@ -26,13 +26,13 @@ section.site_layout {
     box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.04);
     background: var(--character-light-primary-inverse);
     color: var(--character-light-title-85);
-    border-radius: 2px;
+    border-radius: var(--border-radius-subtle);
     max-width: 752px;
     padding: 24px;
     padding-right: 58px;
     font-size: 20px;
     line-height: 26px;
-    font-weight: 500;
+    font-weight: var(--title-font-weight);
 }
 
 .main__cards {
@@ -43,12 +43,12 @@ section.site_layout {
 
 .cards__wrapper {
     display: flex;
-    gap: 16px;
+    gap: var(--spacing-content-gap);
     align-items: stretch;
 }
 
 .block-download {
-    border-radius: 2px;
+    border-radius: var(--border-radius-subtle);
     width: 240px;
     box-shadow: inset 0 1px 0 0 var(--character-light-dividers);
     background: var(--character-light-primary-inverse);
@@ -57,7 +57,7 @@ section.site_layout {
 .block-download__info {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--list-item-gap);
     justify-content: left;
     padding: 12px 24px;
 }
@@ -78,7 +78,7 @@ section.site_layout {
 }
 
 .block-download__buttons .ant-btn {
-    border: none;
+    border: var(--no-border);
 }
 
 .main .ant-btn {
@@ -103,22 +103,22 @@ section.site_layout {
     flex-wrap: wrap;
     align-content: flex-end;
     height: 100%;
-    gap: 24px;
+    gap: var(--spacing-global-gap);
 }
 
 .btn-download {
-    border: none;
+    border: var(--no-border);
     font-size: var(--defaultFontSize);
     letter-spacing: 0.2px;
 }
 
 .review__btn {
-    border-radius: 2px;
+    border-radius: var(--border-radius-subtle);
     padding-top: 9.5px;
     padding-bottom: 9.5px;
     padding-left: 15px;
     font-size: var(--defaultFontSize);
-    line-height: 130%;
+    line-height: var(--title-line-height);
     text-align: center;
     color: var(--primary-light-6);
     text-align: center;
@@ -154,8 +154,8 @@ section.site_layout {
 
 @media screen and (max-width: 576px) {
     .main {
-        padding-left: 16px;
-        padding-right: 16px;
+        padding-left: var(--default-padding-left);
+        padding-right: var(--default-padding-right);
     }
 
     .main__subtitle {
@@ -169,6 +169,6 @@ section.site_layout {
     }
 
     .cards__wrapper {
-        gap: 8px;
+        gap: var(--list-item-gap);
     }
 }

@@ -1,32 +1,23 @@
 import { Button, Modal, Typography } from 'antd';
 import { ModalErrorProps } from '../../types/Props';
 import errorCheckEmail from '/png/errorCheckEmail.png';
-import { useEffect, useState } from 'react';
+import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
 
-import './modalGetFeedbackError.css';
+import './modalGetDataError.css';
 
 const { Title, Text } = Typography;
 
-export const ModalGetFeedbackError = ({
-    isModalGetFeedback,
-    handleModalToggle,
-}: ModalErrorProps) => {
-    const [modalWidth, setModalWidth] = useState(window.innerWidth < 576 ? 328 : 539);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setModalWidth(window.innerWidth < 576 ? 328 : 539);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+export const ModalGetDataError = ({ isModalGetData, handleModalToggle }: ModalErrorProps) => {
+    const modalWidth = useResponsiveWidth(328, 539);
 
     return (
-        <Modal className='modal-error' centered open={isModalGetFeedback} width={modalWidth}>
+        <Modal
+            className='modal-error'
+            data-test-id='modal-no-review'
+            centered
+            open={isModalGetData}
+            width={modalWidth}
+        >
             <div className='result-error'>
                 <img src={errorCheckEmail} alt='Error' className='icon-result' />
                 <div className='block-title'>

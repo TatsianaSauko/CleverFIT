@@ -5,6 +5,7 @@ import { StatusCodes } from '@constants/statusCodes';
 import { BaseUrl, Endpoints } from '@constants/api';
 import axios from 'axios';
 import {
+    ActivityData,
     AxiosError,
     Feedback,
     FormFeedback,
@@ -16,6 +17,8 @@ import {
     IRegister,
 } from '../types/Types';
 import { setFeedback } from './slices/FeedbackSlice';
+import { setActivitiesData, setLoading, setTrainingList } from './slices/TrainingSlice';
+import { transformedData } from '@utils/transformedData';
 
 export const register = (data: IRegister) => {
     return async (dispatch: AppDispatch) => {
@@ -177,6 +180,83 @@ export const feedback = (data: FormFeedback, token: string) => {
             dispatch(authFetching({ loading: false }));
         } catch {
             dispatch(authFetching({ loading: false }));
+            throw Error();
+        }
+    };
+};
+
+export const getTrainingUser = (data: string) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            dispatch(authFetching({ loading: true }));
+            const headers = {
+                Authorization: `Bearer ${data}`,
+                'Content-Type': 'application/json',
+            };
+            const response = await axios.get(`${BaseUrl}${Endpoints.Training}`, { headers });
+            const transform = transformedData(response.data);
+            dispatch(setActivitiesData({ activitiesData: transform }));
+            dispatch(authFetching({ loading: false }));
+        } catch {
+            dispatch(authFetching({ loading: false }));
+            throw Error();
+        }
+    };
+};
+
+export const getTrainingList = (data: string) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            dispatch(authFetching({ loading: true }));
+            const headers = {
+                Authorization: `Bearer ${data}`,
+                'Content-Type': 'application/json',
+            };
+            const response = await axios.get(`${BaseUrl}${Endpoints.CatalogsTrainingList}`, {
+                headers,
+            });
+            dispatch(setTrainingList({ trainingList: response.data }));
+            dispatch(authFetching({ loading: false }));
+        } catch {
+            dispatch(authFetching({ loading: false }));
+            throw Error();
+        }
+    };
+};
+
+export const createTraining = (data: string, training: ActivityData) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            dispatch(setLoading({ loadingTraining: true }));
+            const headers = {
+                Authorization: `Bearer ${data}`,
+                'Content-Type': 'application/json',
+            };
+            await axios.post(`${BaseUrl}${Endpoints.Training}`, training, {
+                headers,
+            });
+            dispatch(setLoading({ loadingTraining: false }));
+        } catch {
+            dispatch(setLoading({ loadingTraining: false }));
+            throw Error();
+        }
+    };
+};
+
+export const putTraining = (data: string, training: ActivityData, id: string) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            dispatch(setLoading({ loadingTraining: true }));
+            const headers = {
+                Authorization: `Bearer ${data}`,
+                'Content-Type': 'application/json',
+            };
+            await axios.put(`${BaseUrl}${Endpoints.Training}/${id}`, training, {
+                headers,
+            });
+            dispatch(setLoading({ loadingTraining: false }));
+        } catch {
+            dispatch(setLoading({ loadingTraining: false }));
             throw Error();
         }
     };

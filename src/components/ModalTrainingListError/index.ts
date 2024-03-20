@@ -1,0 +1,1 @@
+export { ModalTrainingListError } from './ModalTrainingListError';

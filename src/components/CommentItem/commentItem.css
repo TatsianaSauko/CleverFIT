@@ -1,8 +1,8 @@
 .comment {
     padding: 16px;
     display: flex;
-    gap: 12px;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    gap: var(--element-gap);
+    box-shadow: var(--box-shadow-subtle);
     background: var(--character-light-primary-inverse);
 }
 
@@ -18,41 +18,40 @@
 .comment__info-author {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--element-gap);
     width: 174px;
 }
 
 .comment__content {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--element-gap);
 }
 
 .date {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 130%;
+    font-weight: var(--default-font-weight);
+    font-size: var(--extraSmallFontSize);
+    line-height: var(--title-line-height);
     color: var(--character-light-disable-25);
 }
 
 .message {
-    font-weight: 400;
+    font-weight: var(--default-font-weight);
     font-size: var(--smallFontSize);
-    line-height: 130%;
+    line-height: var(--title-line-height);
     color: var(--character-light-secondary-45);
 }
 
 .fullName {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 130%;
-    color: var(--defaultFontSize);
+    font-weight: var(--default-font-weight);
+    font-size: var(--defaultFontSize);
+    line-height: var(--title-line-height);
     text-align: center;
 }
 
 .comment__metadata {
     display: flex;
-    gap: 16px;
+    gap: var(--spacing-content-gap);
 }
 
 .comment__metadata .ant-rate {
@@ -70,7 +69,7 @@
     }
     .comment__info-author {
         flex-direction: row;
-        gap: 16px;
+        gap: var(--spacing-content-gap);
         width: auto;
         text-align: left;
         align-items: center;
@@ -85,6 +84,6 @@
     }
 
     .comment__content {
-        gap: 16px;
+        gap: var(--spacing-content-gap);
     }
 }

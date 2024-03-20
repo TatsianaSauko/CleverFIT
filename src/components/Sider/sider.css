@@ -4,9 +4,9 @@
 }
 
 .ant-layout .ant-layout-sider {
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: var(--box-shadow-subtle);
     background: var(--character-light-primary-inverse);
-    border: none;
+    border: var(--no-border);
 }
 
 .logo {
@@ -47,8 +47,8 @@ ul.ant-menu-vertical .ant-menu-item:not(:last-child) {
 }
 
 li.ant-menu-item:last-child {
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: var(--no-top-margin);
+    margin-bottom: var(--no-bottom-margin);
 }
 
 .icon_exit {
@@ -58,7 +58,7 @@ li.ant-menu-item:last-child {
 .icon_exit__padding {
     transform: rotate(180deg);
     padding-left: 15px;
-    padding-right: 16px;
+    padding-right: var(--default-padding-right);
 }
 
 .menu .ant-menu-item:last-of-type {

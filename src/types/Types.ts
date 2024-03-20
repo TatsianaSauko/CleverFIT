@@ -85,3 +85,37 @@ export type FormFeedback = {
     message: string;
     rating: number;
 };
+
+export type TrainingList = Training[];
+
+export type Training = {
+    name: string;
+    key: string;
+};
+
+export type Exercise = {
+    name: string;
+    replays: number | undefined;
+    weight: number | undefined;
+    approaches: number | undefined;
+    isImplementation?: boolean;
+    checked?: boolean;
+    _id?: string;
+};
+
+type Parameters = {
+    repeat: boolean;
+    period: number;
+    jointTraining: boolean;
+    participants: [string];
+};
+
+export type ActivityData = {
+    name: string;
+    date: string | number;
+    exercises: Exercise[];
+    _id?: string;
+    userId?: string;
+    isImplementation?: boolean;
+    parameters?: Parameters;
+};

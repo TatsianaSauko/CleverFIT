@@ -23,7 +23,7 @@ export const RegisterPage = () => {
         const hasErrors = form.getFieldsError().some(({ errors }) => errors.length);
         setIsDisabled(hasErrors);
     };
-    
+
     return (
         <div className='register-page'>
             <Form
