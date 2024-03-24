@@ -85,3 +85,11 @@ export type DrawerProps = {
     onClose: () => void;
     isDrawer: boolean;
 };
+export type FileSizeExceedModalProps = {
+    onClose: () => void;
+    visible: boolean;
+};
+export type ModalErrorSaveDataProps = {
+    onClose: () => void;
+    visible: boolean;
+};

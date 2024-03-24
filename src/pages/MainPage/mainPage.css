@@ -81,10 +81,6 @@ section.site_layout {
     border: var(--no-border);
 }
 
-.main .ant-btn {
-    height: 31px;
-}
-
 .info__title {
     color: var(--primary-light-6);
     font-size: var(--defaultFontSize);

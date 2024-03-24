@@ -12,7 +12,13 @@ export const Card = ({ title, link, icon, onClick }: CardProps) => (
                 icon={icon}
                 block
                 onClick={onClick}
-                data-test-id={link === 'Календарь' ? 'menu-button-calendar' : undefined}
+                data-test-id={
+                    link === 'Календарь'
+                        ? 'menu-button-calendar'
+                        : link === 'Профиль'
+                        ? 'menu-button-profile'
+                        : undefined
+                }
             >
                 {link}
             </Button>

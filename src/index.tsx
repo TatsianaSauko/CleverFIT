@@ -28,6 +28,7 @@ import 'antd/dist/antd.css';
 import 'normalize.css';
 import './index.css';
 import { CalendarPage } from '@pages/CalendarPage';
+import { ProfilePage } from '@pages/ProfilePage';
 
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
@@ -42,6 +43,7 @@ root.render(
                         <Route path={Path.Main} element={<MainPage />} />
                         <Route path={Path.Feedbacks} element={<FeedbacksPage />} />
                         <Route path={Path.Calendar} element={<CalendarPage />} />
+                        <Route path={Path.Profile} element={<ProfilePage />} />
                     </Route>
 
                     <Route path={Path.Auth} element={<AuthenticationLayout />}>

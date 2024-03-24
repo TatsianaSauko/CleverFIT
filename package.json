@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "lint:css": "stylelint ./src/**/*.css",
     "lint:scripts": "eslint ./ ./src/ --ext .js,.jsx,.ts,.tsx",
@@ -77,6 +77,28 @@
     "typescript-plugin-css-modules": "^5.0.2",
     "vite": "^5.0.6"
   },
+  "commitlint": {
+    "extends": [
+      "./node_modules/arui-presets-lint/commitlint"
+    ],
+    "rules": {
+      "subject-case": [
+        2,
+        "never",
+        [
+          "start-case",
+          "pascal-case",
+          "upper-case"
+        ]
+      ],
+      "header-max-length": [
+        2,
+        "always",
+        120
+      ]
+    }
+  },
+
   "prettier": "arui-presets-lint/prettier",
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [

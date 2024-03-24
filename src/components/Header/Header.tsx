@@ -19,14 +19,14 @@ interface BreadcrumbRoute {
 export const Header = () => {
     const location = useLocation();
     const [isTitleHeader, setIsTitleHeader] = useState(false);
-    const [isWrapperTitleHeader, setWrapperIsTitleHeader] = useState(false);
+    const [isWrapperTitleHeader, setIsWrapperIsTitleHeader] = useState(false);
     const [breadcrumbRoutes, setBreadcrumbRoutes] = useState<BreadcrumbRoute[]>([]);
 
     useEffect(() => {
         switch (location.pathname) {
             case Path.Main:
                 setIsTitleHeader(true);
-                setWrapperIsTitleHeader(true);
+                setIsWrapperIsTitleHeader(true);
                 setBreadcrumbRoutes([
                     {
                         path: Path.Main,
@@ -35,7 +35,7 @@ export const Header = () => {
                 ]);
                 break;
             case Path.Feedbacks:
-                setWrapperIsTitleHeader(false);
+                setIsWrapperIsTitleHeader(false);
                 setBreadcrumbRoutes([
                     {
                         path: Path.Main,
@@ -48,7 +48,7 @@ export const Header = () => {
                 ]);
                 break;
             case Path.Calendar:
-                setWrapperIsTitleHeader(true);
+                setIsWrapperIsTitleHeader(true);
                 setIsTitleHeader(false);
                 setBreadcrumbRoutes([
                     {
@@ -58,6 +58,20 @@ export const Header = () => {
                     {
                         path: Path.Calendar,
                         breadcrumbName: 'Календарь',
+                    },
+                ]);
+                break;
+            case Path.Profile:
+                setIsTitleHeader(false);
+                setIsWrapperIsTitleHeader(true);
+                setBreadcrumbRoutes([
+                    // {
+                    //     path: Path.Main,
+                    //     breadcrumbName: 'Главная',
+                    // },
+                    {
+                        path: Path.Profile,
+                        breadcrumbName: 'Профиль',
                     },
                 ]);
                 break;
@@ -79,7 +93,9 @@ export const Header = () => {
     };
 
     return (
-        <AntHeader className='header'>
+        <AntHeader
+            className={!isTitleHeader && isWrapperTitleHeader ? 'header header-profile' : 'header'}
+        >
             <PageHeader
                 className='site-page-header'
                 breadcrumb={{
@@ -96,7 +112,23 @@ export const Header = () => {
                     Приветствуем тебя в CleverFit — приложении,
                     <br /> которое поможет тебе добиться своей мечты!
                 </Title>
-                <Button icon={<SettingsIcon />} size='large' className='btn-settings'>
+                <Button
+                    icon={
+                        <SettingsIcon
+                            style={
+                                !isTitleHeader && isWrapperTitleHeader
+                                    ? { fontSize: '14px' }
+                                    : undefined
+                            }
+                        />
+                    }
+                    size={!isTitleHeader && isWrapperTitleHeader ? undefined : 'large'}
+                    className={
+                        !isTitleHeader && isWrapperTitleHeader
+                            ? 'btn-settings btn-settings__profile'
+                            : 'btn-settings'
+                    }
+                >
                     Настройки
                 </Button>
             </div>

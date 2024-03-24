@@ -9,16 +9,20 @@ import {
     AxiosError,
     Feedback,
     FormFeedback,
+    FormUser,
     IChangePassword,
     ICheckEmail,
     IConfirmEmail,
     IGetFeedback,
     ILogin,
     IRegister,
+    User,
 } from '../types/Types';
 import { setFeedback } from './slices/FeedbackSlice';
 import { setActivitiesData, setLoading, setTrainingList } from './slices/TrainingSlice';
 import { transformedData } from '@utils/transformedData';
+import { setUserData } from './slices/UserSlice';
+import { RcFile } from 'antd/es/upload';
 
 export const register = (data: IRegister) => {
     return async (dispatch: AppDispatch) => {
@@ -258,6 +262,60 @@ export const putTraining = (data: string, training: ActivityData, id: string) =>
         } catch {
             dispatch(setLoading({ loadingTraining: false }));
             throw Error();
+        }
+    };
+};
+
+export const getUserMe = (data: string) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            const headers = {
+                Authorization: `Bearer ${data}`,
+                'Content-Type': 'application/json',
+            };
+            const response = await axios.get(`${BaseUrl}${Endpoints.UserMe}`, {
+                headers,
+            });
+            dispatch(setUserData({ user: response.data }));
+        } catch (err) {
+            console.log(err);
+        }
+    };
+};
+
+export const uploadImg = async (file: string | RcFile | Blob, token: string) => {
+    try {
+        const formData = new FormData();
+        formData.append('file', file);
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'multipart/form-data',
+        };
+        const response = await axios.post(`${BaseUrl}${Endpoints.UploadImage}`, formData, {
+            headers,
+        });
+        return response;
+    } catch (err) {
+        throw Error();
+    }
+};
+
+export const putUser = (data: FormUser, token: string) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            dispatch(authFetching({ loading: true }));
+            const headers = {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            };
+            const response = await axios.put(`${BaseUrl}${Endpoints.User}`, data, {
+                headers,
+            });
+            console.log('response', response);
+        } catch (err) {
+            throw Error();
+        } finally {
+            dispatch(authFetching({ loading: false }));
         }
     };
 };

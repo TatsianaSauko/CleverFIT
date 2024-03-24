@@ -45,7 +45,7 @@ export const MainPage: React.FC = () => {
             title: 'Заполнить профиль',
             link: 'Профиль',
             icon: <IdCardIconSmall />,
-            onClick: () => null,
+            onClick: () => history.push(Path.Profile),
         },
     ];
 

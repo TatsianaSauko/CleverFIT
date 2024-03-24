@@ -12,6 +12,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 
 import './rootLayout.css';
+import { getUserMe } from '@redux/ActionCreators';
 
 const { Footer } = Layout;
 
@@ -31,6 +32,10 @@ export const RootLayout: React.FC = () => {
                 }),
             );
         }
+    }
+
+    if (token) {
+        dispatch(getUserMe(token));
     }
 
     const toggleCollapsed = () => {
