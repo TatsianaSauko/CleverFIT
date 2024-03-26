@@ -16,13 +16,14 @@ import {
     IGetFeedback,
     ILogin,
     IRegister,
-    User,
+    TariffPayment,
 } from '../types/Types';
 import { setFeedback } from './slices/FeedbackSlice';
 import { setActivitiesData, setLoading, setTrainingList } from './slices/TrainingSlice';
 import { transformedData } from '@utils/transformedData';
 import { setUserData } from './slices/UserSlice';
 import { RcFile } from 'antd/es/upload';
+import { setTariffList } from './slices/TariffSlice';
 
 export const register = (data: IRegister) => {
     return async (dispatch: AppDispatch) => {
@@ -151,7 +152,6 @@ export const getFeedback = (data: IGetFeedback) => {
             );
             dispatch(setFeedback({ feedbacks: feedbackSort }));
             dispatch(authFetching({ loading: false }));
-            history.push(Path.Feedbacks);
         } catch (error) {
             dispatch(authFetching({ loading: false }));
             const axiosError = error as AxiosError;
@@ -278,7 +278,7 @@ export const getUserMe = (data: string) => {
             });
             dispatch(setUserData({ user: response.data }));
         } catch (err) {
-            console.log(err);
+            throw Error();
         }
     };
 };
@@ -308,14 +308,50 @@ export const putUser = (data: FormUser, token: string) => {
                 Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
             };
-            const response = await axios.put(`${BaseUrl}${Endpoints.User}`, data, {
+            await axios.put(`${BaseUrl}${Endpoints.User}`, data, {
                 headers,
             });
-            console.log('response', response);
-        } catch (err) {
-            throw Error();
-        } finally {
             dispatch(authFetching({ loading: false }));
+        } catch (err) {
+            dispatch(authFetching({ loading: false }));
+            throw Error();
+        }
+    };
+};
+
+export const getTariffList = (token: string) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            dispatch(authFetching({ loading: true }));
+            const headers = {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            };
+            const response = await axios.get(`${BaseUrl}${Endpoints.TariffList}`, {
+                headers,
+            });
+            dispatch(setTariffList({ tariffList: response.data[0] }));
+            dispatch(authFetching({ loading: false }));
+        } catch (err) {
+            dispatch(authFetching({ loading: false }));
+            console.log(err);
+        }
+    };
+};
+
+export const createTariff = (data: TariffPayment, token: string) => {
+    return async (dispatch: AppDispatch) => {
+        try {
+            dispatch(authFetching({ loading: true }));
+            const headers = {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            };
+            await axios.post(`${BaseUrl}${Endpoints.Tariff}`, data, { headers });
+            dispatch(authFetching({ loading: false }));
+        } catch (err) {
+            dispatch(authFetching({ loading: false }));
+            console.log(err);
         }
     };
 };

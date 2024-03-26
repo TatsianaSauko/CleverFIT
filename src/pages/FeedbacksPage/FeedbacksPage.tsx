@@ -14,6 +14,7 @@ import { ModalGetDataError } from '@components/ModalGetDataError';
 import { history } from '@redux/configure-store';
 
 import './feedbacksPage.css';
+import { Path } from '@constants/paths';
 
 const { Content } = Layout;
 const { Title, Text } = Typography;
@@ -54,6 +55,7 @@ export const FeedbacksPage = () => {
         if (isModalSuccess) {
             setIsModalSuccess(false);
             dispatch(getFeedback({ token: token }));
+            history.push(Path.Feedbacks);
         }
     };
 

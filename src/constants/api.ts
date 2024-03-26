@@ -14,4 +14,6 @@ export const Endpoints = {
     UserMe: '/user/me',
     UploadImage: '/upload-image',
     User: '/user',
+    TariffList: '/catalogs/tariff-list',
+    Tariff: '/tariff',
 };

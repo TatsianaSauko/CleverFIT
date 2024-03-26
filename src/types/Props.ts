@@ -85,6 +85,11 @@ export type DrawerProps = {
     onClose: () => void;
     isDrawer: boolean;
 };
+export type DrawerTariffProps = {
+    onClose: () => void;
+    isDrawer: boolean;
+    onModalPayment: () => void;
+};
 export type FileSizeExceedModalProps = {
     onClose: () => void;
     visible: boolean;

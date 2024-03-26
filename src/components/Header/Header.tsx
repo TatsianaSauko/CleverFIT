@@ -6,6 +6,11 @@ import { Path } from '@constants/paths';
 import { history } from '@redux/configure-store';
 
 import './header.css';
+import { getTariffList } from '@redux/ActionCreators';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
+import { useSelector } from 'react-redux';
+import { authSelector } from '@redux/slices/AuthSlice';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 
 const { Header: AntHeader } = AntLayout;
 
@@ -17,9 +22,12 @@ interface BreadcrumbRoute {
 }
 
 export const Header = () => {
+    const { token } = useSelector(authSelector);
     const location = useLocation();
+    const dispatch = useAppDispatch();
     const [isTitleHeader, setIsTitleHeader] = useState(false);
     const [isWrapperTitleHeader, setIsWrapperIsTitleHeader] = useState(false);
+    const [isButtonBack, setIsButtonBack] = useState(false);
     const [breadcrumbRoutes, setBreadcrumbRoutes] = useState<BreadcrumbRoute[]>([]);
 
     useEffect(() => {
@@ -27,6 +35,7 @@ export const Header = () => {
             case Path.Main:
                 setIsTitleHeader(true);
                 setIsWrapperIsTitleHeader(true);
+                setIsButtonBack(false);
                 setBreadcrumbRoutes([
                     {
                         path: Path.Main,
@@ -36,6 +45,7 @@ export const Header = () => {
                 break;
             case Path.Feedbacks:
                 setIsWrapperIsTitleHeader(false);
+                setIsButtonBack(false);
                 setBreadcrumbRoutes([
                     {
                         path: Path.Main,
@@ -50,6 +60,7 @@ export const Header = () => {
             case Path.Calendar:
                 setIsWrapperIsTitleHeader(true);
                 setIsTitleHeader(false);
+                setIsButtonBack(false);
                 setBreadcrumbRoutes([
                     {
                         path: Path.Main,
@@ -64,24 +75,21 @@ export const Header = () => {
             case Path.Profile:
                 setIsTitleHeader(false);
                 setIsWrapperIsTitleHeader(true);
+                setIsButtonBack(false);
                 setBreadcrumbRoutes([
-                    // {
-                    //     path: Path.Main,
-                    //     breadcrumbName: 'Главная',
-                    // },
                     {
                         path: Path.Profile,
                         breadcrumbName: 'Профиль',
                     },
                 ]);
                 break;
+            case Path.Settings:
+                setIsTitleHeader(false);
+                setIsWrapperIsTitleHeader(false);
+                setIsButtonBack(true);
+                setBreadcrumbRoutes([]);
+                break;
             default:
-                setBreadcrumbRoutes([
-                    {
-                        path: Path.Main,
-                        breadcrumbName: 'Главная',
-                    },
-                ]);
                 break;
         }
     }, [location.pathname]);
@@ -92,27 +100,48 @@ export const Header = () => {
         }
     };
 
+    const handleButtonSettings = () => {
+        dispatch(getTariffList(token));
+        history.push(Path.Settings);
+    };
+
     return (
         <AntHeader
             className={!isTitleHeader && isWrapperTitleHeader ? 'header header-profile' : 'header'}
         >
-            <PageHeader
-                className='site-page-header'
-                breadcrumb={{
-                    routes: breadcrumbRoutes,
-                    itemRender: (route) => (
-                        <span onClick={() => handleBreadcrumbClick(route)}>
-                            {route.breadcrumbName}
-                        </span>
-                    ),
-                }}
-            />
+            {isButtonBack ? (
+                <div data-test-id='settings-back'>
+                    <PageHeader
+                        data-test-id='settings-back'
+                        className='site-page-header'
+                        onBack={() => history.back()}
+                        title={
+                            <div onClick={() => history.back()} className='title-back'>
+                                Настройки
+                            </div>
+                        }
+                    />
+                </div>
+            ) : (
+                <PageHeader
+                    className='site-page-header'
+                    breadcrumb={{
+                        routes: breadcrumbRoutes,
+                        itemRender: (route) => (
+                            <span onClick={() => handleBreadcrumbClick(route)}>
+                                {route.breadcrumbName}
+                            </span>
+                        ),
+                    }}
+                />
+            )}
             <div className={isWrapperTitleHeader ? 'header__wrapper' : 'header__wrapper_hidden'}>
                 <Title className={isTitleHeader ? 'title' : 'hidden'}>
                     Приветствуем тебя в CleverFit — приложении,
                     <br /> которое поможет тебе добиться своей мечты!
                 </Title>
                 <Button
+                    data-test-id='header-settings'
                     icon={
                         <SettingsIcon
                             style={
@@ -128,6 +157,7 @@ export const Header = () => {
                             ? 'btn-settings btn-settings__profile'
                             : 'btn-settings'
                     }
+                    onClick={handleButtonSettings}
                 >
                     Настройки
                 </Button>

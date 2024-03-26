@@ -1,11 +1,12 @@
 import { Button, Form, Modal, Input, Rate } from 'antd';
 import { ModalProps } from '../../types/Props';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FieldData } from 'rc-field-form/lib/interface';
 import { FormFeedback } from '../../types/Types';
 import { feedbackSelector, setUserFeedback } from '@redux/slices/FeedbackSlice';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { useSelector } from 'react-redux';
+import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
 import { StarFillIcon, StarIcon } from '../../icons';
 
 import './modalFeedback.css';
@@ -15,19 +16,7 @@ export const ModalFeedback = ({ isModal, handleModalToggle, handleFeedbackSubmit
     const { userFeedback } = useSelector(feedbackSelector);
     const [isDisabled, setIsDisabled] = useState(!Boolean(userFeedback.rating));
     const [rateValue, setRateValue] = useState(userFeedback.rating);
-    const [modalWidth, setModalWidth] = useState(window.innerWidth < 576 ? 328 : 539);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setModalWidth(window.innerWidth < 576 ? 328 : 539);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+    const modalWidth = useResponsiveWidth(328, 539);
 
     const onFinish = (value: FormFeedback) => {
         dispatch(setUserFeedback(value));

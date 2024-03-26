@@ -36,6 +36,7 @@ export const MyDrawer = ({ onClose, isDrawer }: DrawerProps) => {
         <Drawer
             data-test-id='modal-drawer-right'
             title={itemWithName ? '+ Редактирование' : '+ Добавление упражнений'}
+            className='drawer-edit-training'
             placement='right'
             onClose={onClose}
             open={isDrawer}

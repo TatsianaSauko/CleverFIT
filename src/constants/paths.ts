@@ -17,4 +17,5 @@ export const Path = {
     ChangePassword: '/auth/change-password',
     Calendar: '/calendar',
     Profile: '/profile',
+    Settings: '/settings',
 };

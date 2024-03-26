@@ -3,9 +3,9 @@ import empty from '/png/empty-image.png';
 import { TrainingEditProps } from '../../types/Props';
 import { useSelector } from 'react-redux';
 import { trainingSelector } from '@redux/slices/TrainingSlice';
+import { EditOutlined } from '@ant-design/icons';
 
 import './modalEditContent.css';
-import { EditOutlined } from '@ant-design/icons';
 
 export const ModalEditContent = ({ onClick }: TrainingEditProps) => {
     const { training } = useSelector(trainingSelector);

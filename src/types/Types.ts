@@ -145,4 +145,22 @@ export type FormUser = {
     imgSrc?: string;
     password?: string;
     confirm?: string;
+    readyForJointTraining?: boolean;
+    sendNotification?: boolean;
+};
+
+type Periods = {
+    text: string;
+    cost: number;
+    days: number;
+};
+
+export type TariffList = {
+    _id: string;
+    name: string;
+    periods: Periods[];
+};
+export type TariffPayment = {
+    tariffId: string;
+    days: number;
 };

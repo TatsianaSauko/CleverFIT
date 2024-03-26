@@ -31,15 +31,6 @@ export const userSlice = createSlice({
         setUserData(state, action: PayloadAction<{ user: User }>) {
             state.user = action.payload.user;
         },
-        // setUserEmail(state, action: PayloadAction<{email: string}>) {
-        //     state.user.email = action.payload.email;
-        // },
-        // setUserPassword(state, action: PayloadAction<{password: string}>) {
-        //     state.user.password = action.payload.password;
-        // },
-        // setUserImgSrc(state, action: PayloadAction<{imgSrc: string}>) {
-        //     state.user.imgSrc = action.payload.imgSrc;
-        // },
     },
 });
 

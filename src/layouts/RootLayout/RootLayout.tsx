@@ -1,5 +1,6 @@
 import { Layout } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { getUserMe } from '@redux/ActionCreators';
 import { useSelector } from 'react-redux';
 import { authSelector, loginSuccess, logout } from '@redux/slices/AuthSlice';
 import { Sider } from '@components/Sider';
@@ -12,7 +13,6 @@ import { Outlet, useLocation } from 'react-router-dom';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 
 import './rootLayout.css';
-import { getUserMe } from '@redux/ActionCreators';
 
 const { Footer } = Layout;
 
@@ -20,6 +20,7 @@ export const RootLayout: React.FC = () => {
     const dispatch = useAppDispatch();
     const { token, loading } = useSelector(authSelector);
     const [collapsed, setCollapsed] = useState(false);
+    const [isPageSettings, setIsPageSettings] = useState(false);
     const location = useLocation();
 
     if (location?.search) {
@@ -34,9 +35,11 @@ export const RootLayout: React.FC = () => {
         }
     }
 
-    if (token) {
-        dispatch(getUserMe(token));
-    }
+    useEffect(() => {
+        if (token) {
+            dispatch(getUserMe(token));
+        }
+    }, []);
 
     const toggleCollapsed = () => {
         setCollapsed(!collapsed);
@@ -49,8 +52,16 @@ export const RootLayout: React.FC = () => {
         }
     }, [token]);
 
+    useEffect(() => {
+        if (location.pathname === '/settings') {
+            setIsPageSettings(true);
+        } else {
+            setIsPageSettings(false);
+        }
+    }, [location]);
+
     return (
-        <Layout className='main-page'>
+        <Layout className={isPageSettings ? 'main-settings' : 'main-page'}>
             {loading && <Loader />}
             <Sider collapsed={collapsed} />
             <Layout className='site_layout'>

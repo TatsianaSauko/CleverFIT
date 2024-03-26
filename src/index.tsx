@@ -29,6 +29,8 @@ import 'normalize.css';
 import './index.css';
 import { CalendarPage } from '@pages/CalendarPage';
 import { ProfilePage } from '@pages/ProfilePage';
+import { SettingsPage } from '@pages/SettingsPage';
+import { NotFoundPage } from '@pages/NotFoundPage';
 
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
@@ -44,6 +46,7 @@ root.render(
                         <Route path={Path.Feedbacks} element={<FeedbacksPage />} />
                         <Route path={Path.Calendar} element={<CalendarPage />} />
                         <Route path={Path.Profile} element={<ProfilePage />} />
+                        <Route path={Path.Settings} element={<SettingsPage />} />
                     </Route>
 
                     <Route path={Path.Auth} element={<AuthenticationLayout />}>
@@ -71,6 +74,7 @@ root.render(
                     </Route>
                     <Route path={Path.ConfirmEmail} element={<ConfirmEmailPage />} />
                     <Route path={Path.ChangePassword} element={<ChangePasswordPage />} />
+                    <Route path='*' element={<NotFoundPage />} />
                 </Routes>
             </HistoryRouter>
         </Provider>

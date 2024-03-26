@@ -2,7 +2,6 @@ import { Alert, Button, DatePicker, Form, Input, Modal, Progress, Typography } f
 import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
 import { Upload } from 'antd';
 import type { RcFile, UploadFile } from 'antd/es/upload';
-import './profilePage.css';
 import { useState } from 'react';
 import { Content } from 'antd/lib/layout/layout';
 import { useSelector } from 'react-redux';
@@ -17,6 +16,9 @@ import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { ImgUrL } from '@constants/api';
 import { ModalErrorSaveData } from '@components/ModalErrorSaveData';
 import { useResponsiveVisibility } from '@hooks/useResponsiveVisibility';
+
+import './profilePage.css';
+
 const { Title } = Typography;
 
 const getBase64 = (file: RcFile): Promise<string> =>
@@ -57,7 +59,7 @@ export const ProfilePage = () => {
     const { token } = useSelector(authSelector);
 
     const uploadButton = (
-        <div data-test-id='profile-avatar'>
+        <>
             <div className='upload-button'>
                 <PlusOutlined />
                 <div
@@ -74,7 +76,7 @@ export const ProfilePage = () => {
                 <div className='title'>Загрузить фото профиля</div>
                 <Button icon={<UploadOutlined />}>Загрузить</Button>
             </div>
-        </div>
+        </>
     );
 
     const beforeUpload = (file: RcFile) => {
@@ -105,22 +107,20 @@ export const ProfilePage = () => {
 
     const customRequest = async (options: RcCustomRequestOptions) => {
         const { file } = options;
-        const checkRes = beforeUpload(file as RcFile);
-        if (checkRes) {
-            try {
-                setLoading(true);
-                const response = await uploadImg(file as RcFile, token);
-                const updatedFile: UploadFile<RcFile> = {
-                    ...(file as UploadFile<RcFile>),
-                    // url: `${ImgUrL}${response.data.url}?t=${Date.now()}`,
-                    url: `${ImgUrL}${response.data.url}`,
-                };
-                setFileList([updatedFile]);
-            } catch (error) {
-                setFileList([]);
-            } finally {
-                setLoading(false);
-            }
+
+        try {
+            setLoading(true);
+            const response = await uploadImg(file as RcFile, token);
+            const updatedFile: UploadFile<RcFile> = {
+                ...(file as UploadFile<RcFile>),
+                url: `${ImgUrL}${response.data.url}`,
+            };
+            setIsDisabled(false);
+            setFileList([updatedFile]);
+            setLoading(false);
+        } catch {
+            setLoading(false);
+            setModalVisible(true);
         }
     };
     const handleRemove = (file: UploadFile) => {
@@ -145,8 +145,9 @@ export const ProfilePage = () => {
             dispatch(getUserMe(token));
             setShowSuccessMessage(true);
             form.resetFields();
+            setIsDisabled(true);
         } catch {
-            setModalVisibleSaveData(false);
+            setModalVisibleSaveData(true);
         }
     };
 
@@ -180,26 +181,30 @@ export const ProfilePage = () => {
                 onFinish={onFinish}
                 onFieldsChange={handleFormChange}
                 form={form}
+                initialValues={{ email: user.email }}
             >
                 <Title level={5} className='title'>
                     Личная информация
                 </Title>
                 <div className='info-user__wrapper'>
-                    <Upload
-                        name='avatar'
-                        listType={width ? 'picture-card' : 'picture'}
-                        className='avatar-uploader'
-                        fileList={fileList}
-                        onPreview={handlePreview}
-                        customRequest={customRequest}
-                        onRemove={handleRemove}
-                    >
-                        {loading ? (
-                            <Progress percent={50} size='small' showInfo={false} />
-                        ) : fileList.length === 0 ? (
-                            uploadButton
-                        ) : null}
-                    </Upload>
+                    <div data-test-id='profile-avatar'>
+                        <Upload
+                            name='avatar'
+                            listType={width ? 'picture-card' : 'picture'}
+                            className='avatar-uploader'
+                            fileList={fileList}
+                            onPreview={handlePreview}
+                            customRequest={customRequest}
+                            onRemove={handleRemove}
+                            beforeUpload={beforeUpload}
+                        >
+                            {loading ? (
+                                <Progress percent={50} size='small' showInfo={false} />
+                            ) : fileList.length === 0 ? (
+                                uploadButton
+                            ) : null}
+                        </Upload>
+                    </div>
 
                     <Modal
                         open={previewOpen}

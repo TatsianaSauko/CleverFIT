@@ -1,6 +1,6 @@
 import { Button, Modal, Typography } from 'antd';
 import { ModalFeedbackSuccessProps } from '../../types/Props';
-import { useEffect, useState } from 'react';
+import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
 import success from '/png/success.png';
 
 import './modalFeedbackSuccess.css';
@@ -11,19 +11,7 @@ export const ModalFeedbackSuccess = ({
     isModalSuccess,
     handleModalToggle,
 }: ModalFeedbackSuccessProps) => {
-    const [modalWidth, setModalWidth] = useState(window.innerWidth < 576 ? 328 : 539);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setModalWidth(window.innerWidth < 576 ? 328 : 539);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+    const modalWidth = useResponsiveWidth(328, 539);
 
     return (
         <Modal

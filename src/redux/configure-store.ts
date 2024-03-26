@@ -6,6 +6,7 @@ import authReducer from './slices/AuthSlice';
 import feedbackReducer from './slices/FeedbackSlice';
 import trainingReducer from './slices/TrainingSlice';
 import userReducer from './slices/UserSlice';
+import tariffReducer from './slices/TariffSlice';
 
 const { createReduxHistory, routerMiddleware, routerReducer } = createReduxHistoryContext({
     history: createBrowserHistory(),
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
     training: trainingReducer,
     user: userReducer,
     router: routerReducer,
+    tariff: tariffReducer,
 });
 
 export const store = configureStore({
