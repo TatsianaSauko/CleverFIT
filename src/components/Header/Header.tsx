@@ -110,18 +110,19 @@ export const Header = () => {
             className={!isTitleHeader && isWrapperTitleHeader ? 'header header-profile' : 'header'}
         >
             {isButtonBack ? (
-                <div data-test-id='settings-back'>
-                    <PageHeader
-                        data-test-id='settings-back'
-                        className='site-page-header'
-                        onBack={() => history.back()}
-                        title={
-                            <div onClick={() => history.back()} className='title-back'>
-                                Настройки
-                            </div>
-                        }
-                    />
-                </div>
+                <PageHeader
+                    className='site-page-header'
+                    onBack={() => history.back()}
+                    title={
+                        <div
+                            data-test-id='settings-back'
+                            onClick={() => history.back()}
+                            className='title-back'
+                        >
+                            Настройки
+                        </div>
+                    }
+                />
             ) : (
                 <PageHeader
                     className='site-page-header'

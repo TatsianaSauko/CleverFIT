@@ -3,9 +3,10 @@
     padding: 24px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: var(--spacing-global-gap);
     height: 100%;
 }
+
 .settings-page .title {
     margin-bottom: 16px;
     font-weight: 500;
@@ -38,6 +39,7 @@
     font-weight: 500;
     text-align: left;
 }
+
 .title-card__wrapper .link {
     color: var(--primary-light-6);
 }
@@ -47,8 +49,9 @@
     padding-left: 15px;
     padding-top: 10px;
     padding-bottom: 10px;
-    gap: 24px;
+    gap: var(--spacing-global-gap);
 }
+
 .status-tariff {
     font-size: var(--defaultFontSize);
     font-weight: var(--title-font-weight);
@@ -77,25 +80,28 @@
     flex-direction: column;
     gap: 16px;
 }
+
 .ant-tooltip-inner {
     background: var(--neutral-gray-13);
 }
+
 .switch__wrapper .disabled {
     color: var(--character-light-disable-25);
 }
 
 .switch-title {
-    font-size: 14px;
+    font-size: var(--smallFontSize);
     font-weight: 700;
     line-height: 18.2px;
 }
+
 .switch__wrapper .ant-switch-checked {
     background: var(--primary-light-6);
 }
 
 .settings-button__wrapper {
     display: flex;
-    gap: 8;
+    gap: var(--list-item-gap);
     flex-wrap: wrap;
     padding-top: 72px;
 }
@@ -136,7 +142,7 @@
 
     .switch__wrapper {
         width: 312px;
-        gap: 24px;
+        gap: var(--spacing-global-gap);
     }
 
     .switch-title {
@@ -166,11 +172,11 @@
     }
 
     .tariff__wrapper {
-        gap: 12px;
+        gap: var(--element-gap);
     }
 
     .settings-button__wrapper {
-        gap: 16px;
+        gap: var(--spacing-content-gap);
         padding-top: 0;
         justify-content: center;
     }

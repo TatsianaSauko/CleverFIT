@@ -15,6 +15,7 @@ export const PaymentCheckModal = ({ visible, onClose }: FileSizeExceedModalProps
 
     return (
         <Modal
+            data-test-id='tariff-modal-success'
             className='modal-payment'
             footer={false}
             centered

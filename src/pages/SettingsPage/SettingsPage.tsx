@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { userSelector } from '@redux/slices/UserSlice';
 import { authSelector, logout } from '@redux/slices/AuthSlice';
 import { useState } from 'react';
-import { feedback, getFeedback, getUserMe, putUser } from '@redux/ActionCreators';
+import { feedback, getFeedback, putUser } from '@redux/ActionCreators';
 import { DrawerTariffs } from '@components/DrawerTariffs';
 import { PaymentCheckModal } from '@components/PaymentCheckModal';
 import { history } from '@redux/configure-store';
@@ -49,18 +49,24 @@ export const SettingsPage = () => {
             tooltip: 'включеная функция позволит участвовать в совместных тренировках',
             checked: switchReadyForJointTraining,
             disabled: false,
+            switchDataTestId: 'tariff-trainings',
+            iconDataTestId: 'tariff-trainings-icon',
         },
         {
             title: 'Уведомления',
             tooltip: 'включеная функция позволит получать уведомления об активностях',
             checked: switchSendNotification,
             disabled: false,
+            switchDataTestId: 'tariff-notifications',
+            iconDataTestId: 'tariff-notifications-icon',
         },
         {
             title: 'Тёмная тема',
             tooltip: 'темная тема доступна для PRO tarif',
             checked: switchTheme,
             disabled: !Boolean(user.tariff?.tariffId),
+            switchDataTestId: 'tariff-theme',
+            iconDataTestId: 'tariff-theme-icon',
         },
     ];
 
@@ -73,7 +79,6 @@ export const SettingsPage = () => {
                     readyForJointTraining: checked,
                 };
                 dispatch(putUser(newUser1, token));
-                dispatch(getUserMe(token));
                 break;
             case 'Уведомления':
                 setSwitchSendNotification(checked);
@@ -83,7 +88,6 @@ export const SettingsPage = () => {
                 };
 
                 dispatch(putUser(newUser2, token));
-                dispatch(getUserMe(token));
                 break;
             case 'Тёмная тема':
                 setSwitchTheme(checked);
@@ -93,13 +97,9 @@ export const SettingsPage = () => {
         }
     };
 
-    const closeDrawer = () => {
-        setIsDrawer(false);
-    };
-
     const handleButtonClose = () => {
+        setIsModalPayment(false);
         dispatch(logout());
-        history.push(Path.Auth);
     };
 
     const handleFeedbackSubmit = async (formData: FormFeedback) => {
@@ -110,6 +110,7 @@ export const SettingsPage = () => {
             setIsModalError(true);
         }
     };
+
     const handleModalToggle = () => {
         setIsModal(false);
         setIsModalError(false);
@@ -150,7 +151,7 @@ export const SettingsPage = () => {
                 />
             )}
             <DrawerTariffs
-                onClose={closeDrawer}
+                onClose={() => setIsDrawer(false)}
                 isDrawer={isDrawer}
                 onModalPayment={() => setIsModalPayment(true)}
             />
@@ -183,7 +184,7 @@ export const SettingsPage = () => {
                                 <CheckOutlined style={{ paddingLeft: '9.14px' }} />
                             </div>
                         </div>
-                        <div className='tariff-card'>
+                        <div className='tariff-card' data-test-id='pro-tariff-card'>
                             <div className='title-card__wrapper'>
                                 <Title level={5} className='title-card'>
                                     PRO tarif
@@ -208,7 +209,12 @@ export const SettingsPage = () => {
                                     до {moment(user.tariff?.expired).format('DD.MM')}
                                 </div>
                             ) : (
-                                <Button size='large' type='primary' className='btn-activate'>
+                                <Button
+                                    data-test-id='activate-tariff-btn'
+                                    size='large'
+                                    type='primary'
+                                    className='btn-activate'
+                                >
                                     Активировать
                                 </Button>
                             )}
@@ -223,6 +229,7 @@ export const SettingsPage = () => {
                                 {data.title}
                                 <Tooltip placement='bottomLeft' title={data.tooltip}>
                                     <ExclamationCircleOutlined
+                                        data-test-id={data.iconDataTestId}
                                         style={{
                                             paddingLeft: '4px',
                                             color: 'var(--character-light-secondary-45)',
@@ -232,6 +239,7 @@ export const SettingsPage = () => {
                                 </Tooltip>
                             </div>
                             <Switch
+                                data-test-id={data.switchDataTestId}
                                 onChange={(checked) => onChange(checked, data.title)}
                                 size={!isWidth ? 'small' : undefined}
                                 checked={data.checked}

@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { userSelector } from '@redux/slices/UserSlice';
 import type { UploadRequestOption as RcCustomRequestOptions } from 'rc-upload/lib/interface';
 import { authSelector } from '@redux/slices/AuthSlice';
-import { getUserMe, putUser, uploadImg } from '@redux/ActionCreators';
+import { putUser, uploadImg } from '@redux/ActionCreators';
 import { FileSizeExceedModal } from '@components/FileSizeExceedModal';
 import { useForm } from 'antd/lib/form/Form';
 import { FormUser } from '../../types/Types';
@@ -79,21 +79,6 @@ export const ProfilePage = () => {
         </>
     );
 
-    const beforeUpload = (file: RcFile) => {
-        const isLt5M = file.size / 1024 / 1024 < 5;
-        if (!isLt5M) {
-            setModalVisible(true);
-            setFileList([
-                {
-                    uid: '-5',
-                    name: 'image.png',
-                    status: 'error',
-                },
-            ]);
-        }
-        return isLt5M;
-    };
-
     const handlePreview = async (file: UploadFile) => {
         if (!file.url && !file.preview) {
             file.preview = await getBase64(file.originFileObj as RcFile);
@@ -121,8 +106,16 @@ export const ProfilePage = () => {
         } catch {
             setLoading(false);
             setModalVisible(true);
+            setFileList([
+                {
+                    uid: '-5',
+                    name: 'image.png',
+                    status: 'error',
+                },
+            ]);
         }
     };
+    
     const handleRemove = (file: UploadFile) => {
         setFileList((prevList) => prevList.filter((item) => item.uid !== file.uid));
     };
@@ -135,17 +128,17 @@ export const ProfilePage = () => {
     const onFinish = async (values: FormUser) => {
         delete values.confirm;
         values = Object.fromEntries(
-            Object.entries(values).filter(([_, value]) => value !== undefined),
+            Object.entries(values).filter(([_, value]) => value !== undefined && value !== ''),
         ) as FormUser;
         if (fileList.length && fileList[0].url) {
             values.imgSrc = fileList[0].url;
         }
         try {
-            dispatch(putUser(values, token));
-            dispatch(getUserMe(token));
+            await dispatch(putUser(values, token));
             setShowSuccessMessage(true);
             form.resetFields();
             setIsDisabled(true);
+            setIsPasswordEntered(false);
         } catch {
             setModalVisibleSaveData(true);
         }
@@ -154,6 +147,7 @@ export const ProfilePage = () => {
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setIsPasswordEntered(e.target.value.trim().length > 0);
     };
+
     return (
         <Content className='main profile-mobile'>
             {showSuccessMessage ? (
@@ -196,7 +190,6 @@ export const ProfilePage = () => {
                             onPreview={handlePreview}
                             customRequest={customRequest}
                             onRemove={handleRemove}
-                            beforeUpload={beforeUpload}
                         >
                             {loading ? (
                                 <Progress percent={50} size='small' showInfo={false} />
@@ -305,7 +298,10 @@ export const ProfilePage = () => {
                             }),
                         ]}
                     >
-                        <Input.Password data-test-id='profile-repeat-password' />
+                        <Input.Password
+                            placeholder='Повторите пароль'
+                            data-test-id='profile-repeat-password'
+                        />
                     </Form.Item>
                     <Form.Item>
                         <Button

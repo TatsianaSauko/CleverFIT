@@ -61,8 +61,10 @@ export const login = (data: ILogin) => {
                     token: response.data.accessToken,
                 }),
             );
+
             history.push(Path.Main);
             await new Promise((resolve) => setTimeout(resolve, 1000));
+            dispatch(getUserMe(response.data.accessToken));
             dispatch(authFetching({ loading: false }));
         } catch {
             dispatch(authFetching({ loading: false }));
@@ -311,8 +313,9 @@ export const putUser = (data: FormUser, token: string) => {
             await axios.put(`${BaseUrl}${Endpoints.User}`, data, {
                 headers,
             });
+            await dispatch(getUserMe(token));
             dispatch(authFetching({ loading: false }));
-        } catch (err) {
+        } catch {
             dispatch(authFetching({ loading: false }));
             throw Error();
         }

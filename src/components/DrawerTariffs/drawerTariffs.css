@@ -24,7 +24,7 @@
     padding: 0 32px 24px 32px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: var(--spacing-global-gap);
 }
 
 .pro-tariff {

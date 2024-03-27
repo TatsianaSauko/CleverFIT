@@ -25,6 +25,7 @@ export const DrawerTariffs = ({ onClose, isDrawer, onModalPayment }: DrawerTarif
     const { tariffList } = useSelector(tariffSelector);
     const modalWidth = useResponsiveWidth(360, 408);
     const [isDisabled, setIsDisabled] = useState(true);
+    const [isDestroyOnClose, setIsDestroyOnClose] = useState(false);
     const [value, setValue] = useState(undefined);
     const { token } = useSelector(authSelector);
     const { user } = useSelector(userSelector);
@@ -35,20 +36,22 @@ export const DrawerTariffs = ({ onClose, isDrawer, onModalPayment }: DrawerTarif
     };
 
     const handleButtonPay = () => {
+        onClose();
         if (value !== undefined) {
+            onModalPayment();
+            setIsDestroyOnClose(true);
             dispatch(
                 createTariff(
                     { tariffId: tariffList._id, days: tariffList.periods[value].days },
                     token,
                 ),
             );
-            onClose();
-            onModalPayment();
         }
     };
 
     return (
         <Drawer
+            data-test-id='tariff-sider'
             title='Сравнить тарифы'
             placement='right'
             className='drawer-tariff'
@@ -56,6 +59,7 @@ export const DrawerTariffs = ({ onClose, isDrawer, onModalPayment }: DrawerTarif
             open={isDrawer}
             closable={false}
             width={modalWidth}
+            destroyOnClose={isDestroyOnClose}
             extra={
                 <Space>
                     <Button
@@ -133,7 +137,7 @@ export const DrawerTariffs = ({ onClose, isDrawer, onModalPayment }: DrawerTarif
                 </div>
                 <div>
                     {!user.tariff?.tariffId && (
-                        <>
+                        <div data-test-id='tariff-cost'>
                             <div className='tariff-price__title'>Стоимость тарифа</div>
                             <div className='tariff-price__wrapper'>
                                 <Radio.Group onChange={onChange}>
@@ -148,20 +152,31 @@ export const DrawerTariffs = ({ onClose, isDrawer, onModalPayment }: DrawerTarif
                                                 {period.text}
                                             </div>
                                             <div className='tariff-price__info'>
-                                                <div className='price'>{period.cost} $</div>
-                                                <Radio value={index} />
+                                                <div className='price'>
+                                                    {period.cost.toLocaleString('ru-RU')} $
+                                                </div>
+                                                <Radio
+                                                    data-test-id={`tariff-${period.cost}`}
+                                                    value={index}
+                                                />
                                             </div>
                                         </Row>
                                     ))}
                                 </Radio.Group>
                             </div>
-                        </>
+                        </div>
                     )}
                 </div>
             </div>
             {!user.tariff?.tariffId && (
                 <div className='drawer-footer'>
-                    <Button size='large' disabled={isDisabled} block onClick={handleButtonPay}>
+                    <Button
+                        size='large'
+                        data-test-id='tariff-submit'
+                        disabled={isDisabled}
+                        block
+                        onClick={handleButtonPay}
+                    >
                         Выбрать и оплатить
                     </Button>
                 </div>

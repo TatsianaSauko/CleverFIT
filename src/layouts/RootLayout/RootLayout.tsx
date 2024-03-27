@@ -1,6 +1,5 @@
 import { Layout } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { getUserMe } from '@redux/ActionCreators';
 import { useSelector } from 'react-redux';
 import { authSelector, loginSuccess, logout } from '@redux/slices/AuthSlice';
 import { Sider } from '@components/Sider';
@@ -34,12 +33,6 @@ export const RootLayout: React.FC = () => {
             );
         }
     }
-
-    useEffect(() => {
-        if (token) {
-            dispatch(getUserMe(token));
-        }
-    }, []);
 
     const toggleCollapsed = () => {
         setCollapsed(!collapsed);
