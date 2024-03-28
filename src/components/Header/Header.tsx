@@ -1,16 +1,16 @@
-import { Layout as AntLayout, Typography, Button, PageHeader } from 'antd';
-import { SettingsIcon } from '../../icons';
-import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { Path } from '@constants/paths';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
+import { getTariffList } from '@redux/ActionCreators';
 import { history } from '@redux/configure-store';
+import { authSelector } from '@redux/slices/AuthSlice';
+import { Button, Layout as AntLayout, PageHeader, Typography } from 'antd';
+
+import { SettingsIcon } from '../../icons';
 
 import './header.css';
-import { getTariffList } from '@redux/ActionCreators';
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import { useSelector } from 'react-redux';
-import { authSelector } from '@redux/slices/AuthSlice';
-import { ArrowLeftOutlined } from '@ant-design/icons';
 
 const { Header: AntHeader } = AntLayout;
 
@@ -29,6 +29,7 @@ export const Header = () => {
     const [isWrapperTitleHeader, setIsWrapperIsTitleHeader] = useState(false);
     const [isButtonBack, setIsButtonBack] = useState(false);
     const [breadcrumbRoutes, setBreadcrumbRoutes] = useState<BreadcrumbRoute[]>([]);
+    const shouldChangeFontSize = !isTitleHeader && isWrapperTitleHeader;
 
     useEffect(() => {
         switch (location.pathname) {
@@ -105,18 +106,20 @@ export const Header = () => {
         history.push(Path.Settings);
     };
 
+    const handleBackClick = () => {
+        history.back();
+    };
+
     return (
-        <AntHeader
-            className={!isTitleHeader && isWrapperTitleHeader ? 'header header-profile' : 'header'}
-        >
+        <AntHeader className={shouldChangeFontSize ? 'header header-profile' : 'header'}>
             {isButtonBack ? (
                 <PageHeader
                     className='site-page-header'
-                    onBack={() => history.back()}
+                    onBack={handleBackClick}
                     title={
                         <div
                             data-test-id='settings-back'
-                            onClick={() => history.back()}
+                            onClick={handleBackClick}
                             className='title-back'
                         >
                             Настройки
@@ -143,20 +146,10 @@ export const Header = () => {
                 </Title>
                 <Button
                     data-test-id='header-settings'
-                    icon={
-                        <SettingsIcon
-                            style={
-                                !isTitleHeader && isWrapperTitleHeader
-                                    ? { fontSize: '14px' }
-                                    : undefined
-                            }
-                        />
-                    }
-                    size={!isTitleHeader && isWrapperTitleHeader ? undefined : 'large'}
+                    icon={<SettingsIcon style={shouldChangeFontSize ? { fontSize: '14px' } : {}} />}
+                    size={shouldChangeFontSize ? undefined : 'large'}
                     className={
-                        !isTitleHeader && isWrapperTitleHeader
-                            ? 'btn-settings btn-settings__profile'
-                            : 'btn-settings'
+                        shouldChangeFontSize ? 'btn-settings btn-settings__profile' : 'btn-settings'
                     }
                     onClick={handleButtonSettings}
                 >

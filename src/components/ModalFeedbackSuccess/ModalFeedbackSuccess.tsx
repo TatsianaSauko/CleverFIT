@@ -1,7 +1,8 @@
-import { Button, Modal, Typography } from 'antd';
-import { ModalFeedbackSuccessProps } from '../../types/Props';
 import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
+import { Button, Modal, Typography } from 'antd';
+
 import success from '/png/success.png';
+import { ModalFeedbackSuccessProps } from '../../types/Props';
 
 import './modalFeedbackSuccess.css';
 
@@ -16,7 +17,7 @@ export const ModalFeedbackSuccess = ({
     return (
         <Modal
             className='modal-feedback-success'
-            centered
+            centered={true}
             open={isModalSuccess}
             width={modalWidth}
             onCancel={handleModalToggle}
@@ -29,9 +30,9 @@ export const ModalFeedbackSuccess = ({
                 </Title>
 
                 <Button
-                    block
+                    block={true}
                     type='primary'
-                    size={'large'}
+                    size='large'
                     className='btn'
                     onClick={handleModalToggle}
                 >

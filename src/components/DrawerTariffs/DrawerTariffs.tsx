@@ -1,22 +1,23 @@
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, Drawer, Row, Space, Radio } from 'antd';
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import { DrawerTariffProps } from '../../types/Props';
 import {
     CheckCircleFilled,
     CheckCircleOutlined,
     CloseCircleOutlined,
     CloseOutlined,
 } from '@ant-design/icons';
-import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
-import type { RadioChangeEvent } from 'antd';
-import { useState } from 'react';
 import { tariffData } from '@constants/tariffData';
-import { tariffSelector } from '@redux/slices/TariffSlice';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
+import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
 import { createTariff } from '@redux/ActionCreators';
 import { authSelector } from '@redux/slices/AuthSlice';
+import { tariffSelector } from '@redux/slices/TariffSlice';
 import { userSelector } from '@redux/slices/UserSlice';
+import type { RadioChangeEvent } from 'antd';
+import { Button, Drawer, Radio, Row, Space } from 'antd';
 import moment from 'moment';
+
+import { DrawerTariffProps } from '../../types/Props';
 
 import './drawerTariffs.css';
 
@@ -29,6 +30,7 @@ export const DrawerTariffs = ({ onClose, isDrawer, onModalPayment }: DrawerTarif
     const [value, setValue] = useState(undefined);
     const { token } = useSelector(authSelector);
     const { user } = useSelector(userSelector);
+    const userTariffId = user.tariff?.tariffId;
 
     const onChange = (e: RadioChangeEvent) => {
         setValue(e.target.value);
@@ -37,7 +39,7 @@ export const DrawerTariffs = ({ onClose, isDrawer, onModalPayment }: DrawerTarif
 
     const handleButtonPay = () => {
         onClose();
-        if (value !== undefined) {
+        if (value) {
             onModalPayment();
             setIsDestroyOnClose(true);
             dispatch(
@@ -73,7 +75,7 @@ export const DrawerTariffs = ({ onClose, isDrawer, onModalPayment }: DrawerTarif
                         }
                         className='btn-close'
                         onClick={onClose}
-                    ></Button>
+                    />
                 </Space>
             }
         >
@@ -88,7 +90,7 @@ export const DrawerTariffs = ({ onClose, isDrawer, onModalPayment }: DrawerTarif
                         <div className='title-free'>FREE</div>
                         <div className='title-pro'>
                             PRO
-                            {user.tariff?.tariffId && (
+                            {userTariffId && (
                                 <CheckCircleOutlined
                                     style={{
                                         color: 'var(--character-light-success)',
@@ -136,14 +138,14 @@ export const DrawerTariffs = ({ onClose, isDrawer, onModalPayment }: DrawerTarif
                     </div>
                 </div>
                 <div>
-                    {!user.tariff?.tariffId && (
+                    {!userTariffId && (
                         <div data-test-id='tariff-cost'>
                             <div className='tariff-price__title'>Стоимость тарифа</div>
                             <div className='tariff-price__wrapper'>
                                 <Radio.Group onChange={onChange}>
                                     {tariffList.periods.map((period, index) => (
                                         <Row
-                                            key={index}
+                                            key={period.days}
                                             justify='space-between'
                                             align='middle'
                                             style={{ paddingTop: '5px', paddingBottom: '5px' }}
@@ -168,13 +170,13 @@ export const DrawerTariffs = ({ onClose, isDrawer, onModalPayment }: DrawerTarif
                     )}
                 </div>
             </div>
-            {!user.tariff?.tariffId && (
+            {!userTariffId && (
                 <div className='drawer-footer'>
                     <Button
                         size='large'
                         data-test-id='tariff-submit'
                         disabled={isDisabled}
-                        block
+                        block={true}
                         onClick={handleButtonPay}
                     >
                         Выбрать и оплатить

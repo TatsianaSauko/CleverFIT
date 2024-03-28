@@ -1,5 +1,5 @@
 .not-found-page {
-    margin: 24px 24px 42px 24px;
+    margin: 24px 24px 42px;
     padding: 24px;
     background: var(--neutral-gray-1);
     height: calc(100vh - 66px);
@@ -22,6 +22,6 @@
 
 @media screen and (max-width: 576px) {
     .not-found-page {
-        margin: -24px 0 42px 0;
+        margin: -24px 0 42px;
     }
 }

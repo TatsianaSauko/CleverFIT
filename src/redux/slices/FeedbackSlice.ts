@@ -1,6 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Feedback, UserFeedback } from '../../types/Types';
 import { RootState } from '@redux/configure-store';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { Feedback, UserFeedback } from '../../types/Types';
 
 type InitialState = {
     feedbacks: Feedback[];

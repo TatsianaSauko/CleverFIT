@@ -12,12 +12,12 @@
     font-size: var(--smallFontSize);
 }
 
-.drawer__wrapper .btn__add-more span::before {
+.drawer__wrapper .btn__add-more span:before {
     content: '+';
     padding-right: 8px;
 }
 
-.drawer__wrapper .btn__delete span::before {
+.drawer__wrapper .btn__delete span:before {
     content: '—';
     padding-right: 8px;
 }
@@ -47,7 +47,7 @@
 }
 
 .ant-drawer-header {
-    padding: 20px 32px 16px 32px;
+    padding: 20px 32px 16px;
     border-bottom: none;
 }
 

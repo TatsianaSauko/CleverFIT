@@ -7,7 +7,7 @@ module.exports = {
     parserOptions: {
         project: ['./tsconfig.eslint.json', './cypress/tsconfig.json'],
     },
-    plugins: ['react-refresh'],
+    plugins: ['react-refresh', 'import'],
     overrides: [
         {
             files: ['cypress/**/*.ts'],
@@ -34,6 +34,22 @@ module.exports = {
     ],
 
     rules: {
+        'unicorn/filename-case': 'off',
         'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+        'import/order': [
+            'error',
+            {
+                groups: ['builtin', 'external', 'internal'],
+                pathGroups: [
+                    {
+                        pattern: 'antd',
+                        group: 'external',
+                        position: 'before',
+                    },
+                ],
+                pathGroupsExcludedImportTypes: ['builtin'],
+                'newlines-between': 'always',
+            },
+        ],
     },
 };

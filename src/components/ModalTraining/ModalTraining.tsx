@@ -1,6 +1,6 @@
-import { Button, Divider, Empty, Typography } from 'antd';
 import { useSelector } from 'react-redux';
-import moment from 'moment';
+import { ModalTrainingContent } from '@components/ModalTrainingContent';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import {
     cleanTraining,
     setNameTraining,
@@ -8,11 +8,12 @@ import {
     trainingSelector,
 } from '@redux/slices/TrainingSlice';
 import { getDataForDate } from '@utils/getDataForDate';
-import { ModalTrainingContent } from '@components/ModalTrainingContent';
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import { ModalTrainingProps } from '../../types/Props';
-import empty from '/png/empty-image.png';
+import { Button, Divider, Empty, Typography } from 'antd';
+import moment from 'moment';
+
 import close from '/png/close.png';
+import empty from '/png/empty-image.png';
+import { ModalTrainingProps } from '../../types/Props';
 
 import './modalTraining.css';
 
@@ -26,6 +27,7 @@ export const ModalTraining = ({ onCancel, position, click }: ModalTrainingProps)
     const handleEditTraining = (value: string) => {
         dispatch(setNameTraining({ value }));
         const filteredActivities = dataForDate.filter((item) => item.name === value);
+
         dispatch(setTraining({ training: filteredActivities[0] }));
         onCancel();
         click();
@@ -76,15 +78,15 @@ export const ModalTraining = ({ onCancel, position, click }: ModalTrainingProps)
                     }}
                     className='empty'
                     description={false}
-                ></Empty>
+                />
             )}
             <Divider />
             <div className='btn-wrapper'>
                 <Button
                     type='primary'
                     className='btn-create'
-                    size={'large'}
-                    block
+                    size='large'
+                    block={true}
                     onClick={handleCreateTraining}
                     disabled={trainingList.length === dataForDate.length || flag === true}
                 >

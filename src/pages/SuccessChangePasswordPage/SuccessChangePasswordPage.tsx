@@ -1,7 +1,8 @@
-import { Typography, Button } from 'antd';
-import { history } from '@redux/configure-store';
-import success from '/png/success.png';
 import { Path } from '@constants/paths';
+import { history } from '@redux/configure-store';
+import { Button, Typography } from 'antd';
+
+import success from '/png/success.png';
 
 import './successChangePasswordPage.css';
 
@@ -21,9 +22,9 @@ export const SuccessChangePasswordPage = () => (
             </Text>
         </div>
         <Button
-            block
+            block={true}
             type='primary'
-            size={'large'}
+            size='large'
             className='button'
             onClick={() => history.push(Path.Auth)}
             data-test-id='change-entry-button'

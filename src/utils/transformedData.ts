@@ -1,7 +1,7 @@
 import { ActivityData } from '../types/Types';
 
-export const transformedData = (originalData: ActivityData[]) => {
-    return originalData.map(({ _id, name, date, exercises, isImplementation }) => ({
+export const transformedData = (originalData: ActivityData[]) =>
+    originalData.map(({ _id, name, date, exercises, isImplementation }) => ({
         _id,
         name,
         date,
@@ -17,4 +17,3 @@ export const transformedData = (originalData: ActivityData[]) => {
             }),
         ),
     }));
-};

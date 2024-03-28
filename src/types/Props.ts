@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
-import { ActivityData, Exercise, Feedback, FormFeedback } from './Types';
 import { Moment } from 'moment';
+
+import { ActivityData, Exercise, Feedback, FormFeedback } from './Types';
 
 export type CardProps = {
     title: string;
@@ -85,16 +86,16 @@ export type DrawerProps = {
     onClose: () => void;
     isDrawer: boolean;
 };
+
 export type DrawerTariffProps = {
     onClose: () => void;
     isDrawer: boolean;
     onModalPayment: () => void;
 };
+
 export type FileSizeExceedModalProps = {
     onClose: () => void;
     visible: boolean;
 };
-export type ModalErrorSaveDataProps = {
-    onClose: () => void;
-    visible: boolean;
-};
+
+export type ModalErrorSaveDataProps = FileSizeExceedModalProps;

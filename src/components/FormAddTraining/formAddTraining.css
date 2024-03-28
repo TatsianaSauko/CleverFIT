@@ -41,7 +41,7 @@
 
 .form__wrapper
     .ant-form-item-label
-    > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+    > label.ant-form-item-required:not(.ant-form-item-required-mark-optional):before {
     content: '';
 }
 
@@ -58,6 +58,6 @@
     border-right: 1px solid var(--character-light-border);
     border-top: 1px solid var(--character-light-border);
     border-radius: 0 2px 2px 0;
-    padding: 0px 12px;
+    padding: 0 12px;
     background: var(--character-light-table-header);
 }

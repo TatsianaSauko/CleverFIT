@@ -1,9 +1,10 @@
+import { useSelector } from 'react-redux';
+import { EditOutlined } from '@ant-design/icons';
+import { trainingSelector } from '@redux/slices/TrainingSlice';
 import { Button, Empty } from 'antd';
+
 import empty from '/png/empty-image.png';
 import { TrainingEditProps } from '../../types/Props';
-import { useSelector } from 'react-redux';
-import { trainingSelector } from '@redux/slices/TrainingSlice';
-import { EditOutlined } from '@ant-design/icons';
 
 import './modalEditContent.css';
 
@@ -32,7 +33,7 @@ export const ModalEditContent = ({ onClick }: TrainingEditProps) => {
                                 data-test-id={`modal-update-training-edit-button${index}`}
                                 onClick={onClick}
                                 icon={<EditOutlined style={{ color: 'var(--primary-light-6)' }} />}
-                            ></Button>
+                            />
                         )}
                     </li>
                 ))

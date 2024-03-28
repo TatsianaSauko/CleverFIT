@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export function useResponsiveVisibility(defaultVisibility: boolean) {
     const [modalVisible, setModalVisible] = useState(defaultVisibility);
 
     useEffect(() => {
         const handleResize = () => {
-            const isVisible = window.innerWidth < 576 ? false : true;
+            const isVisible = !(window.innerWidth < 576);
+
             setModalVisible(isVisible);
         };
 

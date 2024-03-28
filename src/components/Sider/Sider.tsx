@@ -1,17 +1,18 @@
 import { useState } from 'react';
-import { Layout as AntLayout, Menu } from 'antd';
-import { HeartIcon, TrophyIcon, CalendarIcon, IdCardIcon, LogoutIcon } from '../../icons';
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import { authSelector, logout } from '@redux/slices/AuthSlice';
-import { history } from '@redux/configure-store';
+import { useSelector } from 'react-redux';
+import { ModalGetDataError } from '@components/ModalGetDataError';
 import { Path } from '@constants/paths';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
+import { getTrainingList, getTrainingUser } from '@redux/ActionCreators';
+import { history } from '@redux/configure-store';
+import { authSelector, logout } from '@redux/slices/AuthSlice';
+import { setIisModal } from '@redux/slices/TrainingSlice';
+import { Layout as AntLayout, Menu } from 'antd';
+
 import cleverFit from '/png/cleverFit.png';
 import fit from '/png/fit.png';
 import logoMobile from '/png/logoMobile.png';
-import { ModalGetDataError } from '@components/ModalGetDataError';
-import { getTrainingList, getTrainingUser } from '@redux/ActionCreators';
-import { setIisModal } from '@redux/slices/TrainingSlice';
-import { useSelector } from 'react-redux';
+import { CalendarIcon, HeartIcon, IdCardIcon, LogoutIcon, TrophyIcon } from '../../icons';
 
 import './sider.css';
 
@@ -46,23 +47,23 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
 
     const menuItems = [
         {
-            key: '4',
+            key: 'calendar',
             icon: <CalendarIcon />,
             link: '/calendar',
             text: 'Календарь',
             onClick: handleCalendar,
         },
-        { key: '5', icon: <HeartIcon />, link: '/training', text: 'Тренировки' },
-        { key: '7', icon: <TrophyIcon />, link: '/achievements', text: 'Достижения' },
+        { key: 'Тренировки', icon: <HeartIcon />, link: '/training', text: 'Тренировки' },
+        { key: 'Достижения', icon: <TrophyIcon />, link: '/achievements', text: 'Достижения' },
         {
-            key: '8',
+            key: 'Профиль',
             icon: <IdCardIcon />,
             link: '/profile',
             text: 'Профиль',
             onClick: () => history.push(Path.Profile),
         },
         {
-            key: '9',
+            key: 'Выход',
             icon: <LogoutIcon className={!collapsed ? 'icon_exit__padding' : 'icon_exit'} />,
             link: '',
             text: 'Выход',
@@ -76,7 +77,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
             width={width}
             collapsedWidth={collapsedWidth}
             trigger={null}
-            collapsible
+            collapsible={true}
             collapsed={collapsed}
             className='aside'
             onBreakpoint={(broken) => {

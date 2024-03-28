@@ -1,13 +1,14 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TrainingList, ActivityData, Exercise } from '../../types/Types';
 import { RootState } from '@redux/configure-store';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { ActivityData, Exercise, TrainingList } from '../../types/Types';
 
 type InitialState = {
     trainingList: TrainingList;
     activitiesData: ActivityData[];
     training: ActivityData;
-    flag: Boolean;
-    loadingTraining: Boolean;
+    flag: boolean;
+    loadingTraining: boolean;
     isModal: boolean;
 };
 
@@ -43,7 +44,7 @@ export const trainingSlice = createSlice({
             state.trainingList = action.payload.trainingList;
         },
 
-        setLoading(state, action: PayloadAction<{ loadingTraining: Boolean }>) {
+        setLoading(state, action: PayloadAction<{ loadingTraining: boolean }>) {
             state.loadingTraining = action.payload.loadingTraining;
         },
 
@@ -63,7 +64,7 @@ export const trainingSlice = createSlice({
             state.training = action.payload.training;
         },
 
-        setFlag(state, action: PayloadAction<{ flag: Boolean }>) {
+        setFlag(state, action: PayloadAction<{ flag: boolean }>) {
             state.flag = action.payload.flag;
         },
 
@@ -87,6 +88,7 @@ export const trainingSlice = createSlice({
         setExercises(state, action: PayloadAction<{ exercise: Exercise; index: number }>) {
             const { exercise, index } = action.payload;
             const updatedExercises = [...state.training.exercises];
+
             updatedExercises[index] = exercise;
             state.training.exercises = updatedExercises;
         },

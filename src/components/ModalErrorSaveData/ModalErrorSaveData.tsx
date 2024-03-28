@@ -1,7 +1,8 @@
-import { Button, Modal, Typography } from 'antd';
-import { ModalErrorSaveDataProps } from '../../types/Props';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
+import { Button, Modal, Typography } from 'antd';
+
+import { ModalErrorSaveDataProps } from '../../types/Props';
 
 import './modalErrorSaveData.css';
 
@@ -14,7 +15,7 @@ export const ModalErrorSaveData = ({ visible, onClose }: ModalErrorSaveDataProps
         <Modal
             className='modal-save-data-error'
             footer={false}
-            centered
+            centered={true}
             open={visible}
             onCancel={onClose}
             closable={false}

@@ -160,7 +160,12 @@ export type TariffList = {
     name: string;
     periods: Periods[];
 };
+
 export type TariffPayment = {
     tariffId: string;
     days: number;
+};
+
+export type DataTestId = {
+    [key: string]: string;
 };

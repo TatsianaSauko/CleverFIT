@@ -57,7 +57,7 @@
     "eslint-import-resolver-typescript": "~3.1.5",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-dirnames": "^1.0.3",
-    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
@@ -98,7 +98,6 @@
       ]
     }
   },
-
   "prettier": "arui-presets-lint/prettier",
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [

@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux';
-import { authSelector } from '@redux/slices/AuthSlice';
-import { Typography, Button } from 'antd';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { checkEmail } from '@redux/ActionCreators';
 import { history } from '@redux/configure-store';
+import { authSelector } from '@redux/slices/AuthSlice';
+import { Button, Typography } from 'antd';
+
 import errorCheckEmail from '/png/errorCheckEmail.png';
 
 import './errorCheckEmailPage.css';
@@ -30,7 +31,7 @@ export const ErrorCheckEmailPage = () => {
             </div>
             <Button
                 type='primary'
-                size={'large'}
+                size='large'
                 className='button'
                 onClick={onClick}
                 data-test-id='check-back-button'

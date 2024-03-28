@@ -1,9 +1,10 @@
-import { Modal, Typography } from 'antd';
-import { FileSizeExceedModalProps } from '../../types/Props';
-import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
 import { useSelector } from 'react-redux';
+import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
 import { userSelector } from '@redux/slices/UserSlice';
+import { Modal, Typography } from 'antd';
+
 import iconOk from '/png/ok.png';
+import { FileSizeExceedModalProps } from '../../types/Props';
 
 import './paymentCheckModal.css';
 
@@ -18,7 +19,7 @@ export const PaymentCheckModal = ({ visible, onClose }: FileSizeExceedModalProps
             data-test-id='tariff-modal-success'
             className='modal-payment'
             footer={false}
-            centered
+            centered={true}
             open={visible}
             onCancel={onClose}
             width={modalWidth}
@@ -31,8 +32,9 @@ export const PaymentCheckModal = ({ visible, onClose }: FileSizeExceedModalProps
                             Чек для оплаты у вас на почте
                         </Title>
                         <Text type='secondary' className='subtitle'>
-                            Мы отправили инструкцию для оплаты вам на e-mail {user.email} После
-                            подтверждения оплаты войдите в приложение заново.
+                            Мы отправили инструкцию для оплаты вам на e-mail{' '}
+                            <strong>{user.email}</strong> После подтверждения оплаты войдите
+                            в приложение заново.
                         </Text>
                     </div>
                 </div>

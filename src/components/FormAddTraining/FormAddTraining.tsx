@@ -1,7 +1,8 @@
-import { Form, Input, Checkbox } from 'antd';
-import { setExercises } from '@redux/slices/TrainingSlice';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
+import { setExercises } from '@redux/slices/TrainingSlice';
+import { Checkbox, Form, Input } from 'antd';
 import { FieldData } from 'rc-field-form/lib/interface';
+
 import { FormAddTrainingProps } from '../../types/Props';
 
 import './formAddTraining.css';
@@ -61,29 +62,29 @@ export const FormAddTraining = ({ item, index }: FormAddTrainingProps) => {
                     <Checkbox
                         className='checkbox'
                         data-test-id={`modal-drawer-right-checkbox-exercise${index}`}
-                    ></Checkbox>
+                    />
                 </Form.Item>
             </div>
 
             <div className='form__wrapper'>
                 <Form.Item label='Подходы' name='approaches'>
                     <Input
-                        placeholder={'1'}
-                        addonBefore={'+'}
+                        placeholder='1'
+                        addonBefore='+'
                         data-test-id={`modal-drawer-right-input-approach${index}`}
                     />
                 </Form.Item>
                 <div className='form__block'>
                     <Form.Item label='Вес, кг' name='weight'>
                         <Input
-                            placeholder={'0'}
+                            placeholder='0'
                             data-test-id={`modal-drawer-right-input-weight${index}`}
                         />
                     </Form.Item>
                     <div className='icon'>x</div>
                     <Form.Item label='Количество' name='replays'>
                         <Input
-                            placeholder={'1'}
+                            placeholder='1'
                             data-test-id={`modal-drawer-right-input-quantity${index}`}
                         />
                     </Form.Item>

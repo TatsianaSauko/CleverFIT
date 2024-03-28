@@ -1,25 +1,26 @@
-import { Button, Row, Switch, Tooltip, Typography } from 'antd';
-import { Content } from 'antd/lib/layout/layout';
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import free from '/png/free.png';
-import proDisable from '/png/pro-disable.png';
-import proActive from '/png/pro-able.png';
-import { CheckOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
-import { userSelector } from '@redux/slices/UserSlice';
-import { authSelector, logout } from '@redux/slices/AuthSlice';
 import { useState } from 'react';
-import { feedback, getFeedback, putUser } from '@redux/ActionCreators';
+import { useSelector } from 'react-redux';
+import { CheckOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { DrawerTariffs } from '@components/DrawerTariffs';
-import { PaymentCheckModal } from '@components/PaymentCheckModal';
-import { history } from '@redux/configure-store';
-import { Path } from '@constants/paths';
-import moment from 'moment';
-import { useResponsiveVisibility } from '@hooks/useResponsiveVisibility';
 import { ModalFeedback } from '@components/ModalFeedback';
-import { FormFeedback } from '../../types/Types';
 import { ModalFeedbackError } from '@components/ModalFeedbackError';
 import { ModalFeedbackSuccess } from '@components/ModalFeedbackSuccess';
+import { PaymentCheckModal } from '@components/PaymentCheckModal';
+import { Path } from '@constants/paths';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
+import { useResponsiveVisibility } from '@hooks/useResponsiveVisibility';
+import { feedback, getFeedback, putUser } from '@redux/ActionCreators';
+import { history } from '@redux/configure-store';
+import { authSelector, logout } from '@redux/slices/AuthSlice';
+import { userSelector } from '@redux/slices/UserSlice';
+import { Button, Row, Switch, Tooltip, Typography } from 'antd';
+import { Content } from 'antd/lib/layout/layout';
+import moment from 'moment';
+
+import free from '/png/free.png';
+import proActive from '/png/pro-able.png';
+import proDisable from '/png/pro-disable.png';
+import { FormFeedback } from '../../types/Types';
 
 import './settingsPage.css';
 
@@ -37,7 +38,7 @@ export const SettingsPage = () => {
     const [isDrawer, setIsDrawer] = useState(false);
     const [isModalPayment, setIsModalPayment] = useState(false);
     const [isModal, setIsModal] = useState(false);
-    const defaultVisibility = window.innerWidth < 576 ? false : true;
+    const defaultVisibility = !(window.innerWidth < 576);
     const isWidth = useResponsiveVisibility(defaultVisibility);
     const [isModalGetData, setIsModalGetData] = useState(false);
     const [isModalSuccess, setIsModalSuccess] = useState(false);
@@ -64,7 +65,7 @@ export const SettingsPage = () => {
             title: 'Тёмная тема',
             tooltip: 'темная тема доступна для PRO tarif',
             checked: switchTheme,
-            disabled: !Boolean(user.tariff?.tariffId),
+            disabled: !user.tariff?.tariffId,
             switchDataTestId: 'tariff-theme',
             iconDataTestId: 'tariff-theme-icon',
         },
@@ -74,15 +75,16 @@ export const SettingsPage = () => {
         switch (switchName) {
             case 'Открыт для совместных тренировок':
                 setSwitchReadyForJointTraining(checked);
-                let newUser1 = {
+                const newUser1 = {
                     ...user,
                     readyForJointTraining: checked,
                 };
+
                 dispatch(putUser(newUser1, token));
                 break;
             case 'Уведомления':
                 setSwitchSendNotification(checked);
-                let newUser2 = {
+                const newUser2 = {
                     ...user,
                     sendNotification: checked,
                 };
@@ -120,7 +122,7 @@ export const SettingsPage = () => {
         }
         if (isModalSuccess) {
             setIsModalSuccess(false);
-            dispatch(getFeedback({ token: token }));
+            dispatch(getFeedback({ token }));
         }
     };
 
@@ -155,10 +157,7 @@ export const SettingsPage = () => {
                 isDrawer={isDrawer}
                 onModalPayment={() => setIsModalPayment(true)}
             />
-            <PaymentCheckModal
-                visible={isModalPayment}
-                onClose={handleButtonClose}
-            ></PaymentCheckModal>
+            <PaymentCheckModal visible={isModalPayment} onClose={handleButtonClose} />
             <div className='settings-page'>
                 <div>
                     <Title level={4} className='title'>

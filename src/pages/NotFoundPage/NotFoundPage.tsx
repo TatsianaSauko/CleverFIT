@@ -1,7 +1,7 @@
-import { Button, Layout, Result } from 'antd';
-import { Sider } from '@components/Sider';
 import { useState } from 'react';
 import { ButtonSiderToggle } from '@components/ButtonSiderToggle';
+import { Sider } from '@components/Sider';
+import { Button, Layout, Result } from 'antd';
 
 import './notFoundPage.css';
 

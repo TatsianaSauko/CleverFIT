@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Typography, Button, Form, Input } from 'antd';
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import { changePassword } from '@redux/ActionCreators';
-import { authSelector, setPassword } from '@redux/slices/AuthSlice';
-import { history } from '@redux/configure-store';
+import { useLocation } from 'react-router-dom';
 import { Loader } from '@components/Loader';
 import { Path } from '@constants/paths';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
+import { changePassword } from '@redux/ActionCreators';
+import { history } from '@redux/configure-store';
+import { authSelector, setPassword } from '@redux/slices/AuthSlice';
+import { Button, Form, Input, Typography } from 'antd';
+
 import { IChangePassword } from '../../types/Types';
 
 import './changePasswordPage.css';
@@ -55,21 +56,23 @@ export const ChangePasswordPage = () => {
                                     const hasDigit = /\d/.test(value);
                                     const hasSpecialCharacter =
                                         /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(value);
+
                                     if (hasUppercase && hasDigit && !hasSpecialCharacter) {
                                         return Promise.resolve();
                                     }
+
                                     return Promise.reject(new Error(''));
                                 },
                             }),
                         ]}
-                        hasFeedback
+                        hasFeedback={true}
                     >
                         <Input.Password placeholder='Новый пароль' data-test-id='change-password' />
                     </Form.Item>
                     <Form.Item
                         name='confirmPassword'
                         dependencies={['password']}
-                        hasFeedback
+                        hasFeedback={true}
                         rules={[
                             {
                                 required: true,
@@ -80,6 +83,7 @@ export const ChangePasswordPage = () => {
                                     if (!value || getFieldValue('password') === value) {
                                         return Promise.resolve();
                                     }
+
                                     return Promise.reject(new Error('Пароли не совпадают'));
                                 },
                             }),
@@ -93,8 +97,8 @@ export const ChangePasswordPage = () => {
                     <Form.Item>
                         <Button
                             type='primary'
-                            size={'large'}
-                            block
+                            size='large'
+                            block={true}
                             className='btn-save'
                             htmlType='submit'
                             data-test-id='change-submit-button'

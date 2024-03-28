@@ -1,21 +1,22 @@
 import { useState } from 'react';
-import { Button, Divider, Select, Spin } from 'antd';
-import { ModalEditTrainingProps } from '../../types/Props';
 import { useSelector } from 'react-redux';
+import { LoadingOutlined } from '@ant-design/icons';
+import { ModalEditContent } from '@components/ModalEditContent';
+import { ModalTrainingListError } from '@components/ModalTrainingListError';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
+import { createTraining, getTrainingUser, putTraining } from '@redux/ActionCreators';
+import { authSelector } from '@redux/slices/AuthSlice';
 import { cleanTraining, setNameTraining, trainingSelector } from '@redux/slices/TrainingSlice';
 import { getDataForDate } from '@utils/getDataForDate';
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import { authSelector } from '@redux/slices/AuthSlice';
-import { createTraining, getTrainingUser, putTraining } from '@redux/ActionCreators';
-import { ModalEditContent } from '@components/ModalEditContent';
-import { LoadingOutlined } from '@ant-design/icons';
+import { Button, Divider, Select, Spin } from 'antd';
 import moment from 'moment';
-import { ModalTrainingListError } from '@components/ModalTrainingListError';
+
 import back from '/png/icon-back.png';
+import { ModalEditTrainingProps } from '../../types/Props';
 
 import './modalEdit.css';
 
-const antIcon = <LoadingOutlined style={{ fontSize: 14, color: '#1D39C4' }} spin />;
+const antIcon = <LoadingOutlined style={{ fontSize: 14, color: '#1D39C4' }} spin={true} />;
 
 export const ModalEdit = ({
     backClick,
@@ -41,16 +42,18 @@ export const ModalEdit = ({
         dispatch(setNameTraining({ value }));
     };
 
-    const filteredOptions = trainingList.filter((item) => {
-        return !dataForDate.some((activity) => activity.name === item.name);
-    });
+    const filteredOptions = trainingList.filter(
+        (item) => !dataForDate.some((activity) => activity.name === item.name),
+    );
 
     const handleSaveButton = async () => {
         const { _id, ...newTraining } = training;
         const cleanExercises = training.exercises.map(({ _id, ...rest }) => rest);
         const cleanTrainingObject = { ...newTraining, exercises: cleanExercises };
+
         if (itemWithName) {
             const id = itemWithName._id;
+
             if (id) {
                 if (flag) {
                     cleanTrainingObject.isImplementation = true;
@@ -64,19 +67,17 @@ export const ModalEdit = ({
                     setIsModalErrorSaveTraining(true);
                 }
             }
-        } else {
-            if (!flag) {
-                try {
-                    await dispatch(createTraining(token, cleanTrainingObject));
-                    await dispatch(getTrainingUser(token));
-                    dispatch(cleanTraining());
-                    backClick();
-                } catch {
-                    setIsModalErrorSaveTraining(true);
-                }
-            } else {
+        } else if (!flag) {
+            try {
+                await dispatch(createTraining(token, cleanTrainingObject));
+                await dispatch(getTrainingUser(token));
+                dispatch(cleanTraining());
+                backClick();
+            } catch {
                 setIsModalErrorSaveTraining(true);
             }
+        } else {
+            setIsModalErrorSaveTraining(true);
         }
     };
 
@@ -121,7 +122,7 @@ export const ModalEdit = ({
             <div className='btn-wrapper'>
                 <Button
                     className='btn__add-training'
-                    block
+                    block={true}
                     disabled={selectedValue === 'Выбор типа тренировки'}
                     onClick={modalAddTraining}
                 >
@@ -130,7 +131,7 @@ export const ModalEdit = ({
                 <Button
                     type='text'
                     className='btn-save'
-                    block
+                    block={true}
                     onClick={handleSaveButton}
                     disabled={training.exercises.length === 0 || training.exercises[0].name === ''}
                 >

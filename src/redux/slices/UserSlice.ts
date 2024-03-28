@@ -1,6 +1,6 @@
+import { RootState } from '@redux/configure-store';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { RootState } from '@redux/configure-store';
 import { User } from '../../types/Types';
 
 type InitialState = {

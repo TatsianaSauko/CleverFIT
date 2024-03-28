@@ -1,11 +1,12 @@
-import { getColorForName } from '@utils/getColorForName';
-import { trainingSelector } from '@redux/slices/TrainingSlice';
 import { useSelector } from 'react-redux';
-import { CalendarCellProps } from '../../types/Props';
+import { trainingSelector } from '@redux/slices/TrainingSlice';
+import { getColorForName } from '@utils/getColorForName';
 import { getDataForDate } from '@utils/getDataForDate';
+import moment from 'moment';
+
+import { CalendarCellProps } from '../../types/Props';
 
 import './calendarCell.css';
-import moment from 'moment';
 
 export const CalendarCell = ({ value }: CalendarCellProps) => {
     const { activitiesData } = useSelector(trainingSelector);

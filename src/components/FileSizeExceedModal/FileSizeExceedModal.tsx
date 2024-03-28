@@ -1,7 +1,8 @@
-import { Button, Modal, Typography } from 'antd';
-import { FileSizeExceedModalProps } from '../../types/Props';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
+import { Button, Modal, Typography } from 'antd';
+
+import { FileSizeExceedModalProps } from '../../types/Props';
 
 import './fileSizeExceedModal.css';
 
@@ -14,7 +15,7 @@ export const FileSizeExceedModal = ({ visible, onClose }: FileSizeExceedModalPro
         <Modal
             className='modal-file-error'
             footer={false}
-            centered
+            centered={true}
             open={visible}
             onCancel={onClose}
             closable={false}

@@ -79,18 +79,14 @@
     left: 0;
     right: 0;
     margin: auto;
-    bottom: 72px;
+    top: calc(100vh - 120px);
     z-index: 3;
-}
-
-.upload-button-mobile {
-    display: none;
 }
 
 @media screen and (max-width: 576px) {
     .profile-page {
         padding-top: 16px;
-        padding-bottom: 16px;
+        padding-bottom: 7px;
         gap: 20px;
     }
 
@@ -118,34 +114,8 @@
     }
 
     .alert {
-        bottom: 90px;
         width: 312px;
-    }
-
-    .upload-button {
-        display: none;
-    }
-
-    .upload-button-mobile {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 312px;
-    }
-
-    .upload-button-mobile .title {
-        font-size: var(--extraSmallFontSize);
-        line-height: 15.6px;
-        text-align: left;
-    }
-
-    .upload-button-mobile .ant-btn-lg {
-        font-size: var(--smallFontSize);
-    }
-
-    .profile-mobile {
-        padding-left: 0;
-        padding-right: 0;
+        top: calc(100vh - 138px);
     }
 
     .avatar-uploader .ant-upload-list-item {
@@ -160,6 +130,7 @@
     .ant-upload-list-item-name[title='image.png'] {
         display: none;
     }
+
     .ant-upload-list-picture .ant-upload-list-item-thumbnail .anticon {
         font-size: 22px;
     }

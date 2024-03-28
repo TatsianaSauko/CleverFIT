@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { authSelector } from '@redux/slices/AuthSlice';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Loader } from '@components/Loader';
-import { history } from '@redux/configure-store';
 import { Path } from '@constants/paths';
+import { history } from '@redux/configure-store';
+import { authSelector } from '@redux/slices/AuthSlice';
 
 import './errorLayout.css';
 

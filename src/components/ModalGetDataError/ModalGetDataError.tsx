@@ -1,7 +1,8 @@
-import { Button, Modal, Typography } from 'antd';
-import { ModalErrorProps } from '../../types/Props';
-import errorCheckEmail from '/png/errorCheckEmail.png';
 import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
+import { Button, Modal, Typography } from 'antd';
+
+import errorCheckEmail from '/png/errorCheckEmail.png';
+import { ModalErrorProps } from '../../types/Props';
 
 import './modalGetDataError.css';
 
@@ -14,7 +15,7 @@ export const ModalGetDataError = ({ isModalGetData, handleModalToggle }: ModalEr
         <Modal
             className='modal-error'
             data-test-id='modal-no-review'
-            centered
+            centered={true}
             open={isModalGetData}
             width={modalWidth}
         >
@@ -30,7 +31,7 @@ export const ModalGetDataError = ({ isModalGetData, handleModalToggle }: ModalEr
                 </div>
                 <Button
                     type='primary'
-                    size={'large'}
+                    size='large'
                     className='btn-back'
                     onClick={handleModalToggle}
                 >
