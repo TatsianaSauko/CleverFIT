@@ -44,7 +44,7 @@ export const DrawerTariffs = ({ onClose, isDrawer, onModalPayment }: DrawerTarif
             setIsDestroyOnClose(true);
             dispatch(
                 createTariff(
-                    { tariffId: tariffList._id, days: tariffList.periods[value].days },
+                    { tariffId: tariffList._id, days: value },
                     token,
                 ),
             );
@@ -144,7 +144,7 @@ export const DrawerTariffs = ({ onClose, isDrawer, onModalPayment }: DrawerTarif
                             <div className='tariff-price__title'>Стоимость тарифа</div>
                             <div className='tariff-price__wrapper'>
                                 <Radio.Group onChange={onChange}>
-                                    {tariffList.periods.map((period, index) => (
+                                    {tariffList.periods.map((period) => (
                                         <Row
                                             key={period.days}
                                             justify='space-between'
@@ -160,7 +160,7 @@ export const DrawerTariffs = ({ onClose, isDrawer, onModalPayment }: DrawerTarif
                                                 </div>
                                                 <Radio
                                                     data-test-id={`tariff-${period.cost}`}
-                                                    value={index}
+                                                    value={period.days}
                                                 />
                                             </div>
                                         </Row>

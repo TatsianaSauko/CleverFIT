@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { FileSizeExceedModal } from '@components/FileSizeExceedModal';
 import { ModalErrorSaveData } from '@components/ModalErrorSaveData';
@@ -17,7 +17,6 @@ import { Button, DatePicker, Form, Input, Modal, Progress, Typography, Upload } 
 import type { RcFile, UploadFile } from 'antd/es/upload';
 import { useForm } from 'antd/lib/form/Form';
 import { Content } from 'antd/lib/layout/layout';
-import moment from 'moment';
 import type { UploadRequestOption as RcCustomRequestOptions } from 'rc-upload/lib/interface';
 
 import { FormUser } from '../../types/Types';
@@ -129,17 +128,6 @@ export const ProfilePage = () => {
         setIsDisabled(hasErrors);
     };
 
-    useEffect(() => {
-        if (showSuccessMessage) {
-            form.setFieldsValue({
-                firstName: user.firstName,
-                lastName: user.lastName,
-                birthday: moment(user.birthday),
-            });
-            form.resetFields(['password', 'confirm']);
-        }
-    }, [user, showSuccessMessage]);
-
     const onFinish = async (values: FormUser) => {
         delete values.confirm;
         values = Object.fromEntries(
@@ -150,6 +138,12 @@ export const ProfilePage = () => {
         try {
             await dispatch(putUser(values, token));
             setShowSuccessMessage(true);
+                form.setFieldsValue({
+                    firstName: values.firstName,
+                    lastName: values.lastName,
+                    birthday: values.birthday,
+                });
+                form.resetFields(['password', 'confirm']);
             setIsDisabled(true);
             setIsPasswordEntered(false);
         } catch {
@@ -210,7 +204,7 @@ export const ProfilePage = () => {
                         >
                             {loading ? (
                                 <Progress percent={50} size='small' showInfo={false} />
-                            ) : !fileList.length ? (
+                            ) : fileList.length === 0 ? (
                                 <UploadButton />
                             ) : null}
                         </Upload>
