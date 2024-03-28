@@ -11,7 +11,7 @@
     overflow: display;
 }
 
-.alert {
+.alert-wrapper .ant-alert {
     position: absolute;
     width: 395px;
     left: 0;
@@ -23,7 +23,7 @@
 
 
 @media screen and (max-width: 576px) {
-    .alert {
+    .alert-wrapper .ant-alert {
         width: 312px;
         top: calc(100vh - 138px);
     }
