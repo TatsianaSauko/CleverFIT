@@ -55,6 +55,7 @@ export const DrawerTariffs = ({ onClose, isDrawer, onModalPayment }: DrawerTarif
         <Drawer
             data-test-id='tariff-sider'
             title='Сравнить тарифы'
+            mask={false}
             placement='right'
             className='drawer-tariff'
             onClose={onClose}
