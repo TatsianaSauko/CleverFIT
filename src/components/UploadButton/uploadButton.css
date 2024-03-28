@@ -24,8 +24,4 @@
         font-size: var(--smallFontSize);
     }
 
-    .profile-mobile {
-        padding-left: 0;
-        padding-right: 0;
-    }
 }

@@ -47,23 +47,20 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
 
     const menuItems = [
         {
-            key: 'calendar',
             icon: <CalendarIcon />,
             link: '/calendar',
             text: 'Календарь',
             onClick: handleCalendar,
         },
-        { key: 'Тренировки', icon: <HeartIcon />, link: '/training', text: 'Тренировки' },
-        { key: 'Достижения', icon: <TrophyIcon />, link: '/achievements', text: 'Достижения' },
+        { icon: <HeartIcon />, link: '/training', text: 'Тренировки' },
+        { icon: <TrophyIcon />, link: '/achievements', text: 'Достижения' },
         {
-            key: 'Профиль',
             icon: <IdCardIcon />,
             link: '/profile',
             text: 'Профиль',
             onClick: () => history.push(Path.Profile),
         },
         {
-            key: 'Выход',
             icon: <LogoutIcon className={!collapsed ? 'icon_exit__padding' : 'icon_exit'} />,
             link: '',
             text: 'Выход',
@@ -98,7 +95,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
             <Menu className='menu' mode='inline'>
                 {menuItems.map((item) => (
                     <Menu.Item
-                        key={item.key}
+                        key={item.text}
                         icon={item.icon}
                         style={{
                             ...(collapsed && width === 208 ? {} : { paddingLeft: '16px' }),

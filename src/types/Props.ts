@@ -98,4 +98,8 @@ export type FileSizeExceedModalProps = {
     visible: boolean;
 };
 
+export type ModalAlertProps = {
+    onClose: () => void;
+};
+
 export type ModalErrorSaveDataProps = FileSizeExceedModalProps;

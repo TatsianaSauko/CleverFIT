@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { FileSizeExceedModal } from '@components/FileSizeExceedModal';
 import { ModalErrorSaveData } from '@components/ModalErrorSaveData';
 import { UploadButton } from '@components/UploadButton/UploadButton';
+import { ModalAlert } from '@components/ModalAlert';
 import { ImgUrL } from '@constants/api';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { useResponsiveVisibility } from '@hooks/useResponsiveVisibility';
@@ -12,7 +13,7 @@ import { userSelector } from '@redux/slices/UserSlice';
 import { confirmPasswordValidator } from '@utils/confirmPasswordValidator';
 import { emailRules } from '@utils/emailRules';
 import { passwordValidator } from '@utils/passwordValidator';
-import { Alert, Button, DatePicker, Form, Input, Modal, Progress, Typography, Upload } from 'antd';
+import { Button, DatePicker, Form, Input, Modal, Progress, Typography, Upload } from 'antd';
 import type { RcFile, UploadFile } from 'antd/es/upload';
 import { useForm } from 'antd/lib/form/Form';
 import { Content } from 'antd/lib/layout/layout';
@@ -128,22 +129,27 @@ export const ProfilePage = () => {
         setIsDisabled(hasErrors);
     };
 
+    useEffect(() => {
+        if (showSuccessMessage) {
+            form.setFieldsValue({
+                firstName: user.firstName,
+                lastName: user.lastName,
+                birthday: moment(user.birthday),
+            });
+            form.resetFields(['password', 'confirm']);
+        }
+    }, [user, showSuccessMessage]);
+
     const onFinish = async (values: FormUser) => {
         delete values.confirm;
         values = Object.fromEntries(
-            Object.entries(values).filter(([_, value]) => value !== undefined && value !== ''),
-        ) as FormUser;
+            Object.entries(values).filter(([_, value]) => value),) as FormUser;
         if (fileList.length && fileList[0].url) {
             values.imgSrc = fileList[0].url;
         }
         try {
             await dispatch(putUser(values, token));
             setShowSuccessMessage(true);
-            form.setFieldsValue({
-                firstName: user.firstName,
-                lastName: user.lastName,
-                birthday: moment(user.birthday),
-            });
             setIsDisabled(true);
             setIsPasswordEntered(false);
         } catch {
@@ -172,14 +178,7 @@ export const ProfilePage = () => {
     return (
         <Content className='main profile-mobile'>
             {showSuccessMessage && (
-                <Alert
-                    data-test-id='alert'
-                    className='alert'
-                    message='Данные профиля успешно обновлены'
-                    type='success'
-                    showIcon={true}
-                    closable={true}
-                    onClose={handleCloseSuccessMessage}
+                <ModalAlert onClose={handleCloseSuccessMessage}
                 />
             )}
             <ModalErrorSaveData
@@ -199,7 +198,7 @@ export const ProfilePage = () => {
                     Личная информация
                 </Title>
                 <div className='info-user__wrapper'>
-                    <div data-test-id='profile-avatar'>
+                    <div data-test-id='profile-avatar' className='profile-avatar'>
                         <Upload
                             name='avatar'
                             listType={width ? 'picture-card' : 'picture'}

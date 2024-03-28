@@ -1,4 +1,4 @@
-.profile-page {
+form.profile-page {
     padding: 24px;
     display: flex;
     flex-direction: column;
@@ -73,21 +73,16 @@
     margin-top: 25px;
 }
 
-.alert {
-    position: absolute;
-    width: 395px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    top: calc(100vh - 120px);
-    z-index: 3;
-}
-
 @media screen and (max-width: 576px) {
     .profile-page {
         padding-top: 16px;
         padding-bottom: 7px;
         gap: 20px;
+    }
+
+    main.profile-mobile {
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .profile-page .ant-picker-large .ant-picker-input > input {
@@ -113,11 +108,6 @@
         width: 100%;
     }
 
-    .alert {
-        width: 312px;
-        top: calc(100vh - 138px);
-    }
-
     .avatar-uploader .ant-upload-list-item {
         margin-top: 0;
     }
@@ -134,4 +124,14 @@
     .ant-upload-list-picture .ant-upload-list-item-thumbnail .anticon {
         font-size: 22px;
     }
+
+    .profile-avatar {
+        order: 1;
+    }
+
+    .profile-avatar
+    .ant-upload-list {
+        width: 312px;
+    }
 }
+

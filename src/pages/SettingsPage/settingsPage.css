@@ -129,7 +129,7 @@
 }
 
 @media screen and (max-width: 576px) {
-    .main-settings {
+    main.main-settings {
         padding-left: 0;
         padding-right: 0;
     }

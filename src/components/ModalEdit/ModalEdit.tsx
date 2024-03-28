@@ -54,10 +54,8 @@ export const ModalEdit = ({
         if (itemWithName) {
             const id = itemWithName._id;
 
-            if (id) {
-                if (flag) {
-                    cleanTrainingObject.isImplementation = true;
-                }
+            if (id && flag) {
+                cleanTrainingObject.isImplementation = true;
                 try {
                     await dispatch(putTraining(token, cleanTrainingObject, id));
                     await dispatch(getTrainingUser(token));
