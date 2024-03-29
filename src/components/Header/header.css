@@ -64,6 +64,34 @@
 .header__wrapper .hidden {
     display: none;
 }
+
+.header-profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-profile span:first-of-type {
+    font-weight: 500;
+    font-size: 20px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.header .ant-page-header-back-button {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.btn-settings__profile {
+    margin-top: 18px;
+    margin-bottom: 22px;
+}
+
+.site-page-header .title-back {
+    cursor: pointer;
+}
+
 @media (max-width: 1303px) {
     .header__wrapper h1.ant-typography {
         font-weight: var(--title-font-weight);
@@ -77,6 +105,21 @@
 
     .header__wrapper button.ant-btn > .anticon + span {
         margin-left: 0;
+    }
+}
+
+@media (max-width: 900px) {
+    .header-profile span:first-of-type {
+        font-weight: 400;
+        font-size: var(--smallFontSize);
+    }
+
+    .btn-settings__profile {
+        margin-top: -8px;
+    }
+
+    .header-profile {
+        display: block;
     }
 }
 
@@ -113,5 +156,35 @@
 
     .header__wrapper button.ant-btn:hover {
         border: 1px solid var(--character-light-border);
+    }
+
+    .header__wrapper button.btn-settings__profile:hover {
+        border: none;
+    }
+
+    .header__wrapper button.btn-settings__profile {
+        border: none;
+        background-color: inherit;
+        box-shadow: none;
+        margin-top: 0;
+        margin-bottom: 16px;
+    }
+
+    .header-profile span:first-of-type {
+        padding-bottom: 0;
+    }
+
+    .header-profile .ant-page-header {
+        padding-bottom: 0;
+    }
+
+    .header span.ant-page-header-heading-title {
+        font-size: var(--smallFontSize);
+        font-weight: var(--default-font-weight);
+        line-height: 18.2px;
+    }
+
+    .header .ant-page-header-back-button {
+        margin-bottom: 2px;
     }
 }

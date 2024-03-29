@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
-import { checkEmail, login } from '@redux/ActionCreators';
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import { setEmail } from '@redux/slices/AuthSlice';
-import { Button, Checkbox, Form, Input } from 'antd';
-import { FieldData } from 'rc-field-form/lib/interface';
-import { useForm } from 'antd/es/form/Form';
-import { ILogin } from '../../types/Types';
 import { BaseUrl, Endpoints } from '@constants/api';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
+import { checkEmail, login } from '@redux/ActionCreators';
+import { setEmail } from '@redux/slices/AuthSlice';
+import { emailRules } from '@utils/emailRules';
+import { passwordRules } from '@utils/passwordRules';
+import { Button, Checkbox, Form, Input } from 'antd';
+import { useForm } from 'antd/es/form/Form';
 import { CheckboxChangeEvent } from 'antd/lib/checkbox';
+import { FieldData } from 'rc-field-form/lib/interface';
+
 import IconG from '/png/Icon-G+.png';
+import { ILogin } from '../../types/Types';
 
 import './loginPage.css';
 
@@ -40,6 +43,7 @@ export const LoginPage = () => {
         if (changedFields[0]?.name[0] === 'email') {
             setEmailValue(changedFields[0]?.value);
             const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+
             setIsEmailValid(emailRegex.test(emailValue));
         }
     };
@@ -64,51 +68,15 @@ export const LoginPage = () => {
                 }}
                 form={form}
             >
-                <Form.Item
-                    name={['email']}
-                    rules={[
-                        {
-                            type: 'email',
-                            message: '',
-                        },
-                        {
-                            required: true,
-                            message: 'Введите валидный E-mail',
-                        },
-                    ]}
-                >
+                <Form.Item name={['email']} rules={emailRules}>
                     <Input addonBefore='e-mail:' data-test-id='login-email' />
                 </Form.Item>
 
-                <Form.Item
-                    name='password'
-                    rules={[
-                        {
-                            required: true,
-                            message: '',
-                            min: 8,
-                        },
-                        {
-                            validator(_, value) {
-                                const hasUppercase = /[A-Z]/.test(value);
-                                const hasDigit = /\d/.test(value);
-                                if (hasUppercase && hasDigit) {
-                                    return Promise.resolve();
-                                }
-                                return Promise.reject(
-                                    new Error(
-                                        'Пароль не менее 8 символов, c заглавной буквой и цифрой',
-                                    ),
-                                );
-                            },
-                        },
-                    ]}
-                    hasFeedback
-                >
+                <Form.Item name='password' rules={passwordRules}>
                     <Input.Password placeholder='Пароль' data-test-id='login-password' />
                 </Form.Item>
                 <Form.Item>
-                    <Form.Item name='remember' noStyle className='login-form_login-form'>
+                    <Form.Item name='remember' noStyle={true} className='login-form_login-form'>
                         <Checkbox
                             data-test-id='login-remember'
                             checked={isCheckbox}
@@ -131,8 +99,8 @@ export const LoginPage = () => {
                 <Form.Item>
                     <Button
                         type='primary'
-                        size={'large'}
-                        block
+                        size='large'
+                        block={true}
                         htmlType='submit'
                         className='login-form-button'
                         data-test-id='login-submit-button'
@@ -141,8 +109,8 @@ export const LoginPage = () => {
                     </Button>
                 </Form.Item>
                 <Button
-                    size={'large'}
-                    block
+                    size='large'
+                    block={true}
                     className='btn_register-for-google'
                     onClick={handleEnterGoogle}
                 >

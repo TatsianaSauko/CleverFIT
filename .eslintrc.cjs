@@ -1,15 +1,55 @@
 module.exports = {
     root: true,
     env: { browser: true, es2020: true },
-    extends: [
-        'eslint:recommended',
-        'plugin:@typescript-eslint/recommended',
-        'plugin:react-hooks/recommended',
-    ],
-    ignorePatterns: ['dist', '.eslintrc.cjs', 'stylelint.config.cjs', 'coverage'],
+    extends: [require.resolve('arui-presets-lint/eslint')],
+    ignorePatterns: ['dist', 'coverage', '*.cjs'],
     parser: '@typescript-eslint/parser',
-    plugins: ['react-refresh'],
+    parserOptions: {
+        project: ['./tsconfig.eslint.json', './cypress/tsconfig.json'],
+    },
+    plugins: ['react-refresh', 'import'],
+    overrides: [
+        {
+            files: ['cypress/**/*.ts'],
+            rules: {
+                'cypress/no-unnecessary-waiting': 'off',
+            },
+        },
+        {
+            files: ['src/redux/**/*.ts'],
+            rules: {
+                'no-param-reassign': 'off',
+                'no-return-assign': 'off',
+                'import/no-default-export': 'off',
+                'import/no-absolute-path': 'off',
+                'react/react-in-jsx-scope': 'off',
+                'import/no-extraneous-dependencies': [
+                    'error',
+                    {
+                        devDependencies: ['cypress/**/*.ts', '/*.test.{ts,tsx,js,jsx}'],
+                    },
+                ],
+            },
+        },
+    ],
+
     rules: {
+        'unicorn/filename-case': 'off',
         'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+        'import/order': [
+            'error',
+            {
+                groups: ['builtin', 'external', 'internal'],
+                pathGroups: [
+                    {
+                        pattern: 'antd',
+                        group: 'external',
+                        position: 'before',
+                    },
+                ],
+                pathGroupsExcludedImportTypes: ['builtin'],
+                'newlines-between': 'always',
+            },
+        ],
     },
 };

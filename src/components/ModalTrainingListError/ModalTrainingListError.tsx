@@ -1,9 +1,10 @@
-import { Button, Modal, Typography } from 'antd';
-import { ModalTrainingListErrorProps } from '../../types/Props';
-import { CloseCircleOutlined, CloseOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
-import { trainingSelector } from '@redux/slices/TrainingSlice';
+import { CloseCircleOutlined, CloseOutlined } from '@ant-design/icons';
 import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
+import { trainingSelector } from '@redux/slices/TrainingSlice';
+import { Button, Modal, Typography } from 'antd';
+
+import { ModalTrainingListErrorProps } from '../../types/Props';
 
 import './modalTrainingListError.css';
 
@@ -21,7 +22,7 @@ export const ModalTrainingListError = ({
         <Modal
             className='modal-training-list-error'
             footer={false}
-            centered
+            centered={true}
             open={isModalTrainingList}
             onCancel={isModal ? handleModalToggle : undefined}
             closable={isModal}

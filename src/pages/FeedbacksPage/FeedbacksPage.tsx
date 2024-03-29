@@ -1,17 +1,19 @@
-import { Typography, Button, Layout } from 'antd';
-import { feedbackSelector } from '@redux/slices/FeedbackSlice';
-import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { CommentItem } from '@components/CommentItem';
 import { ModalFeedback } from '@components/ModalFeedback';
-import { FormFeedback } from '../../types/Types';
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import { feedback, getFeedback } from '@redux/ActionCreators';
 import { ModalFeedbackError } from '@components/ModalFeedbackError';
 import { ModalFeedbackSuccess } from '@components/ModalFeedbackSuccess';
-import { authSelector } from '@redux/slices/AuthSlice';
 import { ModalGetDataError } from '@components/ModalGetDataError';
+import { Path } from '@constants/paths';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
+import { feedback, getFeedback } from '@redux/ActionCreators';
 import { history } from '@redux/configure-store';
+import { authSelector } from '@redux/slices/AuthSlice';
+import { feedbackSelector } from '@redux/slices/FeedbackSlice';
+import { Button, Layout, Typography } from 'antd';
+
+import { FormFeedback } from '../../types/Types';
 
 import './feedbacksPage.css';
 
@@ -30,7 +32,7 @@ export const FeedbacksPage = () => {
     const { token } = useSelector(authSelector);
 
     useEffect(() => {
-        dispatch(getFeedback({ token: token })).catch(() => {
+        dispatch(getFeedback({ token })).catch(() => {
             setIsModalGetData(true);
         });
     }, []);
@@ -53,7 +55,8 @@ export const FeedbacksPage = () => {
         }
         if (isModalSuccess) {
             setIsModalSuccess(false);
-            dispatch(getFeedback({ token: token }));
+            dispatch(getFeedback({ token }));
+            history.push(Path.Feedbacks);
         }
     };
 
@@ -108,7 +111,7 @@ export const FeedbacksPage = () => {
                     <div className='feedbacks__full__buttons'>
                         <Button
                             type='primary'
-                            size={'large'}
+                            size='large'
                             className='btn-feedback'
                             onClick={handleCreateFeedback}
                             data-test-id='write-review'
@@ -117,7 +120,7 @@ export const FeedbacksPage = () => {
                         </Button>
                         <Button
                             type='link'
-                            size={'large'}
+                            size='large'
                             className='btn-collapse'
                             onClick={handleExpandClick}
                             data-test-id='all-reviews-button'
@@ -141,7 +144,7 @@ export const FeedbacksPage = () => {
                         </div>
                         <Button
                             type='primary'
-                            size={'large'}
+                            size='large'
                             className='btn-feedback'
                             onClick={handleCreateFeedback}
                             data-test-id='write-review'

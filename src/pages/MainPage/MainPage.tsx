@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
-import { Layout, Button, Divider } from 'antd';
+import { useSelector } from 'react-redux';
 import { Card } from '@components/Card';
-import {
-    HeartIconSmall,
-    CalendarIconSmall,
-    IdCardIconSmall,
-    AppleIcon,
-    AndroidIcon,
-} from '../../icons';
-import { history } from '@redux/configure-store';
-import { Path } from '@constants/paths';
-
-import './mainPage.css';
 import { ModalGetDataError } from '@components/ModalGetDataError';
+import { Path } from '@constants/paths';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { getTrainingList, getTrainingUser } from '@redux/ActionCreators';
-import { useSelector } from 'react-redux';
+import { history } from '@redux/configure-store';
 import { authSelector } from '@redux/slices/AuthSlice';
 import { setIisModal } from '@redux/slices/TrainingSlice';
+import { Button, Divider, Layout } from 'antd';
+
+import {
+    AndroidIcon,
+    AppleIcon,
+    CalendarIconSmall,
+    HeartIconSmall,
+    IdCardIconSmall,
+} from '../../icons';
+
+import './mainPage.css';
 
 const { Content } = Layout;
 
@@ -45,7 +46,7 @@ export const MainPage: React.FC = () => {
             title: 'Заполнить профиль',
             link: 'Профиль',
             icon: <IdCardIconSmall />,
-            onClick: () => null,
+            onClick: () => history.push(Path.Profile),
         },
     ];
 
@@ -111,10 +112,10 @@ export const MainPage: React.FC = () => {
                     </div>
                     <Divider className='divider' />
                     <div className='block-download__buttons'>
-                        <Button icon={<AndroidIcon />} block className='btn-download'>
+                        <Button icon={<AndroidIcon />} block={true} className='btn-download'>
                             Android OS
                         </Button>
-                        <Button icon={<AppleIcon />} block className='btn-download'>
+                        <Button icon={<AppleIcon />} block={true} className='btn-download'>
                             Apple iOS
                         </Button>
                     </div>

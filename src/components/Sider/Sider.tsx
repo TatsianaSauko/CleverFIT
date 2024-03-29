@@ -1,14 +1,18 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Layout as AntLayout, Menu } from 'antd';
-import { HeartIcon, TrophyIcon, CalendarIcon, IdCardIcon, LogoutIcon } from '../../icons';
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import { logout } from '@redux/slices/AuthSlice';
-import { history } from '@redux/configure-store';
+import { useSelector } from 'react-redux';
+import { ModalGetDataError } from '@components/ModalGetDataError';
 import { Path } from '@constants/paths';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
+import { getTrainingList, getTrainingUser } from '@redux/ActionCreators';
+import { history } from '@redux/configure-store';
+import { authSelector, logout } from '@redux/slices/AuthSlice';
+import { setIisModal } from '@redux/slices/TrainingSlice';
+import { Layout as AntLayout, Menu } from 'antd';
+
 import cleverFit from '/png/cleverFit.png';
 import fit from '/png/fit.png';
 import logoMobile from '/png/logoMobile.png';
+import { CalendarIcon, HeartIcon, IdCardIcon, LogoutIcon, TrophyIcon } from '../../icons';
 
 import './sider.css';
 
@@ -16,6 +20,8 @@ const { Sider: AntSider } = AntLayout;
 
 export const Sider = ({ collapsed }: { collapsed: boolean }) => {
     const dispatch = useAppDispatch();
+    const { token } = useSelector(authSelector);
+    const [isModalGetData, setIsModalGetData] = useState(false);
     const [collapsedWidth, setCollapsedWidth] = useState(64);
     const [width, setWidth] = useState(208);
 
@@ -24,13 +30,37 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
         history.push(Path.Auth);
     };
 
+    const handleCalendar = async () => {
+        try {
+            await dispatch(getTrainingUser(token));
+            try {
+                await dispatch(getTrainingList(token));
+            } catch {
+                dispatch(setIisModal({ isModal: true }));
+            } finally {
+                history.push(Path.Calendar);
+            }
+        } catch {
+            setIsModalGetData(true);
+        }
+    };
+
     const menuItems = [
-        { key: '4', icon: <CalendarIcon />, link: '/calendar', text: 'Календарь' },
-        { key: '5', icon: <HeartIcon />, link: '/training', text: 'Тренировки' },
-        { key: '7', icon: <TrophyIcon />, link: '/achievements', text: 'Достижения' },
-        { key: '8', icon: <IdCardIcon />, link: '/profile', text: 'Профиль' },
         {
-            key: '9',
+            icon: <CalendarIcon />,
+            link: '/calendar',
+            text: 'Календарь',
+            onClick: handleCalendar,
+        },
+        { icon: <HeartIcon />, link: '/training', text: 'Тренировки' },
+        { icon: <TrophyIcon />, link: '/achievements', text: 'Достижения' },
+        {
+            icon: <IdCardIcon />,
+            link: '/profile',
+            text: 'Профиль',
+            onClick: () => history.push(Path.Profile),
+        },
+        {
             icon: <LogoutIcon className={!collapsed ? 'icon_exit__padding' : 'icon_exit'} />,
             link: '',
             text: 'Выход',
@@ -44,7 +74,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
             width={width}
             collapsedWidth={collapsedWidth}
             trigger={null}
-            collapsible
+            collapsible={true}
             collapsed={collapsed}
             className='aside'
             onBreakpoint={(broken) => {
@@ -53,6 +83,10 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
             }}
             {...(width === 208 ? {} : { style: { position: 'fixed', zIndex: '3' } })}
         >
+            <ModalGetDataError
+                isModalGetData={isModalGetData}
+                handleModalToggle={() => setIsModalGetData(false)}
+            />
             <div className='logo'>
                 {!collapsed ? <img src={cleverFit} alt='CleverFit' className='logo_large' /> : null}
                 {collapsed ? <img src={fit} alt='Fit' className='logo_small' /> : null}
@@ -61,7 +95,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
             <Menu className='menu' mode='inline'>
                 {menuItems.map((item) => (
                     <Menu.Item
-                        key={item.key}
+                        key={item.text}
                         icon={item.icon}
                         style={{
                             ...(collapsed && width === 208 ? {} : { paddingLeft: '16px' }),
@@ -69,7 +103,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
                         }}
                         onClick={item.onClick}
                     >
-                        <Link to={item.link}>{item.text}</Link>
+                        <div className='link'>{item.text}</div>
                     </Menu.Item>
                 ))}
             </Menu>

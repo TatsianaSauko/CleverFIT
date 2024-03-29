@@ -1,7 +1,8 @@
-import { Button, Modal, Typography } from 'antd';
-import { ModalFeedbackErrorProps } from '../../types/Props';
 import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
+import { Button, Modal, Typography } from 'antd';
+
 import error from '/png/error.png';
+import { ModalFeedbackErrorProps } from '../../types/Props';
 
 import './modalFeedbackError.css';
 
@@ -22,7 +23,7 @@ export const ModalFeedbackError = ({
     return (
         <Modal
             className='modal-feedback-error'
-            centered
+            centered={true}
             open={isModalError}
             width={modalWidth}
             onCancel={handleModalToggle}
@@ -41,15 +42,15 @@ export const ModalFeedbackError = ({
                 <div className='buttons'>
                     <Button
                         data-test-id='write-review-not-saved-modal'
-                        block
+                        block={true}
                         type='primary'
-                        size={'large'}
+                        size='large'
                         className='btn_create-feedback'
                         onClick={onClick}
                     >
                         Написать отзыв
                     </Button>
-                    <Button block size={'large'} className='btn' onClick={handleModalToggle}>
+                    <Button block={true} size='large' className='btn' onClick={handleModalToggle}>
                         Закрыть
                     </Button>
                 </div>

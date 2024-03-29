@@ -1,4 +1,5 @@
 export const BaseUrl = 'https://marathon-api.clevertec.ru';
+export const ImgUrL = 'https://training-api.clevertec.ru';
 
 export const Endpoints = {
     Registration: '/auth/registration',
@@ -10,4 +11,9 @@ export const Endpoints = {
     AuthGoogle: '/auth/google',
     Training: '/training',
     CatalogsTrainingList: '/catalogs/training-list',
+    UserMe: '/user/me',
+    UploadImage: '/upload-image',
+    User: '/user',
+    TariffList: '/catalogs/tariff-list',
+    Tariff: '/tariff',
 };

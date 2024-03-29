@@ -1,7 +1,7 @@
 import { PickerLocale } from 'antd/lib/date-picker/generatePicker';
 import TimePickerLocale from 'antd/lib/time-picker/locale/ru_RU';
-import CalendarLocale from 'rc-picker/lib/locale/ru_RU';
 import moment from 'moment';
+import CalendarLocale from 'rc-picker/lib/locale/ru_RU';
 
 moment.locale('ru', {
     week: {

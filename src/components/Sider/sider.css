@@ -34,7 +34,7 @@
     height: calc(100vh - 139px);
 }
 
-.ant-menu-item a {
+.ant-menu-item .link {
     font-size: var(--smallFontSize);
 }
 

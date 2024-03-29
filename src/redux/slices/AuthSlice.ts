@@ -1,4 +1,6 @@
+import { RootState } from '@redux/configure-store';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import {
     EmailPayload,
     InitialState,
@@ -6,7 +8,6 @@ import {
     LoginSuccessPayload,
     PasswordPayload,
 } from '../../types/Types';
-import { RootState } from '@redux/configure-store';
 
 const TOKEN = 'token';
 

@@ -1,5 +1,6 @@
-import { ActivityData } from '../types/Types';
 import moment from 'moment';
+
+import { ActivityData } from '../types/Types';
 
 export function getDataForDate(activitiesData: ActivityData[], value: string | number) {
     return activitiesData.filter(

@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux';
-import { authSelector } from '@redux/slices/AuthSlice';
-import { Typography, Button } from 'antd';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { register } from '@redux/ActionCreators';
+import { authSelector } from '@redux/slices/AuthSlice';
+import { Button, Typography } from 'antd';
+
 import error from '/png/error.png';
 
 import './errorPage.css';
@@ -15,7 +16,7 @@ export const ErrorPage = () => {
 
     const onClick = async () => {
         history.back();
-        await dispatch(register({ email: email, password: password }));
+        await dispatch(register({ email, password }));
     };
 
     return (
@@ -32,9 +33,9 @@ export const ErrorPage = () => {
             </div>
 
             <Button
-                block
+                block={true}
                 type='primary'
-                size={'large'}
+                size='large'
                 className='button'
                 onClick={onClick}
                 data-test-id='registration-retry-button'

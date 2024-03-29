@@ -12,12 +12,12 @@
     font-size: var(--smallFontSize);
 }
 
-.drawer__wrapper .btn__add-more span::before {
+.drawer__wrapper .btn__add-more span:before {
     content: '+';
     padding-right: 8px;
 }
 
-.drawer__wrapper .btn__delete span::before {
+.drawer__wrapper .btn__delete span:before {
     content: '—';
     padding-right: 8px;
 }
@@ -26,7 +26,7 @@
     font-size: var(--smallFontSize);
 }
 
-.ant-drawer-body {
+.drawer-edit-training .ant-drawer-body {
     padding: 0;
     padding-left: 32px;
     padding-right: 32px;
@@ -40,14 +40,14 @@
     background: rgba(255, 255, 255, 0.05);
 }
 
-.ant-drawer-title {
+.drawer-edit-training .ant-drawer-title {
     font-size: 20px;
     line-height: 26px;
     font-weight: var(--title-font-weight);
 }
 
 .ant-drawer-header {
-    padding: 24px 32px 16px 32px;
+    padding: 20px 32px 16px;
     border-bottom: none;
 }
 
@@ -77,7 +77,7 @@
         padding: 16px;
     }
 
-    .ant-drawer-body {
+    .drawer-edit-training .ant-drawer-body {
         padding-left: var(--default-padding-left);
         padding-right: var(--default-padding-right);
     }
@@ -90,7 +90,7 @@
         overflow-x: hidden;
     }
 
-    .ant-drawer-right > .ant-drawer-content-wrapper {
+    div.ant-drawer-right > .ant-drawer-content-wrapper {
         top: 85px;
     }
 }

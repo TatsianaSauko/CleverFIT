@@ -37,7 +37,7 @@
     font-size: var(--defaultFontSize);
 }
 
-.auth-wrapper__content .ant-menu-horizontal > .ant-menu-item::after {
+.auth-wrapper__content .ant-menu-horizontal > .ant-menu-item:after {
     left: 0;
     right: 0;
 }

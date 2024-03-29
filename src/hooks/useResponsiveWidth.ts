@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export function useResponsiveWidth(minWidth: number, maxWidth: number) {
     const [modalWidth, setModalWidth] = useState(window.innerWidth < 576 ? minWidth : maxWidth);

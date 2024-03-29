@@ -1,33 +1,38 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { HistoryRouter } from 'redux-first-history/rr6';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { store, history } from '@redux/configure-store';
-import {
-    MainPage,
-    LoginPage,
-    RegisterPage,
-    ErrorLoginPage,
-    SuccessPage,
-    ErrorPage,
-    ErrorCheckEmailNoExistPage,
-    ErrorCheckEmailPage,
-    ErrorChangePasswordPage,
-    SuccessChangePasswordPage,
-    ConfirmEmailPage,
-    ChangePasswordPage,
-    ErrorUserExistPage,
-} from './pages';
+import { HistoryRouter } from 'redux-first-history/rr6';
+import { Path } from '@constants/paths';
+import { CalendarPage } from '@pages/CalendarPage';
+import { FeedbacksPage } from '@pages/FeedbacksPage';
+import { NotFoundPage } from '@pages/NotFoundPage';
+import { ProfilePage } from '@pages/ProfilePage';
+import { SettingsPage } from '@pages/SettingsPage';
+import { history, store } from '@redux/configure-store';
+
 import { AuthenticationLayout } from './layouts/AuthenticationLayout';
 import { ErrorLayout } from './layouts/ErrorLayout';
-import { Path } from '@constants/paths';
 import { RootLayout } from './layouts/RootLayout';
-import { FeedbacksPage } from '@pages/FeedbacksPage';
+import {
+    ChangePasswordPage,
+    ConfirmEmailPage,
+    ErrorChangePasswordPage,
+    ErrorCheckEmailNoExistPage,
+    ErrorCheckEmailPage,
+    ErrorLoginPage,
+    ErrorPage,
+    ErrorUserExistPage,
+    LoginPage,
+    MainPage,
+    RegisterPage,
+    SuccessChangePasswordPage,
+    SuccessPage,
+} from './pages';
+
 import 'antd/dist/antd.css';
 import 'normalize.css';
 import './index.css';
-import { CalendarPage } from '@pages/CalendarPage';
 
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
@@ -38,14 +43,19 @@ root.render(
             <HistoryRouter history={history}>
                 <Routes>
                     <Route path={Path.Root} element={<RootLayout />}>
-                        <Route path={Path.Root} element={<Navigate to={Path.Main} replace />} />
+                        <Route
+                            path={Path.Root}
+                            element={<Navigate to={Path.Main} replace={true} />}
+                        />
                         <Route path={Path.Main} element={<MainPage />} />
                         <Route path={Path.Feedbacks} element={<FeedbacksPage />} />
                         <Route path={Path.Calendar} element={<CalendarPage />} />
+                        <Route path={Path.Profile} element={<ProfilePage />} />
+                        <Route path={Path.Settings} element={<SettingsPage />} />
                     </Route>
 
                     <Route path={Path.Auth} element={<AuthenticationLayout />}>
-                        <Route index element={<LoginPage />} />
+                        <Route index={true} element={<LoginPage />} />
                         <Route path={Path.Registration} element={<RegisterPage />} />
                     </Route>
                     <Route path={Path.Result} element={<ErrorLayout />}>
@@ -69,6 +79,7 @@ root.render(
                     </Route>
                     <Route path={Path.ConfirmEmail} element={<ConfirmEmailPage />} />
                     <Route path={Path.ChangePassword} element={<ChangePasswordPage />} />
+                    <Route path='*' element={<NotFoundPage />} />
                 </Routes>
             </HistoryRouter>
         </Provider>

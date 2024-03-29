@@ -9,6 +9,10 @@ section.main-page {
     background-position: center;
 }
 
+section.main-settings {
+    background: var(--neutral-gray-4);
+}
+
 section.site_layout {
     background-color: transparent;
 }

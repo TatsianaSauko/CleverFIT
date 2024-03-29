@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { authSelector } from '@redux/slices/AuthSlice';
 import { Outlet } from 'react-router-dom';
-import formLogo from '/png/formLogo.png';
-import { Menu } from 'antd';
-import { history } from '@redux/configure-store';
 import { Loader } from '@components/Loader';
 import { Path } from '@constants/paths';
+import { history } from '@redux/configure-store';
+import { authSelector } from '@redux/slices/AuthSlice';
+import { Menu } from 'antd';
+
+import formLogo from '/png/formLogo.png';
 import formLogoMobile from '/png/formLogoMobile.png';
 
 import './authenticationLayout.css';

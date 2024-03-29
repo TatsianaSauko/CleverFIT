@@ -1,10 +1,11 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+
 import { ButtonSiderToggleProps } from '../../types/Props';
 
 import './buttonSiderToggle.css';
 
 export const ButtonSiderToggle = ({ collapsed, toggleCollapsed }: ButtonSiderToggleProps) => (
-    <>
+    <div>
         {collapsed ? (
             <MenuUnfoldOutlined
                 className='sider-switch trigger'
@@ -31,5 +32,5 @@ export const ButtonSiderToggle = ({ collapsed, toggleCollapsed }: ButtonSiderTog
                 onClick={toggleCollapsed}
             />
         )}
-    </>
+    </div>
 );

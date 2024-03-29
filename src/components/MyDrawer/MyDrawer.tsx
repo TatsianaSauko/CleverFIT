@@ -1,15 +1,16 @@
 import { useSelector } from 'react-redux';
-import { Button, Drawer, Space } from 'antd';
-import { getColorForName } from '@utils/getColorForName';
-import { FormAddTraining } from '@components/FormAddTraining';
-import { createExercise, setTraining, trainingSelector } from '@redux/slices/TrainingSlice';
-import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import { filterUncheckedExercises } from '@utils/filterUncheckedExercises';
-import { DrawerProps } from '../../types/Props';
-import moment from 'moment';
 import { CloseOutlined } from '@ant-design/icons';
-import { getDataForDate } from '@utils/getDataForDate';
+import { FormAddTraining } from '@components/FormAddTraining';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { useResponsiveWidth } from '@hooks/useResponsiveWidth';
+import { createExercise, setTraining, trainingSelector } from '@redux/slices/TrainingSlice';
+import { filterUncheckedExercises } from '@utils/filterUncheckedExercises';
+import { getColorForName } from '@utils/getColorForName';
+import { getDataForDate } from '@utils/getDataForDate';
+import { Button, Drawer, Space } from 'antd';
+import moment from 'moment';
+
+import { DrawerProps } from '../../types/Props';
 
 import './myDrawer.css';
 
@@ -26,16 +27,18 @@ export const MyDrawer = ({ onClose, isDrawer }: DrawerProps) => {
 
     const deleteForm = () => {
         const resFilter = filterUncheckedExercises(training);
+
         dispatch(setTraining({ training: resFilter }));
     };
 
     const hasCheckedExercise = training.exercises.some((exercise) => exercise.checked);
-    const buttonDisabled = hasCheckedExercise ? false : true;
+    const buttonDisabled = !hasCheckedExercise;
 
     return (
         <Drawer
             data-test-id='modal-drawer-right'
             title={itemWithName ? '+ Редактирование' : '+ Добавление упражнений'}
+            className='drawer-edit-training'
             placement='right'
             onClose={onClose}
             open={isDrawer}
@@ -55,7 +58,7 @@ export const MyDrawer = ({ onClose, isDrawer }: DrawerProps) => {
                         className='btn-close'
                         data-test-id='modal-drawer-right-button-close'
                         onClick={onClose}
-                    ></Button>
+                    />
                 </Space>
             }
         >
@@ -80,12 +83,12 @@ export const MyDrawer = ({ onClose, isDrawer }: DrawerProps) => {
                         size='large'
                         className='btn__add-more'
                         onClick={addForm}
-                        block
+                        block={true}
                     >
                         Добавить ещё
                     </Button>
                     <Button
-                        block
+                        block={true}
                         type='text'
                         size='large'
                         className='btn__delete'

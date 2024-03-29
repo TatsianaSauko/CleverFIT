@@ -1,11 +1,15 @@
 import { useState } from 'react';
-import { Button, Form, Input } from 'antd';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { register } from '@redux/ActionCreators';
 import { setEmail, setPassword } from '@redux/slices/AuthSlice';
+import { confirmPasswordRules } from '@utils/confirmPsswordRules';
+import { emailRules } from '@utils/emailRules';
+import { passwordRules } from '@utils/passwordRules';
+import { Button, Form, Input } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
-import { FormRegister } from '../../types/Types';
+
 import IconG from '/png/Icon-G+.png';
+import { FormRegister } from '../../types/Types';
 
 import './registerPage.css';
 
@@ -21,6 +25,7 @@ export const RegisterPage = () => {
 
     const handleFormChange = () => {
         const hasErrors = form.getFieldsError().some(({ errors }) => errors.length);
+
         setIsDisabled(hasErrors);
     };
 
@@ -34,48 +39,13 @@ export const RegisterPage = () => {
                 onFieldsChange={handleFormChange}
                 form={form}
             >
-                <Form.Item
-                    name={['email']}
-                    rules={[
-                        {
-                            type: 'email',
-                            message: '',
-                        },
-                        {
-                            required: true,
-                            message: 'Введите валидный E-mail',
-                        },
-                    ]}
-                >
+                <Form.Item name={['email']} rules={emailRules}>
                     <Input addonBefore='e-mail:' data-test-id='registration-email' />
                 </Form.Item>
                 <Form.Item
                     name='password'
                     help='Пароль не менее 8 символов, c заглавной буквой и цифрой'
-                    rules={[
-                        {
-                            required: true,
-                            message: '',
-                            min: 8,
-                        },
-                        () => ({
-                            validator(_, value) {
-                                const hasUppercase = /[A-Z]/.test(value);
-                                const hasDigit = /\d/.test(value);
-                                const hasSpecialCharacter =
-                                    /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(value);
-                                if (hasUppercase && hasDigit && !hasSpecialCharacter) {
-                                    return Promise.resolve();
-                                }
-                                return Promise.reject(
-                                    new Error(
-                                        'Пароль не менее 8 символов, c заглавной буквой и цифрой',
-                                    ),
-                                );
-                            },
-                        }),
-                    ]}
-                    hasFeedback
+                    rules={passwordRules}
                 >
                     <Input.Password placeholder='Пароль' data-test-id='registration-password' />
                 </Form.Item>
@@ -83,30 +53,17 @@ export const RegisterPage = () => {
                     name='confirm'
                     key='confirm'
                     dependencies={['password']}
-                    hasFeedback
+                    hasFeedback={true}
                     data-test-id='registration-confirm-password'
-                    rules={[
-                        {
-                            required: true,
-                            message: '',
-                        },
-                        ({ getFieldValue }) => ({
-                            validator(_, value) {
-                                if (!value || getFieldValue('password') === value) {
-                                    return Promise.resolve();
-                                }
-                                return Promise.reject(new Error('Пароли не совпадают'));
-                            },
-                        }),
-                    ]}
+                    rules={confirmPasswordRules}
                 >
                     <Input.Password />
                 </Form.Item>
                 <Form.Item>
                     <Button
                         type='primary'
-                        size={'large'}
-                        block
+                        size='large'
+                        block={true}
                         htmlType='submit'
                         disabled={isDisabled}
                         className='register-form-button'
@@ -115,7 +72,7 @@ export const RegisterPage = () => {
                         Войти
                     </Button>
                 </Form.Item>
-                <Button block size={'large'} className='btn_register-for-google'>
+                <Button block={true} size='large' className='btn_register-for-google'>
                     <img src={IconG} alt='G+' className='icon-G icon-hidden' />
                     Регистрация через Google
                 </Button>

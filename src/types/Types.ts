@@ -119,3 +119,53 @@ export type ActivityData = {
     isImplementation?: boolean;
     parameters?: Parameters;
 };
+
+type Tariff = {
+    tariffId: string;
+    expired: string | number;
+};
+
+export type User = {
+    email: string;
+    firstName: string;
+    lastName: string;
+    birthday: string | number;
+    imgSrc: string;
+    readyForJointTraining: boolean;
+    sendNotification: boolean;
+    password?: string;
+    tariff?: Tariff;
+};
+
+export type FormUser = {
+    email: string;
+    firstName?: string;
+    lastName?: string;
+    birthday?: string | number;
+    imgSrc?: string;
+    password?: string;
+    confirm?: string;
+    readyForJointTraining?: boolean;
+    sendNotification?: boolean;
+};
+
+type Periods = {
+    text: string;
+    cost: number;
+    days: number;
+};
+
+export type TariffList = {
+    _id: string;
+    name: string;
+    periods: Periods[];
+};
+
+export type TariffPayment = {
+    tariffId: string;
+    days: number;
+};
+
+export type DataTestId = {
+    [key: string]: string;
+};

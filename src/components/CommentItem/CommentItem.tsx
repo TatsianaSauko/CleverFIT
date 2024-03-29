@@ -1,8 +1,9 @@
-import { Rate } from 'antd';
-import { CommentItemProps } from '../../types/Props';
 import { formattedDate } from '@utils/formattedDate';
-import { StarFillIcon, StarIcon } from '../../icons';
+import { Rate } from 'antd';
+
 import avatar from '/png/avatar.png';
+import { StarFillIcon, StarIcon } from '../../icons';
+import { CommentItemProps } from '../../types/Props';
 
 import './commentItem.css';
 
@@ -21,7 +22,7 @@ export const CommentItem = ({ data }: CommentItemProps) => (
             <div className='comment__metadata'>
                 <Rate
                     value={data.rating}
-                    disabled
+                    disabled={true}
                     character={({ index }) => {
                         if (typeof index !== 'undefined') {
                             return data.rating !== 0 && index < data.rating ? (
@@ -30,6 +31,7 @@ export const CommentItem = ({ data }: CommentItemProps) => (
                                 <StarIcon />
                             );
                         }
+
                         return null;
                     }}
                 />

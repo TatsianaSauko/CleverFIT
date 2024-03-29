@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { authSelector } from '@redux/slices/AuthSlice';
-import { Typography } from 'antd';
+import { useLocation } from 'react-router-dom';
 import VerificationInput from 'react-verification-input';
-import { confirmEmail } from '@redux/ActionCreators';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
-import { history } from '@redux/configure-store';
 import { Loader } from '@components/Loader';
 import { Path } from '@constants/paths';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { confirmEmail } from '@redux/ActionCreators';
+import { history } from '@redux/configure-store';
+import { authSelector } from '@redux/slices/AuthSlice';
+import { Typography } from 'antd';
+
 import suggested from '/png/suggested.png';
 
 import './confirmEmailPage.css';
@@ -23,7 +24,7 @@ export const ConfirmEmailPage = () => {
     const dispatch = useAppDispatch();
     const { email } = useAppSelector((state) => state.auth);
     const handleVerificationComplete = async (code: string) => {
-        await dispatch(confirmEmail({ email: email, code: code })).catch(() => {
+        await dispatch(confirmEmail({ email, code })).catch(() => {
             setIsCodeCorrect(false);
             setInputKey(Math.random());
         });

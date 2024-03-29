@@ -1,7 +1,8 @@
-import { Typography, Button } from 'antd';
-import triangleError from '/png/triangleError.png';
-import { history } from '@redux/configure-store';
 import { Path } from '@constants/paths';
+import { history } from '@redux/configure-store';
+import { Button, Typography } from 'antd';
+
+import triangleError from '/png/triangleError.png';
 
 import './errorLoginPage.css';
 
@@ -17,9 +18,9 @@ export const ErrorLoginPage = () => (
             <Text type='secondary'>Что-то пошло не так. Попробуйте еще раз</Text>
         </div>
         <Button
-            block
+            block={true}
             type='primary'
-            size={'large'}
+            size='large'
             className='button'
             onClick={() => history.push(`${Path.Auth}`)}
             data-test-id='login-retry-button'

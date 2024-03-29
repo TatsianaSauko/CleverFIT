@@ -1,5 +1,6 @@
 import { history } from '@redux/configure-store';
-import { Typography, Button } from 'antd';
+import { Button, Typography } from 'antd';
+
 import errorIcon from '/png/error.png';
 
 import './errorUserExistPage.css';
@@ -18,9 +19,9 @@ export const ErrorUserExistPage = () => (
             </Text>
         </div>
         <Button
-            block
+            block={true}
             type='primary'
-            size={'large'}
+            size='large'
             className='button'
             onClick={() => history.back()}
             data-test-id='registration-back-button'
