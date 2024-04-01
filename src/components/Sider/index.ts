@@ -1,1 +1,1 @@
-export { Sider } from './Sider';
+export { Sider } from './sider';

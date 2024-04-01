@@ -7,7 +7,7 @@ module.exports = {
     parserOptions: {
         project: ['./tsconfig.eslint.json', './cypress/tsconfig.json'],
     },
-    plugins: ['react-refresh', 'import'],
+    plugins: ['react-refresh'],
     overrides: [
         {
             files: ['cypress/**/*.ts'],
@@ -21,34 +21,19 @@ module.exports = {
                 'no-param-reassign': 'off',
                 'no-return-assign': 'off',
                 'import/no-default-export': 'off',
-                'import/no-absolute-path': 'off',
-                'react/react-in-jsx-scope': 'off',
-                'import/no-extraneous-dependencies': [
-                    'error',
-                    {
-                        devDependencies: ['cypress/**/*.ts', '/*.test.{ts,tsx,js,jsx}'],
-                    },
-                ],
             },
         },
     ],
 
     rules: {
-        'unicorn/filename-case': 'off',
         'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-        'import/order': [
+        'import/no-absolute-path': 'off',
+        'react/react-in-jsx-scope': 'off',
+        'no-underscore-dangle': 'off',
+        'import/no-extraneous-dependencies': [
             'error',
             {
-                groups: ['builtin', 'external', 'internal'],
-                pathGroups: [
-                    {
-                        pattern: 'antd',
-                        group: 'external',
-                        position: 'before',
-                    },
-                ],
-                pathGroupsExcludedImportTypes: ['builtin'],
-                'newlines-between': 'always',
+                devDependencies: ['cypress/**/*.ts', '/*.test.{ts,tsx,js,jsx}'],
             },
         ],
     },

@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { Path } from '@constants/paths';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import { getTariffList } from '@redux/ActionCreators';
+import { getTariffList } from '@redux/action-creators';
 import { history } from '@redux/configure-store';
-import { authSelector } from '@redux/slices/AuthSlice';
+import { authSelector } from '@redux/slices/auth-slice';
 import { Button, Layout as AntLayout, PageHeader, Typography } from 'antd';
 
 import { SettingsIcon } from '../../icons';
@@ -121,6 +121,9 @@ export const Header = () => {
                             data-test-id='settings-back'
                             onClick={handleBackClick}
                             className='title-back'
+                            onKeyDown={handleBackClick}
+                            role='button'
+                            tabIndex={0}
                         >
                             Настройки
                         </div>

@@ -1,1 +1,0 @@
-export { FormAddTraining } from './FormAddTraining';

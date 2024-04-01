@@ -1,20 +1,21 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { ModalGetDataError } from '@components/ModalGetDataError';
+import { ModalGetDataError } from '@components/modal-get-data-error';
 import { Path } from '@constants/paths';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import { getTrainingList, getTrainingUser } from '@redux/ActionCreators';
+import { getTrainingList, getTrainingUser } from '@redux/action-creators';
 import { history } from '@redux/configure-store';
-import { authSelector, logout } from '@redux/slices/AuthSlice';
-import { setIisModal } from '@redux/slices/TrainingSlice';
+import { authSelector, logout } from '@redux/slices/auth-slice';
+import { setIisModal } from '@redux/slices/training-slice';
 import { Layout as AntLayout, Menu } from 'antd';
+
+import { CalendarIcon, HeartIcon, IdCardIcon, LogoutIcon, TrophyIcon } from '../../icons';
+
+import './sider.css';
 
 import cleverFit from '/png/cleverFit.png';
 import fit from '/png/fit.png';
 import logoMobile from '/png/logoMobile.png';
-import { CalendarIcon, HeartIcon, IdCardIcon, LogoutIcon, TrophyIcon } from '../../icons';
-
-import './sider.css';
 
 const { Sider: AntSider } = AntLayout;
 
@@ -61,7 +62,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
             onClick: () => history.push(Path.Profile),
         },
         {
-            icon: <LogoutIcon className={!collapsed ? 'icon_exit__padding' : 'icon_exit'} />,
+            icon: <LogoutIcon className={collapsed ? 'icon_exit' : 'icon_exit__padding'} />,
             link: '',
             text: 'Выход',
             onClick: handleButtonExit,
@@ -88,8 +89,11 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
                 handleModalToggle={() => setIsModalGetData(false)}
             />
             <div className='logo'>
-                {!collapsed ? <img src={cleverFit} alt='CleverFit' className='logo_large' /> : null}
-                {collapsed ? <img src={fit} alt='Fit' className='logo_small' /> : null}
+                {collapsed ? (
+                    <img src={fit} alt='Fit' className='logo_small' />
+                ) : (
+                    <img src={cleverFit} alt='CleverFit' className='logo_large' />
+                )}
                 <img src={logoMobile} alt='CleverFit' className='logo_mobile' />
             </div>
             <Menu className='menu' mode='inline'>

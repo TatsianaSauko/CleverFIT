@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Moment } from 'moment';
 
-import { ActivityData, Exercise, Feedback, FormFeedback } from './Types';
+import { ActivityData, Exercise, Feedback, FormFeedback } from './types';
 
 export type CardProps = {
     title: string;

@@ -1,7 +1,7 @@
 import { Button, Divider } from 'antd';
 
-import { CardProps } from '../../types/Props';
-import { DataTestId } from '../../types/Types';
+import { CardProps } from '../../types/props';
+import { DataTestId } from '../../types/types';
 
 import './card.css';
 

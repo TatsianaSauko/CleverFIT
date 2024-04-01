@@ -4,16 +4,16 @@ import { Provider } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { HistoryRouter } from 'redux-first-history/rr6';
 import { Path } from '@constants/paths';
-import { CalendarPage } from '@pages/CalendarPage';
-import { FeedbacksPage } from '@pages/FeedbacksPage';
-import { NotFoundPage } from '@pages/NotFoundPage';
-import { ProfilePage } from '@pages/ProfilePage';
-import { SettingsPage } from '@pages/SettingsPage';
+import { CalendarPage } from '@pages/calendar-page';
+import { FeedbacksPage } from '@pages/feedbacks-page';
+import { NotFoundPage } from '@pages/not-found-page';
+import { ProfilePage } from '@pages/profile-page';
+import { SettingsPage } from '@pages/settings-page';
 import { history, store } from '@redux/configure-store';
 
-import { AuthenticationLayout } from './layouts/AuthenticationLayout';
-import { ErrorLayout } from './layouts/ErrorLayout';
-import { RootLayout } from './layouts/RootLayout';
+import { AuthenticationLayout } from './layouts/authentication-layout';
+import { ErrorLayout } from './layouts/error-layout';
+import { RootLayout } from './layouts/root-layout';
 import {
     ChangePasswordPage,
     ConfirmEmailPage,
