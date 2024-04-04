@@ -28,8 +28,9 @@ export const Header = () => {
     const [isTitleHeader, setIsTitleHeader] = useState(false);
     const [isWrapperTitleHeader, setIsWrapperIsTitleHeader] = useState(false);
     const [isButtonBack, setIsButtonBack] = useState(false);
+    const [isProfile, setIsProfile] = useState(false);
+    const [isTraining, setIsTraining] = useState(false);
     const [breadcrumbRoutes, setBreadcrumbRoutes] = useState<BreadcrumbRoute[]>([]);
-    const shouldChangeFontSize = !isTitleHeader && isWrapperTitleHeader;
 
     useEffect(() => {
         switch (location.pathname) {
@@ -37,6 +38,8 @@ export const Header = () => {
                 setIsTitleHeader(true);
                 setIsWrapperIsTitleHeader(true);
                 setIsButtonBack(false);
+                setIsProfile(false);
+                setIsTraining(false);
                 setBreadcrumbRoutes([
                     {
                         path: Path.Main,
@@ -47,6 +50,8 @@ export const Header = () => {
             case Path.Feedbacks:
                 setIsWrapperIsTitleHeader(false);
                 setIsButtonBack(false);
+                setIsProfile(false);
+                setIsTraining(false);
                 setBreadcrumbRoutes([
                     {
                         path: Path.Main,
@@ -62,6 +67,7 @@ export const Header = () => {
                 setIsWrapperIsTitleHeader(true);
                 setIsTitleHeader(false);
                 setIsButtonBack(false);
+                setIsTraining(false);
                 setBreadcrumbRoutes([
                     {
                         path: Path.Main,
@@ -77,6 +83,8 @@ export const Header = () => {
                 setIsTitleHeader(false);
                 setIsWrapperIsTitleHeader(true);
                 setIsButtonBack(false);
+                setIsProfile(true);
+                setIsTraining(false);
                 setBreadcrumbRoutes([
                     {
                         path: Path.Profile,
@@ -88,7 +96,26 @@ export const Header = () => {
                 setIsTitleHeader(false);
                 setIsWrapperIsTitleHeader(false);
                 setIsButtonBack(true);
+                setIsProfile(false);
+                setIsTraining(false);
                 setBreadcrumbRoutes([]);
+                break;
+            case Path.Training:
+                setIsWrapperIsTitleHeader(true);
+                setIsTitleHeader(false);
+                setIsButtonBack(false);
+                setIsProfile(false);
+                setIsTraining(true);
+                setBreadcrumbRoutes([
+                    {
+                        path: Path.Main,
+                        breadcrumbName: 'Главная',
+                    },
+                    {
+                        path: Path.Calendar,
+                        breadcrumbName: 'Тренировки',
+                    },
+                ]);
                 break;
             default:
                 break;
@@ -110,8 +137,16 @@ export const Header = () => {
         history.back();
     };
 
+    let className = 'btn-settings';
+
+    if (isProfile) {
+        className = 'btn-settings btn-settings__profile';
+    } else if (isTraining) {
+        className = 'btn-settings btn-settings__training';
+    }
+
     return (
-        <AntHeader className={shouldChangeFontSize ? 'header header-profile' : 'header'}>
+        <AntHeader className={isProfile ? 'header header-profile' : 'header'}>
             {isButtonBack ? (
                 <PageHeader
                     className='site-page-header'
@@ -149,11 +184,9 @@ export const Header = () => {
                 </Title>
                 <Button
                     data-test-id='header-settings'
-                    icon={<SettingsIcon style={shouldChangeFontSize ? { fontSize: '14px' } : {}} />}
-                    size={shouldChangeFontSize ? undefined : 'large'}
-                    className={
-                        shouldChangeFontSize ? 'btn-settings btn-settings__profile' : 'btn-settings'
-                    }
+                    icon={<SettingsIcon style={isProfile ? { fontSize: '14px' } : {}} />}
+                    size={isProfile ? undefined : 'large'}
+                    className={className}
                     onClick={handleButtonSettings}
                 >
                     Настройки

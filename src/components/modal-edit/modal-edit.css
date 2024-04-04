@@ -69,6 +69,8 @@
 .modal-training-edit .btn-back {
     padding-left: 12px;
     cursor: pointer;
+    border: var(--no-border);
+    background: inherit;
 }
 
 .modal-training-edit .btn-wrapper {

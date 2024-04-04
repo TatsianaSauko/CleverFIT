@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { CloseOutlined } from '@ant-design/icons';
+import { CloseButton } from '@components/close-button';
 import { FormAddTraining } from '@components/form-add-training';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { useResponsiveWidth } from '@hooks/use-responsive-width';
@@ -7,7 +7,7 @@ import { createExercise, setTraining, trainingSelector } from '@redux/slices/tra
 import { filterUncheckedExercises } from '@utils/filter-uncheckede-exercises';
 import { getColorForName } from '@utils/get-color-for-name';
 import { getDataForDate } from '@utils/get-data-for-date';
-import { Button, Drawer, Space } from 'antd';
+import { Button, Drawer } from 'antd';
 import moment from 'moment';
 
 import { DrawerProps } from '../../types/props';
@@ -44,23 +44,7 @@ export const MyDrawer = ({ onClose, isDrawer }: DrawerProps) => {
             open={isDrawer}
             closable={false}
             width={modalWidth}
-            extra={
-                <Space>
-                    <Button
-                        icon={
-                            <CloseOutlined
-                                style={{
-                                    color: 'var(--character-light-secondary-45)',
-                                    fontSize: '12px',
-                                }}
-                            />
-                        }
-                        className='btn-close'
-                        data-test-id='modal-drawer-right-button-close'
-                        onClick={onClose}
-                    />
-                </Space>
-            }
+            extra={<CloseButton onClose={onClose} />}
         >
             <div className='drawer-data__wrapper'>
                 <div className='name-training'>

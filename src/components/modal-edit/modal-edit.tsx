@@ -105,13 +105,6 @@ export const ModalEdit = ({
             >
                 <img src={back} alt='back' />
             </button>
-            {/* <img
-                data-test-id='modal-exercise-training-button-close'
-                src={back}
-                alt='back'
-                className='btn-back'
-                onClick={backClick}
-            /> */}
             <Select
                 className='select-training'
                 data-test-id='modal-create-exercise-select'

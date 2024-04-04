@@ -4,12 +4,12 @@ import { ModalAlertProps } from '../../types/props';
 
 import './modal-alert.css';
 
-export const ModalAlert = ({ onClose }: ModalAlertProps) => (
+export const ModalAlert = ({ message, onClose }: ModalAlertProps) => (
     <div className='alert-wrapper'>
         <Alert
             data-test-id='alert'
             className='alert'
-            message='Данные профиля успешно обновлены'
+            message={message}
             type='success'
             showIcon={true}
             closable={true}

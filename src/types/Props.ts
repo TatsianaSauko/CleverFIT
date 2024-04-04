@@ -43,6 +43,11 @@ export type ModalEditTrainingProps = {
     modalAddTraining: () => void;
     closeModals: () => void;
 };
+export type ModalInfoTrainingProps = {
+    backClick: () => void;
+    position: { top: number; left: number };
+    onDrawer: () => void;
+};
 
 export type ModalTrainingListErrorProps = {
     isModalTrainingList: boolean;
@@ -87,6 +92,12 @@ export type DrawerProps = {
     isDrawer: boolean;
 };
 
+export type DrawerTrainingsProps = {
+    onClose: () => void;
+    isDrawer: boolean;
+    handleButtonSave: () => void;
+};
+
 export type DrawerTariffProps = {
     onClose: () => void;
     isDrawer: boolean;
@@ -99,7 +110,15 @@ export type FileSizeExceedModalProps = {
 };
 
 export type ModalAlertProps = {
+    message: string;
     onClose: () => void;
+};
+
+export type CloseButtonProps = {
+    onClose: () => void;
+};
+export type TableTrainingsProps = {
+    onClick: () => void;
 };
 
 export type ModalErrorSaveDataProps = FileSizeExceedModalProps;

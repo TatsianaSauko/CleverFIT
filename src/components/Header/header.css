@@ -92,6 +92,10 @@
     cursor: pointer;
 }
 
+.btn-settings__training {
+    margin-bottom: 18px;
+}
+
 @media (max-width: 1303px) {
     .header__wrapper h1.ant-typography {
         font-weight: var(--title-font-weight);
@@ -186,5 +190,9 @@
 
     .header .ant-page-header-back-button {
         margin-bottom: 2px;
+    }
+    .header__wrapper button.btn-settings__training {
+        margin-bottom: 16px;
+        margin-top: -16px;
     }
 }

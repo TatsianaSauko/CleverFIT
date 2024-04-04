@@ -3,6 +3,18 @@
     flex-direction: column;
     padding-top: 24px;
     padding-bottom: 24px;
+    max-height: calc(100vh - 270px);
+    overflow-y: auto;
+}
+
+.drawer__wrapper::-webkit-scrollbar {
+    width: 4px;
+}
+
+.drawer__wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--neutral-gray-6);
+    border-radius: 20px;
+    min-height: 80px;
 }
 
 .drawer__wrapper .ant-form-vertical .ant-form-item-label > label {

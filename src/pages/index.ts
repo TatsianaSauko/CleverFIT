@@ -11,3 +11,4 @@ export { RegisterPage } from './register-page';
 export { SuccessChangePasswordPage } from './success-change-password-page';
 export { SuccessPage } from './success-page';
 export { ErrorUserExistPage } from './error-user-exist-page';
+export { TrainingPage } from './training-page';

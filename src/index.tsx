@@ -28,6 +28,7 @@ import {
     RegisterPage,
     SuccessChangePasswordPage,
     SuccessPage,
+    TrainingPage,
 } from './pages';
 
 import 'antd/dist/antd.css';
@@ -52,6 +53,7 @@ root.render(
                         <Route path={Path.Calendar} element={<CalendarPage />} />
                         <Route path={Path.Profile} element={<ProfilePage />} />
                         <Route path={Path.Settings} element={<SettingsPage />} />
+                        <Route path={Path.Training} element={<TrainingPage />} />
                     </Route>
 
                     <Route path={Path.Auth} element={<AuthenticationLayout />}>

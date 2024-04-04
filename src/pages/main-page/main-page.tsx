@@ -27,7 +27,7 @@ export const MainPage: React.FC = () => {
     const dispatch = useAppDispatch();
     const { token } = useSelector(authSelector);
 
-    const handleCalendar = async () => {
+    const handleNavigation = async (path: string) => {
         try {
             await dispatch(getTrainingUser(token));
             try {
@@ -35,7 +35,7 @@ export const MainPage: React.FC = () => {
             } catch {
                 dispatch(setIisModal({ isModal: true }));
             } finally {
-                history.push(Path.Calendar);
+                history.push(path);
             }
         } catch {
             setIsModalGetData(true);
@@ -48,14 +48,14 @@ export const MainPage: React.FC = () => {
             title: 'Расписать тренировки',
             link: 'Тренировки',
             icon: <HeartIconSmall />,
-            onClick: () => null,
+            onClick: () => handleNavigation(Path.Training),
         },
         {
             key: '2',
             title: 'Назначить календарь',
             link: 'Календарь',
             icon: <CalendarIconSmall />,
-            onClick: () => handleCalendar(),
+            onClick: () => handleNavigation(Path.Calendar),
         },
         {
             key: '3',

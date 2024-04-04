@@ -31,7 +31,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
         history.push(Path.Auth);
     };
 
-    const handleCalendar = async () => {
+    const handleNavigation = async (path: string) => {
         try {
             await dispatch(getTrainingUser(token));
             try {
@@ -39,7 +39,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
             } catch {
                 dispatch(setIisModal({ isModal: true }));
             } finally {
-                history.push(Path.Calendar);
+                history.push(path);
             }
         } catch {
             setIsModalGetData(true);
@@ -51,9 +51,14 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
             icon: <CalendarIcon />,
             link: '/calendar',
             text: 'Календарь',
-            onClick: handleCalendar,
+            onClick: () => handleNavigation(Path.Calendar),
         },
-        { icon: <HeartIcon />, link: '/training', text: 'Тренировки' },
+        {
+            icon: <HeartIcon />,
+            link: '/training',
+            text: 'Тренировки',
+            onClick: () => handleNavigation(Path.Training),
+        },
         { icon: <TrophyIcon />, link: '/achievements', text: 'Достижения' },
         {
             icon: <IdCardIcon />,

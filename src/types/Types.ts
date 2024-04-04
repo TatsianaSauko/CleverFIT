@@ -103,11 +103,11 @@ export type Exercise = {
     _id?: string;
 };
 
-type Parameters = {
-    repeat: boolean;
-    period: number;
-    jointTraining: boolean;
-    participants: [string];
+export type Parameters = {
+    repeat?: boolean;
+    period?: number | null;
+    jointTraining?: boolean;
+    participants?: [string];
 };
 
 export type ActivityData = {

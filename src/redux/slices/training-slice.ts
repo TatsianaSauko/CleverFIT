@@ -10,6 +10,7 @@ type InitialState = {
     flag: boolean;
     loadingTraining: boolean;
     isModal: boolean;
+    getTrainingListError: boolean;
 };
 
 const initialState: InitialState = {
@@ -30,10 +31,16 @@ const initialState: InitialState = {
                 checked: false,
             },
         ],
+        parameters: {
+            period: null,
+            jointTraining: false,
+            repeat: false,
+        },
     },
     flag: false,
     loadingTraining: false,
     isModal: false,
+    getTrainingListError: false,
 };
 
 export const trainingSlice = createSlice({
@@ -46,6 +53,11 @@ export const trainingSlice = createSlice({
 
         setLoading(state, action: PayloadAction<{ loadingTraining: boolean }>) {
             state.loadingTraining = action.payload.loadingTraining;
+        },
+        setRepeat(state, action: PayloadAction<{ repeat: boolean }>) {
+            if (state.training.parameters) {
+                state.training.parameters.repeat = action.payload.repeat;
+            }
         },
 
         setActivitiesData(state, action: PayloadAction<{ activitiesData: ActivityData[] }>) {
@@ -64,12 +76,27 @@ export const trainingSlice = createSlice({
             state.training = action.payload.training;
         },
 
+        setPeriod(state, action: PayloadAction<{ period: number }>) {
+            if (state.training.parameters) {
+                state.training.parameters.period = action.payload.period;
+            }
+        },
+
+        setJointTraining(state, action: PayloadAction<{ jointTraining: boolean }>) {
+            if (state.training.parameters) {
+                state.training.parameters.jointTraining = action.payload.jointTraining;
+            }
+        },
+
         setFlag(state, action: PayloadAction<{ flag: boolean }>) {
             state.flag = action.payload.flag;
         },
 
         setIisModal(state, action: PayloadAction<{ isModal: boolean }>) {
             state.isModal = action.payload.isModal;
+        },
+        setGetTrainingListError(state, action: PayloadAction<{ getTrainingListError: boolean }>) {
+            state.getTrainingListError = action.payload.getTrainingListError;
         },
 
         setTrainingFull(state) {
@@ -109,6 +136,11 @@ export const trainingSlice = createSlice({
                         checked: false,
                     },
                 ],
+                parameters: {
+                    period: null,
+                    jointTraining: false,
+                    repeat: false,
+                },
             };
         },
 
@@ -138,6 +170,10 @@ export const {
     createExercise,
     setDateTraining,
     setIisModal,
+    setGetTrainingListError,
+    setPeriod,
+    setJointTraining,
+    setRepeat,
 } = trainingSlice.actions;
 
 export const trainingSelector = (state: RootState) => state.training;

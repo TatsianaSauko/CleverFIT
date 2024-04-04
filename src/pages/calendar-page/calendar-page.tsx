@@ -21,6 +21,7 @@ import {
     trainingSelector,
 } from '@redux/slices/training-slice';
 import { filterEmptyExercises } from '@utils/filter-eprty-exercises';
+import { isPastDate } from '@utils/past-date';
 import { Calendar } from 'antd';
 import { Content } from 'antd/lib/layout/layout';
 import type { Moment } from 'moment';
@@ -48,12 +49,6 @@ export const CalendarPage = () => {
             setIsModalTrainingList(true);
             dispatch(setIisModal({ isModal: true }));
         }
-    };
-
-    const isPastDate = (date: Moment): boolean => {
-        const today = moment().startOf('day');
-
-        return date.isSameOrBefore(today, 'day');
     };
 
     const handleDateClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {

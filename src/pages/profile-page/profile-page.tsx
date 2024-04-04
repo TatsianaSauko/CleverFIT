@@ -5,6 +5,7 @@ import { ModalAlert } from '@components/modal-alert';
 import { ModalErrorSaveData } from '@components/modal-error-save-data';
 import { UploadButton } from '@components/upload-button/upload-button';
 import { ImgUrL } from '@constants/api';
+import { MESSAGES } from '@constants/message-alert';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { useResponsiveVisibility } from '@hooks/use-responsive-visibility';
 import { putUser, uploadImg } from '@redux/action-creators';
@@ -188,7 +189,12 @@ export const ProfilePage = () => {
 
     return (
         <Content className='main profile-mobile'>
-            {showSuccessMessage && <ModalAlert onClose={handleCloseSuccessMessage} />}
+            {showSuccessMessage && (
+                <ModalAlert
+                    message={MESSAGES.PROFILE_UPDATED}
+                    onClose={handleCloseSuccessMessage}
+                />
+            )}
             <ModalErrorSaveData
                 visible={modalVisibleSaveData}
                 onClose={handleCloseErrorSaveDataModal}

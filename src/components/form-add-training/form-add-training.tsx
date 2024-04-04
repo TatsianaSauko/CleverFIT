@@ -1,5 +1,5 @@
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import { setExercises } from '@redux/slices/training-slice';
+import { setExercises, trainingSelector } from '@redux/slices/training-slice';
 import { Checkbox, Form, Input } from 'antd';
 import { FieldData } from 'rc-field-form/lib/interface';
 
@@ -37,6 +37,7 @@ export const FormAddTraining = ({ item, index }: FormAddTrainingProps) => {
 
     return (
         <Form
+            className='form-add-training'
             layout='vertical'
             onFieldsChange={(_, allFields): void => {
                 handleFieldsChange(allFields);
