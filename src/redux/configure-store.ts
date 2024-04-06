@@ -5,6 +5,7 @@ import { createBrowserHistory } from 'history';
 
 import authReducer from './slices/auth-slice';
 import feedbackReducer from './slices/feedback-slice';
+import jointTriningReducer from './slices/joint-training';
 import tariffReducer from './slices/tariff-slice';
 import trainingReducer from './slices/training-slice';
 import userReducer from './slices/user-slice';
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
     user: userReducer,
     router: routerReducer,
     tariff: tariffReducer,
+    jointTraining: jointTriningReducer,
 });
 
 export const store = configureStore({

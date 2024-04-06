@@ -17,7 +17,8 @@ import moment from 'moment';
 import './my-trainings-component.css';
 
 export const MyTrainingsComponent = () => {
-    const { getTrainingListError, activitiesData, training, flag } = useSelector(trainingSelector);
+    const { getTrainingListError, activitiesData, training } = useSelector(trainingSelector);
+
     const [isDrawer, setIsDrawer] = useState(false);
     const [showSuccessMessage, setShowSuccessMessage] = useState('');
     const dispatch = useAppDispatch();
@@ -87,22 +88,24 @@ export const MyTrainingsComponent = () => {
             {showSuccessMessage && (
                 <ModalAlert message={showSuccessMessage} onClose={handleCloseSuccessMessage} />
             )}
-            {activitiesData ? (
-                <TableTrainings onClick={handleCreateTraining} />
+            {activitiesData.length === 0 ? (
+
+<div className='my-training__empty'>
+<div className='title'>У вас ещё нет созданных тренировок</div>
+{getTrainingListError ? null : (
+<Button
+size='large'
+type='primary'
+className='btn-create'
+onClick={handleCreateTraining}
+>
+Создать тренировку
+</Button>
+)}
+</div>
+
             ) : (
-                <div className='my-training__empty'>
-                    <div className='title'>У вас ещё нет созданных тренировок</div>
-                    {!getTrainingListError && (
-                        <Button
-                            size='large'
-                            type='primary'
-                            className='btn-create'
-                            onClick={handleCreateTraining}
-                        >
-                            Создать тренировку
-                        </Button>
-                    )}
-                </div>
+                <TableTrainings onClick={handleCreateTraining} />
             )}
         </div>
     );

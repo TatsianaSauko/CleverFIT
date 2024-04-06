@@ -4,8 +4,11 @@ import { DownOutlined, EditOutlined } from '@ant-design/icons';
 import { ModalInfoTraining } from '@components/modal-info-training';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { useResponsiveVisibility } from '@hooks/use-responsive-visibility';
+import { useWindowSize } from '@hooks/use-window-size';
 import { setTraining, trainingSelector } from '@redux/slices/training-slice';
+import { getTrainingColor } from '@utils/get-color-for-name';
 import { Badge, Button, Table } from 'antd';
+import { ColumnsType } from 'antd/lib/table';
 
 import { TableTrainingsProps } from '../../types/props';
 import { ActivityData, Parameters } from '../../types/types';
@@ -19,38 +22,31 @@ export const TableTrainings = ({ onClick }: TableTrainingsProps) => {
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
     const defaultVisibility = !(window.innerWidth < 576);
     const isDesktopView = useResponsiveVisibility(defaultVisibility);
+    const windowSize = useWindowSize();
+    let column1Width;
+
+    if (windowSize > 1024) {
+        column1Width = 259;
+    } else if (windowSize > 768) {
+        column1Width = 234;
+    } else {
+        column1Width = 116;
+    }
 
     const handleButtonEdit = (record: ActivityData) => {
         dispatch(setTraining({ training: record }));
         onClick();
     };
 
-    const columns = [
+    const columns: ColumnsType<ActivityData> = [
         {
             title: 'Тип тренировки',
             dataIndex: 'name',
             key: 'name',
-
+            width: column1Width,
             render: (text: string, record: ActivityData) => {
-                let color;
 
-                switch (text) {
-                    case 'Ноги':
-                        color = 'red';
-                        break;
-                    case 'Силовая':
-                        color = 'green';
-                        break;
-                    case 'Руки':
-                        color = 'cyan';
-                        break;
-                    case 'Спина':
-                        color = 'orange';
-                        break;
-                    default:
-                        color = 'gray';
-                }
-
+                const color = getTrainingColor(text);
                 const handleButtonClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
                     const rect = event.currentTarget.getBoundingClientRect();
 
@@ -67,7 +63,7 @@ export const TableTrainings = ({ onClick }: TableTrainingsProps) => {
                         style={{
                             display: 'flex',
                             justifyContent: 'space-between',
-                            width: isDesktopView ? '259px' : '116px',
+                            width: `${isDesktopView}px`,
                         }}
                     >
                         <Badge color={color} text={text} />
@@ -82,7 +78,8 @@ export const TableTrainings = ({ onClick }: TableTrainingsProps) => {
         },
         {
             title: '',
-            dataIndex: 'spacerColumn1',
+            dataIndex: 'spacerColumn2',
+            key: 'spacerColumn2',
             width: 12,
             render: () => <div style={{ border: 'none', width: '12px' }} />,
         },
@@ -90,7 +87,7 @@ export const TableTrainings = ({ onClick }: TableTrainingsProps) => {
             title: 'Периодичность',
             dataIndex: 'parameters',
             key: 'period',
-            width: 240,
+            width: isDesktopView ? 240 : 134,
 
             render: (parameters: Parameters) => {
                 let periodText;
@@ -127,16 +124,19 @@ export const TableTrainings = ({ onClick }: TableTrainingsProps) => {
         },
         {
             title: '',
-            dataIndex: 'spacerColumn2',
+            dataIndex: 'spacerColumn4',
+            key: 'spacerColumn4',
             width: 12,
             render: () => <div style={{ width: '12px' }} />,
         },
         {
+            title: '',
+            dataIndex: 'spacerColumn5',
             key: 'action',
             width: 32,
-
-            render: (record: ActivityData) => (
+            render: (_: string, record: ActivityData, index: number) => (
                 <Button
+                data-test-id={`update-my-training-table-icon${index}`}
                     className='table-edit'
                     onClick={() => handleButtonEdit(record)}
                     icon={
@@ -165,6 +165,7 @@ export const TableTrainings = ({ onClick }: TableTrainingsProps) => {
                 />
             ) : null}
             <Table
+            data-test-id='my-trainings-table'
                 rowKey={(record) => record._id || 'default'}
                 dataSource={activitiesData}
                 columns={columns}
@@ -172,7 +173,7 @@ export const TableTrainings = ({ onClick }: TableTrainingsProps) => {
                 size='small'
                 className='table-training'
             />
-            <Button size='large' type='primary' className='btn-create' onClick={onClick}>
+            <Button size='large' type='primary' className='btn-create' onClick={onClick} data-test-id='create-new-training-button'>
                 + Новая тренировка
             </Button>
         </div>

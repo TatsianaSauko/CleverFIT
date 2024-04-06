@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { Moment } from 'moment';
 
-import { ActivityData, Exercise, Feedback, FormFeedback } from './types';
+import { ActivityData, Exercise, Feedback, FormFeedback, Invite, TrainingPals } from './types';
 
 export type CardProps = {
     title: string;
@@ -47,6 +47,12 @@ export type ModalInfoTrainingProps = {
     backClick: () => void;
     position: { top: number; left: number };
     onDrawer: () => void;
+};
+
+export type ModalInfoUserTrainingProps = {
+    closeClick: () => void;
+    position: { top: number; left: number };
+    item: Invite;
 };
 
 export type ModalTrainingListErrorProps = {
@@ -119,6 +125,10 @@ export type CloseButtonProps = {
 };
 export type TableTrainingsProps = {
     onClick: () => void;
+};
+export type ModalCardPartnerProps = {
+    onClose: () => void;
+    item:TrainingPals;
 };
 
 export type ModalErrorSaveDataProps = FileSizeExceedModalProps;

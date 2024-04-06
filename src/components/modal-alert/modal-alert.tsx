@@ -7,7 +7,7 @@ import './modal-alert.css';
 export const ModalAlert = ({ message, onClose }: ModalAlertProps) => (
     <div className='alert-wrapper'>
         <Alert
-            data-test-id='alert'
+            data-test-id='create-training-success-alert'
             className='alert'
             message={message}
             type='success'

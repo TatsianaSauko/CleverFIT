@@ -169,3 +169,38 @@ export type TariffPayment = {
 export type DataTestId = {
     [key: string]: string;
 };
+
+export type TrainingPals = {
+    id: string,
+    name: string,
+    trainingType: string,
+    imageSrc: string,
+    avgWeightInWeek: number,
+    inviteId: string,
+    status: string
+}
+export type UserTrainingList = TrainingPals;
+
+
+export type Invite = {
+        _id: string,
+        from: {
+          _id: string,
+          firstName: string,
+          lastName: string,
+          imageSrc: string
+        },
+        training: ActivityData,
+        status: string,
+        createdAt: string | number
+      }
+
+      export  type TrainingInvitation = {
+        to: string;
+        trainingId: string;
+      };
+      export type PutInvite =  {
+        id: string,
+        status: string
+
+}

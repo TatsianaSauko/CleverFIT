@@ -1,6 +1,7 @@
 import { BaseUrl, Endpoints } from '@constants/api';
 import { Path } from '@constants/paths';
 import { StatusCodes } from '@constants/status-codes';
+import { sortUsers } from '@utils/sort-users';
 import { transformedData } from '@utils/transformed-data';
 import { RcFile } from 'antd/es/upload';
 import axios from 'axios';
@@ -17,11 +18,14 @@ import {
     IGetFeedback,
     ILogin,
     IRegister,
+    PutInvite,
     TariffPayment,
+    TrainingInvitation,
 } from '../types/types';
 
 import { authFetching, loginSuccess, logout } from './slices/auth-slice';
 import { setFeedback } from './slices/feedback-slice';
+import { setInviteList, setTrainingPals, setUserJointTrainingList } from './slices/joint-training';
 import { setTariffList } from './slices/tariff-slice';
 import { setActivitiesData, setLoading, setTrainingList } from './slices/training-slice';
 import { setUserData } from './slices/user-slice';
@@ -343,6 +347,126 @@ export const createTariff =
             await axios.post(`${BaseUrl}${Endpoints.Tariff}`, data, { headers });
             dispatch(authFetching({ loading: false }));
         } catch (err) {
+            dispatch(authFetching({ loading: false }));
+        }
+    };
+
+    export const getTrainingPals = (data: string) => async (dispatch: AppDispatch) => {
+        try {
+            // dispatch(authFetching({ loading: true }));
+            const headers = {
+                Authorization: `Bearer ${data}`,
+                'Content-Type': 'application/json',
+            };
+            const response = await axios.get(`${BaseUrl}${Endpoints.TrainingPals}`, {
+                headers,
+            });
+
+            // const sortResponse = sortUsers(response.data);
+            dispatch(setTrainingPals({ trainingPals: response.data }));
+
+            // dispatch(authFetching({ loading: false }));
+        } catch {
+            // dispatch(authFetching({ loading: false }));
+        }
+    };
+
+
+
+    export const getUserJointTrainingList = (data: string, trainingType?: string) => async (dispatch: AppDispatch) => {
+        try {
+            dispatch(authFetching({ loading: true }));
+            const headers = {
+                Authorization: `Bearer ${data}`,
+                'Content-Type': 'application/json',
+            };
+            const params = trainingType ? { trainingType } : {};
+            const response = await axios.get(`${BaseUrl}${Endpoints.UserJointTrainingList}`, {
+                headers,
+                params,
+            });
+            const sortResponse = sortUsers(response.data);
+
+            dispatch(setUserJointTrainingList({ userJointTrainingList: sortResponse }));
+            dispatch(authFetching({ loading: false }));
+        } catch {
+            dispatch(authFetching({ loading: false }));
+            throw Error();
+        }
+    };
+
+    export const getInvite = (data: string) => async (dispatch: AppDispatch) => {
+        try {
+            dispatch(authFetching({ loading: true }));
+            const headers = {
+                Authorization: `Bearer ${data}`,
+                'Content-Type': 'application/json',
+            };
+
+            const response = await axios.get(`${BaseUrl}${Endpoints.Invite}`, {
+                headers,
+            });
+
+            dispatch(setInviteList({ inviteList: response.data }));
+            dispatch(authFetching({ loading: false }));
+        } catch {
+            dispatch(authFetching({ loading: false }));
+            throw Error();
+        }
+    };
+
+    export const postInvite = (token: string, data: TrainingInvitation) => async (dispatch: AppDispatch) => {
+        try {
+            dispatch(authFetching({ loading: true }));
+            const headers = {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            };
+
+            await axios.post(`${BaseUrl}${Endpoints.Invite}`, data, {
+                headers,
+            });
+
+            // dispatch(setInvite({ invite: response.data }));
+            dispatch(authFetching({ loading: false }));
+        } catch {
+            dispatch(authFetching({ loading: false }));
+            throw Error();
+        }
+    };
+
+
+
+    export const putInvite = (token: string, data: PutInvite) => async (dispatch: AppDispatch) => {
+        try {
+            dispatch(authFetching({ loading: true }));
+            const headers = {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            };
+
+         await axios.put(`${BaseUrl}${Endpoints.Invite}`, data, {
+                headers,
+            });
+            dispatch(authFetching({ loading: false }));
+        } catch {
+            dispatch(authFetching({ loading: false }));
+        }
+    };
+
+    export const deleteInvite = (data: string, inviteId: string) => async (dispatch: AppDispatch) => {
+        try {
+            dispatch(authFetching({ loading: true }));
+            const headers = {
+                Authorization: `Bearer ${data}`,
+                'Content-Type': 'application/json',
+            };
+
+            await axios.get(`${BaseUrl}${Endpoints.Invite}/${inviteId}`, {
+                headers,
+            });
+            dispatch(authFetching({ loading: false }));
+        } catch {
             dispatch(authFetching({ loading: false }));
         }
     };

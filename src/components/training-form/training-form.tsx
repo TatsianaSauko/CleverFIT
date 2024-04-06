@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { DateRender } from '@components/date-render';
 import { periodOptions } from '@constants/period-options';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import {
@@ -76,31 +77,21 @@ export const TrainingForm = () => {
             <div className='block'>
                 <Form.Item name='date' className='data-picker'>
                     <DatePicker
+                    data-test-id='modal-drawer-right-date-picker'
                         size='small'
                         format='DD.MM.YYYY'
                         disabledDate={(current) => current && current < moment().endOf('day')}
-                        dateRender={(current) => {
-                            const formattedDate = current.format('YYYY-MM-DD');
-
-                            if (activityDates.includes(formattedDate)) {
-                                return (
-                                    <div style={{ backgroundColor: 'var(--primary-light-1)' }}>
-                                        {current.date()}
-                                    </div>
-                                );
-                            }
-
-                            return <div>{current.date()}</div>;
-                        }}
+                        dateRender={(current) => <DateRender current={current} activityDates={activityDates} />}
                     />
                 </Form.Item>
                 <Form.Item name='checked' valuePropName='checked'>
-                    <Checkbox>С периодичностью</Checkbox>
+                    <Checkbox data-test-id='modal-drawer-right-checkbox-period'>С периодичностью</Checkbox>
                 </Form.Item>
             </div>
             {training.parameters?.repeat && (
                 <Form.Item name='period'>
                     <Select
+                    data-test-id='modal-drawer-right-select-period'
                         className='select-training'
                         size='middle'
                         options={periodOptions.map((item) => ({

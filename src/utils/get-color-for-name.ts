@@ -12,3 +12,18 @@ export const getColorForName = (name: string) => {
             return 'gray';
     }
 };
+
+export const getTrainingColor = (trainingType: string) => {
+    switch (trainingType) {
+        case 'Ноги':
+            return 'red';
+        case 'Силовая':
+            return 'green';
+        case 'Руки':
+            return 'cyan';
+        case 'Спина':
+            return 'orange';
+        default:
+            return 'gray';
+    }
+};

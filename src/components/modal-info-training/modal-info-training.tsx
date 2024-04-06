@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { ContentInfoTraining } from '@components/content-info-training';
-import { useResponsiveVisibility } from '@hooks/use-responsive-visibility';
+import { useWindowSize } from '@hooks/use-window-size';
 import { trainingSelector } from '@redux/slices/training-slice';
 import { getColorForName } from '@utils/get-color-for-name';
 import { Button, Divider } from 'antd';
@@ -12,8 +12,18 @@ import './modal-info-training.css';
 
 export const ModalInfoTraining = ({ backClick, position, onDrawer }: ModalInfoTrainingProps) => {
     const { training } = useSelector(trainingSelector);
-    const defaultVisibility = !(window.innerWidth < 576);
-    const isDesktopView = useResponsiveVisibility(defaultVisibility);
+    const windowSize = useWindowSize();
+    let positionLeft;
+
+    if (windowSize > 1023) {
+        positionLeft = position.left - 213;
+    }
+    else if (windowSize > 767) {
+        positionLeft = position.left - 180;
+    }
+    else {
+        positionLeft = position.left - 84;
+    }
 
     const handleButtonAddTraining = () => {
         backClick();
@@ -26,7 +36,7 @@ export const ModalInfoTraining = ({ backClick, position, onDrawer }: ModalInfoTr
             data-test-id='modal-create-exercise'
             style={{
                 top: position.top - 5,
-                left: isDesktopView ? position.left - 213 : position.left - 84,
+                left: positionLeft,
             }}
         >
             <div className='info-training__header'>

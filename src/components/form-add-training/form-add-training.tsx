@@ -1,5 +1,5 @@
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import { setExercises, trainingSelector } from '@redux/slices/training-slice';
+import { setExercises } from '@redux/slices/training-slice';
 import { Checkbox, Form, Input } from 'antd';
 import { FieldData } from 'rc-field-form/lib/interface';
 

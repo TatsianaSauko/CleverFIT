@@ -6,8 +6,9 @@ import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { getTrainingList, getTrainingUser } from '@redux/action-creators';
 import { history } from '@redux/configure-store';
 import { authSelector, logout } from '@redux/slices/auth-slice';
+import { jointTrainingSelector } from '@redux/slices/joint-training';
 import { setIisModal } from '@redux/slices/training-slice';
-import { Layout as AntLayout, Menu } from 'antd';
+import { Badge, Layout as AntLayout, Menu } from 'antd';
 
 import { CalendarIcon, HeartIcon, IdCardIcon, LogoutIcon, TrophyIcon } from '../../icons';
 
@@ -22,6 +23,7 @@ const { Sider: AntSider } = AntLayout;
 export const Sider = ({ collapsed }: { collapsed: boolean }) => {
     const dispatch = useAppDispatch();
     const { token } = useSelector(authSelector);
+    const { inviteList } = useSelector(jointTrainingSelector);
     const [isModalGetData, setIsModalGetData] = useState(false);
     const [collapsedWidth, setCollapsedWidth] = useState(64);
     const [width, setWidth] = useState(208);
@@ -54,7 +56,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
             onClick: () => handleNavigation(Path.Calendar),
         },
         {
-            icon: <HeartIcon />,
+            icon: <Badge count={inviteList.length} offset={[2, -4]} data-test-id='notification-about-joint-training'><HeartIcon /></Badge>,
             link: '/training',
             text: 'Тренировки',
             onClick: () => handleNavigation(Path.Training),

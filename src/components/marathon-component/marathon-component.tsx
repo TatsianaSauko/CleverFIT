@@ -1,3 +1,3 @@
 import './marathon-component.css';
 
-export const MarathonComponent = () => <div className='dd'>MarathonComponent</div>;
+export const MarathonComponent = () => <div className='marathon'>MarathonComponent</div>;
