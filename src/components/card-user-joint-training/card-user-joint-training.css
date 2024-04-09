@@ -8,25 +8,30 @@
     border-radius: 2px;
     background: var(--primary-light-1);
 }
+
 .card-user-joint-training .card-user-joint-training__header {
     display: flex;
     gap: 8px;
 }
+
 .card-user-joint-training .card-user-joint-training__header .name {
     font-size: 14px;
     line-height: 18.2px;
     width: 75px;
 }
+
 .card-user-joint-training .card-user-joint-training__details {
     display: flex;
     justify-content: space-between;
 }
+
 .card-user-joint-training .type__wrapper,
 .card-user-joint-training .value__wrapper {
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
+
 .card-user-joint-training .type {
     font-size: var(--extraSmallFontSize);
     line-height: 15.6px;
@@ -38,6 +43,7 @@
     line-height: 18.2px;
     color: var(--primary-light-6);
 }
+
 .card-user-joint-training .btn__create-training {
     margin-top: 8px;
 }
@@ -46,9 +52,11 @@
     line-height: 15.6px;
     text-align: center;
 }
+
 .card-user-joint-training .color {
     background: var(--neutral-gray-2);
 }
+
 .card-user-joint-training .hidden {
     visibility: hidden;
 }

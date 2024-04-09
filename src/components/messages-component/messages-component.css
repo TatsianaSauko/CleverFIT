@@ -11,6 +11,7 @@
     line-height: 18.2px;
     color: var(--character-light-secondary-45);
 }
+
 .messages-component .btn_show-message {
     text-align: left;
 }
