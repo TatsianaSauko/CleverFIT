@@ -19,8 +19,6 @@ import { Content } from 'antd/lib/layout/layout';
 
 import './training-page.css';
 
-
-
 export const TrainingPage = () => {
     const dispatch = useAppDispatch();
     const { token } = useSelector(authSelector);
@@ -38,11 +36,9 @@ export const TrainingPage = () => {
         {
             label: (
                 <React.Fragment>
-                 Совместные тренировки
+                    Совместные тренировки
                     <Badge count={inviteList.length} offset={[4, -5]} />
                 </React.Fragment>
-
-
             ),
             key: 'Совместные тренировки',
             style: { order: 'inherit', opacity: '1', position: 'initial', overflowY: 'inherit' },
@@ -64,11 +60,11 @@ export const TrainingPage = () => {
         }
     };
 
-    const onClick: MenuProps['onClick'] =async (e) => {
+    const onClick: MenuProps['onClick'] = async (e) => {
         setCurrent(e.key);
         if (e.key === 'Совместные тренировки') {
-            await dispatch(getTrainingPals(token));
             await dispatch(getInvite(token));
+            await dispatch(getTrainingPals(token));
         }
     };
 

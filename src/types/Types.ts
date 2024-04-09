@@ -1,3 +1,5 @@
+import { Moment } from 'moment';
+
 export type IRegister = {
     email: string;
     password: string;
@@ -171,36 +173,40 @@ export type DataTestId = {
 };
 
 export type TrainingPals = {
-    id: string,
-    name: string,
-    trainingType: string,
-    imageSrc: string,
-    avgWeightInWeek: number,
-    inviteId: string,
-    status: string
-}
+    id: string;
+    name: string;
+    trainingType: string;
+    imageSrc: string;
+    avgWeightInWeek: number;
+    inviteId: string;
+    status: string;
+};
+
 export type UserTrainingList = TrainingPals;
 
-
 export type Invite = {
-        _id: string,
-        from: {
-          _id: string,
-          firstName: string,
-          lastName: string,
-          imageSrc: string
-        },
-        training: ActivityData,
-        status: string,
-        createdAt: string | number
-      }
+    _id: string;
+    from: {
+        _id: string;
+        firstName: string;
+        lastName: string;
+        imageSrc: string;
+    };
+    training: ActivityData;
+    status: string;
+    createdAt: string | number;
+};
 
-      export  type TrainingInvitation = {
-        to: string;
-        trainingId: string;
-      };
-      export type PutInvite =  {
-        id: string,
-        status: string
+export type TrainingInvitation = {
+    to: string;
+    trainingId: string;
+};
+export type PutInvite = {
+    id: string;
+    status: string;
+};
 
-}
+export type DateRenderProps = {
+    current: Moment;
+    activityDates: string[];
+};

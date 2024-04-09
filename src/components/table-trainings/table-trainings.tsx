@@ -5,7 +5,7 @@ import { ModalInfoTraining } from '@components/modal-info-training';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { useResponsiveVisibility } from '@hooks/use-responsive-visibility';
 import { useWindowSize } from '@hooks/use-window-size';
-import { setTraining, trainingSelector } from '@redux/slices/training-slice';
+import { cleanTraining, setTraining, trainingSelector } from '@redux/slices/training-slice';
 import { getTrainingColor } from '@utils/get-color-for-name';
 import { Badge, Button, Table } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
@@ -35,8 +35,17 @@ export const TableTrainings = ({ onClick }: TableTrainingsProps) => {
 
     const handleButtonEdit = (record: ActivityData) => {
         dispatch(setTraining({ training: record }));
-        onClick();
+        onClick('Редактирование');
     };
+
+    const handleButtonNewTraining = () => {
+        dispatch(cleanTraining());
+        onClick('Добавление упражнений');
+    };
+
+    // const handleSort = () => {
+    //     dispatch(setActivitiesData({ activitiesData: [...activitiesData].reverse() }));
+    // }
 
     const columns: ColumnsType<ActivityData> = [
         {
@@ -45,7 +54,6 @@ export const TableTrainings = ({ onClick }: TableTrainingsProps) => {
             key: 'name',
             width: column1Width,
             render: (text: string, record: ActivityData) => {
-
                 const color = getTrainingColor(text);
                 const handleButtonClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
                     const rect = event.currentTarget.getBoundingClientRect();
@@ -116,10 +124,10 @@ export const TableTrainings = ({ onClick }: TableTrainingsProps) => {
 
                 if (periodA === null) return -1;
                 if (periodB === null) return 1;
-                if (periodA === 7) return -1;
-                if (periodB === 7) return 1;
+                if (periodA === 7) return 1;
+                if (periodB === 7) return -1;
 
-                return periodA - periodB;
+                return periodB - periodA;
             },
         },
         {
@@ -136,12 +144,17 @@ export const TableTrainings = ({ onClick }: TableTrainingsProps) => {
             width: 32,
             render: (_: string, record: ActivityData, index: number) => (
                 <Button
-                data-test-id={`update-my-training-table-icon${index}`}
+                    data-test-id={`update-my-training-table-icon${index}`}
                     className='table-edit'
                     onClick={() => handleButtonEdit(record)}
                     icon={
                         <EditOutlined
-                            style={{ color: 'var(--primary-light-6)', fontSize: '25px' }}
+                            style={{
+                                color: record.isImplementation
+                                    ? 'var(--character-light-secondary-25)'
+                                    : 'var(--primary-light-6)',
+                                fontSize: '25px',
+                            }}
                         />
                     }
                     disabled={record.isImplementation}
@@ -161,19 +174,25 @@ export const TableTrainings = ({ onClick }: TableTrainingsProps) => {
                 <ModalInfoTraining
                     backClick={handleButtonBack}
                     position={modalPosition}
-                    onDrawer={onClick}
+                    onDrawer={() => setIsModal(false)}
                 />
             ) : null}
             <Table
-            data-test-id='my-trainings-table'
+                data-test-id='my-trainings-table'
                 rowKey={(record) => record._id || 'default'}
                 dataSource={activitiesData}
                 columns={columns}
-                pagination={{ pageSize: 14 }}
+                pagination={{ pageSize: 10 }}
                 size='small'
                 className='table-training'
             />
-            <Button size='large' type='primary' className='btn-create' onClick={onClick} data-test-id='create-new-training-button'>
+            <Button
+                size='large'
+                type='primary'
+                className='btn-create'
+                onClick={handleButtonNewTraining}
+                data-test-id='create-new-training-button'
+            >
                 + Новая тренировка
             </Button>
         </div>

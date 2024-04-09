@@ -1,6 +1,7 @@
 import { UserTrainingList } from '../types/types';
 
-export const sortUsers = (userJointTrainingList: UserTrainingList[]) => userJointTrainingList.sort((a, b) => {
+export const sortUsers = (userJointTrainingList: UserTrainingList[]) =>
+    userJointTrainingList.sort((a, b) => {
         if (a.status === 'accepted' && b.status !== 'accepted') {
             return -1;
         }

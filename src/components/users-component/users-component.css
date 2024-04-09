@@ -13,7 +13,7 @@
     min-height: 80px;
 }
 
-.training-partners .title{
+.training-partners .title {
     font-size: 20px;
     line-height: 26px;
     font-weight: var(--title-font-weight);
@@ -32,21 +32,16 @@
     display: flex;
     gap: 159px;
     margin-bottom: 8px;
-
 }
 .cards_user {
     overflow-y: auto;
 }
 
-
-
 @media only screen and (max-width: 900px) {
     .users__header {
         justify-content: space-between;
-        gap: 0
+        gap: 0;
     }
-
-
 }
 
 @media only screen and (max-width: 576px) {
@@ -57,6 +52,5 @@
 
     .users__header {
         margin-bottom: 2px;
-
     }
 }

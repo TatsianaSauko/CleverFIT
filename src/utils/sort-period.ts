@@ -7,10 +7,10 @@ export const sortPeriod = (originalData: ActivityData[]) => {
 
         if (periodA === null) return -1;
         if (periodB === null) return 1;
-        if (periodA === 7) return -1;
-        if (periodB === 7) return 1;
+        if (periodA === 7) return 1;
+        if (periodB === 7) return -1;
 
-        return periodB - periodA;
+        return periodA - periodB;
     });
 
     return sortedData;

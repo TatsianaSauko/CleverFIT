@@ -56,7 +56,15 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
             onClick: () => handleNavigation(Path.Calendar),
         },
         {
-            icon: <Badge count={inviteList.length} offset={[2, -4]} data-test-id='notification-about-joint-training'><HeartIcon /></Badge>,
+            icon: (
+                <Badge
+                    count={inviteList.length}
+                    offset={[2, -4]}
+                    data-test-id='notification-about-joint-training'
+                >
+                    <HeartIcon />
+                </Badge>
+            ),
             link: '/training',
             text: 'Тренировки',
             onClick: () => handleNavigation(Path.Training),

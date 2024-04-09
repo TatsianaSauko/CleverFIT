@@ -25,11 +25,17 @@ import {
 
 import { authFetching, loginSuccess, logout } from './slices/auth-slice';
 import { setFeedback } from './slices/feedback-slice';
-import { setInviteList, setTrainingPals, setUserJointTrainingList } from './slices/joint-training';
+import {
+    setInviteList,
+    setTrainingPals,
+    setUserJointTrainingList,
+    setUserJointTrainingListWitchTrainingType,
+} from './slices/joint-training';
 import { setTariffList } from './slices/tariff-slice';
 import { setActivitiesData, setLoading, setTrainingList } from './slices/training-slice';
 import { setUserData } from './slices/user-slice';
 import { AppDispatch, history } from './configure-store';
+// import { sortPeriod } from '@utils/sort-period';
 
 export const register = (data: IRegister) => async (dispatch: AppDispatch) => {
     try {
@@ -84,7 +90,7 @@ export const login = (data: ILogin) => async (dispatch: AppDispatch) => {
         );
 
         history.push(Path.Main);
-        // await new Promise((resolve) => setTimeout(resolve, 1000));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         dispatch(getUserMe(response.data.accessToken));
 
         dispatch(authFetching({ loading: false }));
@@ -213,6 +219,7 @@ export const getTrainingUser = (data: string) => async (dispatch: AppDispatch) =
         };
         const response = await axios.get(`${BaseUrl}${Endpoints.Training}`, { headers });
         const transform = transformedData(response.data);
+        // const sort = sortPeriod(transform)
 
         dispatch(setActivitiesData({ activitiesData: transform }));
         dispatch(authFetching({ loading: false }));
@@ -250,10 +257,13 @@ export const createTraining =
                 'Content-Type': 'application/json',
             };
 
-            await axios.post(`${BaseUrl}${Endpoints.Training}`, training, {
+            const response = await axios.post(`${BaseUrl}${Endpoints.Training}`, training, {
                 headers,
             });
+
             dispatch(setLoading({ loadingTraining: false }));
+
+            return response.data._id;
         } catch {
             dispatch(setLoading({ loadingTraining: false }));
             throw Error();
@@ -351,71 +361,88 @@ export const createTariff =
         }
     };
 
-    export const getTrainingPals = (data: string) => async (dispatch: AppDispatch) => {
+export const getTrainingPals = (data: string) => async (dispatch: AppDispatch) => {
+    try {
+        const headers = {
+            Authorization: `Bearer ${data}`,
+            'Content-Type': 'application/json',
+        };
+        const response = await axios.get(`${BaseUrl}${Endpoints.TrainingPals}`, {
+            headers,
+        });
+
+        dispatch(setTrainingPals({ trainingPals: response.data }));
+    } catch {
+        dispatch(setTrainingPals({ trainingPals: [] }));
+    }
+};
+
+export const getUserJointTrainingList = (data: string) => async (dispatch: AppDispatch) => {
+    try {
+        const headers = {
+            Authorization: `Bearer ${data}`,
+            'Content-Type': 'application/json',
+        };
+
+        const response = await axios.get(`${BaseUrl}${Endpoints.UserJointTrainingList}`, {
+            headers,
+        });
+        const sortResponse = sortUsers(response.data);
+
+        dispatch(setUserJointTrainingList({ userJointTrainingList: sortResponse }));
+        dispatch(
+            setUserJointTrainingListWitchTrainingType({
+                userJointTrainingListWitchTrainingType: [],
+            }),
+        );
+    } catch {
+        throw Error();
+    }
+};
+export const getUserJointTrainingListByTrainingType =
+    (data: string, trainingType: string) => async (dispatch: AppDispatch) => {
         try {
-            // dispatch(authFetching({ loading: true }));
             const headers = {
                 Authorization: `Bearer ${data}`,
                 'Content-Type': 'application/json',
             };
-            const response = await axios.get(`${BaseUrl}${Endpoints.TrainingPals}`, {
-                headers,
-            });
-
-            // const sortResponse = sortUsers(response.data);
-            dispatch(setTrainingPals({ trainingPals: response.data }));
-
-            // dispatch(authFetching({ loading: false }));
-        } catch {
-            // dispatch(authFetching({ loading: false }));
-        }
-    };
-
-
-
-    export const getUserJointTrainingList = (data: string, trainingType?: string) => async (dispatch: AppDispatch) => {
-        try {
-            dispatch(authFetching({ loading: true }));
-            const headers = {
-                Authorization: `Bearer ${data}`,
-                'Content-Type': 'application/json',
-            };
-            const params = trainingType ? { trainingType } : {};
+            const params = { trainingType };
             const response = await axios.get(`${BaseUrl}${Endpoints.UserJointTrainingList}`, {
                 headers,
                 params,
             });
             const sortResponse = sortUsers(response.data);
 
-            dispatch(setUserJointTrainingList({ userJointTrainingList: sortResponse }));
-            dispatch(authFetching({ loading: false }));
+            dispatch(setUserJointTrainingList({ userJointTrainingList: [] }));
+            dispatch(
+                setUserJointTrainingListWitchTrainingType({
+                    userJointTrainingListWitchTrainingType: sortResponse,
+                }),
+            );
         } catch {
-            dispatch(authFetching({ loading: false }));
             throw Error();
         }
     };
 
-    export const getInvite = (data: string) => async (dispatch: AppDispatch) => {
-        try {
-            dispatch(authFetching({ loading: true }));
-            const headers = {
-                Authorization: `Bearer ${data}`,
-                'Content-Type': 'application/json',
-            };
+export const getInvite = (data: string) => async (dispatch: AppDispatch) => {
+    try {
+        const headers = {
+            Authorization: `Bearer ${data}`,
+            'Content-Type': 'application/json',
+        };
 
-            const response = await axios.get(`${BaseUrl}${Endpoints.Invite}`, {
-                headers,
-            });
+        const response = await axios.get(`${BaseUrl}${Endpoints.Invite}`, {
+            headers,
+        });
 
-            dispatch(setInviteList({ inviteList: response.data }));
-            dispatch(authFetching({ loading: false }));
-        } catch {
-            dispatch(authFetching({ loading: false }));
-            throw Error();
-        }
-    };
+        dispatch(setInviteList({ inviteList: response.data }));
+    } catch {
+        dispatch(setInviteList({ inviteList: [] }));
+    }
+};
 
-    export const postInvite = (token: string, data: TrainingInvitation) => async (dispatch: AppDispatch) => {
+export const postInvite =
+    (token: string, data: TrainingInvitation) => async (dispatch: AppDispatch) => {
         try {
             dispatch(authFetching({ loading: true }));
             const headers = {
@@ -427,7 +454,6 @@ export const createTariff =
                 headers,
             });
 
-            // dispatch(setInvite({ invite: response.data }));
             dispatch(authFetching({ loading: false }));
         } catch {
             dispatch(authFetching({ loading: false }));
@@ -435,38 +461,37 @@ export const createTariff =
         }
     };
 
+export const putInvite = (token: string, data: PutInvite) => async (dispatch: AppDispatch) => {
+    try {
+        dispatch(authFetching({ loading: true }));
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
 
+        await axios.put(`${BaseUrl}${Endpoints.Invite}`, data, {
+            headers,
+        });
+        dispatch(authFetching({ loading: false }));
+    } catch {
+        dispatch(authFetching({ loading: false }));
+        throw Error();
+    }
+};
 
-    export const putInvite = (token: string, data: PutInvite) => async (dispatch: AppDispatch) => {
-        try {
-            dispatch(authFetching({ loading: true }));
-            const headers = {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            };
+export const deleteInvite = (token: string, inviteId: string) => async (dispatch: AppDispatch) => {
+    try {
+        dispatch(authFetching({ loading: true }));
+        const headers = {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        };
 
-         await axios.put(`${BaseUrl}${Endpoints.Invite}`, data, {
-                headers,
-            });
-            dispatch(authFetching({ loading: false }));
-        } catch {
-            dispatch(authFetching({ loading: false }));
-        }
-    };
-
-    export const deleteInvite = (data: string, inviteId: string) => async (dispatch: AppDispatch) => {
-        try {
-            dispatch(authFetching({ loading: true }));
-            const headers = {
-                Authorization: `Bearer ${data}`,
-                'Content-Type': 'application/json',
-            };
-
-            await axios.get(`${BaseUrl}${Endpoints.Invite}/${inviteId}`, {
-                headers,
-            });
-            dispatch(authFetching({ loading: false }));
-        } catch {
-            dispatch(authFetching({ loading: false }));
-        }
-    };
+        await axios.delete(`${BaseUrl}${Endpoints.Invite}/${inviteId}`, {
+            headers,
+        });
+        dispatch(authFetching({ loading: false }));
+    } catch {
+        dispatch(authFetching({ loading: false }));
+    }
+};

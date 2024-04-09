@@ -8,14 +8,19 @@ import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { useResponsiveWidth } from '@hooks/use-responsive-width';
 import { createExercise, setTraining, trainingSelector } from '@redux/slices/training-slice';
 import { containsElement } from '@utils/contains-element';
-import { filterUncheckedExercises } from '@utils/filter-uncheckede-exercises';
+import { filterUncheckedExercises } from '@utils/filter-unchecked-exercises';
 import { Button, Drawer } from 'antd';
 
 import { DrawerTrainingsProps } from '../../types/props';
 
 import './drawer-trainings.css';
 
-export const DrawerTrainings = ({ onClose, isDrawer, handleButtonSave }: DrawerTrainingsProps) => {
+export const DrawerTrainings = ({
+    onClose,
+    isDrawer,
+    handleButtonSave,
+    title,
+}: DrawerTrainingsProps) => {
     const dispatch = useAppDispatch();
     const { training, activitiesData, flag } = useSelector(trainingSelector);
     const itemWithName = containsElement(activitiesData, training.date, training.name);
@@ -34,16 +39,21 @@ export const DrawerTrainings = ({ onClose, isDrawer, handleButtonSave }: DrawerT
     const hasCheckedExercise = training.exercises.some((exercise) => exercise.checked);
     const buttonDisabled = !hasCheckedExercise;
 
+    const handleButtonClick = () => {
+        onClose();
+        handleButtonSave();
+    };
+
     return (
         <Drawer
             data-test-id='modal-drawer-right'
             title={
-                itemWithName ? (
+                title === 'Редактирование' ? (
                     <React.Fragment>
-                        <EditOutlined style={{ fontSize: '14px' }} /> Редактировать тренировку
+                        <EditOutlined style={{ fontSize: '14px' }} /> {title}
                     </React.Fragment>
                 ) : (
-                    '+ Новая тренировка'
+                    title
                 )
             }
             className='drawer-trainings'
@@ -59,14 +69,14 @@ export const DrawerTrainings = ({ onClose, isDrawer, handleButtonSave }: DrawerT
                     block={true}
                     type='primary'
                     size='large'
-                    onClick={() => handleButtonSave()}
+                    onClick={handleButtonClick}
                     disabled={!training.name || !training.exercises[0].name || !training.date}
                 >
                     Сохранить
                 </Button>
             }
         >
-            <TrainingForm />
+            <TrainingForm flag={false} />
             <div className='drawer__wrapper'>
                 {training.exercises.length &&
                     training.exercises.map((item, index) => (

@@ -1,5 +1,7 @@
 import { CloseCircleOutlined } from '@ant-design/icons';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { useResponsiveWidth } from '@hooks/use-responsive-width';
+import { setIsTrainingPartnerFinderComponent } from '@redux/slices/joint-training';
 import { Button, Modal, Typography } from 'antd';
 
 import { ModalErrorSaveDataProps } from '../../types/props';
@@ -9,7 +11,13 @@ import './modal-error-save-data.css';
 const { Title, Text } = Typography;
 
 export const ModalErrorSaveData = ({ visible, onClose }: ModalErrorSaveDataProps) => {
+    const dispatch = useAppDispatch();
     const modalWidth = useResponsiveWidth(328, 416);
+
+    const handleCloseButton = () => {
+        dispatch(setIsTrainingPartnerFinderComponent({ isTrainingPartnerFinderComponent: true }));
+        onClose();
+    };
 
     return (
         <Modal
@@ -36,7 +44,12 @@ export const ModalErrorSaveData = ({ visible, onClose }: ModalErrorSaveDataProps
                         </Text>
                     </div>
                 </div>
-                <Button type='primary' className='btn-close' onClick={onClose} size='large'>
+                <Button
+                    type='primary'
+                    className='btn-close'
+                    onClick={handleCloseButton}
+                    size='large'
+                >
                     Закрыть
                 </Button>
             </div>

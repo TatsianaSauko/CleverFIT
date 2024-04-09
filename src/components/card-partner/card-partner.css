@@ -7,39 +7,32 @@
     border: 1px solid var(--character-light-dividers);
     border-radius: 2px;
 }
-.card-partner
-.card-partner__header {
+.card-partner .card-partner__header {
     display: flex;
     gap: 8px;
 }
-.card-partner
-.card-partner__header
-.name {
+.card-partner .card-partner__header .name {
     font-size: 14px;
     line-height: 18.2px;
+    width: 75px;
 }
-.card-partner
-.card-partner__details {
+.card-partner .card-partner__details {
     display: flex;
     gap: 16px;
 }
-.card-partner
-.type__wrapper,
-.card-partner
-.value__wrapper {
+.card-partner .type__wrapper,
+.card-partner .value__wrapper {
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
-.card-partner
-.type {
+.card-partner .type {
     font-size: var(--extraSmallFontSize);
     line-height: 15.6px;
     color: var(--character-light-secondary-45);
 }
 
-.card-partner
-.value {
+.card-partner .value {
     font-size: var(--smallFontSize);
     line-height: 18.2px;
     color: var(--primary-light-6);
@@ -48,6 +41,5 @@
 @media only screen and (max-width: 576px) {
     .card-partner {
         width: 312px;
-
     }
 }

@@ -20,6 +20,7 @@ export const MyTrainingsComponent = () => {
     const { getTrainingListError, activitiesData, training } = useSelector(trainingSelector);
 
     const [isDrawer, setIsDrawer] = useState(false);
+    const [titleDrawer, setTitleDrawer] = useState('');
     const [showSuccessMessage, setShowSuccessMessage] = useState('');
     const dispatch = useAppDispatch();
     const dataForDate = getDataForDate(activitiesData, training.date);
@@ -32,7 +33,7 @@ export const MyTrainingsComponent = () => {
     };
 
     const handleButtonSave = async () => {
-        const { _id, ...newTraining } = training;
+        const { _id: id, ...newTraining } = training;
         const cleanExercises = training.exercises.map(({ _id: exerciseId, ...rest }) => rest);
         const cleanTrainingObject = { ...newTraining, exercises: cleanExercises };
 
@@ -58,9 +59,14 @@ export const MyTrainingsComponent = () => {
                 setIsModalErrorSaveTraining(true);
             }
         }
-        setIsDrawer(false);
     };
     const handleCreateTraining = () => {
+        dispatch(cleanTraining());
+        setTitleDrawer('+ Новая тренировка');
+        setIsDrawer(true);
+    };
+    const handleAddTraining = (value: string) => {
+        setTitleDrawer(value);
         setIsDrawer(true);
     };
 
@@ -81,6 +87,7 @@ export const MyTrainingsComponent = () => {
                 handleModalToggle={handleModalToggle}
             />
             <DrawerTrainings
+                title={titleDrawer}
                 onClose={closeDrawer}
                 isDrawer={isDrawer}
                 handleButtonSave={handleButtonSave}
@@ -89,23 +96,21 @@ export const MyTrainingsComponent = () => {
                 <ModalAlert message={showSuccessMessage} onClose={handleCloseSuccessMessage} />
             )}
             {activitiesData.length === 0 ? (
-
-<div className='my-training__empty'>
-<div className='title'>У вас ещё нет созданных тренировок</div>
-{getTrainingListError ? null : (
-<Button
-size='large'
-type='primary'
-className='btn-create'
-onClick={handleCreateTraining}
->
-Создать тренировку
-</Button>
-)}
-</div>
-
+                <div className='my-training__empty'>
+                    <div className='title'>У вас ещё нет созданных тренировок</div>
+                    {getTrainingListError ? null : (
+                        <Button
+                            size='large'
+                            type='primary'
+                            className='btn-create'
+                            onClick={handleCreateTraining}
+                        >
+                            Создать тренировку
+                        </Button>
+                    )}
+                </div>
             ) : (
-                <TableTrainings onClick={handleCreateTraining} />
+                <TableTrainings onClick={(value) => handleAddTraining(value)} />
             )}
         </div>
     );

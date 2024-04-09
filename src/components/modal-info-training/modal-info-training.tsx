@@ -17,11 +17,9 @@ export const ModalInfoTraining = ({ backClick, position, onDrawer }: ModalInfoTr
 
     if (windowSize > 1023) {
         positionLeft = position.left - 213;
-    }
-    else if (windowSize > 767) {
+    } else if (windowSize > 767) {
         positionLeft = position.left - 180;
-    }
-    else {
+    } else {
         positionLeft = position.left - 84;
     }
 

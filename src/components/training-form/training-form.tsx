@@ -18,7 +18,7 @@ import { FieldData } from 'rc-field-form/lib/interface';
 
 import './training-form.css';
 
-export const TrainingForm = () => {
+export const TrainingForm = ({ flag }: { flag: boolean }) => {
     const dispatch = useAppDispatch();
     const { trainingList, training, activitiesData } = useSelector(trainingSelector);
     const dataForDate = getDataForDate(activitiesData, training.date);
@@ -36,7 +36,9 @@ export const TrainingForm = () => {
         const periodFieldValue = allFields.find((field) => field.name[0] === 'period')?.value;
         const repeatValue = allFields.find((field) => field.name[0] === 'checked')?.value;
 
-        dispatch(setFlag({ flag: isPastDate(dateFieldValue) }));
+        if (dateFieldValue) {
+            dispatch(setFlag({ flag: isPastDate(dateFieldValue) }));
+        }
         dispatch(setRepeat({ repeat: repeatValue }));
         dispatch(setDateTraining({ date: moment(dateFieldValue).toISOString() }));
         dispatch(setNameTraining({ value: nameFieldValue }));
@@ -63,35 +65,41 @@ export const TrainingForm = () => {
                 handleFieldsChange(allFields);
             }}
         >
-            <Form.Item name='name'>
-                <Select
-                    className='select-training'
-                    size='middle'
-                    options={filteredOptions.map((item) => ({
-                        value: item.name,
-                        label: item.name,
-                        disabled: item.name === training.name,
-                    }))}
-                />
-            </Form.Item>
+            {flag ? null : (
+                <Form.Item name='name'>
+                    <Select
+                        data-test-id='modal-create-exercise-select'
+                        className='select-training'
+                        size='middle'
+                        options={filteredOptions.map((item) => ({
+                            value: item.name,
+                            label: item.name,
+                        }))}
+                    />
+                </Form.Item>
+            )}
             <div className='block'>
                 <Form.Item name='date' className='data-picker'>
                     <DatePicker
-                    data-test-id='modal-drawer-right-date-picker'
+                        data-test-id='modal-drawer-right-date-picker'
                         size='small'
                         format='DD.MM.YYYY'
                         disabledDate={(current) => current && current < moment().endOf('day')}
-                        dateRender={(current) => <DateRender current={current} activityDates={activityDates} />}
+                        dateRender={(current) => (
+                            <DateRender current={current} activityDates={activityDates} />
+                        )}
                     />
                 </Form.Item>
                 <Form.Item name='checked' valuePropName='checked'>
-                    <Checkbox data-test-id='modal-drawer-right-checkbox-period'>С периодичностью</Checkbox>
+                    <Checkbox data-test-id='modal-drawer-right-checkbox-period'>
+                        С периодичностью
+                    </Checkbox>
                 </Form.Item>
             </div>
             {training.parameters?.repeat && (
                 <Form.Item name='period'>
                     <Select
-                    data-test-id='modal-drawer-right-select-period'
+                        data-test-id='modal-drawer-right-select-period'
                         className='select-training'
                         size='middle'
                         options={periodOptions.map((item) => ({

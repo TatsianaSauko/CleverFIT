@@ -1,7 +1,7 @@
 .training-partners {
     padding-top: 16px;
 }
-.training-partners .title{
+.training-partners .title {
     font-size: 20px;
     line-height: 26px;
     font-weight: var(--title-font-weight);
@@ -15,7 +15,4 @@
     flex-wrap: wrap;
     padding-top: 12px;
     padding-bottom: 16px;
-
 }
-
-

@@ -1,4 +1,4 @@
-.alert-wrapper {
+/* .alert-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,13 +11,24 @@
     overflow: display;
 }
 
-.alert-wrapper .ant-alert {
+.alert-wrapper
+.ant-alert {
     position: absolute;
     width: 395px;
     left: 0;
     right: 0;
     margin: auto;
     top: calc(100vh - 120px);
+    z-index: 3;
+} */
+
+.ant-alert {
+    position: relative;
+    width: 395px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: calc(100vh - 250px);
     z-index: 3;
 }
 

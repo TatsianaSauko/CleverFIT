@@ -22,8 +22,8 @@ interface BreadcrumbRoute {
 }
 
 export const Header = () => {
-
-    const location = useLocation();const { token } = useSelector(authSelector);
+    const location = useLocation();
+    const { token } = useSelector(authSelector);
     const dispatch = useAppDispatch();
     const [isTitleHeader, setIsTitleHeader] = useState(false);
     const [isWrapperTitleHeader, setIsWrapperIsTitleHeader] = useState(false);

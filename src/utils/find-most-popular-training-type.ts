@@ -1,7 +1,16 @@
 import { ActivityData, Exercise, TrainingList } from '../types/types';
 
-export const findMostPopularTrainingType = (activitiesData: ActivityData[], trainingList: TrainingList) => {
-    const calculateLoad = (exercises: Exercise[]) => exercises.reduce((total, exercise) => total + (exercise.replays || 0) * (exercise.weight || 0) * (exercise.approaches || 0), 0);
+export const findMostPopularTrainingType = (
+    activitiesData: ActivityData[],
+    trainingList: TrainingList,
+) => {
+    const calculateLoad = (exercises: Exercise[]) =>
+        exercises.reduce(
+            (total, exercise) =>
+                total +
+                (exercise.replays || 0) * (exercise.weight || 0) * (exercise.approaches || 0),
+            0,
+        );
 
     const trainingNameToKey = trainingList.reduce((acc: { [key: string]: string }, training) => {
         acc[training.name] = training.key;
@@ -33,4 +42,3 @@ export const findMostPopularTrainingType = (activitiesData: ActivityData[], trai
 
     return trainingNameToKey[mostPopularTrainingType];
 };
-

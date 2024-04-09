@@ -8,6 +8,7 @@ import './card.css';
 const dataTestIds: DataTestId = {
     Календарь: 'menu-button-calendar',
     Профиль: 'menu-button-profile',
+    Тренировки: 'menu-button-training',
 };
 
 export const Card = ({ title, link, icon, onClick }: CardProps) => (

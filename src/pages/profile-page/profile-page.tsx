@@ -145,6 +145,7 @@ export const ProfilePage = () => {
         if (fileList.length && fileList[0].url) {
             newValues.imgSrc = fileList[0].url;
         }
+        newValues.readyForJointTraining = true;
         try {
             await dispatch(putUser(newValues, token));
             setShowSuccessMessage(true);

@@ -7,7 +7,9 @@ button.table-edit {
 
 .table-training .ant-table-row {
     height: 37px;
-
+}
+.table-training .ant-btn[disabled] {
+    background: var(--neutral-gray-1);
 }
 
 .table-training .ant-table-thead > tr > th:nth-child(1),
@@ -50,8 +52,6 @@ button.table-edit {
     .table-training {
         width: 530px;
     }
-
-
 }
 
 @media only screen and (max-width: 576px) {

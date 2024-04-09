@@ -1,7 +1,15 @@
 import { ReactNode } from 'react';
 import { Moment } from 'moment';
 
-import { ActivityData, Exercise, Feedback, FormFeedback, Invite, TrainingPals } from './types';
+import {
+    ActivityData,
+    Exercise,
+    Feedback,
+    FormFeedback,
+    Invite,
+    TrainingPals,
+    UserTrainingList,
+} from './types';
 
 export type CardProps = {
     title: string;
@@ -102,6 +110,13 @@ export type DrawerTrainingsProps = {
     onClose: () => void;
     isDrawer: boolean;
     handleButtonSave: () => void;
+    title?: string;
+};
+export type DrawerJointTrainingProps = {
+    onClose: () => void;
+    isDrawer: boolean;
+    user: UserTrainingList;
+    handleButtonSave: () => void;
 };
 
 export type DrawerTariffProps = {
@@ -124,11 +139,11 @@ export type CloseButtonProps = {
     onClose: () => void;
 };
 export type TableTrainingsProps = {
-    onClick: () => void;
+    onClick: (value: string) => void;
 };
 export type ModalCardPartnerProps = {
     onClose: () => void;
-    item:TrainingPals;
+    item: TrainingPals;
 };
 
 export type ModalErrorSaveDataProps = FileSizeExceedModalProps;

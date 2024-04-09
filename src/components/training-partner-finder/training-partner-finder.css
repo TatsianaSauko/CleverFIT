@@ -1,6 +1,5 @@
-.training-partner-finder  {
+.training-partner-finder {
     padding: 32px 40px 0;
-
 }
 .training-partner-finder .title {
     color: var(--primary-light-9);
@@ -26,26 +25,25 @@
     flex-wrap: wrap;
 }
 
-.btn__selection_random, .btn__selection{
+.btn__selection_random,
+.btn__selection {
     width: 472px;
-
 }
 
 @media only screen and (max-width: 900px) {
-    .btn__selection_random, .btn__selection{
+    .btn__selection_random,
+    .btn__selection {
         width: 354px;
-
     }
 }
 
 @media only screen and (max-width: 576px) {
-    .training-partner-finder  {
+    .training-partner-finder {
         padding-left: 8px;
         padding-right: 8px;
     }
-    .btn__selection_random, .btn__selection{
+    .btn__selection_random,
+    .btn__selection {
         width: 312px;
-
     }
 }
-

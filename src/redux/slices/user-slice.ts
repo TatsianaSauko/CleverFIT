@@ -15,7 +15,7 @@ const initialState: InitialState = {
         password: '',
         birthday: '',
         imgSrc: '',
-        readyForJointTraining: false,
+        readyForJointTraining: true,
         sendNotification: false,
         tariff: {
             tariffId: '',

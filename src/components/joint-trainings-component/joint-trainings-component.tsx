@@ -7,16 +7,23 @@ import { UserList } from '@components/users-component';
 import { jointTrainingSelector } from '@redux/slices/joint-training';
 
 export const JointTrainingsComponent = () => {
-    const { isUserList, inviteList } = useSelector(jointTrainingSelector);
+    const { isUserList, inviteList, isTrainingPartnerFinderComponent } =
+        useSelector(jointTrainingSelector);
 
-    return(
-    <div className='training-page__content'>
+    return (
+        <div className='training-page__content'>
+            {isUserList ? (
+                <UserList />
+            ) : (
+                <React.Fragment>
+                    {inviteList.length > 0 && isTrainingPartnerFinderComponent ? (
+                        <MessagesComponent />
+                    ) : null}
+                    {isTrainingPartnerFinderComponent ? <TrainingPartnerFinder /> : null}
 
-        {isUserList ? <UserList/>: <React.Fragment>
-        {inviteList.length === 0 ? <MessagesComponent/> : null}
-        <TrainingPartnerFinder/>
-        <TrainingPartners/>
-        </React.Fragment>}
-
-    </div>
-);}
+                    <TrainingPartners />
+                </React.Fragment>
+            )}
+        </div>
+    );
+};
