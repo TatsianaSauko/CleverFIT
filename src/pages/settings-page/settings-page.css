@@ -78,7 +78,7 @@
     width: 505px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--spacing-content-gap);
 }
 
 .ant-tooltip-inner {

@@ -4,7 +4,7 @@
 
 .info-training__header {
     display: flex;
-    gap: 12px;
+    gap: var(--element-gap);
     padding: 16px 8px;
 }
 @media screen and (max-width: 576px) {

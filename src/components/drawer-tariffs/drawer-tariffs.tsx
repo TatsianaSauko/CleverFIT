@@ -24,13 +24,13 @@ import './drawer-tariffs.css';
 export const DrawerTariffs = ({ onClose, isDrawer, onModalPayment }: DrawerTariffProps) => {
     const dispatch = useAppDispatch();
     const { tariffList } = useSelector(tariffSelector);
-    const modalWidth = useResponsiveWidth(360, 408);
+    const { token } = useSelector(authSelector);
+    const { user } = useSelector(userSelector);
     const [isDisabled, setIsDisabled] = useState(true);
     const [isDestroyOnClose, setIsDestroyOnClose] = useState(false);
     const [value, setValue] = useState(undefined);
-    const { token } = useSelector(authSelector);
-    const { user } = useSelector(userSelector);
     const userTariffId = user.tariff?.tariffId;
+    const modalWidth = useResponsiveWidth(360, 408);
 
     const onChange = (e: RadioChangeEvent) => {
         setValue(e.target.value);

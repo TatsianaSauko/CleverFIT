@@ -10,6 +10,7 @@ import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { getUserMe } from '@redux/action-creators';
 import { history } from '@redux/configure-store';
 import { authSelector, loginSuccess, logout } from '@redux/slices/auth-slice';
+import { userSelector } from '@redux/slices/user-slice';
 import { Layout } from 'antd';
 
 import './root-layout.css';
@@ -19,6 +20,7 @@ const { Footer } = Layout;
 export const RootLayout: React.FC = () => {
     const dispatch = useAppDispatch();
     const { token, loading } = useSelector(authSelector);
+    const { user } = useSelector(userSelector);
     const [collapsed, setCollapsed] = useState(false);
     const [isPageSettings, setIsPageSettings] = useState(false);
     const location = useLocation();
@@ -47,6 +49,16 @@ export const RootLayout: React.FC = () => {
             dispatch(logout());
         }
     }, [token, dispatch]);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            if (token && user.email === '') {
+                await dispatch(getUserMe(token));
+            }
+        };
+
+        fetchUser();
+    }, [token]);
 
     useEffect(() => {
         setIsPageSettings(location.pathname === '/settings');

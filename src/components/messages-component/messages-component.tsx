@@ -11,13 +11,9 @@ export const MessagesComponent = () => {
     const { inviteList } = useSelector(jointTrainingSelector);
     const [showAll, setShowAll] = useState(false);
 
-    const handleShowAllClick = () => {
-        setShowAll(true);
-    };
+    const handleShowAllClick = () => setShowAll(true);
 
-    const handleHiddenAllClick = () => {
-        setShowAll(false);
-    };
+    const handleHiddenAllClick = () => setShowAll(false);
 
     return (
         <div className='messages-component'>

@@ -23,13 +23,13 @@ const { Title, Text } = Typography;
 export const FeedbacksPage = () => {
     const dispatch = useAppDispatch();
     const { feedbacks } = useSelector(feedbackSelector);
+    const { token } = useSelector(authSelector);
     const [visibleCount, setVisibleCount] = useState(4);
     const [expanded, setExpanded] = useState(false);
     const [isModal, setIsModal] = useState(false);
     const [isModalGetData, setIsModalGetData] = useState(false);
     const [isModalSuccess, setIsModalSuccess] = useState(false);
     const [isModalError, setIsModalError] = useState(false);
-    const { token } = useSelector(authSelector);
 
     useEffect(() => {
         dispatch(getFeedback({ token })).catch(() => {
@@ -69,9 +69,7 @@ export const FeedbacksPage = () => {
         }
     };
 
-    const handleCreateFeedback = () => {
-        setIsModal(true);
-    };
+    const handleCreateFeedback = () => setIsModal(true);
 
     return (
         <Content className={feedbacks.length ? 'feedbacks' : 'feedbacks add-flex'}>

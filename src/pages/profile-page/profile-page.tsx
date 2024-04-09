@@ -5,6 +5,7 @@ import { ModalAlert } from '@components/modal-alert';
 import { ModalErrorSaveData } from '@components/modal-error-save-data';
 import { UploadButton } from '@components/upload-button/upload-button';
 import { ImgUrL } from '@constants/api';
+import { DATE_FORMAT } from '@constants/app-constants';
 import { MESSAGES } from '@constants/message-alert';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { useResponsiveVisibility } from '@hooks/use-responsive-visibility';
@@ -37,6 +38,8 @@ const getBase64 = (file: RcFile): Promise<string> =>
 
 export const ProfilePage = () => {
     const dispatch = useAppDispatch();
+    const [form] = useForm();
+    const { token } = useSelector(authSelector);
     const { user } = useSelector(userSelector);
     const [loading, setLoading] = useState(false);
     const [fileList, setFileList] = useState<UploadFile[]>(
@@ -57,12 +60,10 @@ export const ProfilePage = () => {
     const [previewOpen, setPreviewOpen] = useState(false);
     const [isDisabled, setIsDisabled] = useState(true);
     const [isPasswordEntered, setIsPasswordEntered] = useState(false);
-    const [form] = useForm();
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [modalVisibleSaveData, setModalVisibleSaveData] = useState(false);
     const defaultVisibility = !(window.innerWidth < 576);
     const width = useResponsiveVisibility(defaultVisibility);
-    const { token } = useSelector(authSelector);
 
     const confirmRules = [
         {
@@ -166,17 +167,11 @@ export const ProfilePage = () => {
         setIsPasswordEntered(e.target.value.trim().length > 0);
     };
 
-    const handleCloseSuccessMessage = () => {
-        setShowSuccessMessage(false);
-    };
+    const handleCloseSuccessMessage = () => setShowSuccessMessage(false);
 
-    const handleCloseErrorSaveDataModal = () => {
-        setModalVisibleSaveData(false);
-    };
+    const handleCloseErrorSaveDataModal = () => setModalVisibleSaveData(false);
 
-    const handleCloseFileSizeExceedModal = () => {
-        setModalVisible(false);
-    };
+    const handleCloseFileSizeExceedModal = () => setModalVisible(false);
 
     const isSubmitDisabled = isDisabled || (fileList.length > 0 && fileList[0].status === 'error');
 
@@ -246,7 +241,7 @@ export const ProfilePage = () => {
                         <Form.Item name='birthday' className='data-picker'>
                             <DatePicker
                                 placeholder='Дата рождения'
-                                format='DD.MM.YYYY'
+                                format={DATE_FORMAT}
                                 data-test-id='profile-birthday'
                             />
                         </Form.Item>

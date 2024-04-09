@@ -24,8 +24,8 @@ export const TrainingPage = () => {
     const { token } = useSelector(authSelector);
     const { isModal } = useSelector(trainingSelector);
     const { inviteList } = useSelector(jointTrainingSelector);
-    const [isModalTrainingList, setIsModalTrainingList] = useState<boolean>(isModal);
-    const [current, setCurrent] = useState('Мои тренировки');
+    const [ isModalTrainingList, setIsModalTrainingList ] = useState<boolean>(isModal);
+    const [ current, setCurrent ] = useState('Мои тренировки');
 
     const items: MenuProps['items'] = [
         {

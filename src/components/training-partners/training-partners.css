@@ -11,7 +11,7 @@
 
 .cards_user {
     display: flex;
-    gap: 16px;
+    gap: var(--spacing-content-gap);
     flex-wrap: wrap;
     padding-top: 12px;
     padding-bottom: 16px;

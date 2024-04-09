@@ -1,7 +1,7 @@
 .card-message {
     padding: 20px 20px 20px 12px;
     display: flex;
-    gap: 8px;
+    gap: var(--list-item-gap);
     background: var(--neutral-gray-1);
     border-radius: 2px 16px 16px;
 }
@@ -9,7 +9,7 @@
 .card-message .card-message__info-author {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--element-gap);
     width: 174px;
     justify-content: center;
     align-items: center;
@@ -21,13 +21,13 @@
 }
 .card-message .name,
 .card-message .surname {
-    font-size: 16px;
+    font-size: var(--defaultFontSize);
     line-height: 20.8px;
 }
 .card-message .card-message__content {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--list-item-gap);
     width: 660px;
 }
 .card-message .date {
@@ -36,7 +36,7 @@
     color: var(--neutral-gray-6);
 }
 .card-message .card-message__message {
-    font-size: 16px;
+    font-size: var(--defaultFontSize);
     line-height: 20.8px;
     font-weight: 700;
     color: var(--primary-light-9);
@@ -49,24 +49,24 @@
 .card-message .btn__wrapper {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    font-size: 14px;
+    gap: var(--spacing-content-gap);
+    font-size: var(--smallFontSize);
 }
 
 .card-message .btn-joint {
     background: var(--primary-light-6);
-    font-size: 14px;
+    font-size: var(--smallFontSize);
     position: relative;
     z-index: 2;
 }
 .card-message .btn-reject {
-    font-size: 14px;
+    font-size: var(--smallFontSize);
 }
 
 @media only screen and (max-width: 900px) {
     .card-message {
         display: flex;
-        gap: 16px;
+        gap: var(--spacing-content-gap);
         flex-wrap: wrap;
         justify-content: left;
     }
@@ -74,10 +74,10 @@
         width: 100%;
     }
     .card-message .card-message__content {
-        gap: 12px;
+        gap: var(--element-gap);
     }
     .card-message .btn__wrapper {
-        gap: 12px;
+        gap: var(--element-gap);
     }
 
     .card-message .card-message__info-author {

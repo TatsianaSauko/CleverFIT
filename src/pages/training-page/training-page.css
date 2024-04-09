@@ -41,7 +41,7 @@
         gap: 65.5px;
     }
     .menu-training .ant-menu-title-content {
-        font-size: 14px;
+        font-size: var(--smallFontSize);
         font-weight: 400;
         line-height: 18.2px;
     }

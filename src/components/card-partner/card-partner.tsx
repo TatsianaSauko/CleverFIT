@@ -9,13 +9,9 @@ import './card-partner.css';
 export const CardPartner = ({ item, dataTestId }: { item: TrainingPals; dataTestId: string }) => {
     const [isModal, setIsModal] = useState(false);
 
-    const handleCardClick = () => {
-        setIsModal(true);
-    };
+    const handleCardClick = () => setIsModal(true);
 
-    const onClose = () => {
-        setIsModal(false);
-    };
+    const onClose = () => setIsModal(false);
 
     return (
         <div
@@ -37,7 +33,6 @@ export const CardPartner = ({ item, dataTestId }: { item: TrainingPals; dataTest
                     size='large'
                     style={{ width: '42px', height: '42px' }}
                 />
-                {/* <div className='name'>{item.name.split(' ')[0]}<br/>{item.name.split(' ')[1]}</div> */}
                 <div className='name'>{item.name}</div>
             </div>
             <div className='card-partner__details'>

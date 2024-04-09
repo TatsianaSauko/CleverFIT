@@ -3,22 +3,22 @@
     padding: 12px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--list-item-gap);
     border: 1px solid var(--character-light-dividers);
     border-radius: 2px;
 }
 .card-partner .card-partner__header {
     display: flex;
-    gap: 8px;
+    gap: var(--list-item-gap);
 }
 .card-partner .card-partner__header .name {
-    font-size: 14px;
+    font-size: var(--smallFontSize);
     line-height: 18.2px;
     width: 75px;
 }
 .card-partner .card-partner__details {
     display: flex;
-    gap: 16px;
+    gap: var(--spacing-content-gap);
 }
 .card-partner .type__wrapper,
 .card-partner .value__wrapper {

@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { CloseButton } from '@components/close-button';
 import { FormAddTraining } from '@components/form-add-training';
+import { DATE_FORMAT } from '@constants/app-constants';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { useResponsiveWidth } from '@hooks/use-responsive-width';
 import { createExercise, setTraining, trainingSelector } from '@redux/slices/training-slice';
@@ -21,9 +22,7 @@ export const MyDrawer = ({ onClose, isDrawer }: DrawerProps) => {
     const itemWithName = dataForDate.find((item) => item.name === training.name);
     const modalWidth = useResponsiveWidth(360, 408);
 
-    const addForm = () => {
-        dispatch(createExercise());
-    };
+    const addForm = () => dispatch(createExercise());
 
     const deleteForm = () => {
         const resFilter = filterUncheckedExercises(training);
@@ -54,7 +53,7 @@ export const MyDrawer = ({ onClose, isDrawer }: DrawerProps) => {
                     />
                     {training.name}
                 </div>
-                <div className='drawer-data'>{moment(training.date).format('DD.MM.YYYY')}</div>
+                <div className='drawer-data'>{moment(training.date).format(DATE_FORMAT)}</div>
             </div>
             <div className='drawer__wrapper'>
                 {training.exercises.length &&

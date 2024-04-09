@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import VerificationInput from 'react-verification-input';
 import { Loader } from '@components/loader';
 import { Path } from '@constants/paths';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { confirmEmail } from '@redux/action-creators';
 import { history } from '@redux/configure-store';
 import { authSelector } from '@redux/slices/auth-slice';
@@ -17,12 +17,13 @@ import suggested from '/png/suggested.png';
 const { Title, Text } = Typography;
 
 export const ConfirmEmailPage = () => {
+    const dispatch = useAppDispatch();
     const location = useLocation();
     const { loading } = useSelector(authSelector);
+    const { email } = useSelector(authSelector);
     const [inputKey, setInputKey] = useState(Math.random());
     const [isCodeCorrect, setIsCodeCorrect] = useState(true);
-    const dispatch = useAppDispatch();
-    const { email } = useAppSelector((state) => state.auth);
+
     const handleVerificationComplete = async (code: string) => {
         await dispatch(confirmEmail({ email, code })).catch(() => {
             setIsCodeCorrect(false);

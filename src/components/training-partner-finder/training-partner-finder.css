@@ -20,7 +20,7 @@
 .training-partner-finder .buttons__wrapper {
     padding: 16px 0;
     display: flex;
-    gap: 16px;
+    gap: var(--spacing-content-gap);
     justify-content: center;
     flex-wrap: wrap;
 }

@@ -1,4 +1,5 @@
 import { CloseOutlined } from '@ant-design/icons';
+import { DATE_FORMAT } from '@constants/app-constants';
 import { periodOptions } from '@constants/period-options';
 import { getTrainingColor } from '@utils/get-color-for-name';
 import { Badge, Divider } from 'antd';
@@ -37,7 +38,7 @@ export const ModalInfoUserTraining = ({
                 <div className='title__wrapper'>
                     <div className='type__repeat'>{period ? period.name : ''}</div>
                     <div className='value__date'>
-                        {moment(item.training.date).format('DD.MM.YYYY')}
+                        {moment(item.training.date).format(DATE_FORMAT)}
                     </div>
                 </div>
                 <div className='wrapper'>

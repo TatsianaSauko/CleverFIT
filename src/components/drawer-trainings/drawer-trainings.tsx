@@ -26,9 +26,7 @@ export const DrawerTrainings = ({
     const itemWithName = containsElement(activitiesData, training.date, training.name);
     const modalWidth = useResponsiveWidth(360, 408);
 
-    const addForm = () => {
-        dispatch(createExercise());
-    };
+    const addForm = () => dispatch(createExercise());
 
     const deleteForm = () => {
         const resFilter = filterUncheckedExercises(training);

@@ -1,5 +1,7 @@
 import { useSelector } from 'react-redux';
+import { CloseOutlined } from '@ant-design/icons';
 import { ModalTrainingContent } from '@components/modal-training-content';
+import { DATE_FORMAT } from '@constants/app-constants';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import {
     cleanTraining,
@@ -15,7 +17,6 @@ import { ModalTrainingProps } from '../../types/props';
 
 import './modal-training.css';
 
-import close from '/png/close.png';
 import empty from '/png/empty-image.png';
 
 const { Title, Text } = Typography;
@@ -50,17 +51,17 @@ export const ModalTraining = ({ onCancel, position, click }: ModalTrainingProps)
                 left: moment(training.date).day() === 0 ? undefined : position.left - 8,
             }}
         >
-            <button
-                type='button'
+            <Button
+                type='text'
                 className='btn-close'
                 onClick={onCancel}
                 data-test-id='modal-create-training-button-close'
             >
-                <img src={close} alt='close' />
-            </button>
+                <CloseOutlined />
+            </Button>
             <div className='block-title'>
                 <Title level={5} className='title'>
-                    {`Тренировки на ${moment(training.date).format('DD.MM.YYYY')}`}
+                    {`Тренировки на ${moment(training.date).format(DATE_FORMAT)}`}
                 </Title>
                 {dataForDate.length ? null : (
                     <Text type='secondary' className='subtitle'>

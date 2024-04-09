@@ -12,8 +12,8 @@ import error from '/png/error.png';
 const { Title, Text } = Typography;
 
 export const ErrorPage = () => {
-    const { email, password } = useSelector(authSelector);
     const dispatch = useAppDispatch();
+    const { email, password } = useSelector(authSelector);
 
     const onClick = async () => {
         history.back();

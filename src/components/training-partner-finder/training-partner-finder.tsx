@@ -19,8 +19,8 @@ const { Title } = Typography;
 export const TrainingPartnerFinder = () => {
     const dispatch = useAppDispatch();
     const { token } = useSelector(authSelector);
-    const [isModalTrainingList, setIsModalTrainingList] = useState(false);
     const { activitiesData, trainingList } = useSelector(trainingSelector);
+    const [isModalTrainingList, setIsModalTrainingList] = useState(false);
     const trainingType = findMostPopularTrainingType(activitiesData, trainingList);
 
     const handleButtonByTrainingType = async () => {
@@ -45,9 +45,7 @@ export const TrainingPartnerFinder = () => {
         }
     };
 
-    const handleModalToggle = () => {
-        setIsModalTrainingList(false);
-    };
+    const handleModalToggle = () => setIsModalTrainingList(false);
 
     return (
         <div className='training-partner-finder'>

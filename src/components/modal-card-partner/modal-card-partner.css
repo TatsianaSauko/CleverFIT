@@ -20,16 +20,16 @@
     display: flex;
     flex-direction: column;
     background: var(--neutral-gray-1);
-    gap: 24px;
+    gap: var(--spacing-global-gap);
 }
 
 .modal-card-partner__content .fullName {
-    font-size: 14px;
+    font-size: var(--smallFontSize);
 }
 
 .modal-card-partner__header {
     display: flex;
-    gap: 8px;
+    gap: var(--list-item-gap);
 }
 
 .modal-card-partner__header .name {
@@ -42,7 +42,7 @@
 
 .modal-card-partner__content .modal-card-partner__details {
     display: flex;
-    gap: 16px;
+    gap: var(--spacing-content-gap);
     width: 237.5px;
 }
 .modal-card-partner__content .type__wrapper,
@@ -79,7 +79,7 @@
         width: 312px;
         padding: 16px 12px;
         flex-direction: column;
-        gap: 16px;
+        gap: var(--spacing-content-gap);
     }
 
     .modal-card-partner__content .btn__cancel-training {
@@ -99,9 +99,9 @@
 
     .modal-card-partner__content .wrapper {
         align-items: self-start;
-        gap: 12px;
+        gap: var(--element-gap);
     }
-    
+
     .modal-card-partner__content .message {
         order: 1;
         width: 100%;

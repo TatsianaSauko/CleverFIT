@@ -43,10 +43,6 @@ export const TableTrainings = ({ onClick }: TableTrainingsProps) => {
         onClick('Добавление упражнений');
     };
 
-    // const handleSort = () => {
-    //     dispatch(setActivitiesData({ activitiesData: [...activitiesData].reverse() }));
-    // }
-
     const columns: ColumnsType<ActivityData> = [
         {
             title: 'Тип тренировки',
@@ -164,19 +160,17 @@ export const TableTrainings = ({ onClick }: TableTrainingsProps) => {
         },
     ];
 
-    const handleButtonBack = () => {
-        setIsModal(false);
-    };
+    const handleButtonBack = () => setIsModal(false);
 
     return (
         <div className='table-training__wrapper'>
-            {isModal ? (
+            {isModal && (
                 <ModalInfoTraining
                     backClick={handleButtonBack}
                     position={modalPosition}
                     onDrawer={() => setIsModal(false)}
                 />
-            ) : null}
+            )}
             <Table
                 data-test-id='my-trainings-table'
                 rowKey={(record) => record._id || 'default'}

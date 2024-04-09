@@ -20,7 +20,7 @@
 
 .form-feedback .ant-input {
     font-weight: var(--default-font-weight);
-    font-size: 14px;
+    font-size: var(--smallFontSize);
     line-height: var(--title-line-height);
     color: var(--character-light-title-85);
     margin-bottom: var(--no-bottom-margin);
@@ -61,7 +61,7 @@
 }
 
 .modal-feedback .ant-modal-close-x .anticon {
-    font-size: 14px;
+    font-size: var(--smallFontSize);
 }
 
 @media screen and (max-width: 576px) {

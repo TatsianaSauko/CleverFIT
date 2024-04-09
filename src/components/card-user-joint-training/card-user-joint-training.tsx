@@ -75,13 +75,9 @@ export const CardUserJointTraining = ({
         await dispatch(getInvite(token));
     };
 
-    const onClose = () => {
-        setIsDrawer(false);
-    };
+    const onClose = () => setIsDrawer(false);
 
-    const handleButtonCreate = () => {
-        setIsDrawer(true);
-    };
+    const handleButtonCreate = () => setIsDrawer(true);
 
     const handleButtonSave = async () => {
         setIsDrawer(false);

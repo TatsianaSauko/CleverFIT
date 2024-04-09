@@ -72,7 +72,7 @@
 .tariff-row__wrapper {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--spacing-content-gap);
     padding-bottom: 50px;
 }
 
@@ -80,11 +80,11 @@
     display: flex;
     justify-content: space-between;
     width: 104px;
-    padding-right: 16px;
+    padding-right: var(--default-padding-right);
 }
 
 .tariff-price__title {
-    font-size: 14px;
+    font-size: var(--smallFontSize);
     font-weight: 700;
     line-height: 18.2px;
     padding-top: 12px;
@@ -95,7 +95,7 @@
 .tariff-price__wrapper {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--spacing-content-gap);
 }
 
 .tariff-price__info {
@@ -111,7 +111,7 @@
 }
 
 .price {
-    font-size: 16px;
+    font-size: var(--defaultFontSize);
     font-weight: 500;
     line-height: 20.8px;
 }
@@ -121,7 +121,7 @@
 }
 
 .tariff-price__wrapper .ant-radio-group {
-    font-size: 14px;
+    font-size: var(--smallFontSize);
 }
 
 .drawer-tariff .btn-close {
@@ -138,7 +138,7 @@
     }
 
     .tariff-row__wrapper {
-        gap: 8px;
+        gap: var(--list-item-gap);
         padding-bottom: 9px;
     }
 

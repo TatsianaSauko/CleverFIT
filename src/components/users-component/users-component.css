@@ -23,7 +23,7 @@
 
 .cards_partner {
     display: flex;
-    gap: 16px;
+    gap: var(--spacing-content-gap);
     flex-wrap: wrap;
     padding-top: 12px;
 }
@@ -47,7 +47,7 @@
 @media only screen and (max-width: 576px) {
     .users__header {
         flex-wrap: wrap;
-        gap: 8px;
+        gap: var(--list-item-gap);
     }
 
     .users__header {

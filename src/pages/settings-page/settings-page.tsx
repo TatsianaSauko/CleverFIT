@@ -39,11 +39,11 @@ export const SettingsPage = () => {
     const [isDrawer, setIsDrawer] = useState(false);
     const [isModalPayment, setIsModalPayment] = useState(false);
     const [isModal, setIsModal] = useState(false);
-    const defaultVisibility = !(window.innerWidth < 576);
-    const isWidth = useResponsiveVisibility(defaultVisibility);
     const [isModalGetData, setIsModalGetData] = useState(false);
     const [isModalSuccess, setIsModalSuccess] = useState(false);
     const [isModalError, setIsModalError] = useState(false);
+    const defaultVisibility = !(window.innerWidth < 576);
+    const isWidth = useResponsiveVisibility(defaultVisibility);
 
     const switchData = [
         {
@@ -130,9 +130,7 @@ export const SettingsPage = () => {
         }
     };
 
-    const handleCreateFeedback = () => {
-        setIsModal(true);
-    };
+    const handleCreateFeedback = () => setIsModal(true);
 
     return (
         <Content className='main main-settings'>

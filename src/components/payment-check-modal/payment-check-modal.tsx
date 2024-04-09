@@ -12,8 +12,8 @@ import iconOk from '/png/ok.png';
 const { Title, Text } = Typography;
 
 export const PaymentCheckModal = ({ visible, onClose }: FileSizeExceedModalProps) => {
-    const modalWidth = useResponsiveWidth(328, 539);
     const { user } = useSelector(userSelector);
+    const modalWidth = useResponsiveWidth(328, 539);
 
     return (
         <Modal

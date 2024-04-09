@@ -48,13 +48,14 @@ export const ModalEdit = ({
     );
 
     const handleSaveButton = async () => {
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        const { _id, ...newTraining } = training;
+        const { _id: id, ...newTraining } = training;
         const cleanExercises = training.exercises.map(({ _id: exerciseId, ...rest }) => rest);
         const cleanTrainingObject = { ...newTraining, exercises: cleanExercises };
 
-        if (itemWithName && itemWithName._id && flag) {
-            cleanTrainingObject.isImplementation = true;
+        if (itemWithName && itemWithName._id) {
+            if  (flag) {
+                cleanTrainingObject.isImplementation = true;
+            }
             try {
                 await dispatch(putTraining(token, cleanTrainingObject, itemWithName._id));
                 await dispatch(getTrainingUser(token));
@@ -63,8 +64,6 @@ export const ModalEdit = ({
             } catch {
                 setIsModalErrorSaveTraining(true);
             }
-        } else if (flag) {
-            setIsModalErrorSaveTraining(true);
         } else {
             try {
                 await dispatch(createTraining(token, cleanTrainingObject));

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ModalErrorSaveData } from '@components/modal-error-save-data';
 import { ModalInfoUserTraining } from '@components/modal-info-user-training';
+import { DATE_FORMAT } from '@constants/app-constants';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { getInvite, getTrainingPals, putInvite } from '@redux/action-creators';
 import { authSelector } from '@redux/slices/auth-slice';
@@ -14,8 +15,8 @@ import { Invite } from '../../types/types';
 import './card-message.css';
 
 export const CardMessage = ({ item }: { item: Invite }) => {
-    const { token } = useSelector(authSelector);
     const dispatch = useAppDispatch();
+    const { token } = useSelector(authSelector);
     const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
     const [isModal, setIsModal] = useState(false);
     const [isModalError, setIsModalError] = useState(false);
@@ -63,12 +64,9 @@ export const CardMessage = ({ item }: { item: Invite }) => {
         setIsModal(true);
     };
 
-    const handleButtonClose = () => {
-        setIsModal(false);
-    };
-    const closeModalError = () => {
-        setIsModalError(false);
-    };
+    const handleButtonClose = () => setIsModal(false);
+
+    const closeModalError = () => setIsModalError(false);
 
     return (
         <div className='card-message'>
@@ -93,7 +91,7 @@ export const CardMessage = ({ item }: { item: Invite }) => {
                 </div>
             </div>
             <div className='card-message__content'>
-                <div className='date'>{moment(item.training.date).format('DD.MM.YYYY')}</div>
+                <div className='date'>{moment(item.training.date).format(DATE_FORMAT)}</div>
 
                 <div className='card-message__message'>
                     Привет, я ищу партнёра для совместных [силовых тренировок]. Ты хочешь

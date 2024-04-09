@@ -24,9 +24,7 @@ export const DrawerJointTraining = ({
     const { training } = useSelector(trainingSelector);
     const modalWidth = useResponsiveWidth(360, 408);
 
-    const addForm = () => {
-        dispatch(createExercise());
-    };
+    const addForm = () => dispatch(createExercise());
 
     const deleteForm = () => {
         const resFilter = filterUncheckedExercises(training);

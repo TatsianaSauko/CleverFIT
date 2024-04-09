@@ -17,20 +17,17 @@ import moment from 'moment';
 import './my-trainings-component.css';
 
 export const MyTrainingsComponent = () => {
+    const dispatch = useAppDispatch();
     const { getTrainingListError, activitiesData, training } = useSelector(trainingSelector);
-
+    const { token } = useSelector(authSelector);
+    const [IsModalErrorSaveTraining, setIsModalErrorSaveTraining] = useState(false);
     const [isDrawer, setIsDrawer] = useState(false);
     const [titleDrawer, setTitleDrawer] = useState('');
     const [showSuccessMessage, setShowSuccessMessage] = useState('');
-    const dispatch = useAppDispatch();
     const dataForDate = getDataForDate(activitiesData, training.date);
     const itemWithName = dataForDate.find((item) => item.name === training.name);
-    const { token } = useSelector(authSelector);
-    const [IsModalErrorSaveTraining, setIsModalErrorSaveTraining] = useState(false);
 
-    const handleModalToggle = () => {
-        setIsModalErrorSaveTraining(false);
-    };
+    const handleModalToggle = () => setIsModalErrorSaveTraining(false);
 
     const handleButtonSave = async () => {
         const { _id: id, ...newTraining } = training;

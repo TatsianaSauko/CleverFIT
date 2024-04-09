@@ -23,9 +23,9 @@ import './main-page.css';
 const { Content } = Layout;
 
 export const MainPage: React.FC = () => {
-    const [isModalGetData, setIsModalGetData] = useState(false);
     const dispatch = useAppDispatch();
     const { token } = useSelector(authSelector);
+    const [isModalGetData, setIsModalGetData] = useState(false);
 
     const handleNavigation = async (path: string) => {
         try {

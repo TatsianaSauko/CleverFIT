@@ -18,6 +18,7 @@ export const RegisterPage = () => {
     const dispatch = useAppDispatch();
     const [form] = useForm();
     const [isDisabled, setIsDisabled] = useState(true);
+    
     const onFinish = async (values: FormRegister) => {
         dispatch(setEmail({ email: values.email }));
         dispatch(setPassword({ password: values.password }));

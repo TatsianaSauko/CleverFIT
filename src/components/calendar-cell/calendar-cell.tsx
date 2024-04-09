@@ -15,7 +15,7 @@ export const CalendarCell = ({ value }: CalendarCellProps) => {
     return (
         <ul className='events'>
             {dataForDate.map((activity) => (
-                <li key={activity.name}>
+                <li key={activity._id}>
                     <span
                         className='marker'
                         style={{ backgroundColor: getColorForName(activity.name) }}

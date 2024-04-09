@@ -8,9 +8,7 @@ import './not-found-page.css';
 export const NotFoundPage = () => {
     const [collapsed, setCollapsed] = useState(false);
 
-    const toggleCollapsed = () => {
-        setCollapsed(!collapsed);
-    };
+    const toggleCollapsed = () => setCollapsed(!collapsed);
 
     return (
         <Layout className='main-page'>

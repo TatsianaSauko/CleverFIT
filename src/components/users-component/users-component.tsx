@@ -13,9 +13,9 @@ const { Title } = Typography;
 const { Search } = Input;
 
 export const UserList = () => {
+    const dispatch = useAppDispatch();
     const { userJointTrainingList, userJointTrainingListWitchTrainingType } =
         useSelector(jointTrainingSelector);
-    const dispatch = useAppDispatch();
     const [currentPage, setCurrentPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState('');
     const itemsPerPage = 12;
@@ -35,13 +35,10 @@ export const UserList = () => {
     }
     const currentItems = list.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
-    const handleButtonBack = () => {
-        dispatch(setIsUserList({ isUserList: false }));
-    };
+    const handleButtonBack = () => dispatch(setIsUserList({ isUserList: false }));
 
-    const changeSearch = (value: string) => {
-        setSearchQuery(value);
-    };
+    const changeSearch = (value: string) => setSearchQuery(value);
+
     const filteredItems = currentItems.filter((item) =>
         item.name.toLowerCase().includes(searchQuery.toLowerCase()),
     );

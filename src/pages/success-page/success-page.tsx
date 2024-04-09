@@ -9,9 +9,8 @@ import success from '/png/success.png';
 const { Title, Text } = Typography;
 
 export const SuccessPage = () => {
-    const handleButtonClick = () => {
-        history.push(Path.Auth);
-    };
+    
+    const handleButtonClick = () => history.push(Path.Auth);
 
     return (
         <div className='success-page'>

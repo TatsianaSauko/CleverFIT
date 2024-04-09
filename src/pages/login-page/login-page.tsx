@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BaseUrl, Endpoints } from '@constants/api';
+import { emailRegex } from '@constants/regex-patterns';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { checkEmail, login } from '@redux/action-creators';
 import { setEmail } from '@redux/slices/auth-slice';
@@ -47,20 +48,14 @@ export const LoginPage = () => {
 
             if (typeof value === 'string') {
                 setEmailValue(value);
-                const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-
                 setIsEmailValid(emailRegex.test(emailValue));
             }
         }
     };
 
-    const handleEnterGoogle = () => {
-        window.location.href = `${BaseUrl}${Endpoints.AuthGoogle}`;
-    };
+    const handleEnterGoogle = () => window.location.href = `${BaseUrl}${Endpoints.AuthGoogle}`;
 
-    const onChangeCheckbox = (e: CheckboxChangeEvent) => {
-        setIsCheckbox(e.target.checked);
-    };
+    const onChangeCheckbox = (e: CheckboxChangeEvent) => setIsCheckbox(e.target.checked);
 
     return (
         <div className='login-page'>
