@@ -1,1 +1,0 @@
-export { FeedbacksPage } from './FeedbacksPage';

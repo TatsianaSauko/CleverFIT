@@ -1,1 +1,0 @@
-export { FileSizeExceedModal } from './FileSizeExceedModal';

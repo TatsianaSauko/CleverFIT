@@ -24,7 +24,7 @@
             "@hooks/*": ["./src/hooks/*"],
             "@pages/*": ["./src/pages/*"],
             "@redux/*": ["./src/redux/*"],
-            "@types/*": ["src/types/*"],
+            "@types/*": ["./src/types/*"],
             "@utils/*": ["./src/utils/*"]
         },
         "plugins": [
@@ -38,6 +38,6 @@
             }
         ]
     },
-    "include": ["src"],
+    "include": ["src", "cypress"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

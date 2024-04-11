@@ -3,11 +3,12 @@ import { createReduxHistoryContext } from 'redux-first-history';
 import { configureStore } from '@reduxjs/toolkit';
 import { createBrowserHistory } from 'history';
 
-import authReducer from './slices/AuthSlice';
-import feedbackReducer from './slices/FeedbackSlice';
-import tariffReducer from './slices/TariffSlice';
-import trainingReducer from './slices/TrainingSlice';
-import userReducer from './slices/UserSlice';
+import authReducer from './slices/auth-slice';
+import feedbackReducer from './slices/feedback-slice';
+import jointTriningReducer from './slices/joint-training';
+import tariffReducer from './slices/tariff-slice';
+import trainingReducer from './slices/training-slice';
+import userReducer from './slices/user-slice';
 
 const { createReduxHistory, routerMiddleware, routerReducer } = createReduxHistoryContext({
     history: createBrowserHistory(),
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
     user: userReducer,
     router: routerReducer,
     tariff: tariffReducer,
+    jointTraining: jointTriningReducer,
 });
 
 export const store = configureStore({

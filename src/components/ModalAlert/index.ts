@@ -1,1 +1,0 @@
-export { ModalAlert } from './ModalAlert';

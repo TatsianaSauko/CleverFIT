@@ -1,1 +1,0 @@
-export { ModalFeedbackSuccess } from './ModalFeedbackSuccess';

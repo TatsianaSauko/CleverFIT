@@ -1,1 +1,0 @@
-export { PaymentCheckModal } from './PaymentCheckModal';

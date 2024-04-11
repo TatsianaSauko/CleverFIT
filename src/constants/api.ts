@@ -16,4 +16,7 @@ export const Endpoints = {
     User: '/user',
     TariffList: '/catalogs/tariff-list',
     Tariff: '/tariff',
+    TrainingPals: '/catalogs/training-pals',
+    UserJointTrainingList: '/catalogs/user-joint-training-list',
+    Invite: '/invite',
 };
