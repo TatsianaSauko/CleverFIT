@@ -52,8 +52,10 @@ export const ModalInfoUserTraining = ({
                     <div className='value__wrapper'>
                         {item.training.exercises.map((value) => (
                             <div className='value' key={value._id}>
-                                {value.replays} x{' '}
-                                {value.weight ? `(${value.weight} кг)` : value.approaches}
+                                {value.replays} x
+                                {value.weight && value.approaches
+                                    ? `(${value.weight * value.approaches} кг)`
+                                    : value.approaches || ''}
                             </div>
                         ))}
                     </div>

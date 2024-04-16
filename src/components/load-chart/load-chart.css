@@ -1,0 +1,13 @@
+.load-chart {
+    /* width: 520px; */
+    border: 1px solid var(--character-light-dividers);
+
+    /* height: 374px; */
+}
+
+@media (max-width: 576px) {
+    /* .load-chart {
+        width: 328px;
+        height: 236px;
+    } */
+}

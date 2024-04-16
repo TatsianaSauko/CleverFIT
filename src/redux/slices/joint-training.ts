@@ -55,6 +55,40 @@ export const jointTrainingSlice = createSlice({
             state.isTrainingPartnerFinderComponent =
                 action.payload.isTrainingPartnerFinderComponent;
         },
+        setUserJointTrainingListStatus(
+            state,
+            action: PayloadAction<{ userId: string; status: string }>,
+        ) {
+            const { userId, status } = action.payload;
+            const userTraining = state.userJointTrainingList.find((user) => user.id === userId);
+
+            if (userTraining) {
+                userTraining.status = status;
+            }
+        },
+        setUserJointTrainingListWitchTrainingTypeStatus(
+            state,
+            action: PayloadAction<{ userId: string; status: string }>,
+        ) {
+            const { userId, status } = action.payload;
+            const userTraining = state.userJointTrainingListWitchTrainingType.find(
+                (user) => user.id === userId,
+            );
+
+            if (userTraining) {
+                userTraining.status = status;
+            }
+        },
+        removeInvite(state, action: PayloadAction<{ inviteId: string }>) {
+            const { inviteId } = action.payload;
+
+            state.inviteList = state.inviteList.filter((invite) => invite._id !== inviteId);
+        },
+        removeTrainingPal(state, action: PayloadAction<{ palId: string }>) {
+            const { palId } = action.payload;
+
+            state.trainingPals = state.trainingPals.filter((pal) => pal.id !== palId);
+        },
     },
 });
 
@@ -65,6 +99,10 @@ export const {
     setInviteList,
     setUserJointTrainingListWitchTrainingType,
     setIsTrainingPartnerFinderComponent,
+    setUserJointTrainingListStatus,
+    setUserJointTrainingListWitchTrainingTypeStatus,
+    removeInvite,
+    removeTrainingPal,
 } = jointTrainingSlice.actions;
 
 export const jointTrainingSelector = (state: RootState): InitialState => state.jointTraining;

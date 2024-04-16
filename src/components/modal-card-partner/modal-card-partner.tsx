@@ -4,9 +4,9 @@ import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { deleteInvite } from '@redux/action-creators';
 import { authSelector } from '@redux/slices/auth-slice';
 import {
-    setInviteList,
+    removeInvite,
+    removeTrainingPal,
     setIsTrainingPartnerFinderComponent,
-    setTrainingPals,
 } from '@redux/slices/joint-training';
 import { Avatar, Button } from 'antd';
 
@@ -21,8 +21,8 @@ export const ModalCardPartner = ({ item, onClose }: ModalCardPartnerProps) => {
     const handleButtonCancel = async () => {
         dispatch(setIsTrainingPartnerFinderComponent({ isTrainingPartnerFinderComponent: true }));
         await dispatch(deleteInvite(token, item.inviteId));
-        dispatch(setInviteList({ inviteList: [] }));
-        dispatch(setTrainingPals({ trainingPals: [] }));
+        dispatch(removeInvite({ inviteId: item.inviteId }));
+        dispatch(removeTrainingPal({ palId: item.id }));
         onClose();
     };
 

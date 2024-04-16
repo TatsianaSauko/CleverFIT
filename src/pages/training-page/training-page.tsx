@@ -24,8 +24,8 @@ export const TrainingPage = () => {
     const { token } = useSelector(authSelector);
     const { isModal } = useSelector(trainingSelector);
     const { inviteList } = useSelector(jointTrainingSelector);
-    const [ isModalTrainingList, setIsModalTrainingList ] = useState<boolean>(isModal);
-    const [ current, setCurrent ] = useState('Мои тренировки');
+    const [isModalTrainingList, setIsModalTrainingList] = useState<boolean>(isModal);
+    const [current, setCurrent] = useState('Мои тренировки');
 
     const items: MenuProps['items'] = [
         {
@@ -41,12 +41,12 @@ export const TrainingPage = () => {
                 </React.Fragment>
             ),
             key: 'Совместные тренировки',
-            style: { order: 'inherit', opacity: '1', position: 'initial', overflowY: 'inherit' },
+            style: { order: 'inherit' },
         },
         {
             label: 'Марафон',
             key: 'Марафон',
-            style: { order: 'inherit', opacity: '1', position: 'initial', overflowY: 'inherit' },
+            style: { order: 'inherit' },
         },
     ];
 
@@ -97,7 +97,6 @@ export const TrainingPage = () => {
             />
             <div className='training-page'>
                 <Menu
-                    overflowedIndicator={null}
                     className='menu-training'
                     onClick={onClick}
                     selectedKeys={[current]}

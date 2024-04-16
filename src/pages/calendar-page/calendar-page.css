@@ -89,14 +89,12 @@
     .ant-picker-calendar-header .ant-picker-calendar-mode-switch > label {
         width: 62px;
     }
-    
-    .calendar-page
-    .ant-picker-calendar-header {
+
+    .calendar-page .ant-picker-calendar-header {
         display: flex;
     }
 
-    .calendar-page
-    .ant-picker-calendar-header .ant-picker-calendar-mode-switch {
+    .calendar-page .ant-picker-calendar-header .ant-picker-calendar-mode-switch {
         margin-top: 0;
     }
 }

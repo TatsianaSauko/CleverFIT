@@ -69,7 +69,12 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
             text: 'Тренировки',
             onClick: () => handleNavigation(Path.Training),
         },
-        { icon: <TrophyIcon />, link: '/achievements', text: 'Достижения' },
+        {
+            icon: <TrophyIcon />,
+            link: '/achievements',
+            text: 'Достижения',
+            onClick: () => handleNavigation(Path.Achievements),
+        },
         {
             icon: <IdCardIcon />,
             link: '/profile',

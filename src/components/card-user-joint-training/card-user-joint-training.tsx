@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { CheckCircleFilled, ExclamationCircleOutlined } from '@ant-design/icons';
 import { DrawerJointTraining } from '@components/drawer-joint-training';
 import { ModalErrorSaveData } from '@components/modal-error-save-data';
-import { jointTrainingList } from '@constants/joint-training';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import {
     createTraining,
@@ -13,7 +12,11 @@ import {
     postInvite,
 } from '@redux/action-creators';
 import { authSelector } from '@redux/slices/auth-slice';
-import { setUserJointTrainingListWitchTrainingType } from '@redux/slices/joint-training';
+import {
+    jointTrainingSelector,
+    setUserJointTrainingListStatus,
+    setUserJointTrainingListWitchTrainingTypeStatus,
+} from '@redux/slices/joint-training';
 import { cleanTraining, trainingSelector } from '@redux/slices/training-slice';
 import { Avatar, Button } from 'antd';
 
@@ -32,6 +35,7 @@ export const CardUserJointTraining = ({
 }) => {
     const dispatch = useAppDispatch();
     const { training } = useSelector(trainingSelector);
+    const { userJointTrainingList } = useSelector(jointTrainingSelector);
     const { token } = useSelector(authSelector);
     const [isDrawer, setIsDrawer] = useState(false);
     const [IsModalErrorSaveTraining, setIsModalErrorSaveTraining] = useState(false);
@@ -95,11 +99,16 @@ export const CardUserJointTraining = ({
             };
 
             await dispatch(postInvite(token, data));
-            dispatch(
-                setUserJointTrainingListWitchTrainingType({
-                    userJointTrainingListWitchTrainingType: jointTrainingList,
-                }),
-            );
+            if (userJointTrainingList.length > 0) {
+                dispatch(setUserJointTrainingListStatus({ userId: item.id, status: 'pending' }));
+            } else {
+                dispatch(
+                    setUserJointTrainingListWitchTrainingTypeStatus({
+                        userId: item.id,
+                        status: 'pending',
+                    }),
+                );
+            }
             await dispatch(getTrainingUser(token));
         } catch {
             setIsModalErrorSaveTraining(true);

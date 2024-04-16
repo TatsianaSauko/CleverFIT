@@ -1,0 +1,6 @@
+.load-block {
+    display: flex;
+    column-gap: 150px;
+    flex-wrap: wrap;
+    row-gap: 24px;
+}

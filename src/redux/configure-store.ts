@@ -3,6 +3,7 @@ import { createReduxHistoryContext } from 'redux-first-history';
 import { configureStore } from '@reduxjs/toolkit';
 import { createBrowserHistory } from 'history';
 
+import achievementReducer from './slices/achievements-slice';
 import authReducer from './slices/auth-slice';
 import feedbackReducer from './slices/feedback-slice';
 import jointTriningReducer from './slices/joint-training';
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
     router: routerReducer,
     tariff: tariffReducer,
     jointTraining: jointTriningReducer,
+    achievement: achievementReducer,
 });
 
 export const store = configureStore({

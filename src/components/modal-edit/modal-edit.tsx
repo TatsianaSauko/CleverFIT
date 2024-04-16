@@ -53,7 +53,7 @@ export const ModalEdit = ({
         const cleanTrainingObject = { ...newTraining, exercises: cleanExercises };
 
         if (itemWithName && itemWithName._id) {
-            if  (flag) {
+            if (flag) {
                 cleanTrainingObject.isImplementation = true;
             }
             try {

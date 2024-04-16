@@ -117,6 +117,23 @@ export const Header = () => {
                     },
                 ]);
                 break;
+            case Path.Achievements:
+                setIsWrapperIsTitleHeader(true);
+                setIsTitleHeader(false);
+                setIsButtonBack(false);
+                setIsProfile(false);
+                setIsTraining(true);
+                setBreadcrumbRoutes([
+                    {
+                        path: Path.Main,
+                        breadcrumbName: 'Главная',
+                    },
+                    {
+                        path: Path.Achievements,
+                        breadcrumbName: 'Достижения',
+                    },
+                ]);
+                break;
             default:
                 break;
         }

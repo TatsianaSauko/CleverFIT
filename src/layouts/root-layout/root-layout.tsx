@@ -25,23 +25,25 @@ export const RootLayout: React.FC = () => {
     const [isPageSettings, setIsPageSettings] = useState(false);
     const location = useLocation();
 
-    if (location?.search) {
-        const searchString = location.search.split('=');
+    useEffect(() => {
+        const fetchUser = async () => {
+            if (location?.search) {
+                const searchString = location.search.split('=');
 
-        if (searchString[0] === '?accessToken') {
-            dispatch(getUserMe(searchString[1]));
-            dispatch(
-                loginSuccess({
-                    remember: true,
-                    token: searchString[1],
-                }),
-            );
-        }
-    }
+                if (searchString[0] === '?accessToken') {
+                    await dispatch(getUserMe(searchString[1]));
+                    dispatch(
+                        loginSuccess({
+                            remember: true,
+                            token: searchString[1],
+                        }),
+                    );
+                }
+            }
+        };
 
-    const toggleCollapsed = () => {
-        setCollapsed(!collapsed);
-    };
+        fetchUser();
+    }, [location, dispatch]);
 
     useEffect(() => {
         if (!token) {
@@ -63,6 +65,10 @@ export const RootLayout: React.FC = () => {
     useEffect(() => {
         setIsPageSettings(location.pathname === '/settings');
     }, [location]);
+
+    const toggleCollapsed = () => {
+        setCollapsed(!collapsed);
+    };
 
     return (
         <Layout className={isPageSettings ? 'main-settings' : 'main-page'}>
