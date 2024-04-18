@@ -21,9 +21,11 @@
     .top-exercises-card {
         margin: 0;
     }
+
     .top-exercises-card .title {
         width: 157px;
     }
+
     .top-exercises-card .value {
         font-size: 20px;
         line-height: 26px;

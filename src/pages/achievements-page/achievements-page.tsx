@@ -41,12 +41,6 @@ export const AchievementsPage = () => {
 
     const onClick: MenuProps['onClick'] = (e) => {
         setCurrent(e.key);
-        // if (e.key === 'За месяц') {
-        //     const sevenDaysAgo = new Date(today.getTime() - 6 * 24 * 60 * 60 * 1000);
-        //     const data = calculateAverageLoad(activitiesData, sevenDaysAgo, today, selectedTags);
-        //     dispatch(setDataLoad(data));
-
-        // }
     };
 
     return (

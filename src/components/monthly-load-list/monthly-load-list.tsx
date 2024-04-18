@@ -1,7 +1,7 @@
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import { DailyLoadList } from '@components/daily-load-list';
 import { useResponsiveVisibility } from '@hooks/use-responsive-visibility';
-import { groupByWeeks } from '@utils/load-сalculations';
+import { groupByWeeks } from '@utils/loadсalculations';
 import { Collapse } from 'antd';
 
 import { DataCart } from '../../types/types';
@@ -24,10 +24,10 @@ export const MonthlyLoadList = ({ averageLoadList }: { averageLoadList: DataCart
         <div className='monthly-load-list'>
             {Array.from(groupedData).map(([weekRange, dataCart], index) => (
                 <Collapse
-                    key={index}
+                    key={weekRange}
                     expandIcon={({ isActive }) => customExpandIcon({ isActive: isActive ?? false })}
                     ghost={true}
-                    expandIconPosition='right'
+                    expandIconPosition='end'
                     defaultActiveKey={isDesktopView ? [index.toString()] : undefined}
                 >
                     <Panel

@@ -29,6 +29,7 @@ form.form-period {
 .block > .ant-form-item:first-child {
     margin-bottom: 0;
 }
+
 @media only screen and (max-width: 576px) {
     form.form-period {
         padding-top: 0;

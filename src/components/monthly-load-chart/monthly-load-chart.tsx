@@ -15,21 +15,24 @@ export const MonthlyLoadChart = ({ dataCart }: { dataCart: DataCart[] }) => {
             x: {
                 title: 'Нагрузка, кг',
                 style: { titleFontSize: isDesktopView ? 14 : 8.83 },
+                tick: false,
+                labelSpacing: 15.75,
+                labelFontSize: isDesktopView ? 12 : 7.57,
             },
             y: {
                 labelFormatter: (v: number) => `${v} кг`,
                 tick: false,
+                labelFontSize: isDesktopView ? 12 : 7.57,
             },
         },
         scrollbar: {
             x: {
-                ratio: 0.55,
+                ratio: isDesktopView ? 0.55 : 0.25,
             },
         },
-        // width: isDesktopView ? 520 : 328,
         height: isDesktopView ? 374 : 236,
+        sizeField: isDesktopView ? 30 : 18.92,
         style: {
-            maxWidth: isDesktopView ? 30 : 18.92,
             fill: '#85A5FF',
         },
     };

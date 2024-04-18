@@ -54,7 +54,7 @@ export type ModalEditTrainingProps = {
 export type ModalInfoTrainingProps = {
     backClick: () => void;
     position: { top: number; left: number };
-    onDrawer: () => void;
+    onClick: (value: string) => void;
 };
 
 export type ModalInfoUserTrainingProps = {

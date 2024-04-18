@@ -6,12 +6,6 @@ import {
 
 import { ResItem } from '../../types/types';
 
-// const customLabel = (_: any, datum: ResItem) => (
-//     <div style={{ fontSize: 14, color: '#000'  }}>
-//         {datum.type}
-//     </div>
-//   );
-
 export const ExercisePercentageChart = ({ data }: { data: ResItem[] }) => {
     const defaultDesktopVisibility = !(window.innerWidth < 900);
     const isDesktopView = useResponsiveVisibility900(defaultDesktopVisibility);
@@ -24,15 +18,18 @@ export const ExercisePercentageChart = ({ data }: { data: ResItem[] }) => {
         angleField: 'value',
         colorField: 'type',
         innerRadius: 0.7,
+
         label: {
             text: 'type',
             position: 'outside',
             style: {
-                fontSize: 14,
+                fontSize: isDesktopView ? 14 : 12,
             },
+            connector: false,
         },
+
         width: isMobileView ? 520 : 328,
-        height: isDesktopView ? 334 : 211,
+        height: isDesktopView ? 185 : 190,
         style: {
             textAlign: 'center',
         },

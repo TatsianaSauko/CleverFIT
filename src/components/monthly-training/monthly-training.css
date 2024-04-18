@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: 24px;
 }
+
 .monthly-load-cards {
     display: flex;
     row-gap: 100px;

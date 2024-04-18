@@ -73,6 +73,7 @@
     align-items: center;
     background: var(--character-light-primary-inverse);
 }
+
 .character_error {
     border: 1px solid var(----character-light-error);
 }
@@ -81,6 +82,7 @@
     .config-email .ant-btn.ant-btn-block {
         width: 296px;
     }
+
     .config-email__content {
         padding: var(--result-page-padding-mobile);
     }

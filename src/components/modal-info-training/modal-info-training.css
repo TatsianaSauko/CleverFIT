@@ -7,6 +7,7 @@
     gap: var(--element-gap);
     padding: 16px 8px;
 }
+
 @media screen and (max-width: 576px) {
     .training-page__content .modal-training-edit {
         width: 312px;

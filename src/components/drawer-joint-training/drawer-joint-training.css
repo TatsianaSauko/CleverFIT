@@ -4,6 +4,7 @@
     align-items: end;
     padding-bottom: 8px;
 }
+
 .drawer-info-user .fullName {
     font-size: var(--smallFontSize);
     text-align: left;

@@ -5,6 +5,7 @@
     row-gap: 16px;
     padding: 8px 0;
 }
+
 .monthly-load-list
     .ant-collapse-ghost
     > .ant-collapse-item
@@ -12,12 +13,15 @@
     > .ant-collapse-content-box {
     padding: 0;
 }
+
 .monthly-load-list .ant-collapse-icon-position-end > .ant-collapse-item > .ant-collapse-header {
     padding: 0;
 }
+
 .monthly-load-list .ant-collapse-header-text {
     line-height: 18px;
 }
+
 .monthly-load-list .ant-badge-not-a-wrapper {
     width: 16px;
 }

@@ -13,6 +13,9 @@ export const WeeklyFrequentExercises = ({ data, title }: { data: DataItem[]; tit
                     <Badge
                         count={index + 1}
                         color={item.value ? 'var(--character-light-error)' : '#ffb2b3'}
+                        style={{
+                            transform: 'scale(0.8)',
+                        }}
                     />
                     <div className='week'>{item.week}</div>
                     <div className='value'>{item.value ? item.value : ''}</div>

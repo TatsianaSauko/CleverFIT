@@ -1,3 +1,4 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { ExercisePercentageChart } from '@components/exercise-percentage-chart';
 import { FilterPanel } from '@components/filter-panel';
@@ -22,7 +23,7 @@ import {
     filterActivityData,
     sortDataByWeekdays,
     transformExerciseData,
-} from '@utils/load-сalculations';
+} from '@utils/loadсalculations';
 
 import './weekly-training.css';
 
@@ -30,25 +31,21 @@ export const WeeklyTraining = () => {
     const { activitiesData } = useSelector(trainingSelector);
     const { selectedTags } = useSelector(achievementSelector);
     const today = new Date();
+
+    today.setHours(0, 0, 0, 0);
     const sevenDaysAgo = new Date(today.getTime() - 6 * 24 * 60 * 60 * 1000);
-
     const filteredData = filterActivityData(activitiesData, sevenDaysAgo, today, selectedTags);
-    const averageLoadList = calculateAverageLoad(activitiesData, sevenDaysAgo, today, selectedTags);
-
+    const averageLoadList = calculateAverageLoad(filteredData, sevenDaysAgo, today);
     const totalLoad = calculateTotalLoad(filteredData);
     const dailyLoad = calculateDailyLoad(totalLoad, 7);
-    const totalReplays = calculateTotalReplays(filteredData, 7);
-    const totalApproaches = calculateTotalApproaches(filteredData, 7);
+    const totalReplays = calculateTotalReplays(filteredData);
+    const totalApproaches = calculateTotalApproaches(filteredData);
     const mostFrequentExercise = calculateMostFrequentExercise(filteredData);
     const mostFrequentTraining = calculateMostFrequentTraining(filteredData);
-
-    const allWeightsAreZero = averageLoadList.every((item) => item.weight === 0);
     const title = getExerciseTitle(selectedTags);
-
-    const exercisesByDay = countExercisesByDay(activitiesData);
+    const exercisesByDay = countExercisesByDay(filteredData);
     const { data, res } = transformExerciseData(exercisesByDay);
     const weeklyFrequentExercises = sortDataByWeekdays(data);
-
     const percentageRes = convertToPercentage(res);
 
     const loadCardsData = [
@@ -61,14 +58,18 @@ export const WeeklyTraining = () => {
     return (
         <div className='weekly-training__content'>
             <FilterPanel />
-            {allWeightsAreZero ? (
-                <NoTraining />
+            {filteredData.length === 0 ? (
+                <NoTraining title='Ой, такой тренировки на этой неделе не было.' />
             ) : (
                 <React.Fragment>
                     <LoadBlock dataLoad={averageLoadList} />
                     <div className='load-cards'>
-                        {loadCardsData.map((data) => (
-                            <LoadCards key={data.title} title={data.title} value={data.value} />
+                        {loadCardsData.map((dataCard) => (
+                            <LoadCards
+                                key={dataCard.title}
+                                title={dataCard.title}
+                                value={dataCard.value}
+                            />
                         ))}
                     </div>
                     <div className='top-exercises-cards'>

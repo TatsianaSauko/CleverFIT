@@ -60,7 +60,7 @@ export const RootLayout: React.FC = () => {
         };
 
         fetchUser();
-    }, [token]);
+    }, [token, dispatch, user.email]);
 
     useEffect(() => {
         setIsPageSettings(location.pathname === '/settings');
@@ -73,7 +73,7 @@ export const RootLayout: React.FC = () => {
     return (
         <Layout className={isPageSettings ? 'main-settings' : 'main-page'}>
             {loading && <Loader />}
-            <Sider collapsed={collapsed} />
+            <Sider collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
             <Layout className='site_layout'>
                 <ButtonSiderToggle collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
                 <Header />

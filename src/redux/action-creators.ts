@@ -35,7 +35,6 @@ import { setTariffList } from './slices/tariff-slice';
 import { setActivitiesData, setLoading, setTrainingList } from './slices/training-slice';
 import { setUserData } from './slices/user-slice';
 import { AppDispatch, history } from './configure-store';
-// import { sortPeriod } from '@utils/sort-period';
 
 export const register = (data: IRegister) => async (dispatch: AppDispatch) => {
     try {

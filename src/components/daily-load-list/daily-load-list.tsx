@@ -9,7 +9,7 @@ export const DailyLoadList = ({ title, dataCart }: DailyLoadListProps) => (
         <div className='title'>{title}</div>
         <div className='table-column'>
             {dataCart.map((item, index) => (
-                <div className='table-row ' key={item.day}>
+                <div className='table-row ' key={`${item.day}-${index}`}>
                     <Badge
                         count={index + 1}
                         color={item.weight ? 'var(--primary-light-6)' : 'var(--primary-light-1)'}

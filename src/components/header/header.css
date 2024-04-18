@@ -128,10 +128,6 @@
 }
 
 @media (max-width: 576px) {
-    .ant-layout .ant-layout-header {
-        margin-top: -48px;
-    }
-
     .header__wrapper h1.ant-typography {
         font-size: 20px;
         padding-top: 0;
@@ -191,6 +187,7 @@
     .header .ant-page-header-back-button {
         margin-bottom: 2px;
     }
+
     .header__wrapper button.btn-settings__training {
         margin-bottom: 16px;
         margin-top: -16px;

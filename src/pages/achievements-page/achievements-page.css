@@ -20,6 +20,7 @@
 .achievements-page .ant-menu-horizontal {
     line-height: 0;
 }
+
 .achievements-page .ant-menu-horizontal > .ant-menu-item:after {
     right: 10px;
     left: 10px;
@@ -30,6 +31,7 @@
     font-weight: 500;
     line-height: 31.2px;
 }
+
 .achievements-page .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item {
     padding: 0 12px;
 }
@@ -38,8 +40,9 @@
     .achievements-page .menu-achievements {
         padding: 5px 0 0 12px;
         margin-bottom: 0;
-        gap: 65.5px;
+        gap: 105px;
     }
+
     .achievements-page .ant-menu-title-content {
         font-size: var(--smallFontSize);
         font-weight: 400;
@@ -61,9 +64,10 @@
 }
 
 @media screen and (max-width: 576px) {
-    .main-achievements {
+    .main.main-achievements {
         padding: 24px 0 0;
     }
+
     .achievements-page {
         padding: 21px 16px 16px;
         overflow-x: hidden;
@@ -71,6 +75,7 @@
 
     .achievements-page .menu-achievements {
         padding: 0;
+        margin-left: -3px;
         gap: 20px;
         white-space: nowrap;
     }
