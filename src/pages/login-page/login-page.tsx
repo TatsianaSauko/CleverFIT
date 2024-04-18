@@ -53,7 +53,11 @@ export const LoginPage = () => {
         }
     };
 
-    const handleEnterGoogle = () => window.location.href = `${BaseUrl}${Endpoints.AuthGoogle}`;
+    const handleEnterGoogle = () => {
+        window.location.href = `${BaseUrl}${Endpoints.AuthGoogle}`;
+
+        return window.location.href;
+    };
 
     const onChangeCheckbox = (e: CheckboxChangeEvent) => setIsCheckbox(e.target.checked);
 

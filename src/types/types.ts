@@ -210,3 +210,31 @@ export type DateRenderProps = {
     current: Moment;
     activityDates: string[];
 };
+
+export type DataCart = {
+    day: string;
+    weight: number;
+};
+
+export type DataLoad = DataCart;
+
+export type DailyLoadListProps = {
+    dataCart: DataCart[];
+    title?: string;
+};
+
+export type ExerciseData = {
+    [key: string]: {
+        [key: string]: number;
+    };
+};
+
+export type DataItem = {
+    week: string;
+    value: string | null;
+};
+
+export type ResItem = {
+    type: string;
+    value: number;
+};

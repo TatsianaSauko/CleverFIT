@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { HistoryRouter } from 'redux-first-history/rr6';
 import { Path } from '@constants/paths';
+import { AchievementsPage } from '@pages/achievements-page';
 import { CalendarPage } from '@pages/calendar-page';
 import { FeedbacksPage } from '@pages/feedbacks-page';
 import { NotFoundPage } from '@pages/not-found-page';
@@ -54,6 +55,7 @@ root.render(
                         <Route path={Path.Profile} element={<ProfilePage />} />
                         <Route path={Path.Settings} element={<SettingsPage />} />
                         <Route path={Path.Training} element={<TrainingPage />} />
+                        <Route path={Path.Achievements} element={<AchievementsPage />} />
                     </Route>
 
                     <Route path={Path.Auth} element={<AuthenticationLayout />}>

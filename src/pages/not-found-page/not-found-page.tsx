@@ -12,7 +12,7 @@ export const NotFoundPage = () => {
 
     return (
         <Layout className='main-page'>
-            <Sider collapsed={collapsed} />
+            <Sider collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
             <Layout className='site_layout'>
                 <ButtonSiderToggle collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
                 <Result

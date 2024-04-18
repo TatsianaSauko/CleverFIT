@@ -1,8 +1,9 @@
 import { useSelector } from 'react-redux';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { ContentInfoTraining } from '@components/content-info-training';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { useWindowSize } from '@hooks/use-window-size';
-import { trainingSelector } from '@redux/slices/training-slice';
+import { setTraining, trainingSelector } from '@redux/slices/training-slice';
 import { getColorForName } from '@utils/get-color-for-name';
 import { Button, Divider } from 'antd';
 
@@ -10,7 +11,8 @@ import { ModalInfoTrainingProps } from '../../types/props';
 
 import './modal-info-training.css';
 
-export const ModalInfoTraining = ({ backClick, position, onDrawer }: ModalInfoTrainingProps) => {
+export const ModalInfoTraining = ({ backClick, position, onClick }: ModalInfoTrainingProps) => {
+    const dispatch = useAppDispatch();
     const { training } = useSelector(trainingSelector);
     const windowSize = useWindowSize();
     let positionLeft;
@@ -24,8 +26,9 @@ export const ModalInfoTraining = ({ backClick, position, onDrawer }: ModalInfoTr
     }
 
     const handleButtonAddTraining = () => {
+        dispatch(setTraining({ training }));
+        onClick('Редактирование');
         backClick();
-        onDrawer();
     };
 
     return (

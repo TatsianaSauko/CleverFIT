@@ -19,6 +19,7 @@ import { Button, DatePicker, Form, Input, Modal, Progress, Typography, Upload } 
 import type { RcFile, UploadFile } from 'antd/es/upload';
 import { useForm } from 'antd/lib/form/Form';
 import { Content } from 'antd/lib/layout/layout';
+import moment from 'moment';
 import type { UploadRequestOption as RcCustomRequestOptions } from 'rc-upload/lib/interface';
 
 import { FormUser } from '../../types/types';
@@ -202,7 +203,12 @@ export const ProfilePage = () => {
                 onFinish={onFinish}
                 onFieldsChange={handleFormChange}
                 form={form}
-                initialValues={{ email: user.email }}
+                initialValues={{
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email,
+                    birthday: user.birthday ? moment(user.birthday) : null,
+                }}
             >
                 <Title level={5} className='title'>
                     Личная информация

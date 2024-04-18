@@ -67,6 +67,7 @@
     .comment {
         flex-direction: column;
     }
+
     .comment__info-author {
         flex-direction: row;
         gap: var(--spacing-content-gap);

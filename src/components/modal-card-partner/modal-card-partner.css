@@ -45,6 +45,7 @@
     gap: var(--spacing-content-gap);
     width: 237.5px;
 }
+
 .modal-card-partner__content .type__wrapper,
 .modal-card-partner__content .value__wrapper {
     display: flex;
@@ -63,6 +64,7 @@
     line-height: 18.2px;
     color: var(--primary-light-6);
 }
+
 .modal-card-partner__content .btn__cancel-training {
     margin-right: 32px;
     font-size: var(--smallFontSize);

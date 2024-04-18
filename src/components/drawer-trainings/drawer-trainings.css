@@ -33,10 +33,12 @@
 .drawer-trainings .ant-drawer-header {
     padding: 19px 32px 16px;
 }
+
 .drawer-trainings .ant-checkbox + span {
     padding-right: 0;
     letter-spacing: 0.2px;
 }
+
 .drawer-trainings .btn__add-more {
     text-align: left;
 }

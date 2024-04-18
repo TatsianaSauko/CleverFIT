@@ -19,4 +19,5 @@ export const Path = {
     Profile: '/profile',
     Settings: '/settings',
     Training: '/training',
+    Achievements: '/achievements',
 };

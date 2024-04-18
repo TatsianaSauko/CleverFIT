@@ -20,7 +20,13 @@ import logoMobile from '/png/logoMobile.png';
 
 const { Sider: AntSider } = AntLayout;
 
-export const Sider = ({ collapsed }: { collapsed: boolean }) => {
+export const Sider = ({
+    collapsed,
+    toggleCollapsed,
+}: {
+    collapsed: boolean;
+    toggleCollapsed: () => void;
+}) => {
     const dispatch = useAppDispatch();
     const { token } = useSelector(authSelector);
     const { inviteList } = useSelector(jointTrainingSelector);
@@ -69,7 +75,12 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
             text: 'Тренировки',
             onClick: () => handleNavigation(Path.Training),
         },
-        { icon: <TrophyIcon />, link: '/achievements', text: 'Достижения' },
+        {
+            icon: <TrophyIcon />,
+            link: '/achievements',
+            text: 'Достижения',
+            onClick: () => handleNavigation(Path.Achievements),
+        },
         {
             icon: <IdCardIcon />,
             link: '/profile',
@@ -95,8 +106,9 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
             className='aside'
             onBreakpoint={(broken) => {
                 setCollapsedWidth(broken ? 0 : 64);
-                setWidth(broken ? 0 : 208);
+                setWidth(broken ? 106 : 208);
             }}
+            onCollapse={toggleCollapsed}
             {...(width === 208 ? {} : { style: { position: 'fixed', zIndex: '3' } })}
         >
             <ModalGetDataError
@@ -121,6 +133,7 @@ export const Sider = ({ collapsed }: { collapsed: boolean }) => {
                             ...(width === 208 ? {} : { paddingLeft: '0', paddingRight: '0' }),
                         }}
                         onClick={item.onClick}
+                        data-test-id={`sidebar-${item.link.slice(1)}`}
                     >
                         <div className='link'>{item.text}</div>
                     </Menu.Item>

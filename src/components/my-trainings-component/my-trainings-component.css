@@ -29,6 +29,7 @@
     .my-training__empty {
         gap: 108.5px;
     }
+
     .my-training__empty .title {
         width: 270px;
     }
@@ -47,9 +48,11 @@
         padding: 56px 0;
         width: 300px;
     }
+
     .btn-create {
         width: 312px;
     }
+
     .training-page__content {
         padding: 0 12px;
     }

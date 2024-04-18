@@ -47,6 +47,7 @@
 .card-user-joint-training .btn__create-training {
     margin-top: 8px;
 }
+
 .card-user-joint-training .message {
     font-size: var(--extraSmallFontSize);
     line-height: 15.6px;

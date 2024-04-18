@@ -168,7 +168,8 @@ export const TableTrainings = ({ onClick }: TableTrainingsProps) => {
                 <ModalInfoTraining
                     backClick={handleButtonBack}
                     position={modalPosition}
-                    onDrawer={() => setIsModal(false)}
+                    // onDrawer={() => setIsModal(false)}
+                    onClick={() => onClick('Редактирование')}
                 />
             )}
             <Table
